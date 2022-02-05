@@ -1,0 +1,5 @@
+VAR
+	FB_GetTime : DTGetTime;
+	FB_GetUtcTime : UtcDTGetTime;
+	AID : AID_Type;
+END_VAR

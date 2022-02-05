@@ -1,0 +1,48 @@
+(*Motion Version*)
+VAR CONSTANT
+	CST_MotionVersion : INT := 408; (*Motion Version. Visualized on HMI (Version x 100 Ex. V4.00 = 400)//v1.63*)
+END_VAR
+(*General Constant*)
+VAR CONSTANT
+	CST_timReadTemperature : TIME := T#30s; (*Encoder/Motor temperature read period*)
+	CST_AxisRunningThreshold : REAL := 1.5; (*Minumum speed for an axis to be considered as moving*)
+	CST_MaxBackwardMove : LREAL := 10; (*Maximum distance an axis can drive backward during steady gear*)
+	CST_MaxSlaveAcceleration : REAL := 100; (*NOT USED*)
+END_VAR
+(*Torque Control Const*)
+VAR CONSTANT
+	CST_TorqueRamp : REAL := 10; (*Preload torque ramp Nm / sec*)
+	CST_TorquePreLoad : REAL := 1.5; (*Preload Nm*)
+	CST_TorqueErrorThreshold : REAL := 0.0;
+END_VAR
+(*Jog Parameters*)
+VAR CONSTANT
+	CST_JogVelocity : REAL := 300;
+	CST_JogAcceleration : REAL := 50;
+	CST_JogDeceleration : REAL := 500;
+END_VAR
+(*Slow Motion Parameters*)
+VAR CONSTANT
+	CST_SlowMotionVelocity : REAL := 40;
+	CST_SlowMotionAcceleration : REAL := 500;
+	CST_SlowMotionDeceleration : REAL := 50;
+END_VAR
+(*Positioning Parameters*)
+VAR CONSTANT
+	CST_PositioningVel : REAL := 50;
+	CST_PositioningAccDec : REAL := 10;
+END_VAR
+(*Rephasing Threhsold*)
+VAR CONSTANT
+	CST_RephasingThreshold : REAL := 0.001;
+	CST_MaxTemperatureEncoder : REAL := 110.0;
+END_VAR
+(*Extrapolation Filter*)
+VAR CONSTANT
+	CST_FilteringCoefficient : UINT := 0;
+	CST_BFNumberOfExtCycles : USINT := 22; (*Encoder Powerlink  Cycles + 10 Cycles for Sampling //v4.A.A.1.7.0*)
+	CST_BAFNumberOfExtCycles : USINT := 22; (*Encoder Powerlink  Cycles + 10 Cycles for Sampling //v4.A.A.1.7.0*)
+	CST_NumberOfExtCycles : USINT := 0;
+	CST_ExtEncFilteringCoefficient : UINT := 30;
+	CST_ExtEncNumberOfExtCycles : USINT := 19; (*Encoder Powerlink 6 Cycles + 10 Cycles for Sampling //v1.63*)
+END_VAR

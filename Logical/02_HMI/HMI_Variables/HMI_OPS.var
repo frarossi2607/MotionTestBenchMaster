@@ -1,0 +1,56 @@
+VAR
+	HMI_OPS_Zone : ARRAY[MIN_CFG_SafetyZone..MAX_CFG_SafetyZone] OF HMI_OPS_Zone_Type; (*1: Forward
+2: Backward Inlet
+3: Backward Outlet
+4: Inlet Transfer Forward
+5: Inlet Transfer Backward
+6: 
+7: Filler Maintenance Inlet 
+8: Filler Maintenance Outlet/Capper Platform
+9:
+10:Transfer  Gate 
+11:Forward 2
+12: Backward Inlet 2
+13: Backward Outlet 2
+14:
+15:
+16:Backward Rinser Inlet
+17:Backward Rinser Outlet
+18:Maintenance Rinser Outlet
+19:
+20:
+21:Backward Pulp Doser
+22:Backward Pulp Doser 2*)
+	HMI_OPS_BufferZone : HMI_OPS_Zone_Type;
+	HMI_OPS_GateDoor : ARRAY[0..1] OF HMI_GateDoor_Type; (*0: Inlet Gate
+1: Outlet Gate*)
+	HMI_OPS_Door : ARRAY[0..MAX_CFG_DoorConfiguration] OF HMI_OPS_Door_Type;
+	HMI_OPS_DoorCabinet_Visibility : BOOL;
+	HMI_OPS_DoorCabinet : ARRAY[1..5] OF HMI_OPS_Door_Type;
+	HMI_OPS_Euchner : HMI_OPS_RfidAccess_Type;
+	HMI_OPS_SafetySwitch : HMI_OPS_SafetySwitch_Type; (*V4.A.A.1.7.1*)
+	HMI_OPS_BufferDoor : ARRAY[1..4] OF HMI_OPS_Door_Type; (*V4.A.A.1.6.12d*)
+	HMI_OPS_Emergency : ARRAY[0..MAX_CFG_EmergencyConfiguration] OF HMI_OPS_Emergency_Type;
+	HMI_OPS_Jog : ARRAY[0..MAX_CFG_JogConfiguration] OF HMI_OPS_Jog_Type;
+	HMI_OPS_EmergencyBlower : HMI_OPS_Emergency_Type;
+	HMI_OPS_EmergencyLabeller : HMI_OPS_Emergency_Type;
+	HMI_OPS_EmergencyActis : HMI_OPS_Emergency_Type; (*V4.A.A.1.6.12*)
+	HMI_OPS_EmergencyConveyor : HMI_OPS_Emergency_Type;
+	HMI_OPS_EmergencyNitrodoser : HMI_OPS_Emergency_Type;
+	HMI_OPS_ModeSelectorAdjustment : BOOL;
+	HMI_OPS_ModeSelectorJog : BOOL; (*V4.A.A.1.6.13*)
+	HMI_OPS_ModeSelectorAuto : BOOL; (*V4.A.A.1.6.13*)
+	HMI_OPS_SafetyWidget : HMI_SafetyWidget_Type;
+	HMI_207EVF : HMI_Valve_Type; (*Soffio Paratia automatica COP V4.A.A.1.6.12*)
+	HMI_208CPF : HMI_Valve_Type; (*Paratia automatica COP V4.A.A.1.6.12*)
+	HMI_208DSFX : HMI_DI_Type; (*Paratia automatica COP Aperta V4.A.A.1.6.12*)
+	HMI_208DSFY : HMI_DI_Type; (*Paratia automatica COP Chiusa V4.A.A.1.6.12*)
+	HMI_209DSFX : HMI_DI_Type; (*Paratia automatica COP Aperta V4.A.A.1.6.12*)
+	HMI_209DSFY : HMI_DI_Type; (*Paratia automatica COP Chiusa V4.A.A.1.6.12*)
+	HMI_209EVF : HMI_Valve_Type;
+	HMI_OPS_Pictogram : HMI_OPS_Pictogram_Type;
+	HMI_OPS_Cfg : CFG_OPS_Type;
+	HMI_OPS_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_OPS_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type; (*V4.A.A.1.6.12h*)
+	HMI_OPS_ZoneComboString : STRING[250];
+END_VAR

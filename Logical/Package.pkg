@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package Version="1.00.0" xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Package" Description="Aid memory: memorie ausiliarie al programma">00_AID</Object>
+    <Object Type="Package" Description="Human Machine Interface: interfaccia pannello operatore">02_HMI</Object>
+    <Object Type="Package" Description="Main Drive: motorizzazione macchina principale">05_MNM</Object>
+    <Object Type="Package" Description="Machine Auxiliary: funzioni macchina ausiliarie">12_MAU</Object>
+    <Object Type="Package" Description="Machine configuration manager">28_CFG</Object>
+    <Object Type="Package" Description="Motion Main Folder">30_MC</Object>
+  </Objects>
+</Package>

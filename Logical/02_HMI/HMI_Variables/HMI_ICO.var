@@ -1,0 +1,3 @@
+VAR
+	HMI_ICO : HMI_ICO_Type;
+END_VAR

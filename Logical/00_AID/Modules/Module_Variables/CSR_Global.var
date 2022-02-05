@@ -1,0 +1,11 @@
+VAR RETAIN
+	VAR_Lift_Sequencer : CSR_Lift_SeqMode_Type;
+	VAR_CSR_Sequencer : CSR_Sequencer_Type;
+END_VAR
+VAR
+	CSR : CSR_Type;
+END_VAR
+VAR RETAIN
+	SIKO_AXIS2Data : SIKO_MASTER_Type; (*V4.A.A.1.6.12*)
+	SIKO_AXIS1Data : SIKO_MASTER_Type; (*V4.A.A.1.6.12*)
+END_VAR

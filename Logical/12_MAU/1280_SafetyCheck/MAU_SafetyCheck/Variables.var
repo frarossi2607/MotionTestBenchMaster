@@ -1,0 +1,27 @@
+VAR
+	VAR_Index : UINT;
+	VAR_Subindex : USINT;
+	FB_RemoteEplSDOWrite : EplSDOWrite;
+	FB_RemoteEplSDORead : EplSDORead;
+	VAR_SafeOSState : UDINT;
+	VAR_CPUSafetyNotFound : BOOL;
+	TMR_TON_Read : TON;
+	CMD_SafetyRemoteControl : CmdRemoteControl_Type;
+	VAR_SafeRemoteControl_Step : SafeLogicCtrl_Status;
+	VAR_StatusSafetyRemoteControl : StatusRemoteControl_Type;
+	VAR_ModuleSafetyMissing : ARRAY[0..100] OF BOOL;
+	VAR_AllowedSafeButton : BOOL;
+	VAR_SafeAuthor : STRING[32];
+	VAR_SafeCRC : UDINT;
+	VAR_SafeTime : DATE_AND_TIME;
+	VAR_SafeTime_DTStruct : DTStructure;
+	i : INT;
+	j : INT;
+	VAR_NoUpdateStatus : BOOL;
+	VAR_Temp : STRING[4];
+	VAR_StatusSafetyScanning : USINT;
+	VAR_StatusSafetySafeKeyChanged : USINT;
+	VAR_StatusSafetyNbOfUdId : UINT;
+	VAR_StatusSafetyNbOfDiffFW : UINT;
+	VAR_SafetyDeviceAdress : STRING[20];
+END_VAR

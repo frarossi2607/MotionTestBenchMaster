@@ -1,0 +1,3 @@
+VAR
+	HMI_MNT : HMI_MNT_Type;
+END_VAR

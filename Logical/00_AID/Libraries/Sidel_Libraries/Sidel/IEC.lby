@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported functions and function blocks">Sidel.fun</File>
+    <File>Types.typ</File>
+    <File>AlarmScheduler.st</File>
+    <File>AnalogTotalizer.st</File>
+    <File>Blink.st</File>
+    <File>ComboBox.st</File>
+    <File>CyclicActivation.st</File>
+    <File>FB_ITC.st</File>
+    <File>FB_ITCFast.st</File>
+    <File>FB_Counter.st</File>
+    <File>FC_Counter.st</File>
+    <File>FC_Timer.st</File>
+    <File>FC_Parity.st</File>
+    <File>FC_Reminder.st</File>
+    <File>FC_SpeedCheck.st</File>
+    <File>LevelVariation.st</File>
+    <File>LftConAirPress.st</File>
+    <File>RCP_Management.st</File>
+    <File Description="PID calculation">PID_FB.st</File>
+    <File>Siko_Management.st</File>
+    <File Description="Siko Manager">SIKO_FB.st</File>
+    <File Description="FF calculation">PID_FF_Mod.st</File>
+    <File Description="FF calculation">PID_FF_Pump.st</File>
+    <File>Sequencer.st</File>
+    <File>TankLevel.st</File>
+    <File>TP_Reset.st</File>
+    <File>FB_Flip.st</File>
+    <File>Constant.var</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="LoopConR" />
+  </Dependencies>
+</Library>

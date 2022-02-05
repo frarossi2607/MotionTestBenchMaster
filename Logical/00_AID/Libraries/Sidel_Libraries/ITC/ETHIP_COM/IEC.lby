@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="4.00.1" Description="4.00.0 - ETHIP COM Library by Sidel" xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="ETHIP COM Data Types">ETHIP_COM.typ</File>
+    <File Description="ETHIP COM Constants">ETHIP_COM.var</File>
+    <File Description="ETHIP COM Functions and Function Blocks">ETHIP_COM.fun</File>
+    <File Description="ETHIP COM Code">ETHIP_COM.st</File>
+    <File Description="ETHIP COM Error">ETHIP_COM_Error.st</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="AsEthIP" />
+    <Dependency ObjectName="AsICMP" />
+    <Dependency ObjectName="AsString" />
+    <Dependency ObjectName="Runtime" />
+    <Dependency ObjectName="Standard" />
+  </Dependencies>
+</Library>

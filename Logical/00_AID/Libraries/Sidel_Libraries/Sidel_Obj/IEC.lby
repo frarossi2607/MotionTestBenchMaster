@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported functions and function blocks">Sidel_Obj.fun</File>
+    <File>HMI_Structure.typ</File>
+    <File>IO_Structure.typ</File>
+    <File>Local_Structure.typ</File>
+    <File Description="Analog input control">Analog_In.st</File>
+    <File Description="Analog input control">Analog_In_Multiscale.st</File>
+    <File Description="Analog input control">Analog_In_Multicompare.st</File>
+    <File Description="Analog input control Direct or Inverse">Analog_In_Direct_Inverse.st</File>
+    <File>Digital_Obj.st</File>
+    <File Description="Standard motor control Forward and Backward">Motor_Std_Fw_Bw.st</File>
+    <File Description="Standard motor control">Motor_Std.st</File>
+    <File>Motor_FC280_Vfd.st</File>
+    <File>Motor_Vfd.st</File>
+    <File Description="Fan control">Fan.st</File>
+    <File Description="Standard motor control">MotionFan_Obj.st</File>
+    <File Description="Digital valve control">Valve_Dig.st</File>
+    <File Description="Digital valve control - MAC">Valve_Dig_Mac.st</File>
+    <File Description="Modulating valve control">Valve_Mod.st</File>
+    <File>Shift_Obj.st</File>
+    <File>UVtronic_Std.st</File>
+    <File Description="Global variables">Constant.var</File>
+  </Files>
+</Library>

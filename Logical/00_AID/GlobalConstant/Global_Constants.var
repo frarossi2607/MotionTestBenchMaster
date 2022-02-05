@@ -1,0 +1,160 @@
+(*PROJECT TYPE*)
+VAR CONSTANT
+	CST_AID_ProjectMachine : USINT := 1;
+	CST_AID_ProjectSkid : USINT := 2;
+END_VAR
+(*MNM*)
+VAR CONSTANT
+	CST_MNM_DIR_NEG : USINT := 1;
+	CST_MNM_DIR_POS : USINT := 0;
+END_VAR
+(*COP*)
+VAR CONSTANT
+	CST_COP_RcpMax : USINT := 10;
+	CST_COP_PhaseMaxNr : USINT := 150;
+END_VAR
+(*FMC*)
+VAR CONSTANT
+	CST_FmcModeIdle : USINT := 0; (*Filling Master Card Mode IDLE*)
+	CST_FmcModeOperation : USINT := 1; (*Filling Master Card Mode OPERATION*)
+	CST_FmcModeCipRinse : USINT := 2; (*Filling Master Card Mode CIP/RINSE*)
+END_VAR
+(*CONFIGURATION*)
+VAR CONSTANT
+	MIN_CFG_PSx : UINT := 200;
+	MAX_CFG_PSx : UINT := 210;
+	MIN_CFG_LSx : UINT := 200;
+	MAX_CFG_LSx : UINT := 299;
+	MIN_CFG_HSx : UINT := 200; (*V4.A.A.1.6.12*)
+	MAX_CFG_HSx : UINT := 299; (*V4.A.A.1.6.12*)
+	MIN_CFG_FSx : UINT := 200;
+	MAX_CFG_FSx : UINT := 299;
+	MIN_CFG_GSx : UINT := 200;
+	MAX_CFG_GSx : UINT := 299;
+	MIN_CFG_CTx : UINT := 200;
+	MAX_CFG_CTx : UINT := 300;
+	MIN_CFG_QTx : UINT := 200;
+	MAX_CFG_QTx : UINT := 300;
+	MIN_CFG_FTx : UINT := 200;
+	MAX_CFG_FTx : UINT := 310;
+	MIN_CFG_TTx : UINT := 200;
+	MAX_CFG_TTx : UINT := 300;
+	MIN_CFG_TSx : UINT := 200;
+	MAX_CFG_TSx : UINT := 300;
+	MIN_CFG_PTx : UINT := 200;
+	MAX_CFG_PTx : UINT := 310;
+	MIN_CFG_LTx : UINT := 200;
+	MAX_CFG_LTx : UINT := 210;
+	MIN_CFG_RVx : UINT := 200;
+	MAX_CFG_RVx : UINT := 299;
+	MIN_CFG_PID_PPx : UINT := 200;
+	MAX_CFG_PID_PPx : UINT := 220; (*V4.A.A.1.7.1*)
+	MIN_CFG_PID_RVx : UINT := 200;
+	MAX_CFG_PID_RVx : UINT := 220;
+	MIN_CFG_PID_RMx : UINT := 200;
+	MAX_CFG_PID_RMx : UINT := 210;
+	MIN_CFG_RMx : UINT := 200;
+	MAX_CFG_RMx : UINT := 210;
+	MIN_CFG_MMx : UINT := 200;
+	MAX_CFG_MMx : UINT := 299;
+	MIN_CFG_PPx : UINT := 200;
+	MAX_CFG_PPx : UINT := 299;
+	MIN_CFG_AVx : UINT := 200;
+	MAX_CFG_AVx : UINT := 299;
+	MIN_CFG_HVx : UINT := 200; (*V4.A.A.1.6.12*)
+	MAX_CFG_HVx : UINT := 299; (*V4.A.A.1.6.12*)
+	MIN_CFG_VFD_MMx : UINT := 200;
+	MAX_CFG_VFD_MMx : UINT := 210;
+	MIN_CFG_VFD_PPx : UINT := 200;
+	MAX_CFG_VFD_PPx : UINT := 220;
+	MIN_SS3P_CFG : UINT := 0;
+	MAX_SS3P_CFG : UINT := 20;
+	MIN_SS2P_CFG : UINT := 0;
+	MAX_SS2P_CFG : UINT := 20;
+	MIN_PB_CFG : UINT := 0;
+	MAX_PB_CFG : UINT := 20;
+	MIN_CFG_LOTO_Step : UINT := 0;
+	MAX_CFG_LOTO_Step : UINT := 19;
+	MIN_CFG_LOTO_Condition : UINT := 0;
+	MAX_CFG_LOTO_Condition : UINT := 31;
+	MIN_CFG_TPM_Bar : UINT := 0;
+	MAX_CFG_TPM_Bar : UINT := 24;
+	MIN_CmdBar_PB : UINT := 1;
+	MAX_CmdBar_PB : UINT := 25;
+	MIN_CFG_SafetyZone : UINT := 1;
+	MAX_CFG_SafetyZone : UINT := 22;
+	MIN_CFG_SafetyDoor : UINT := 1;
+	MAX_CFG_SafetyDoor : UINT := 8;
+	MIN_CFG_SafetyDoorCabinet : UINT := 1;
+	MAX_CFG_SafetyDoorCabinet : UINT := 5;
+	MIN_CFG_SafetyEmergency : UINT := 1;
+	MAX_CFG_SafetyEmergency : UINT := 11;
+	MIN_CFG_SafetyJog : UINT := 0;
+	MAX_CFG_SafetyJog : UINT := 22;
+	MAX_CFG_DoorConfiguration : UINT := 40;
+	MAX_CFG_JogConfiguration : UINT := 30;
+	MAX_CFG_EmergencyConfiguration : UINT := 30;
+END_VAR
+(*CONFIGURATION C Family 1.7.2*)
+VAR CONSTANT
+	MIN_CFG_PSC : UINT := 200;
+	MAX_CFG_PSC : UINT := 210;
+	MIN_CFG_HSC : UINT := 200;
+	MAX_CFG_HSC : UINT := 209;
+	MIN_CFG_LSC : UINT := 200;
+	MAX_CFG_LSC : UINT := 209;
+	MIN_CFG_FSC : UINT := 200;
+	MAX_CFG_FSC : UINT := 299;
+	MIN_CFG_GSC : UINT := 200;
+	MAX_CFG_GSC : UINT := 209;
+	MIN_CFG_CTC : UINT := 200;
+	MAX_CFG_CTC : UINT := 209;
+	MIN_CFG_QTC : UINT := 200;
+	MAX_CFG_QTC : UINT := 209;
+	MIN_CFG_FTC : UINT := 200;
+	MAX_CFG_FTC : UINT := 209;
+	MIN_CFG_TTC : UINT := 200;
+	MAX_CFG_TTC : UINT := 209;
+	MIN_CFG_TSC : UINT := 200;
+	MAX_CFG_TSC : UINT := 209;
+	MIN_CFG_PTC : UINT := 200;
+	MAX_CFG_PTC : UINT := 209;
+	MIN_CFG_LTC : UINT := 200;
+	MAX_CFG_LTC : UINT := 209;
+	MIN_CFG_RVC : UINT := 200;
+	MAX_CFG_RVC : UINT := 209;
+	MIN_CFG_PID_PPC : UINT := 200;
+	MIN_CFG_PID_RVC : UINT := 200;
+	MAX_CFG_PID_RVC : UINT := 209;
+	MIN_CFG_PID_RMC : UINT := 200;
+	MAX_CFG_PID_RMC : UINT := 209;
+	MIN_CFG_RMC : UINT := 200;
+	MAX_CFG_RMC : UINT := 209;
+	MIN_CFG_MMC : UINT := 200;
+	MAX_CFG_MMC : UINT := 209;
+	MIN_CFG_PPC : UINT := 200;
+	MAX_CFG_PPC : UINT := 209;
+	MIN_CFG_AVC : UINT := 100;
+	MAX_CFG_AVC : UINT := 209;
+	MIN_CFG_HVC : UINT := 200;
+	MAX_CFG_HVC : UINT := 209;
+	MIN_CFG_VFD_MMC : UINT := 200;
+	MAX_CFG_VFD_MMC : UINT := 209;
+	MIN_CFG_VFD_PPC : UINT := 200;
+	MAX_CFG_VFD_PPC : UINT := 209;
+END_VAR
+(*Sequencer*)
+VAR CONSTANT
+	MAX_STEP_CFG : UINT := 201;
+	MAX_JUMP_CFG : UINT := 30;
+END_VAR
+(*Jog Speed *)
+VAR CONSTANT
+	CST_JogMinimumSpeed : REAL := 500.0;
+	CST_JogMaximumSpeed : REAL := 3000.0;
+END_VAR
+(*Filler Shift Constant*)
+VAR CONSTANT
+	CST_ShiftDimensionCombi : UINT := 1000; (*Machine Shift Array*)
+	CST_ShiftDimension : UINT := 1000; (*Machine Shift Array*)
+END_VAR

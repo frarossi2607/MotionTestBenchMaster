@@ -1,0 +1,59 @@
+VAR
+	StFmState : INT;
+	VAR_CsvMngState : INT;
+	VAR_PV_NinfoState : UINT;
+	VAR_FmCmd : FmCmd_Type;
+	VAR_FmAck : FmAck_Type;
+END_VAR
+(*Function Block*)
+(*MpRecipe*)
+VAR
+	FB_MpRecipeCsv : MpRecipeCsv;
+	FB_MpRecipeRegPar_Config : MpRecipeRegPar;
+	FB_MpRecipeRegPar_Hmi : MpRecipeRegPar;
+	FB_MpRecipeRegPar_CfgOps : MpRecipeRegPar;
+	FB_MpRecipeRegPar_Itc : MpRecipeRegPar;
+	FB_MpRecipeRegPar_Motion : MpRecipeRegPar;
+	FB_MpRecipeRegPar_CfgCap : MpRecipeRegPar;
+	FB_DirCreate : DirCreate;
+	pMpLinkRecipeCsv : UDINT;
+END_VAR
+(*-----*)
+VAR
+	VAR_FileName : STRING[14];
+	VAR_Header : MpRecipeCsvHeaderType;
+	VAR_HmiPaoName : STRING[20];
+	VAR_CfgPaoName : STRING[20];
+	VAR_CfgDoorName : STRING[20];
+	VAR_CfgMotionName : STRING[20];
+	VAR_CfgItcName : STRING[20];
+	VAR_CfgCapName : STRING[20];
+	VAR_CategoryConfig : STRING[50] := 'CFG_Par';
+	VAR_PvNameConfig : STRING[100] := 'CFG_Par';
+	VAR_CategoryHmi : STRING[50] := 'HMI_PAO_2';
+	VAR_PvNameHmi : STRING[100] := 'HMI_PAO_2';
+	VAR_CategoryMotion : STRING[50] := 'CFG_MC';
+	VAR_PvNameMotion : STRING[100] := 'CFG_MC';
+	VAR_CategoryItc : STRING[50] := 'CFG_ITC';
+	VAR_PvNameItc : STRING[100] := 'CFG_ITC';
+	VAR_CategoryCfgDoor : STRING[50] := 'CFG_OPS';
+	VAR_PvNameCfgDoor : STRING[100] := 'CFG_OPS';
+	VAR_CategoryCfgCap : STRING[50] := 'CFG_Cap';
+	VAR_PvNameCfgCap : STRING[100] := 'CFG_Cap_Par';
+	VAR_ItemName : STRING[100];
+	VAR_InitialVariableName : STRING[100];
+	VAR_VariableName : STRING[100];
+	VAR_DType : UDINT;
+	VAR_address : UDINT;
+	VAR_Dim : UINT;
+	VAR_Len : UDINT;
+	VAR_DType2 : UDINT;
+	VAR_Dim2 : UINT;
+	VAR_Len2 : UDINT;
+	var_i : UDINT;
+	VAR_Level : INT;
+	VAR_array : STRING[3];
+	VAR_LastElement : INT;
+	VAR_LastElementOld : INT;
+	VAR_Page : INT;
+END_VAR

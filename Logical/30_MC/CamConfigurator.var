@@ -1,0 +1,71 @@
+(*Cam Configurator*)
+(*Clock A-B*)
+VAR CONSTANT
+	CST_SubModuleMachineCk : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisMachineCk : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCkA : REAL := 0.0;
+	CST_OffPositionCkA : REAL := 180.0;
+	CST_OnPositionCkB : REAL := 270.0;
+	CST_OffPositionCkB : REAL := 90.0;
+	CST_OnPositionCkA_Fma : REAL := 10.0;
+	CST_OffPositionCkA_Fma : REAL := 190.0;
+	CST_OnPositionCkB_Fma : REAL := 100.0;
+	CST_OffPositionCkB_Fma : REAL := 280.0;
+	CST_AdvTimeCkA : REAL := 0.0;
+END_VAR
+(*Clock 02*)
+VAR CONSTANT
+	CST_SubModuleCk02 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk02 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk02 : REAL := 10.0;
+	CST_OffPositionCk02 : REAL := 15.0;
+	CST_AdvTimeCk02 : REAL := 0.0;
+END_VAR
+(*Clock 03*)
+VAR CONSTANT
+	CST_SubModuleCk03 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk03 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk03 : REAL := 10.0;
+	CST_OffPositionCk03 : REAL := 20.0;
+	CST_AdvTimeCk03 : REAL := 0.0;
+END_VAR
+(*Clock 04*)
+VAR CONSTANT
+	CST_SubModuleCk04 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk04 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk04 : REAL := 20.0;
+	CST_OffPositionCk04 : REAL := 30.0;
+	CST_AdvTimeCk04 : USINT := 0;
+END_VAR
+(*Clock 05*)
+VAR CONSTANT
+	CST_SubModuleCk05 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk05 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk05 : REAL := 20.0;
+	CST_OffPositionCk05 : REAL := 40.0;
+	CST_AdvTimeCk05 : REAL := 0.0;
+END_VAR
+(*Clock 06*)
+VAR CONSTANT
+	CST_SubModuleCk06 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk06 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk06 : REAL := 30.0;
+	CST_OffPositionCk06 : REAL := 60.0;
+	CST_AdvTimeCk06 : REAL := 0.0;
+END_VAR
+(*Clock 07*)
+VAR CONSTANT
+	CST_SubModuleCk07 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk07 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk07 : REAL := 60.0;
+	CST_OffPositionCk07 : REAL := 30.0;
+	CST_AdvTimeCk07 : REAL := 0.0;
+END_VAR
+(*Clock 08*)
+VAR CONSTANT
+	CST_SubModuleCk08 : USINT := CST_MasterSubModule; (*0 - Master; 1 - Filler; 2 - Outlet*)
+	CST_AxisCk08 : USINT := CST_ModuleMasterAxis;
+	CST_OnPositionCk08 : REAL := 60.0;
+	CST_OffPositionCk08 : REAL := 30.0;
+	CST_AdvTimeCk08 : REAL := 0.0;
+END_VAR

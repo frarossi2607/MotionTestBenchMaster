@@ -1,0 +1,4 @@
+VAR
+	TMR_TON_ParInitialization : TON;
+	VAR_PAR_Initialization : BOOL;
+END_VAR

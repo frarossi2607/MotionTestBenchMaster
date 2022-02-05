@@ -1,0 +1,7 @@
+(*Absolute Position Constant*)
+VAR CONSTANT
+	CST_StepsAbsolutePositionFiller : UINT := 10; (*Number Of Steps Carousel Unit*)
+	CST_StepsAbsolutePositionOutlet : UINT := 10; (*Number Of Steps*)
+	CST_StepsAbsolutePositionInlet : UINT := 10; (*Number Of Steps*)
+	CST_AxesMultiplexingOn : BOOL := TRUE; (*V4.A.A.1.6.10 (replace CFG_MC.Generic.AxesMultiplexingOn with CST_AxesMultiplexingOn)*)
+END_VAR

@@ -1,0 +1,6 @@
+VAR
+	HMI_PAO : HMI_PAO_Type;
+	HMI_CFG_Display : ARRAY[1..20] OF HMI_CFG_Display_Type;
+	HMI_CFG_Selection : INT;
+	HMI_CFG_Reset : BOOL;
+END_VAR

@@ -1,0 +1,3 @@
+VAR
+	HMI_FMC_ActualFlowRate : REAL;
+END_VAR

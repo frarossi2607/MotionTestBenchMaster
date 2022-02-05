@@ -1,0 +1,23 @@
+(*SFT*)
+VAR CONSTANT
+	SS3P_SFT_FillingValveOpen : USINT := 0;
+END_VAR
+(*CAP*)
+VAR CONSTANT
+	SS3P_CAP_CapsRelease : USINT := 0;
+	SS3P_CAP_UvLampChannelA : USINT := 1;
+	SS3P_CAP_UvLampChannelB : USINT := 2;
+	SS3P_CAP_UvLampChannelC : USINT := 3;
+END_VAR
+(*COP - Wash*)
+VAR CONSTANT
+	SS3P_COP_Shower : USINT := 0;
+	SS3P_COP_NeckRinse : USINT := 1;
+	SS3P_COP_ValveWash : USINT := 2;
+END_VAR
+(*CRW*)
+VAR CONSTANT
+	SS3P_CRW_CrownsRelease : USINT := 0;
+	SS3P_CRW_Washing : USINT := 1;
+	SS3P_CRW_ExtractorCleaning : USINT := 2;
+END_VAR

@@ -1,0 +1,51 @@
+(*Master nuovo*)
+VAR
+	IO_204CPC : IO_Valve_Type; (*EV crowner lift block*)
+	IO_LTK : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF IO_Analog_IN_Type;
+	IO_3281M1 : IO_Motor_FwBw_Type;
+	IO_3281M1_Cmd : IO_Digital_OUT_Type;
+	IO_2806M1 : IO_Motor_FwBw_Type;
+	IO_2806M1_Cmd : IO_Digital_OUT_Type;
+	IO_2808M1 : IO_Motor_FwBw_Type;
+	IO_2806M1_Brake : IO_Motor_Type;
+	IO_2809M2 : IO_Motor_FwBw_Type;
+	IO_RnsLiftFC280 : IO_MotorFC280_Type; (*Rinser Lift*)
+	IO_VFD_RnsLiftFC280 : IO_PLK_DanfossFC280_Drive_Type; (*Rinser Lift VFD*)
+	IO_TnkLiftFC280 : IO_MotorFC280_Type;
+	IO_VFD_TnkLiftFC280 : IO_PLK_DanfossFC280_Drive_Type; (*Outfeed Conveyor VFD*)
+	IO_2768U0 : IO_Motor_FwBw_Type;
+	IO_2768U0_Store : IO_Digital_OUT_Type;
+	IO_202CPB : IO_Valve_Type; (*Containers sectors block (X: Block / Y: Unblock)*)
+	IO_212DSB : IO_Digital_IN_Type; (*Third element perso part sensor*)
+	IO_213DSB : IO_Digital_IN_Type; (*Third element perso part sensor - Ferrum Guide Presence in Carousel Outlet*)
+	IO_CSR_SCU : IO_CSR_SCU_Type;
+	IO_CSR_FlrShaftSensorCtrl1 : IO_Digital_IN_Type;
+	IO_CSR_FlrShaftSensorCtrl2 : IO_Digital_IN_Type;
+	IO_CSR_RnsShaftSensorCtrl1 : IO_Digital_IN_Type;
+	IO_CSR_RnsShaftSensorCtrl2 : IO_Digital_IN_Type;
+	IO_YV26 : IO_Valve_Type;
+	IO_YV39 : IO_Valve_Type;
+	IO_SQ26 : IO_Digital_IN_Type;
+	IO_SQ45A2 : IO_Digital_IN_Type;
+	IO_SQ45A1 : IO_Digital_IN_Type;
+	IO_SQ70 : IO_Digital_IN_Type;
+	IO_SQ5 : IO_Digital_IN_Type;
+	IO_SQ40 : IO_Digital_IN_Type;
+	IO_SQ6 : IO_Digital_IN_Type;
+	IO_3565S5 : IO_Digital_IN_Type;
+	IO_3565S7 : IO_Digital_IN_Type;
+	IO_CapChannelPresent : IO_Digital_IN_Type;
+END_VAR
+(*SIKO*)
+VAR
+	IO_SIKO_AX2_SafetyEnable : IO_Digital_IN_Type := (DI_Input:=TRUE);
+	IO_SIKO_AX1_SafetyEnable : IO_Digital_IN_Type := (DI_Input:=TRUE);
+	IO_SIKO_AX1_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE);
+	IO_SIKO_AX2_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE);
+	IO_SIKO_AX1_ModuleOK : IO_Digital_IN_Type; (*Module Ok: Put this IO in The IoMap*)
+	IO_SIKO_AX2_ModuleOK : IO_Digital_IN_Type; (*Module Ok: Put this IO in The IoMap*)
+	IO_SIKO_AX1 : SIKO_COM_Type;
+	IO_SIKO_AX2 : SIKO_COM_Type;
+	IO_238DSE : IO_Digital_IN_Type; (*Outlet Conveyor Height Sensor*)
+	IO_243DSE : IO_Digital_IN_Type; (*Outlet Conveyor Body Guide Presence*)
+END_VAR

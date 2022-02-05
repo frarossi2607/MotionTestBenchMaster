@@ -1,0 +1,58 @@
+(*Master Module*)
+VAR RETAIN
+	VAR_PowerSupplyHomeData : ST_AxisHome;
+	VAR_AxMachineMasterHomeData : ST_AxisHome;
+	VAR_AbsEncPerm : ST_AbsEncPerm;
+END_VAR
+(*Filler Module*)
+VAR RETAIN
+	VAR_FillerMasterHomeData : ST_AxisHome;
+	VAR_FillerMainHomeData : ST_AxisHome;
+	VAR_FillerIn01HomeData : ST_AxisHome;
+	VAR_FillerIn02HomeData : ST_AxisHome;
+	VAR_FillerIn03HomeData : ST_AxisHome;
+	VAR_FillerIn04HomeData : ST_AxisHome;
+	VAR_FillerIn05HomeData : ST_AxisHome;
+	VAR_FillerIn06HomeData : ST_AxisHome;
+	VAR_FillerIn07HomeData : ST_AxisHome;
+	VAR_FillerIn08HomeData : ST_AxisHome;
+	VAR_FillerIn09HomeData : ST_AxisHome;
+	VAR_FillerIn10HomeData : ST_AxisHome;
+	VAR_FillerOut01HomeData : ST_AxisHome;
+	VAR_FillerOut02HomeData : ST_AxisHome;
+	VAR_FillerOut03HomeData : ST_AxisHome;
+	VAR_FillerOut04HomeData : ST_AxisHome;
+	VAR_FillerOut05HomeData : ST_AxisHome;
+	VAR_FillerOut06HomeData : ST_AxisHome;
+END_VAR
+(*Outlet Module*)
+VAR RETAIN
+	VAR_OutletMasterHomeData : ST_AxisHome;
+	VAR_OutletIn01HomeData : ST_AxisHome;
+	VAR_OutletIn02HomeData : ST_AxisHome;
+	VAR_OutletIn03HomeData : ST_AxisHome;
+	VAR_OutletIn04HomeData : ST_AxisHome;
+	VAR_OutletMainHomeData : ST_AxisHome;
+	VAR_OutletOut01HomeData : ST_AxisHome;
+	VAR_OutletOut02HomeData : ST_AxisHome;
+	VAR_OutletOut03HomeData : ST_AxisHome;
+	VAR_OutletOut04HomeData : ST_AxisHome;
+END_VAR
+(*Doser Module*)
+VAR RETAIN
+	VAR_DoserMasterHomeData : ST_AxisHome;
+	VAR_DoserMainHomeData : ST_AxisHome;
+END_VAR
+(*Inlet Module*)
+VAR RETAIN
+	VAR_InletMasterHomeData : ST_AxisHome;
+	VAR_InletIn01HomeData : ST_AxisHome;
+	VAR_InletIn02HomeData : ST_AxisHome;
+	VAR_InletIn03HomeData : ST_AxisHome;
+	VAR_InletIn04HomeData : ST_AxisHome;
+	VAR_InletMainHomeData : ST_AxisHome;
+	VAR_InletOut01HomeData : ST_AxisHome;
+	VAR_InletOut02HomeData : ST_AxisHome;
+	VAR_InletOut03HomeData : ST_AxisHome;
+	VAR_InletOut04HomeData : ST_AxisHome;
+END_VAR

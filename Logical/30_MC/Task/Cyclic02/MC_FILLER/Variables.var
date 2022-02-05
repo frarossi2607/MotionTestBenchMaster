@@ -1,0 +1,196 @@
+(* Input Variables *)
+VAR
+	xInputAuto : BOOL;
+	xInputVelocity : BOOL;
+	xInputJogMulti : BOOL;
+	xInputAutoMulti : BOOL;
+	xInputSelHoming : BOOL;
+	xInputThirdPartySetup : BOOL;
+	xInputInductionSetup : BOOL;
+	xInputPositioning : BOOL;
+	xInputMultiAxis : BOOL;
+	xInputSlowMotion : BOOL;
+	xInputBrakeRelease : BOOL;
+	xInputStepByStepSingleAxis : BOOL; (*V4.A.A.1.7.0*)
+	xInputStepByStep : BOOL;
+END_VAR
+(*Modality Bits*)
+VAR
+	xModeReady : BOOL;
+	xExitStep : BOOL; (*Exit Step Variables*)
+	xAutoCombiMode : BOOL; (*Auto Mode Command Variables*)
+	xAutoMode : BOOL; (*Auto Mode Command Variables*)
+	xVelocityMode : BOOL; (*Positioning Mode Command Variable*)
+	xPositioningMode : BOOL; (*Positioning Mode Command Variable*)
+	xThirdPartySetupMode : BOOL;
+	xInductionSetupMode : BOOL;
+	xSelectiveHomingMode : BOOL; (*Selective Homing Command Variable*)
+	xBrakeReleaseMode : BOOL;
+	xAutoMultiMode : BOOL;
+	xJogMultiMode : BOOL;
+	xStepByStepMode : BOOL;
+	xSlowMotionMode : BOOL;
+	xMultiAxisMode : BOOL;
+	xModulePowered : BOOL;
+	xRealAxesReadyForACommand : BOOL;
+	xSynchroWithOffset : BOOL;
+	xModuleStopped : BOOL;
+	xRealAxesSynchronized : BOOL;
+	xPhaseShiftDone : BOOL;
+	xSelHomingDone : BOOL;
+	xModuleInitialized : BOOL;
+	xModuleHomed : BOOL;
+END_VAR
+(*Active Modality Bits*)
+VAR
+	xNoOpActive : BOOL;
+	xAutoActive : BOOL;
+	xPositioningActive : BOOL;
+	xThirdPartySetupActive : BOOL;
+	xInductionSetupActive : BOOL;
+	xSelHomingActive : BOOL;
+	xBrakeReleaseActive : BOOL;
+	xVelocityActive : BOOL;
+	xSlowMotionActive : BOOL;
+	xJogMultiActive : BOOL;
+	xAutoMultiActive : BOOL;
+	xMultiAxisActive : BOOL;
+	xStepByStepActive : BOOL;
+END_VAR
+(*Axes presence*)
+VAR
+	axAxisPresent : ARRAY[CST_FirstFillerModuleAxis..CST_LastFillerModuleAxis] OF BOOL := [17(FALSE)];
+END_VAR
+(*Local master management*)
+VAR
+	usiMasterRequest : E_MasterStatus;
+	usiMasterStatus : E_MasterStatus;
+	usiMasterTempStatus : E_MasterStatus;
+END_VAR
+(*FB axis Declarations*)
+VAR
+	fbFillerMaster : FB_GeneralAxis;
+	fbMain : FB_GeneralAxis;
+	fbInlet01 : FB_GeneralAxis;
+	fbInlet02 : FB_GeneralAxis;
+	fbInlet03 : FB_GeneralAxis;
+	fbInlet04 : FB_GeneralAxis;
+	fbInlet05 : FB_GeneralAxis;
+	fbInlet06 : FB_GeneralAxis;
+	fbInlet07 : FB_GeneralAxis;
+	fbInlet08 : FB_GeneralAxis;
+	fbInlet09 : FB_GeneralAxis;
+	fbInlet10 : FB_GeneralAxis;
+	fbOutlet01 : FB_GeneralAxis;
+	fbOutlet02 : FB_GeneralAxis;
+	fbOutlet03 : FB_GeneralAxis;
+	fbOutlet04 : FB_GeneralAxis;
+	fbOutlet05 : FB_GeneralAxis;
+	fbOutlet06 : FB_GeneralAxis;
+END_VAR
+(*Local Module Struct*)
+VAR
+	stFillerModule : REFERENCE TO ST_FillerModuleInterface; (*Filler Module Interface Variables*)
+	fbMpAlarmXCore : MpAlarmXCore;
+END_VAR
+(*FB Alarms*)
+VAR
+	fbQuickStopFromPlc : FB_ExceptionAlarmX;
+	fbMainAxisLagError : FB_ExceptionAlarmX;
+	fbInlet01LagError : FB_ExceptionAlarmX;
+	fbInlet02LagError : FB_ExceptionAlarmX;
+	fbInlet03LagError : FB_ExceptionAlarmX;
+	fbInlet04LagError : FB_ExceptionAlarmX;
+	fbInlet05LagError : FB_ExceptionAlarmX;
+	fbInlet06LagError : FB_ExceptionAlarmX;
+	fbInlet07LagError : FB_ExceptionAlarmX;
+	fbInlet08LagError : FB_ExceptionAlarmX;
+	fbInlet09LagError : FB_ExceptionAlarmX;
+	fbInlet10LagError : FB_ExceptionAlarmX;
+	fbOutlet01LagError : FB_ExceptionAlarmX;
+	fbOutlet02LagError : FB_ExceptionAlarmX;
+	fbOutlet03LagError : FB_ExceptionAlarmX;
+	fbOutlet04LagError : FB_ExceptionAlarmX;
+	fbOutlet05LagError : FB_ExceptionAlarmX;
+	fbOutlet06LagError : FB_ExceptionAlarmX;
+	fbEmergencyStopAlarm : FB_ExceptionAlarmX;
+	fbMasterError : FB_ExceptionAlarmX;
+	fbMainAxisError : FB_ExceptionAlarmX;
+	fbInlet01Error : FB_ExceptionAlarmX;
+	fbInlet02Error : FB_ExceptionAlarmX;
+	fbInlet03Error : FB_ExceptionAlarmX;
+	fbInlet04Error : FB_ExceptionAlarmX;
+	fbInlet05Error : FB_ExceptionAlarmX;
+	fbInlet06Error : FB_ExceptionAlarmX;
+	fbInlet07Error : FB_ExceptionAlarmX;
+	fbInlet08Error : FB_ExceptionAlarmX;
+	fbInlet09Error : FB_ExceptionAlarmX;
+	fbInlet10Error : FB_ExceptionAlarmX;
+	fbOutlet01Error : FB_ExceptionAlarmX;
+	fbOutlet02Error : FB_ExceptionAlarmX;
+	fbOutlet03Error : FB_ExceptionAlarmX;
+	fbOutlet04Error : FB_ExceptionAlarmX;
+	fbOutlet05Error : FB_ExceptionAlarmX;
+	fbOutlet06Error : FB_ExceptionAlarmX;
+END_VAR
+(*Local Variables*)
+VAR
+	xFillerPositionValid : BOOL; (*//V4.A.A.1.6.12e*)
+	xRinserPositionValid : BOOL; (*//V4.A.A.1.6.12e*)
+	xCapperPositionValid : BOOL; (*//V4.A.A.1.6.12e*)
+	xCrownerPositionValid : BOOL; (*//V4.A.A.1.6.12e*)
+	xDoserPositionValid : BOOL; (*//V4.A.A.1.6.12e*)
+	xReactionActive : BOOL;
+	xParityPhase : BOOL;
+	iTempParity : INT;
+	lrTempOldPosition : LREAL;
+	lrTempPosDiff : LREAL;
+	uiAxisIndex : UINT; (*Axis Index*)
+	uiOldAxisSelected : UINT;
+	uiNextHomingPositionIndex : UINT; (*Temp var for initializing homing position chain*)
+	uiFirstFillerModuleAxis : UINT; (*First axis index in filler module*)
+	uiLastFillerModuleAxis : UINT; (*Last axis index in filler module*)
+	uiAxisToken : UINT;
+	uiNumberOfSteps : UINT;
+	uiSlowAxisIndex : UINT;
+	rModuleVelocity : REAL;
+	rAxisDistance : REAL;
+	lrFillerAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
+	lrRinserAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
+	lrCapperAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
+	lrCrownerAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
+	lrDoserAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
+	lrIncrement : LREAL;
+	lrOldPosition : LREAL;
+	tonPositDone : TON;
+	tofReactionActive : TOF;
+	axPresentIndex : USINT;
+END_VAR
+(*Sequencer Steps*)
+VAR
+	uiVelocityStep : UINT;
+	uiAutoStep : UINT;
+	uiPositioningStep : UINT;
+	uiThirdPartySetupStep : UINT;
+	uiInductionSetupStep : UINT;
+	uiSelectiveHomeStep : UINT;
+	uiBrakeReleaseStep : UINT;
+	uiSlowMotionStep : UINT;
+	uiJogMulti : UINT;
+	uiAutoMulti : UINT;
+	uiStepByStep : UINT;
+	uiMultiAxis : UINT;
+	auiAxisTokenList : ARRAY[0..20] OF UINT;
+	uiTokenIndex : UINT;
+END_VAR
+(*Absolute Position Calculation FBs*)
+(*//V4.A.A.1.6.12e*)
+VAR
+	value : REAL;
+	writeParID : MC_BR_InitCyclicWrite;
+	fbFillerAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
+	fbRinserAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
+	fbCapperAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
+	fbCrownerAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
+	fbDoserAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
+END_VAR

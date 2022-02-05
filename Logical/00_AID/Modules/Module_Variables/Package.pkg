@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">AID_Global.var</Object>
+    <Object Type="File">BTC_Global.var</Object>
+    <Object Type="File">CAP_Global.var</Object>
+    <Object Type="File">CFG_Global.var</Object>
+    <Object Type="File">COP_Global.var</Object>
+    <Object Type="File">CRW_Global.var</Object>
+    <Object Type="File">CSR_Global.var</Object>
+    <Object Type="File">DMC_Global.var</Object>
+    <Object Type="File">EIT_Global.var</Object>
+    <Object Type="File">FMC_Global.var</Object>
+    <Object Type="File">GNS_Global.var</Object>
+    <Object Type="File">ICO_Global.var</Object>
+    <Object Type="File">ITC_Global.var</Object>
+    <Object Type="File">MAU_Global.var</Object>
+    <Object Type="File">MC_Global.var</Object>
+    <Object Type="File">MNM_Global.var</Object>
+    <Object Type="File">MNT_Global.var</Object>
+    <Object Type="File">OPS_Global.var</Object>
+    <Object Type="File">RCP_Global.var</Object>
+    <Object Type="File">RNS_Global.var</Object>
+    <Object Type="File">SFT_Global.var</Object>
+    <Object Type="File">TNK_Global.var</Object>
+    <Object Type="File">DOS_Global.var</Object>
+    <Object Type="File">REL_Global.var</Object>
+  </Objects>
+</Package>

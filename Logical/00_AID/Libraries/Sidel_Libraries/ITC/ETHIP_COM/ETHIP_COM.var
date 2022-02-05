@@ -1,0 +1,13 @@
+(********************************************************************
+ * COPYRIGHT --  Sidel S.p.a
+ ********************************************************************
+ * Library: ETHIP_COM
+ * File: ETHIP_COM.var
+ * Author: Andrea.Cortesi
+ * Created: August 26, 2015
+ ********************************************************************
+ * Constants of library ETHIP_COM
+ ********************************************************************)
+VAR CONSTANT
+	Buffer_Status_MaxLimit : USINT := 40;
+END_VAR

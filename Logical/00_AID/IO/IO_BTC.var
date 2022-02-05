@@ -1,0 +1,3 @@
+VAR
+	IO_BTC_UVL : ARRAY[200..201] OF IO_UVtronic_Type;
+END_VAR

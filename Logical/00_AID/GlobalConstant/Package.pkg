@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File" Description="Global constants">Global_Constants.var</Object>
+    <Object Type="File" Description="Global constants">Command_Bar_Constants.var</Object>
+    <Object Type="File" Description="Global constants">Counter_Constants.var</Object>
+    <Object Type="File" Description="Global constants">ITC_Constants.var</Object>
+    <Object Type="Package">PB_SS2P_SS3P</Object>
+  </Objects>
+</Package>

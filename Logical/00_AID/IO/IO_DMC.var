@@ -1,0 +1,4 @@
+VAR
+	IO_DmcDevice : IO_Dmc_Type;
+	IO_205DSF : IO_Digital_IN_Type; (*Dummy container inserted*)
+END_VAR

@@ -1,0 +1,12 @@
+VAR RETAIN
+	HMI_OPT_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+END_VAR
+VAR
+	HMI_MachineId : STRING[12];
+	HMI_MachinePlcVersion : STRING[15]; (*V4.A.A.1.6.13*)
+	HMI_MachineSafetyVersion : STRING[15]; (*V4.A.A.1.6.13*)
+	HMI_ScreenTouched : BOOL;
+	HMI_ApcoPresent : BOOL;
+	HMI_IcoPresent : BOOL;
+	HMI_CounterHome : HMI_CounterHome_Type; (*V4.A.A.1.6.8*)
+END_VAR

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="2.00.0" Description="Filters" xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported data types">FiltLib.typ</File>
+    <File Description="Exported constants">FiltLib.var</File>
+    <File Description="Exported functions and function blocks">FiltLib.fun</File>
+    <File>Filtlib_defines.h</File>
+    <File Description="PT1 Filter for DINT source data">PT1_DINT.c</File>
+    <File Description="PT2 Filter for DINT source data">PT2_DINT.c</File>
+    <File Description="Extrapolator filter">EXT_DINT.c</File>
+    <File Description="Generic Transfer function">FDT_DINT.c</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="brsystem" />
+  </Dependencies>
+</Library>

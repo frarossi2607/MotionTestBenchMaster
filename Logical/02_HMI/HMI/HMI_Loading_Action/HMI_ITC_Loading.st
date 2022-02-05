@@ -1,0 +1,5 @@
+ACTION HMI_ITC_Loading:
+	HMI_ITC_Page;
+	HMI_ITC_PageData ACCESS (ADR(HMI_ITC_PageDB[11]));
+	HMI_ITC_Partner_CFG;
+END_ACTION

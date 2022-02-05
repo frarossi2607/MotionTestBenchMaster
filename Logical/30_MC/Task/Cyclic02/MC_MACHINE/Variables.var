@@ -1,0 +1,148 @@
+(*Encoder Emulator*)
+VAR
+	fbEncoderEmulation : FB_EncEmul;
+END_VAR
+(*Alarm Core*)
+VAR
+	xEnableMpAlarmXCore : BOOL;
+	fbMpAlarmXCore : MpAlarmXCore;
+END_VAR
+(* Input Variables *)
+VAR
+	xInputStepByStepBackSingleAxis : BOOL; (*//FR*)
+	xInputStepByStepSingleAxis : BOOL; (*//FR*)
+	xInputStepByStep : BOOL;
+	xInputCombi : BOOL;
+	xInputAuto : BOOL;
+	xInputVelocity : BOOL;
+	xInputSelHoming : BOOL;
+	xInputPositioning : BOOL;
+	xInputThirdPartySetup : BOOL;
+	xInputInductionSetup : BOOL;
+	xInputBrakeRelease : BOOL;
+	xInputJog : BOOL;
+	xInputMultiAxis : BOOL;
+	xInputMulti : BOOL;
+	xCombiSynchronized : BOOL;
+	xCombiSynchroStopDone : BOOL;
+	xCombiFixedSpeed : BOOL;
+	xCombiSynchroInProgress : BOOL;
+END_VAR
+(*Modality Bits*)
+VAR
+	xAutoMode : BOOL;
+	xCombiMode : BOOL;
+	xStepByStepSingleAxisMode : BOOL; (*//FR*)
+	xMultiAxisMode : BOOL; (*//FR*)
+	xStepByStepMode : BOOL;
+	xVelocityMode : BOOL;
+	xPositioningMode : BOOL;
+	xThirdPartySetupMode : BOOL;
+	xInductionSetupMode : BOOL;
+	xSelectiveHomingMode : BOOL;
+	xBrakeReleaseMode : BOOL;
+	xJogMode : BOOL;
+	xMultiMode : BOOL;
+	xModeReady : BOOL;
+	xExitStep : BOOL;
+END_VAR
+(*Modalities*)
+VAR
+	xMultiAxisDone : BOOL; (*//FR*)
+	xMultiAxisPositionDone : BOOL; (*//FR*)
+	xStepByStepSingleAxisDone : BOOL; (*//FR*)
+	xStepByStepDone : BOOL;
+	xNoOpActive : BOOL;
+	xJogActive : BOOL;
+	xMultiActive : BOOL;
+	xVelocityActive : BOOL;
+	xPositioningDone : BOOL;
+	xPositioningActive : BOOL;
+	xThirdPartySetupDone : BOOL;
+	xThirdPartySetupActive : BOOL;
+	xInductionSetupDone : BOOL;
+	xInductionSetupActive : BOOL;
+	xSelHomingActive : BOOL;
+	xMultiAxisActive : BOOL; (*//FR*)
+	xStepByStepSingleAxisActive : BOOL; (*//FR*)
+	xStepByStepActive : BOOL;
+	xBrakeReleaseActive : BOOL;
+	xCombiActive : BOOL;
+	xAutoActive : BOOL;
+END_VAR
+(*Steps*)
+VAR
+	uiMultiAxis : UINT; (*//FR*)
+	uiStepByStepSingleAxis : UINT; (*//FR*)
+	uiMultiAxisStepByStep : UINT;
+	uiStepByStep : UINT;
+	uiCombiStep : UINT;
+	uiAutoStep : UINT;
+	uiVelocityStep : UINT;
+	uiPositioningStep : UINT;
+	uiThirdPartySetupStep : UINT;
+	uiInductionSetupStep : UINT;
+	uiBrakeReleaseStep : UINT;
+	uiSelectiveHomingStep : UINT;
+	uiMachinePositioningStep : UINT;
+	uiJogStep : UINT;
+	uiFillerMultiStep : UINT;
+	uiOutletMultiStep : UINT;
+	uiInletMultiStep : UINT;
+END_VAR
+(*Short Int*)
+VAR
+	uiOldAxisSelected : UINT;
+	uiTemp : UINT;
+END_VAR
+(*Variables*)
+VAR
+	rOldDecelerationValue : REAL := 100;
+	rOldAccelerationValue : REAL := 100;
+	xReactionActive : BOOL;
+	tofInMotionTimerDone : TOF;
+	tofReactionActive : TOF;
+	tonClockGeneration : TON; (*v1.7.2*)
+	tonFanSeamerActive : TON;
+	xEncEmulationEnable : BOOL;
+END_VAR
+(*Machine Reaction*)
+VAR
+	fbKochModuleNotReady : FB_ExceptionAlarmX;
+	fbQuickStopFromPlc : FB_ExceptionAlarmX;
+	fbSeamerFanFault : FB_ExceptionAlarmX;
+END_VAR
+(*Reaction bits*)
+VAR
+	xReactionMachineQuickStop : BOOL;
+	xReactMasterStop : BOOL;
+	xReactMasterQuickStop : BOOL;
+	xReactMasterShutdown : BOOL;
+	xReactFillerStop : BOOL;
+	xReactFillerQuickStop : BOOL;
+	xReactFillerEmergencyStop : BOOL;
+	xReactInletStop : BOOL;
+	xReactInletQuickStop : BOOL;
+	xReactInletEmergencyStop : BOOL;
+	xReactOutletStop : BOOL;
+	xReactOutletQuickStop : BOOL;
+	xReactOutletEmergencyStop : BOOL;
+	xReactionOnFillerModule : BOOL;
+	xReactionOnOutletModule : BOOL;
+	xReactionOnInletModule : BOOL;
+	xReactionReadyToBePerformed : BOOL;
+END_VAR
+(*Slow motion command*)
+VAR
+	xSlowMotionCommandOutlet : BOOL := FALSE;
+	xSlowMotionCommandOutletForward : BOOL := FALSE;
+	xSlowMotionCommandOutletBackward : BOOL := FALSE;
+	xSlowMotionCommandInlet : BOOL := FALSE;
+	xSlowMotionCommandInletForward : BOOL := FALSE;
+	xSlowMotionCommandInletBackward : BOOL := FALSE;
+	uiMinRealFillerIndex : UINT;
+	uiMaxRealFillerIndex : UINT;
+	uiAxisIndex : UINT;
+	uiMaxRealInletIndex : UINT;
+	uiMinRealOutletIndex : UINT;
+END_VAR

@@ -1,0 +1,2343 @@
+PROGRAM _CYCLIC
+(* @LANGUAGE := 'sfc' *)
+INITIAL_STEP InitCPU:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM InitCPU TO Init:=
+CFG.DataOut.ConfigLoaded
+END_TRANSITION
+(* @SFCNOJUMP := 'Init' *)
+STEP Init:
+(* @LANGUAGE := 'st' *)
+usiMasterRequest	:= GLOBAL_MASTER;
+usiMasterStatus		:= UNKNOWN;
+
+stInletModule.iq_stStatus.q_xAlarmXCoreEnabled	:= FALSE;
+
+IF VAR_AxInletMain.nc_obj_inf.node_nr <> 0 THEN
+	(* Inlet Master Axis *)
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_stParameters.i_lrRephasingPosition);
+	
+	fbInletMaster.i_xEnable							:= TRUE;
+	fbInletMaster.i_xToken							:= TRUE;
+	fbInletMaster.i_xVelocityControl				:= FALSE;
+	fbInletMaster.i_xThirdPartyMotor				:= FALSE;			
+	fbInletMaster.i_pAxisADR 						:= ADR(VAR_AxInletModuleMaster);
+	fbInletMaster.i_pAxisMpLink						:= ADR(gInletModuleMasterLink);
+	fbInletMaster.i_pstCmd							:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd);
+	fbInletMaster.i_pstParameter					:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam);
+	fbInletMaster.i_pstStatus						:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus);
+	fbInletMaster.i_pstAxisHome						:= ADR(VAR_InletMasterHomeData);
+	
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_xMachineMaster	:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_udiMasterLink	:= ADR(gMasterLink);
+	
+	(* Main Axis Initialisation *)
+	axAxisPresent[CST_MainAxis] := TRUE;
+
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_udiHomingPosition	:= 0;
+	
+	uiNextHomingPositionIndex	:= CST_MainAxis;
+	
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rTorqueRamp			:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.Main;
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+			
+	fbMain.i_xEnable					:= TRUE;
+	fbMain.i_xToken						:= TRUE;
+	fbMain.i_xThirdPartyMotor			:= CFG_MC.Axes.Inlet.Main.ThirdPartyMotor;	
+	fbMain.i_xVelocityControl			:= CFG_MC.Axes.Inlet.Main.VelocityControl;
+	fbMain.i_xInductionMotorType		:= CFG_MC.Axes.Inlet.Main.InductionMotor;
+	fbMain.i_strParTabName				:= 'InMain';
+	fbMain.i_pAxisADR 					:= ADR(VAR_AxInletMain);
+	fbMain.i_pAxisMpLink				:= ADR(gInletMainLink);
+	fbMain.i_pstCmd						:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd);
+	fbMain.i_pstParameter				:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam);
+	fbMain.i_pstStatus					:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus);
+	fbMain.i_pstAxisHome				:= ADR(VAR_InletMainHomeData);
+	
+	uiFirstInletModuleAxis			:= CST_MainAxis;
+	uiLastInletModuleAxis			:= CST_MainAxis;
+END_IF
+
+(**********************************************************************************************************************************************************************************************************************)
+IF VAR_AxInletIn01.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Inlet01] := TRUE;
+	
+	(* Inlet01 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Inlet01;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_rTorqueRamp				:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.In[1];
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.RatedVoltage			:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.RatedCurrent			:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.In[1].InductionMotorData.ThermalTrippingTime;
+	
+	fbInlet01.i_xEnable					:= TRUE;
+	fbInlet01.i_xToken					:= TRUE;
+	fbInlet01.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.In[1].ThirdPartyMotor;	
+	fbInlet01.i_xVelocityControl		:= CFG_MC.Axes.Inlet.In[1].VelocityControl;
+	fbInlet01.i_xInductionMotorType		:= CFG_MC.Axes.Inlet.In[1].InductionMotor;
+	fbInlet01.i_strParTabName			:= 'InIn01';
+	fbInlet01.i_pAxisADR 				:= ADR(VAR_AxInletIn01);
+	fbInlet01.i_pAxisMpLink				:= ADR(gInInlet01Link);
+	fbInlet01.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stCmd);
+	fbInlet01.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam);
+	fbInlet01.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus);
+	fbInlet01.i_pstAxisHome				:= ADR(VAR_InletIn01HomeData);
+	
+	IF CFG_MC.Axes.Inlet.In[1].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiFirstInletModuleAxis		:= CST_Inlet01;
+END_IF
+
+IF VAR_AxInletIn02.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Inlet02] := TRUE;
+	
+	(* Inlet02 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Inlet02;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_rTorqueRamp				:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.In[2];
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.RatedVoltage			:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.RatedCurrent			:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.In[2].InductionMotorData.ThermalTrippingTime;
+
+	fbInlet02.i_xEnable					:= TRUE;
+	fbInlet02.i_xToken					:= TRUE;
+	fbInlet02.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.In[2].ThirdPartyMotor;	
+	fbInlet02.i_xVelocityControl		:= CFG_MC.Axes.Inlet.In[2].VelocityControl;
+	fbInlet02.i_xInductionMotorType		:= CFG_MC.Axes.Inlet.In[2].InductionMotor;
+	fbInlet02.i_strParTabName			:= 'InIn02';
+	fbInlet02.i_pAxisADR 				:= ADR(VAR_AxInletIn02);
+	fbInlet02.i_pAxisMpLink				:= ADR(gInInlet02Link);
+	fbInlet02.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stCmd);
+	fbInlet02.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam);
+	fbInlet02.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus);
+	fbInlet02.i_pstAxisHome				:= ADR(VAR_InletIn02HomeData);
+
+	IF CFG_MC.Axes.Inlet.In[2].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiFirstInletModuleAxis		:= CST_Inlet02;
+END_IF
+
+IF VAR_AxInletIn03.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Inlet03] := TRUE;
+	
+	(* Inlet03 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Inlet03;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_rTorqueRamp				:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.In[3];
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.RatedVoltage			:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.RatedCurrent			:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.In[3].InductionMotorData.ThermalTrippingTime;
+	
+	fbInlet03.i_xEnable					:= TRUE;
+	fbInlet03.i_xToken					:= TRUE;
+	fbInlet03.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.In[3].ThirdPartyMotor;	
+	fbInlet03.i_xVelocityControl		:= CFG_MC.Axes.Inlet.In[3].VelocityControl;
+	fbInlet03.i_xInductionMotorType		:= CFG_MC.Axes.Inlet.In[3].InductionMotor;
+	fbInlet03.i_strParTabName			:= 'InIn03';
+	fbInlet03.i_pAxisADR 				:= ADR(VAR_AxInletIn03);
+	fbInlet03.i_pAxisMpLink				:= ADR(gInInlet03Link);
+	fbInlet03.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stCmd);
+	fbInlet03.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam);
+	fbInlet03.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus);
+	fbInlet03.i_pstAxisHome				:= ADR(VAR_InletIn03HomeData);
+	
+	IF CFG_MC.Axes.Inlet.In[3].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiFirstInletModuleAxis		:= CST_Inlet03;
+END_IF
+
+IF VAR_AxInletIn04.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Inlet04] := TRUE;
+	
+	(* Inlet04 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Inlet04;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_rTorqueRamp				:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.In[4];
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.RatedVoltage			:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.RatedCurrent			:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.In[4].InductionMotorData.ThermalTrippingTime;
+
+	fbInlet04.i_xEnable					:= TRUE;
+	fbInlet04.i_xToken					:= TRUE;
+	fbInlet04.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.In[4].ThirdPartyMotor;
+	fbInlet04.i_xVelocityControl		:= CFG_MC.Axes.Inlet.In[4].VelocityControl;
+	fbInlet04.i_xInductionMotorType		:= CFG_MC.Axes.Inlet.In[4].InductionMotor;
+	fbInlet04.i_strParTabName			:= 'InIn04';
+	fbInlet04.i_pAxisADR 				:= ADR(VAR_AxInletIn04);
+	fbInlet04.i_pAxisMpLink				:= ADR(gInInlet04Link);
+	fbInlet04.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stCmd);
+	fbInlet04.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam);
+	fbInlet04.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus);
+	fbInlet04.i_pstAxisHome				:= ADR(VAR_InletIn04HomeData);
+	
+	IF CFG_MC.Axes.Inlet.In[4].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiFirstInletModuleAxis		:= CST_Inlet04;
+END_IF
+
+IF VAR_AxInletOut01.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Outlet01] := TRUE;
+	
+	(* Inlet01 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Outlet01;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_rTorqueRamp			:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.Out[1];
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.RatedVoltage		:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.RatedCurrent		:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.Out[1].InductionMotorData.ThermalTrippingTime;
+	
+	fbOutlet01.i_xEnable				:= TRUE;
+	fbOutlet01.i_xToken					:= TRUE;
+	fbOutlet01.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.Out[1].ThirdPartyMotor;	
+	fbOutlet01.i_xVelocityControl		:= CFG_MC.Axes.Inlet.Out[1].VelocityControl;
+	fbOutlet01.i_xInductionMotorType	:= CFG_MC.Axes.Inlet.Out[1].InductionMotor;
+	fbOutlet01.i_strParTabName			:= 'InOu01';
+	fbOutlet01.i_pAxisADR 				:= ADR(VAR_AxInletOut01);
+	fbOutlet01.i_pAxisMpLink			:= ADR(gInOutlet01Link);
+	fbOutlet01.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stCmd);
+	fbOutlet01.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam);
+	fbOutlet01.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus);
+	fbOutlet01.i_pstAxisHome			:= ADR(VAR_InletOut01HomeData);
+	
+	IF CFG_MC.Axes.Inlet.Out[1].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiLastInletModuleAxis		:= CST_Outlet01;
+ELSE
+	uiNextHomingPositionIndex	:= CST_MainAxis;
+END_IF
+
+IF VAR_AxInletOut02.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Outlet02] := TRUE;
+	
+	(* Inlet02 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Outlet02;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_rTorqueRamp			:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.Out[2];
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.RatedVoltage		:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.RatedCurrent		:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.Out[2].InductionMotorData.ThermalTrippingTime;
+	
+	fbOutlet02.i_xEnable				:= TRUE;
+	fbOutlet02.i_xToken					:= TRUE;
+	fbOutlet02.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.Out[2].ThirdPartyMotor;
+	fbOutlet02.i_xVelocityControl		:= CFG_MC.Axes.Inlet.Out[2].VelocityControl;
+	fbOutlet02.i_xInductionMotorType	:= CFG_MC.Axes.Inlet.Out[2].InductionMotor;
+	fbOutlet02.i_strParTabName			:= 'InOu02';
+	fbOutlet02.i_pAxisADR 				:= ADR(VAR_AxInletOut02);
+	fbOutlet02.i_pAxisMpLink			:= ADR(gInOutlet02Link);
+	fbOutlet02.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stCmd);
+	fbOutlet02.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam);
+	fbOutlet02.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus);
+	fbOutlet02.i_pstAxisHome			:= ADR(VAR_InletOut02HomeData);
+	
+	IF CFG_MC.Axes.Inlet.Out[2].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiLastInletModuleAxis		:= CST_Outlet02;
+END_IF
+
+IF VAR_AxInletOut03.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Outlet03] := TRUE;
+	
+	(* Inlet03 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Outlet03;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_rTorqueRamp			:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.Out[3];
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.RatedVoltage		:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.RatedCurrent		:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.Out[3].InductionMotorData.ThermalTrippingTime;
+	
+	fbOutlet03.i_xEnable				:= TRUE;
+	fbOutlet03.i_xToken					:= TRUE;
+	fbOutlet03.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.Out[3].ThirdPartyMotor;
+	fbOutlet03.i_xVelocityControl		:= CFG_MC.Axes.Inlet.Out[3].VelocityControl;
+	fbOutlet03.i_xInductionMotorType	:= CFG_MC.Axes.Inlet.Out[3].InductionMotor;
+	fbOutlet03.i_strParTabName			:= 'InOu03';
+	fbOutlet03.i_pAxisADR 				:= ADR(VAR_AxInletOut03);
+	fbOutlet03.i_pAxisMpLink			:= ADR(gInOutlet03Link);
+	fbOutlet03.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stCmd);
+	fbOutlet03.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam);
+	fbOutlet03.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus);
+	fbOutlet03.i_pstAxisHome			:= ADR(VAR_InletOut03HomeData);
+	
+	IF CFG_MC.Axes.Inlet.Out[3].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiLastInletModuleAxis		:= CST_Outlet03;
+END_IF
+
+IF VAR_AxInletOut04.nc_obj_inf.node_nr <> 0 THEN
+	axAxisPresent[CST_Outlet04] := TRUE;
+	
+	(* Inlet04 Initialisation *)
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_udiHomingPosition	:= ADR(stInletModule.iq_astSubModuleAxis[uiNextHomingPositionIndex].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+	
+	uiNextHomingPositionIndex := CST_Outlet04;
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_rTorquePreload			:= CST_TorquePreLoad;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_rTorqueErrorThreshold	:= CST_TorqueErrorThreshold;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_rTorqueRamp			:= CST_TorqueRamp;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_rMaxGearboxTorque		:= CFG_MC.MaximumGearBoxTorque.Inlet.Out[4];
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_rLagErrorThreshold		:= FC_mmToDegree(CFG_MC.Mechanical.MachineStep, CFG_MC.Mechanical.LagErrorThreshold);
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_xMachineMaster			:= FALSE;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_udiMasterLink			:= ADR(gMasterLink);
+	
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.RatedVoltage		:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.RatedVoltage;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.RatedCurrent		:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.RatedCurrent;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.RatedSpeed			:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.RatedSpeed;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.RatedFrequency		:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.RatedFrequency;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.PowerFactor			:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.PowerFactor;
+	stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_stInductionMotorConfig.ThermalTrippingTime	:= CFG_MC.Axes.Inlet.Out[4].InductionMotorData.ThermalTrippingTime;
+	
+	fbOutlet04.i_xEnable				:= TRUE;
+	fbOutlet04.i_xToken					:= TRUE;
+	fbOutlet04.i_xThirdPartyMotor		:= CFG_MC.Axes.Inlet.Out[4].ThirdPartyMotor;
+	fbOutlet04.i_xVelocityControl		:= CFG_MC.Axes.Inlet.Out[4].VelocityControl;
+	fbOutlet04.i_xInductionMotorType	:= CFG_MC.Axes.Inlet.Out[4].InductionMotor;
+	fbOutlet04.i_strParTabName			:= 'InOu04';
+	fbOutlet04.i_pAxisADR 				:= ADR(VAR_AxInletOut04);
+	fbOutlet04.i_pAxisMpLink			:= ADR(gInOutlet04Link);
+	fbOutlet04.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stCmd);
+	fbOutlet04.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam);
+	fbOutlet04.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus);
+	fbOutlet04.i_pstAxisHome			:= ADR(VAR_InletOut04HomeData);
+	
+	IF CFG_MC.Axes.Inlet.Out[4].VelocityControl THEN
+		stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+		stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+	END_IF
+	uiLastInletModuleAxis		:= CST_Outlet04;
+END_IF
+
+uiAxisToken := CST_MainAxis;
+
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rEndlessJerk				:= CFG_MC.Movements.Jerk;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rEmergencyDeceleration		:= VAR_EmergencyDec;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rShutdownDeceleration		:= VAR_ShutDownDec;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rJogDeceleration			:= CST_JogDeceleration;
+
+FOR uiAxisIndex := CST_FirstInletModuleAxis TO CST_LastInletModuleAxis BY 1 DO
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_rEndlessJerk			:= CFG_MC.Movements.Jerk;
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_rEmergencyDeceleration	:= VAR_EmergencyDec;
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_rShutdownDeceleration	:= VAR_ShutDownDec;
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_rJogDeceleration		:= CST_JogDeceleration;
+END_FOR
+
+//Inlet Axes - HMI Presence
+FOR axPresentIndex := 11 TO 19 DO
+	IF axAxisPresent[axPresentIndex] THEN
+		HMI_MC_AxisPresent._200 := TRUE;
+		CASE axPresentIndex OF
+			11:HMI_MC_AxisPresent._211 := TRUE;
+			12:HMI_MC_AxisPresent._212 := TRUE;
+			13:HMI_MC_AxisPresent._213 := TRUE;
+			14:HMI_MC_AxisPresent._214 := TRUE;
+			15:HMI_MC_AxisPresent._215 := TRUE;
+			16:HMI_MC_AxisPresent._216 := TRUE;
+			17:HMI_MC_AxisPresent._217 := TRUE;
+			18:HMI_MC_AxisPresent._218 := TRUE;
+			19:HMI_MC_AxisPresent._219 := TRUE;
+		END_CASE
+	END_IF
+END_FOR
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Init TO InitModule:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'InitModule' *)
+STEP InitModule:
+(* @LANGUAGE := 'st' *)
+
+(* Exception Init *)
+(* FBs errors alarm *)
+fbQuickStopFromPlc.i_psAlarmName			:= ADR('PlcQuickStop');
+fbQuickStopFromPlc.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+fbQuickStopFromPlc.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+fbQuickStopFromPlc.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+fbQuickStopFromPlc.i_xAutoAck				:= TRUE;
+
+fbMasterError.i_psAlarmName					:= ADR('MasterAxisError');
+fbMasterError.i_pstMpAlarmXLink				:= ADR(gInletAlarmXCoreLink);
+fbMasterError.i_pxAcknowledge				:= ADR(stInletModule.iq_stCmd.i_xReset);
+fbMasterError.i_pxInitCoreDone				:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+fbMasterError.i_xAutoAck					:= FALSE;
+
+fbMainAxisError.i_psAlarmName				:= ADR('InletMainAxisError');
+fbMainAxisError.i_pstMpAlarmXLink			:= ADR(gInletAlarmXCoreLink);
+fbMainAxisError.i_pxAcknowledge				:= ADR(stInletModule.iq_stCmd.i_xReset);
+fbMainAxisError.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+fbMainAxisError.i_xAutoAck					:= FALSE;
+
+IF axAxisPresent[CST_Inlet01] THEN
+	fbInlet01Error.i_psAlarmName			:= ADR('InInlet01AxisError');
+	fbInlet01Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet01Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet01Error.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet01Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Inlet02] THEN
+	fbInlet02Error.i_psAlarmName			:= ADR('InInlet02AxisError');
+	fbInlet02Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet02Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet02Error.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet02Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Inlet03] THEN
+	fbInlet03Error.i_psAlarmName			:= ADR('InInlet03AxisError');
+	fbInlet03Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet03Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet03Error.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet03Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Inlet04] THEN
+	fbInlet04Error.i_psAlarmName			:= ADR('InInlet04AxisError');
+	fbInlet04Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet04Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet04Error.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet04Error.i_xAutoAck				:= FALSE;
+END_IF	
+
+IF axAxisPresent[CST_Outlet01] THEN
+	fbOutlet01Error.i_psAlarmName			:= ADR('InOutlet01AxisError');
+	fbOutlet01Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbOutlet01Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet01Error.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet01Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Outlet02] THEN
+	fbOutlet02Error.i_psAlarmName			:= ADR('InOutlet02AxisError');
+	fbOutlet02Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbOutlet02Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet02Error.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet02Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Outlet03] THEN
+	fbOutlet03Error.i_psAlarmName			:= ADR('InOutlet03AxisError');
+	fbOutlet03Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbOutlet03Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet03Error.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet03Error.i_xAutoAck				:= FALSE;
+END_IF
+
+IF axAxisPresent[CST_Outlet04] THEN
+	fbOutlet04Error.i_psAlarmName			:= ADR('InOutlet04AxisError');
+	fbOutlet04Error.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbOutlet04Error.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet04Error.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet04Error.i_xAutoAck				:= FALSE;
+END_IF
+
+(* Lag error exceptions *)
+fbMainAxisLagError.i_psAlarmName			:= ADR('OutletMainLag');
+fbMainAxisLagError.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+fbMainAxisLagError.i_pxAcknowledge			:= ADR(stInletModule.iq_stCmd.i_xReset);
+fbMainAxisLagError.i_pxInitCoreDone			:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+fbMainAxisLagError.i_xAutoAck				:= TRUE;
+
+IF axAxisPresent[CST_Inlet01] THEN
+	fbInlet01LagError.i_psAlarmName			:= ADR('InInlet01Lag');
+	fbInlet01LagError.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet01LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet01LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet01LagError.i_xAutoAck			:= TRUE;
+END_IF
+	
+IF axAxisPresent[CST_Inlet02] THEN
+	fbInlet02LagError.i_psAlarmName			:= ADR('InInlet02Lag');
+	fbInlet02LagError.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet02LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet02LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet02LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+IF axAxisPresent[CST_Inlet03] THEN
+	fbInlet03LagError.i_psAlarmName			:= ADR('InInlet03Lag');
+	fbInlet03LagError.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet03LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet03LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet03LagError.i_xAutoAck			:= TRUE;
+END_IF
+	
+IF axAxisPresent[CST_Inlet04] THEN
+	fbInlet04LagError.i_psAlarmName			:= ADR('InInlet04Lag');
+	fbInlet04LagError.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+	fbInlet04LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbInlet04LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbInlet04LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+IF axAxisPresent[CST_Outlet01] THEN
+	fbOutlet01LagError.i_psAlarmName		:= ADR('InOutlet01Lag');
+	fbOutlet01LagError.i_pstMpAlarmXLink	:= ADR(gInletAlarmXCoreLink);
+	fbOutlet01LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet01LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet01LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+IF axAxisPresent[CST_Outlet02] THEN
+	fbOutlet02LagError.i_psAlarmName		:= ADR('InOutlet02Lag');
+	fbOutlet02LagError.i_pstMpAlarmXLink	:= ADR(gInletAlarmXCoreLink);
+	fbOutlet02LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet02LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet02LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+IF axAxisPresent[CST_Outlet03] THEN
+	fbOutlet03LagError.i_psAlarmName		:= ADR('InOutlet03Lag');
+	fbOutlet03LagError.i_pstMpAlarmXLink	:= ADR(gInletAlarmXCoreLink);
+	fbOutlet03LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet03LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet03LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+IF axAxisPresent[CST_Outlet04] THEN
+	fbOutlet04LagError.i_psAlarmName		:= ADR('InOutlet04Lag');
+	fbOutlet04LagError.i_pstMpAlarmXLink	:= ADR(gInletAlarmXCoreLink);
+	fbOutlet04LagError.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+	fbOutlet04LagError.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+	fbOutlet04LagError.i_xAutoAck			:= TRUE;
+END_IF
+
+(* Emergency stop event *)
+fbEmergencyStopAlarm.i_psAlarmName			:= ADR('EmergencyStop');
+fbEmergencyStopAlarm.i_pstMpAlarmXLink		:= ADR(gInletAlarmXCoreLink);
+fbEmergencyStopAlarm.i_pxAcknowledge		:= ADR(stInletModule.iq_stCmd.i_xReset);
+fbEmergencyStopAlarm.i_pxInitCoreDone		:= ADR(stInletModule.iq_stCmd.i_xAlarmInitOk);
+fbEmergencyStopAlarm.i_xAutoAck				:= TRUE;
+
+(* Module Stopped Memory *)
+stInletModule.iq_stStatus.q_xModuleStopped	:= TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+(****** TOKEN RING ARRAY INITIALIZATION ******)
+uiAxisIndex := 0;
+
+IF axAxisPresent[CST_Inlet04] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Inlet04;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Inlet03] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Inlet03;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Inlet02] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Inlet02;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Inlet01] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Inlet01;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+auiAxisTokenList[uiAxisIndex] := CST_MainAxis;
+uiAxisIndex	:= uiAxisIndex + 1;
+	
+IF axAxisPresent[CST_Outlet01] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Outlet01;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Outlet02] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Outlet02;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Outlet03] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Outlet03;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+	
+IF axAxisPresent[CST_Outlet04] THEN
+	auiAxisTokenList[uiAxisIndex] := CST_Outlet04;
+	uiAxisIndex	:= uiAxisIndex + 1;
+END_IF
+END_ACTION
+TRANSITION FROM InitModule TO WaitInitDone:=
+stInletModule.iq_stCmd.i_xMachineInitDone
+END_TRANSITION
+(* @SFCNOJUMP := 'WaitInitDone' *)
+STEP WaitInitDone:
+(* @LANGUAGE := 'st' *)
+FOR uiAxisIndex := CST_ModuleMasterAxis TO CST_LastInletModuleAxis BY 1 DO
+	(******* Reset Command To All Axes ********)
+	(* Reset *)
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xErrorReset	:= stInletModule.iq_stCmd.i_xReset;
+END_FOR
+
+(* Sub Modules calls for init *)
+IF axAxisPresent[CST_MainAxis] THEN
+	fbInletMaster;
+ELSE
+	stInletModule.iq_stStatus.q_xModuleReal	:= FALSE;
+	stInletModule.iq_stStatus.q_xInitDone	:= TRUE;
+	RETURN;
+END_IF
+
+CASE uiAxisToken OF
+	CST_MainAxis:
+		fbMain;
+		IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+			uiAxisToken	:= CST_Inlet01;
+		END_IF
+	
+	CST_Inlet01:
+		IF axAxisPresent[CST_Inlet01] THEN
+			fbInlet01;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Inlet02;
+			END_IF
+		ELSE
+			uiAxisToken	:= CST_Inlet02;
+		END_IF
+	
+	CST_Inlet02:
+		IF axAxisPresent[CST_Inlet02] THEN
+			fbInlet02;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Inlet03;
+			END_IF
+		ELSE
+			uiAxisToken	:= CST_Inlet03;
+		END_IF
+	
+	CST_Inlet03:
+		IF axAxisPresent[CST_Inlet03] THEN
+			fbInlet03;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Inlet04;
+			END_IF
+		ELSE
+			uiAxisToken	:= CST_Inlet04;
+		END_IF
+	
+	CST_Inlet04:
+		IF axAxisPresent[CST_Inlet04] THEN
+			fbInlet04;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Outlet01;
+			END_IF
+		ELSE
+			uiAxisToken	:= CST_Outlet01;
+		END_IF
+
+	CST_Outlet01:
+		IF axAxisPresent[CST_Outlet01] THEN
+			fbOutlet01;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Outlet02;
+			END_IF
+		ELSE
+			uiAxisToken := CST_Outlet02;
+		END_IF
+
+	CST_Outlet02:
+		IF axAxisPresent[CST_Outlet02] THEN
+			fbOutlet02;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Outlet03;
+			END_IF
+		ELSE
+			uiAxisToken := CST_Outlet03;
+		END_IF
+
+	CST_Outlet03:
+		IF axAxisPresent[CST_Outlet03] THEN
+			fbOutlet03;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_Outlet04;
+			END_IF
+		ELSE
+			uiAxisToken := CST_Outlet04;
+		END_IF
+	
+	CST_Outlet04:
+		IF axAxisPresent[CST_Outlet04] THEN
+			fbOutlet04;
+			IF (stInletModule.iq_astSubModuleAxis[uiAxisToken].iq_stStatus.q_stMainAxisStatus.q_xInitDone) THEN
+				uiAxisToken	:= CST_MainAxis;
+			END_IF
+		ELSE
+			uiAxisToken := CST_MainAxis;
+		END_IF
+	ELSE
+		uiAxisToken := CST_MainAxis;
+END_CASE
+
+(* Wait for Init Conditions *)
+stInletModule.iq_stStatus.q_xInitDone	:= TRUE;
+
+FOR uiAxisIndex := CST_FirstInletModuleAxis TO CST_LastInletModuleAxis BY 1 DO
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xDisableAxis	:= FALSE;
+	stInletModule.iq_stStatus.q_xInitDone	:= stInletModule.iq_stStatus.q_xInitDone AND
+												(stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xInitDone OR
+												NOT axAxisPresent[uiAxisIndex]);
+END_FOR
+
+IF stInletModule.iq_stStatus.q_xInitDone THEN		
+	stInletModule.iq_stStatus.q_xModuleReal := FALSE;
+	stInletModule.iq_stStatus.q_xModuleHomed := TRUE;
+	FOR uiAxisIndex := CST_FirstInletModuleAxis TO CST_LastInletModuleAxis BY 1 DO
+		stInletModule.iq_stStatus.q_xModuleReal	:= stInletModule.iq_stStatus.q_xModuleReal	OR
+														stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+	
+		IF NOT stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPowerSupply AND 
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal			THEN
+			
+			stInletModule.iq_stStatus.q_xModuleHomed	:= stInletModule.iq_stStatus.q_xModuleHomed AND
+															stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xIsHomed;
+		END_IF
+	END_FOR
+END_IF
+
+(* Module Stopped Memory *)
+stInletModule.iq_stStatus.q_xModuleStopped	:= TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM WaitInitDone TO (Input,ModeSelection,SubModuleCalls,SetException,Output):=
+stInletModule.iq_stStatus.q_xInitDone AND stInletModule.iq_stStatus.q_xModuleReal
+END_TRANSITION
+(* @SFCNOJUMP := 'Input' *)
+(* @SFCNOJUMP := 'ModeSelection' *)
+(* @SFCNOJUMP := 'SubModuleCalls' *)
+(* @SFCNOJUMP := 'SetException' *)
+(* @SFCNOJUMP := 'Output' *)
+TRANSITION FROM WaitInitDone TO Disabled:=
+stInletModule.iq_stStatus.q_xInitDone AND NOT stInletModule.iq_stStatus.q_xModuleReal
+END_TRANSITION
+(* @SFCISJUMP := 'Disabled' *)
+STEP Input:
+(* @LANGUAGE := 'st' *)
+uiSlowAxisIndex	:= (uiSlowAxisIndex + 1) MOD (CST_LastInletModuleAxis + 1);
+
+stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stParam.i_rStopPosition			:= stInletModule.iq_stParameters.i_rStopPosition;
+stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stParam.i_rEndlessAcceleration	:= stInletModule.iq_stParameters.i_rEndlessAcceleration;
+stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stParam.i_rEndlessDeceleration	:= stInletModule.iq_stParameters.i_rEndlessDeceleration;
+
+FOR uiAxisIndex := CST_ModuleMasterAxis TO CST_LastInletModuleAxis BY 1 DO
+	(******* Spread the reactions to the axes ********)
+	(* Reset *)
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xErrorReset		:= stInletModule.iq_stCmd.i_xReset;
+	(* Quick stop *)
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xQuickStop		:= stInletModule.iq_stCmd.i_xQuickStop;
+	(* Emergency stop *)
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xEmergencyStop	:= stInletModule.iq_stCmd.i_xEmergencyStop OR (xJogMultiActive AND NOT stInletModule.iq_stStatus.q_xModuleStopped  AND NOT stInletModule.iq_stCmd.i_xJogPB);
+	(* Shutdown *)
+	stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xShutdown			:= stInletModule.iq_stCmd.i_xShutdown;
+
+	(* Only for real axis *)
+	IF NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPowerSupply 	AND
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal			THEN
+	
+		(* Master *)
+		IF usiMasterRequest	= LOCAL_MASTER AND usiMasterStatus <> LOCAL_MASTER THEN
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_udiMasterLink		:= ADR(gInletModuleMasterLink);
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_plrMasterPosition	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_prMasterVelocity	:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+		ELSIF usiMasterRequest = GLOBAL_MASTER AND usiMasterStatus <> GLOBAL_MASTER THEN
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_udiMasterLink		:= ADR(gMasterLink);
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_plrMasterPosition	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_prMasterVelocity	:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+		END_IF
+	END_IF
+END_FOR	
+
+xReactionActive	:= stInletModule.iq_stCmd.i_xQuickStop OR stInletModule.iq_stCmd.i_xShutdown OR stInletModule.iq_stCmd.i_xEmergencyStop OR (xJogMultiActive AND NOT stInletModule.iq_stStatus.q_xModuleStopped AND NOT stInletModule.iq_stCmd.i_xJogPB);
+tofReactionActive(IN := xReactionActive, PT := t#100ms);
+
+(* Input Signals *)
+xInputAuto				:= stInletModule.iq_stCmd.i_xAutoMode;
+xInputJogMulti			:= stInletModule.iq_stCmd.i_xJogMultiMode;
+xInputAutoMulti			:= stInletModule.iq_stCmd.i_xAutoMultiMode;
+xInputSelHoming			:= stInletModule.iq_stCmd.i_xSelectiveHomingMode;
+xInputVelocity			:= stInletModule.iq_stCmd.i_xVelocityMode;
+xInputPositioning		:= stInletModule.iq_stCmd.i_xPositioningMode;
+xInputThirdPartySetup	:= stInletModule.iq_stCmd.i_xThirdPartySetup;
+xInputInductionSetup	:= stInletModule.iq_stCmd.i_xInductionSetup;
+xInputSlowMotion		:= stInletModule.iq_stCmd.i_xSlowMotionForward OR stInletModule.iq_stCmd.i_xSlowMotionBackward;
+xInputBrakeRelease		:= stInletModule.iq_stCmd.i_xBrakeRelease;
+xInputStepByStep		:= stInletModule.iq_stCmd.i_xStepByStep;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP ModeSelection:
+(* @LANGUAGE := 'st' *)
+(* Operating modes bits *)
+xNoOpActive				:= TRUE;
+xAutoActive 			:= FALSE;
+xPositioningActive 		:= FALSE;
+xSelHomingActive 		:= FALSE;
+xBrakeReleaseActive 	:= FALSE;
+xSlowMotionActive 		:= FALSE;
+xJogMultiActive 		:= FALSE;
+xAutoMultiActive 		:= FALSE;
+xStepByStepActive 		:= FALSE;
+xThirdPartySetupActive	:= FALSE;
+xInductionSetupActive	:= FALSE;
+
+(* Change status *)
+xModeReady	:= usiMasterRequest = usiMasterStatus	AND
+				NOT xAutoMode 						AND
+				NOT xPositioningMode 				AND
+				NOT xSelectiveHomingMode			AND
+				NOT xVelocityMode					AND
+				NOT xPositioningMode				AND
+				NOT xStepByStepMode					AND
+				NOT xJogMultiMode					AND
+				NOT xAutoMultiMode					AND
+				NOT xSlowMotionMode					AND
+				NOT xThirdPartySetupMode			AND
+				NOT xInductionSetupMode				AND
+				NOT tofReactionActive.Q;
+
+IF xModeReady THEN
+	(* Local Master Request *)
+	IF xInputJogMulti OR xInputAutoMulti OR xInputSlowMotion THEN
+		usiMasterRequest	:= LOCAL_MASTER;
+	ELSIF xInputAuto OR	xInputPositioning OR xInputSelHoming OR xInputStepByStep OR xInputVelocity OR xInputThirdPartySetup OR xInputInductionSetup THEN
+		usiMasterRequest	:= GLOBAL_MASTER;
+	END_IF
+	
+	IF usiMasterStatus = GLOBAL_MASTER THEN
+		IF xInputAuto THEN
+			xAutoMode				:= TRUE;
+		ELSIF xInputPositioning THEN
+			xPositioningMode		:= TRUE;
+		ELSIF xInputSelHoming THEN
+			xSelectiveHomingMode	:= TRUE;
+		ELSIF xInputThirdPartySetup THEN
+			xThirdPartySetupMode	:= TRUE;
+		ELSIF xInputInductionSetup THEN
+			xInductionSetupMode		:= TRUE;
+		ELSIF xInputStepByStep THEN
+			xStepByStepMode			:= TRUE;
+		ELSIF xInputVelocity THEN
+			xVelocityMode			:= TRUE;
+		END_IF
+	ELSIF usiMasterStatus = LOCAL_MASTER THEN
+		IF xInputJogMulti THEN
+			xJogMultiMode 			:= TRUE;
+		ELSIF xInputAutoMulti THEN
+			xAutoMultiMode 			:= TRUE;
+		ELSIF xInputSlowMotion THEN
+			xSlowMotionMode			:= TRUE;
+		END_IF
+	END_IF
+ELSIF tofReactionActive.Q THEN
+	xBrakeReleaseMode	:= xInputBrakeRelease;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+xExitStep	:= FALSE;
+uiAutoStep	:= 0;
+stInletModule.iq_stStatus.q_xMasterRephased := FALSE;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+xNoOpActive	:= FALSE;
+END_ACTION
+TRANSITION FROM ModeSelection TO Auto:=
+xAutoMode
+END_TRANSITION
+(* @SFCNOJUMP := 'Auto' *)
+TRANSITION FROM ModeSelection TO Positioning:=
+xPositioningMode
+END_TRANSITION
+(* @SFCNOJUMP := 'Positioning' *)
+STEP Positioning:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputPositioning THEN
+	xPositioningMode	:= FALSE;
+END_IF
+
+xPositioningActive	:= TRUE;
+
+CASE uiPositioningStep OF
+	0:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+				uiPositioningStep	:= 100;
+			ELSE
+				uiPositioningStep	:= 50;
+			END_IF
+		END_IF
+	
+	50:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
+		END_FOR
+
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			uiPositioningStep := 60;
+		END_IF
+
+	60:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+		END_FOR
+		uiPositioningStep := 100;
+	
+	100:
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected := stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				uiPositioningStep := 110;
+			END_IF
+		END_IF
+	
+	110:	
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_rPositioningVelocity	:= CST_PositioningVel;
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_rPositioningAccDec	:= CST_PositioningAccDec;
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_lrAdditiveDistance	:= stInletModule.iq_stParameters.i_rPositioningOffset;
+
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_lrAdditiveDistance = 0 THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_lrAdditiveDistance := 360.0;
+		END_IF
+		
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveAdditive	:= TRUE;
+
+		tonPositDone(IN := FALSE, PT := T#1s);
+		uiPositioningStep := 120;
+		
+	120:
+		tonPositDone(IN := TRUE, PT := T#1s);
+		IF NOT stInletModule.iq_stStatus.q_xModuleStopped OR tonPositDone.Q THEN
+			uiPositioningStep := 130;
+		END_IF
+	
+	130:
+		IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveAdditive	:= FALSE;
+			uiPositioningStep := 140;
+		END_IF
+	
+	140:
+		stInletModule.iq_stStatus.q_xPositioningDone := TRUE;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiPositioningStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_stStatus.q_xPositioningDone := FALSE;
+END_ACTION
+TRANSITION FROM Positioning TO PositExit:=
+NOT xPositioningMode
+END_TRANSITION
+(* @SFCNOJUMP := 'PositExit' *)
+STEP PositExit:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveAdditive	:= FALSE;
+stInletModule.iq_stStatus.q_xPositioningDone := FALSE;
+xExitStep := TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM PositExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO Velocity:=
+xVelocityMode
+END_TRANSITION
+(* @SFCNOJUMP := 'Velocity' *)
+STEP Velocity:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputVelocity THEN
+	xVelocityMode	:= FALSE;
+END_IF
+
+xVelocityActive	:= TRUE;
+
+CASE uiVelocityStep OF
+	0:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand THEN
+			uiVelocityStep	:= 100;
+		END_IF
+	
+	100:
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected	:= stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				uiVelocityStep	:= 110;
+			END_IF
+		END_IF
+	
+	110:
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_rEndlessVelocity		:= stInletModule.iq_stParameters.i_rManualVelocity;
+
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_lrAdditiveDistance	:= stInletModule.iq_stParameters.i_rPositioningOffset;
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveVelocity			:= stInletModule.iq_stCmd.i_xStart;
+		uiVelocityStep	:= 120;
+		
+	120:
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiVelocityStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+xVelocityActive		:= FALSE;
+uiOldAxisSelected	:= LIMIT(CST_FirstInletModuleAxis, uiOldAxisSelected, CST_LastInletModuleAxis);
+stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveVelocity	:= FALSE;
+END_ACTION
+TRANSITION FROM Velocity TO VelExit:=
+NOT xVelocityMode
+END_TRANSITION
+(* @SFCNOJUMP := 'VelExit' *)
+STEP VelExit:
+(* @LANGUAGE := 'st' *)
+xExitStep	:= stInletModule.iq_stStatus.q_xModuleStopped;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM VelExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO SelHome:=
+xSelectiveHomingMode
+END_TRANSITION
+(* @SFCNOJUMP := 'SelHome' *)
+STEP SelHome:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputSelHoming THEN
+	xSelectiveHomingMode := FALSE;
+END_IF
+
+xSelHomingActive	:= TRUE;
+
+CASE uiSelectiveHomeStep OF
+	0:	
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected	:= stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				uiSelectiveHomeStep	:= 10;
+			END_IF
+		END_IF
+	
+	10:
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xHome	:= TRUE;
+		IF NOT stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			uiSelectiveHomeStep	:= 20;
+		END_IF
+		
+	20:
+		uiSelectiveHomeStep	:= 30;
+	
+	30:
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xHome	:= FALSE;
+			uiSelectiveHomeStep	:= 40;
+		END_IF
+
+	40:
+		stInletModule.iq_stStatus.q_xSelHomingDone := TRUE;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiSelectiveHomeStep	:= 0;
+
+(* Selective Homing done *)
+stInletModule.iq_stStatus.q_xSelHomingDone := FALSE;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+(* Selective Homing done *)
+stInletModule.iq_stStatus.q_xSelHomingDone := FALSE;
+END_ACTION
+TRANSITION FROM SelHome TO SelHomeExit:=
+NOT xSelectiveHomingMode
+END_TRANSITION
+(* @SFCNOJUMP := 'SelHomeExit' *)
+STEP SelHomeExit:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xHome	:= FALSE;
+xExitStep	:= TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM SelHomeExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO Brake:=
+xBrakeReleaseMode
+END_TRANSITION
+(* @SFCNOJUMP := 'Brake' *)
+STEP Brake:
+(* @LANGUAGE := 'st' *)
+xBrakeReleaseActive	:= TRUE;
+
+IF NOT xInputBrakeRelease THEN
+	xBrakeReleaseMode	:= FALSE;
+END_IF
+
+xBrakeReleaseActive	:= TRUE;
+
+CASE uiBrakeReleaseStep OF
+	0:
+		uiOldAxisSelected	:= 0;
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected	:= stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xMotorWithBrake THEN
+					uiBrakeReleaseStep	:= 100;
+				ELSE
+					uiBrakeReleaseStep	:= 400;
+				END_IF
+			END_IF
+		END_IF
+
+	100:
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xReleaseBrake	:= TRUE;
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xBrakeReleased THEN
+			uiBrakeReleaseStep	:= 200;
+		END_IF
+
+	200:
+		stInletModule.iq_stStatus.q_xBrakeReleaseDone	:= TRUE;			
+	
+	400:
+		stInletModule.iq_stStatus.q_xBrakeReleaseDone	:= TRUE;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiBrakeReleaseStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+xBrakeReleaseActive	:= FALSE;
+stInletModule.iq_stStatus.q_xBrakeReleaseDone	:= FALSE;
+
+IF uiOldAxisSelected <> 0 THEN
+	stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xReleaseBrake	:= FALSE;
+END_IF
+END_ACTION
+TRANSITION FROM Brake TO BrakeExit:=
+NOT xBrakeReleaseMode
+END_TRANSITION
+(* @SFCNOJUMP := 'BrakeExit' *)
+STEP BrakeExit:
+(* @LANGUAGE := 'st' *)
+xExitStep	:= TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM BrakeExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO ThirdPartySetup:=
+xThirdPartySetupMode
+END_TRANSITION
+(* @SFCNOJUMP := 'ThirdPartySetup' *)
+STEP ThirdPartySetup:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputThirdPartySetup THEN
+	xThirdPartySetupMode	:= FALSE;
+END_IF
+
+xThirdPartySetupActive	:= TRUE;
+
+CASE uiThirdPartySetupStep OF
+	0:	
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected	:= stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal AND stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xThirdPartyMotor THEN
+				uiThirdPartySetupStep	:= 10;
+			ELSE
+				uiThirdPartySetupStep	:= 40;
+			END_IF
+		END_IF
+	
+	10:	
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xThirdPartySetup	:= TRUE;
+		IF NOT stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xMotorSetupDone THEN
+			uiThirdPartySetupStep	:= 20;
+		END_IF
+		
+	20:
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xMotorSetupDone THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xThirdPartySetup	:= FALSE;
+			uiThirdPartySetupStep	:= 40;
+		END_IF
+
+	40:
+		stInletModule.iq_stStatus.q_xThirdPartySetupDone := TRUE;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiThirdPartySetupStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_stStatus.q_xThirdPartySetupDone := FALSE;
+END_ACTION
+TRANSITION FROM ThirdPartySetup TO ThirdPartySetupExit:=
+NOT xThirdPartySetupMode
+END_TRANSITION
+(* @SFCNOJUMP := 'ThirdPartySetupExit' *)
+STEP ThirdPartySetupExit:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xThirdPartySetup	:= FALSE;
+stInletModule.iq_stStatus.q_xThirdPartySetupDone := FALSE;
+stInletModule.iq_stStatus.q_xThirdPartySetupActive := FALSE;
+xExitStep := TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM ThirdPartySetupExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO InductionSetup:=
+xInductionSetupMode
+END_TRANSITION
+(* @SFCNOJUMP := 'InductionSetup' *)
+STEP InductionSetup:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputInductionSetup THEN
+	xInductionSetupMode	:= FALSE;
+END_IF
+
+xInductionSetupActive	:= TRUE;
+
+CASE uiInductionSetupStep OF
+	0:	
+		IF stInletModule.iq_stParameters.i_uiAxisSelected >= uiFirstInletModuleAxis AND stInletModule.iq_stParameters.i_uiAxisSelected <= uiLastInletModuleAxis THEN
+			uiOldAxisSelected	:= stInletModule.iq_stParameters.i_uiAxisSelected;
+			IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal AND stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xThirdPartyMotor THEN
+				uiInductionSetupStep	:= 10;
+			ELSE
+				uiInductionSetupStep	:= 40;
+			END_IF
+		END_IF
+	
+	10:	
+		stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xInductionMotorSetup	:= TRUE;
+		IF NOT stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xMotorSetupDone THEN
+			uiInductionSetupStep	:= 20;
+		END_IF
+		
+	20:
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xMotorSetupDone THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xInductionMotorSetup	:= FALSE;
+			uiInductionSetupStep	:= 40;
+		END_IF
+
+	40:
+		stInletModule.iq_stStatus.q_xInductionSetupDone := TRUE;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiInductionSetupStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_stStatus.q_xInductionSetupDone := FALSE;
+END_ACTION
+TRANSITION FROM InductionSetup TO InductionSetupExit1:=
+NOT xInductionSetupMode
+END_TRANSITION
+(* @SFCNOJUMP := 'InductionSetupExit1' *)
+STEP InductionSetupExit1:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xInductionMotorSetup	:= FALSE;
+stInletModule.iq_stStatus.q_xInductionSetupDone := FALSE;
+stInletModule.iq_stStatus.q_xInductionSetupActive := FALSE;
+xExitStep := TRUE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM InductionSetupExit1 TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO SlowMotion:=
+xSlowMotionMode
+END_TRANSITION
+(* @SFCNOJUMP := 'SlowMotion' *)
+STEP SlowMotion:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT (stInletModule.iq_stCmd.i_xSlowMotionForward OR stInletModule.iq_stCmd.i_xSlowMotionBackward) THEN
+	xSlowMotionMode	:= FALSE;
+END_IF
+
+xSlowMotionActive	:= TRUE;
+
+CASE uiSlowMotionStep OF
+	0:
+		IF stInletModule.iq_stCmd.i_xSlowMotionForward OR stInletModule.iq_stCmd.i_xSlowMotionBackward THEN
+			uiSlowMotionStep	:= 20;
+		END_IF
+	
+	20:
+		IF stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			uiSlowMotionStep	:= 100;
+		END_IF
+			
+	100:
+		stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rSlowMotionVelocity		:= CST_SlowMotionVelocity;
+		stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rSlowMotionAcceleration	:= CST_SlowMotionAcceleration;
+		stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rSlowMotionDeceleration	:= CST_SlowMotionDeceleration;
+		
+		stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd.i_xSlowMotionFwd	:= stInletModule.iq_stCmd.i_xSlowMotionForward	AND NOT stInletModule.iq_stCmd.i_xSlowMotionBackward AND stInletModule.iq_stCmd.i_xJogPB;
+		
+		stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd.i_xSlowMotionBwd	:= stInletModule.iq_stCmd.i_xSlowMotionBackward	AND NOT stInletModule.iq_stCmd.i_xSlowMotionForward AND stInletModule.iq_stCmd.i_xJogPB;
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiSlowMotionStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd.i_xSlowMotionFwd	:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd.i_xSlowMotionBwd	:= FALSE;
+xSlowMotionActive	:= FALSE;
+END_ACTION
+TRANSITION FROM SlowMotion TO SlowMotionExit:=
+NOT xSlowMotionMode
+END_TRANSITION
+(* @SFCNOJUMP := 'SlowMotionExit' *)
+STEP SlowMotionExit:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xSlowMotionBwd	:= FALSE;	
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xSlowMotionFwd	:= FALSE;
+
+IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+	FOR uiAxisIndex	:= CST_ModuleMasterAxis TO CST_LastInletModuleAxis BY 1 DO
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+	END_FOR
+	xExitStep := NOT stInletModule.iq_stStatus.q_xModuleSynchronized;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM SlowMotionExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO JogMulti:=
+xJogMultiMode
+END_TRANSITION
+(* @SFCNOJUMP := 'JogMulti' *)
+STEP JogMulti:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputJogMulti THEN
+	xJogMultiMode	:= FALSE;
+END_IF
+
+xJogMultiActive	:= TRUE;
+
+CASE uiJogMulti OF
+	0:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+				uiJogMulti	:= 100;
+			ELSE
+				uiJogMulti	:= 50;
+			END_IF
+		END_IF
+	
+	50:
+		FOR uiAxisIndex	:= 	uiFirstInletModuleAxis	TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
+		END_FOR
+		uiJogMulti	:= 60;
+	
+	60:
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			uiJogMulti	:= 70;
+		END_IF
+		
+	70:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis	TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+		END_FOR
+		uiJogMulti	:= 100;
+		
+	100:
+		IF NOT stInletModule.iq_stCmd.i_xStart THEN
+			IF stInletModule.iq_stCmd.i_xMasterRephasingRequest THEN
+				stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome	:= TRUE;
+				uiJogMulti	:= 105;
+			END_IF
+		END_IF
+	
+	105:
+		IF NOT stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			uiJogMulti	:= 110;
+		END_IF
+	
+	110:
+		IF stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			stInletModule.iq_stStatus.q_xMasterRephased								:= TRUE;
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome	:= FALSE;
+			uiJogMulti	:= 120;
+		END_IF
+
+	120:
+		IF stInletModule.iq_stCmd.i_xJogPB THEN
+			FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+			END_FOR
+			uiJogMulti	:= 130;
+		END_IF
+	
+	130:
+		(* Wait for real axes synchronized *)
+		IF stInletModule.iq_stStatus.q_xRealAxesSynchronized THEN
+			uiJogMulti	:= 140;
+		END_IF
+
+	140:(* Step JOG MULTI *)
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rJogVelocity	:= MAX(1, stInletModule.iq_stParameters.i_rJogVelocity);
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xJogPositive	:= stInletModule.iq_stCmd.i_xJogPB;
+		
+		IF NOT stInletModule.iq_stCmd.i_xJogPB THEN
+			uiJogMulti	:= 150;
+		END_IF
+
+	150:
+END_CASE
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiJogMulti	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_stStatus.q_xMasterRephased										:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xJogPositive	:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome		:= FALSE;
+END_ACTION
+TRANSITION FROM JogMulti TO JogExit:=
+NOT xJogMultiMode
+END_TRANSITION
+(* @SFCNOJUMP := 'JogExit' *)
+STEP JogExit:
+(* @LANGUAGE := 'st' *)
+(* All axis commands are set to FALSE *)
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveVelocity	:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xJogPositive		:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xQuickStop		:= TRUE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome			:= FALSE;
+
+(* Axis Stopped all real axis are set in GearOut mode *)
+IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+	stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xQuickStop	:= FALSE;
+	FOR uiAxisIndex	:= CST_FirstInletModuleAxis TO CST_LastInletModuleAxis BY 1 DO
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+	END_FOR
+	xExitStep	:= NOT stInletModule.iq_stStatus.q_xRealAxesSynchronized;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM JogExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO AutoMulti:=
+xAutoMultiMode
+END_TRANSITION
+(* @SFCNOJUMP := 'AutoMulti' *)
+STEP AutoMulti:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputAutoMulti THEN
+	xAutoMultiMode	:= FALSE;
+END_IF
+
+xAutoMultiActive	:= TRUE;
+
+CASE uiAutoMulti OF
+	0:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset  THEN
+				uiAutoMulti	:= 100;
+			ELSE
+				uiAutoMulti	:= 50;
+			END_IF
+		END_IF
+		
+	50:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
+		END_FOR
+		uiAutoMulti	:= 60;
+	
+	60:
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			uiAutoMulti	:= 70;
+		END_IF
+		
+	70:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+		END_FOR
+		uiAutoMulti	:= 100;
+			
+	100:
+		IF stInletModule.iq_stCmd.i_xMasterRephasingRequest THEN
+			uiAutoMulti	:= 105;
+		END_IF
+	
+	105:
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome := TRUE;
+		uiAutoMulti	:= 110;
+
+	110:
+		stInletModule.iq_stStatus.q_xMasterRephased :=	TRUE;
+		uiAutoMulti	:= 115;
+	
+	115:
+		IF stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome := FALSE;
+			uiAutoMulti	:= 120;
+		END_IF
+	
+	120:
+		IF stInletModule.iq_stCmd.i_xStart THEN
+			FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+				IF NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+				ELSE
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+				END_IF
+			END_FOR
+		END_IF
+		
+		(* Wait for real axes synchronized *)
+		IF stInletModule.iq_stStatus.q_xRealAxesSynchronized THEN
+			uiAutoMulti	:= 130;
+		END_IF
+	
+	130:
+		IF stInletModule.iq_stStatus.q_xSynchroWithOffset AND stInletModule.iq_stCmd.i_xPhaseCompensation THEN
+			uiAutoMulti	:= 300;
+		ELSIF stInletModule.iq_stCmd.i_xStart THEN
+			uiAutoMulti	:= 140;
+		END_IF
+			
+	140:(* Step AUTO MULTI *)
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rEndlessVelocity	:= MAX(1, stInletModule.iq_stParameters.i_rEndlessVelocity);
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveVelocity		:= stInletModule.iq_stCmd.i_xStart;
+	
+		IF NOT stInletModule.iq_stCmd.i_xStart THEN
+			uiAutoMulti	:= 150;
+		ELSIF NOT stInletModule.iq_stStatus.q_xModuleStopped THEN
+			uiOldAxisSelected := LIMIT(uiFirstInletModuleAxis, stInletModule.iq_stParameters.i_uiAxisSelected, uiLastInletModuleAxis);
+			IF stInletModule.iq_stParameters.i_uiAxisSelected >=  uiFirstInletModuleAxis 	AND 
+				stInletModule.iq_stParameters.i_uiAxisSelected <=	uiLastInletModuleAxis 	AND
+				stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				IF stInletModule.iq_stCmd.i_xOnePitchShift THEN
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xOnePitchShift := TRUE;
+					uiAutoMulti	:= 160;
+				ELSIF stInletModule.iq_stCmd.i_xPhaseShift AND stInletModule.iq_stParameters.i_rPhaseShiftDistance <> 0 THEN	
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_rPhaseShiftDistance	:= stInletModule.iq_stParameters.i_rPhaseShiftDistance;
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xPhaseShift			:= TRUE;
+					uiAutoMulti	:= 180;
+				END_IF
+			END_IF
+		END_IF
+	
+	150:
+		IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+			uiAutoMulti	:= 130;
+		END_IF
+	
+	160:(* One pitch shift *)
+		IF NOT stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone AND NOT stInletModule.iq_stCmd.i_xOnePitchShift THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xOnePitchShift := FALSE;
+			uiAutoMulti	:= 140;
+		END_IF
+
+	180:(* Phase shift *)
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone AND NOT stInletModule.iq_stCmd.i_xPhaseShift THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xPhaseShift 	:= FALSE;
+			uiAutoMulti	:= 140;
+		END_IF
+		
+	300:(* Phase Offset Compensations *)
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			IF stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset THEN
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= TRUE;
+			END_IF
+		END_FOR
+		uiAutoMulti	:= 310;
+	
+	310:
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+				IF NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+				ELSE
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+				END_IF
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+			END_FOR
+			uiAutoMulti := 130;
+		END_IF
+END_CASE
+
+IF uiAutoStep > 120 AND EDGE(stInletModule.iq_stCmd.i_xVelocityAxisStop) THEN
+	FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+		IF stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+		END_IF
+	END_FOR
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiAutoMulti	:= 0;
+END_ACTION
+TRANSITION FROM AutoMulti TO AutoMultiExit:=
+NOT xAutoMultiMode
+END_TRANSITION
+(* @SFCNOJUMP := 'AutoMultiExit' *)
+STEP AutoMultiExit:
+(* @LANGUAGE := 'st' *)
+(* All axis commands are set to FALSE *)
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveVelocity	:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xJogPositive		:= FALSE;
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome			:= FALSE;
+
+(* Axis Stopped all real axis are set in GearOut mode *)
+IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+	FOR uiAxisIndex	:= CST_FirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+	END_FOR
+	xExitStep	:= NOT stInletModule.iq_stStatus.q_xRealAxesSynchronized;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM AutoMultiExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+TRANSITION FROM ModeSelection TO StepByStep:=
+xStepByStepMode
+END_TRANSITION
+(* @SFCNOJUMP := 'StepByStep' *)
+STEP StepByStep:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputStepByStep THEN
+	xStepByStepMode	:= FALSE;
+END_IF
+
+xStepByStepActive	:= TRUE;
+
+CASE uiStepByStep OF
+	0:
+		IF stInletModule.iq_stCmd.i_xStart THEN
+			uiStepByStep	:= 20;
+		END_IF
+	
+	20:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+				uiStepByStep	:= 100;
+			ELSE
+				uiStepByStep	:= 50;
+			END_IF
+		END_IF
+		
+	50:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
+		END_FOR
+
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset  THEN
+			uiStepByStep	:= 60;
+		END_IF
+
+	60:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+		END_FOR
+		
+		uiStepByStep	:= 100;
+	
+	100:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+		END_FOR
+		
+		IF stInletModule.iq_stStatus.q_xModuleSynchronized THEN
+			uiStepByStep	:= 110;
+		END_IF
+		
+	110:
+		uiNumberOfSteps	:= MAX(1, stInletModule.iq_stParameters.i_uiNumberOfSteps);
+		rAxisDistance	:= LREAL_TO_REAL(stInletModule.iq_stParameters.i_rStopPosition	- stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_lrPosition);
+
+		IF rAxisDistance < 0.0 THEN
+			rAxisDistance	:= rAxisDistance + 360.0;
+		END_IF
+
+		IF rAxisDistance < 10.0 THEN
+			rAxisDistance	:= 360.0 + rAxisDistance;
+		END_IF
+		
+		uiStepByStep	:= 120;
+		
+	120:
+		IF stInletModule.iq_stCmd.i_xStart THEN
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rPositioningVelocity	:= CST_PositioningVel;
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rPositioningAccDec	:= CST_PositioningAccDec;
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveAdditive			:= TRUE;
+			uiStepByStep	:= 130;
+		END_IF
+		
+	130:
+		IF NOT stInletModule.iq_stStatus.q_xModuleStopped THEN
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveAdditive := FALSE;
+			uiStepByStep	:= 140;
+		END_IF
+			
+	140:
+		IF stInletModule.iq_stStatus.q_xModuleStopped AND stInletModule.iq_stCmd.i_xStart THEN
+			uiStepByStep	:= 110;
+		END_IF
+END_CASE		
+		
+		
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiStepByStep	:= 0;
+END_ACTION
+TRANSITION FROM StepByStep TO StepByStepExit:=
+NOT xStepByStepMode
+END_TRANSITION
+(* @SFCNOJUMP := 'StepByStepExit' *)
+STEP StepByStepExit:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveAdditive	:= FALSE;
+IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+	FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+	END_FOR
+	xExitStep	:= NOT stInletModule.iq_stStatus.q_xModuleSynchronized;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM StepByStepExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+STEP Auto:
+(* @LANGUAGE := 'st' *)
+IF xReactionActive OR NOT xInputAuto THEN
+	xAutoMode	:= FALSE;
+END_IF
+
+xAutoActive	:= TRUE;
+
+CASE uiAutoStep OF
+	0:
+		IF stInletModule.iq_stStatus.q_xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
+			IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+				uiAutoStep	:= 100;
+			ELSE
+				uiAutoStep	:= 50;
+			END_IF
+		END_IF
+			
+	50:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis	TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;				
+		END_FOR
+		uiAutoStep	:= 60;
+	
+	60:
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			uiAutoStep	:= 70;
+		END_IF
+
+	70:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis	TO uiLastInletModuleAxis BY 1 DO
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
+		END_FOR
+		uiAutoStep	:= 0;
+	
+	100:
+		IF stInletModule.iq_stCmd.i_xStart THEN
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome 	:= TRUE;			
+			IF NOT stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+				stInletModule.iq_stStatus.q_xMasterRephased := TRUE;
+				uiAutoStep	:= 110;
+			END_IF
+		END_IF
+						
+	110:
+		IF stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
+			stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome 	:= FALSE;
+			uiAutoStep	:= 120;
+		END_IF
+	
+	120:
+		FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+			IF NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+			ELSE
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+			END_IF
+		END_FOR
+		
+		IF stInletModule.iq_stStatus.q_xRealAxesSynchronized THEN
+			uiAutoStep	:= 130;
+		END_IF
+	
+	130:(* If the machine is running the phasing command is taken in account *)
+		IF NOT stInletModule.iq_stStatus.q_xModuleStopped THEN
+			uiOldAxisSelected	:= LIMIT(CST_FirstInletModuleAxis, stInletModule.iq_stParameters.i_uiAxisSelected, CST_LastInletModuleAxis);
+			IF 	stInletModule.iq_stParameters.i_uiAxisSelected >= CST_FirstInletModuleAxis	AND
+				stInletModule.iq_stParameters.i_uiAxisSelected <= CST_LastInletModuleAxis		AND
+				stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xAxisReal THEN
+				IF stInletModule.iq_stCmd.i_xOnePitchShift THEN
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xOnePitchShift := TRUE;
+					uiAutoStep	:= 150;
+				ELSIF stInletModule.iq_stCmd.i_xPhaseShift AND stInletModule.iq_stParameters.i_rPhaseShiftDistance <> 0 THEN
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stParam.i_rPhaseShiftDistance 	:= stInletModule.iq_stParameters.i_rPhaseShiftDistance;
+					stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xPhaseShift				:= TRUE;
+					uiAutoStep	:= 180;
+				END_IF
+			END_IF
+		ELSIF stInletModule.iq_stStatus.q_xSynchroWithOffset AND stInletModule.iq_stCmd.i_xPhaseCompensation THEN
+			uiAutoStep	:= 300;
+		END_IF
+
+	150:(* Phase Shift Steps *)
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xOnePitchShift := FALSE;
+			uiAutoStep	:= 160;
+		END_IF
+		
+	160:
+		IF NOT stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone THEN
+			uiAutoStep	:= 130;
+		END_IF
+
+	180:
+		IF stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone AND NOT stInletModule.iq_stCmd.i_xPhaseShift THEN
+			stInletModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xPhaseShift := FALSE;
+			uiAutoStep	:= 160;
+		END_IF
+		
+	300:(* Phase Offset Compensations *)
+		FOR uiAxisIndex	:= CST_FirstInletModuleAxis TO CST_LastInletModuleAxis BY 1 DO
+			IF stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset THEN
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= TRUE;
+			END_IF
+		END_FOR
+		uiAutoStep	:= 310;
+	
+	310:
+		IF NOT stInletModule.iq_stStatus.q_xSynchroWithOffset THEN
+			FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+				IF NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+				ELSE
+					stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+				END_IF
+				stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+			END_FOR
+			uiAutoStep	:= 120;
+		END_IF
+END_CASE
+
+IF uiAutoStep > 120 AND EDGE(stInletModule.iq_stCmd.i_xVelocityAxisStop) THEN
+	FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+		IF stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+			stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := NOT stInletModule.iq_stCmd.i_xVelocityAxisStop;
+		END_IF
+	END_FOR
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+uiAutoStep	:= 0;
+END_ACTION
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome	:= FALSE;
+stInletModule.iq_stStatus.q_xMasterRephased := FALSE;
+END_ACTION
+TRANSITION FROM Auto TO AutoExit:=
+NOT xAutoMode
+END_TRANSITION
+(* @SFCNOJUMP := 'AutoExit' *)
+STEP AutoExit:
+(* @LANGUAGE := 'st' *)
+IF stInletModule.iq_stStatus.q_xModuleStopped THEN
+	FOR uiAxisIndex	:= uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+	END_FOR
+	
+	IF NOT stInletModule.iq_stStatus.q_xRealAxesSynchronized THEN
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xGear 				:= FALSE;
+		stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+		xExitStep	:= NOT stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xSynchronized;
+	END_IF
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM AutoExit TO ModeSelection:=
+xExitStep
+END_TRANSITION
+(* @SFCISJUMP := 'ModeSelection' *)
+STEP SubModuleCalls:
+(* @LANGUAGE := 'st' *)
+(****** TOKEN RING ALGORITHM ******)
+uiTokenIndex := uiTokenIndex + 1;
+IF auiAxisTokenList[uiTokenIndex] = 0 THEN
+	uiTokenIndex := 0;
+END_IF
+uiAxisToken := auiAxisTokenList[uiTokenIndex];
+
+(* FUBs CALLS *)
+fbInletMaster.i_xToken	:= TRUE;
+fbInletMaster;
+
+fbMain.i_xToken			:= (uiAxisToken = CST_MainAxis OR NOT CST_AxesMultiplexingOn);	//V4.A.A.1.6.10
+fbMain;
+
+FOR uiAxisIndex := CST_FirstInletModuleAxis TO CST_LastInletModuleAxis DO
+	IF axAxisPresent[uiAxisIndex] THEN
+		CASE uiAxisIndex OF
+			CST_Inlet01:
+				fbInlet01.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbInlet01;
+			
+			CST_Inlet02:
+				fbInlet02.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbInlet02;
+			
+			CST_Inlet03:
+				fbInlet03.i_xToken	:= uiAxisToken = uiAxisIndex 	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbInlet03;
+			
+			CST_Inlet04:
+				fbInlet04.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbInlet04;
+
+			CST_Outlet01:
+				fbOutlet01.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbOutlet01;
+			
+			CST_Outlet02:
+				fbOutlet02.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbOutlet02;
+			
+			CST_Outlet03:
+				fbOutlet03.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbOutlet03;
+			
+			CST_Outlet04:
+				fbOutlet04.i_xToken	:= uiAxisToken = uiAxisIndex	OR NOT CST_AxesMultiplexingOn	OR stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xCamConnected;	//V4.A.A.1.6.10
+				fbOutlet04;
+		END_CASE
+	END_IF
+END_FOR
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP SetException:
+(* @LANGUAGE := 'st' *)
+(* Set Exception Action *)
+fbMpAlarmXCore(MpLink := ADR(gInletAlarmXCoreLink), Enable := TRUE);
+stInletModule.iq_stStatus.q_xAlarmXCoreEnabled	:= fbMpAlarmXCore.Active;
+
+(* Axis error *)
+fbMasterError(i_xConditions := stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xError);
+
+fbMainAxisError(i_xConditions			:= stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xError);
+fbMainAxisLagError(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+
+IF axAxisPresent[CST_Inlet01] THEN
+	fbInlet01Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbInlet01LagError(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+
+IF axAxisPresent[CST_Inlet02] THEN
+	fbInlet02Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbInlet02LagError(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+
+IF axAxisPresent[CST_Inlet03] THEN
+	fbInlet03Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbInlet03LagError(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+
+IF axAxisPresent[CST_Inlet04] THEN
+	fbInlet04Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbInlet04LagError(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+
+IF axAxisPresent[CST_Outlet01] THEN
+	fbOutlet01Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbOutlet01LagError(i_xConditions	:= stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+	
+IF axAxisPresent[CST_Outlet02] THEN
+	fbOutlet02Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbOutlet02LagError(i_xConditions	:= stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+	
+IF axAxisPresent[CST_Outlet03] THEN
+	fbOutlet03Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbOutlet03LagError(i_xConditions	:= stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+	
+IF axAxisPresent[CST_Outlet04] THEN
+	fbOutlet04Error(i_xConditions		:= stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus.q_stMainAxisStatus.q_xError);
+	fbOutlet04LagError(i_xConditions	:= stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus.q_stMainAxisStatus.q_xLagError);
+END_IF
+
+fbEmergencyStopAlarm(i_xConditions	:= NOT stInletModule.iq_stCmd.i_xEnable);
+fbQuickStopFromPlc(i_xConditions	:= NOT stInletModule.iq_stCmd.i_xExternalQuickStop);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Output:
+(* @LANGUAGE := 'st' *)
+(* Modalities Bits *)
+stInletModule.iq_stStatus.q_xNoOpActive				:= xNoOpActive;
+stInletModule.iq_stStatus.q_xAutoActive 			:= xAutoActive;
+stInletModule.iq_stStatus.q_xPositioningActive 		:= xPositioningActive;
+stInletModule.iq_stStatus.q_xSelHomingActive 		:= xSelHomingActive;
+stInletModule.iq_stStatus.q_xBrakeReleaseActive 	:= xBrakeReleaseActive;
+stInletModule.iq_stStatus.q_xSlowMotionActive 		:= xSlowMotionActive;
+stInletModule.iq_stStatus.q_xJogMultiActive 		:= xJogMultiActive;
+stInletModule.iq_stStatus.q_xAutoMultiActive 		:= xAutoMultiActive;
+stInletModule.iq_stStatus.q_xStepByStepActive 		:= xStepByStepActive;
+stInletModule.iq_stStatus.q_xVelocityActive 		:= xVelocityActive;
+stInletModule.iq_stStatus.q_xThirdPartySetupActive	:= xThirdPartySetupActive;
+stInletModule.iq_stStatus.q_xInductionSetupActive	:= xInductionSetupActive;
+
+stInletModule.iq_stStatus.q_xModuleStartFbk	:= (xAutoMultiActive	AND stInletModule.iq_stCmd.i_xStart)	OR
+												(xJogMultiActive	AND stInletModule.iq_stCmd.i_xJogPB)	OR
+												(xSlowMotionActive	AND stInletModule.iq_stCmd.i_xJogPB);
+
+CASE uiSlowAxisIndex OF
+	CST_ModuleMasterAxis:
+		stInletModule.iq_stStatus.q_xModulePowered				:= xModulePowered;
+		stInletModule.iq_stStatus.q_xRealAxesReadyForACommand	:= xRealAxesReadyForACommand;
+		stInletModule.iq_stStatus.q_xSynchroWithOffset			:= xSynchroWithOffset;
+		stInletModule.iq_stStatus.q_xModuleStopped				:= xModuleStopped;
+		stInletModule.iq_stStatus.q_xRealAxesSynchronized		:= xRealAxesSynchronized;
+		stInletModule.iq_stStatus.q_xPhaseShiftDone				:= xPhaseShiftDone;
+		stInletModule.iq_stStatus.q_xSelHomingDone				:= xSelHomingDone;
+		stInletModule.iq_stStatus.q_xModuleHomed				:= xModuleHomed;
+		stInletModule.iq_stStatus.q_xInitDone					:= xModuleInitialized;
+		
+		// Module Velocity
+		stInletModule.iq_stStatus.q_rVelocity					:= rModuleVelocity;
+		rModuleVelocity											:= ABS(stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_rVelocity);
+		usiMasterStatus											:= usiMasterTempStatus;
+		usiMasterTempStatus										:= usiMasterRequest;
+
+	CST_FirstInletModuleAxis..CST_LastInletModuleAxis:
+		IF NOT stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPowerSupply	AND
+			stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal		THEN
+
+			IF NOT stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xVelocityControl THEN
+				rModuleVelocity	:= MAX(rModuleVelocity, ABS(stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_rVelocity));
+			END_IF
+
+			// Master management	
+			IF	usiMasterRequest = LOCAL_MASTER THEN
+				IF stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_udiMasterAxisLink <> ADR(gInletModuleMasterLink) AND usiMasterTempStatus <> UNKNOWN THEN
+					usiMasterTempStatus := UNKNOWN;
+				END_IF
+			ELSIF usiMasterRequest = GLOBAL_MASTER THEN				
+				IF stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_udiMasterAxisLink <> ADR(gMasterLink) AND usiMasterTempStatus <> UNKNOWN THEN
+					usiMasterTempStatus := UNKNOWN;
+				END_IF
+			ELSE
+				usiMasterStatus	:= UNKNOWN;
+			END_IF
+
+			// Module Initialized Memory
+			xModuleInitialized	:= xModuleInitialized AND
+									stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xInitDone;
+
+			// Axis Homed cumulative memory
+			xModuleHomed		:= xModuleHomed AND
+									stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xIsHomed;
+					
+			// Axis stopped cumulative memory		
+			xModuleStopped		:= xModuleStopped AND
+									(stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xStopped OR NOT
+									stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPoweredOn);
+			
+			// Ready for a command cumulative memory
+			xRealAxesReadyForACommand	:= xRealAxesReadyForACommand AND stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand;
+			
+			IF NOT stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled THEN
+				// Axis syncrhonized cumulative memory
+				xRealAxesSynchronized	:= xRealAxesSynchronized	AND stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchronized;
+				// There is at least One Axis with a phase offset pending
+				xSynchroWithOffset		:= xSynchroWithOffset		OR stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
+				// Phase shift done
+				xPhaseShiftDone			:= xPhaseShiftDone 	OR (stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPhaseShiftDone AND stInletModule.iq_astSubModuleAxis[uiSlowAxisIndex].iq_stCmd.i_xPhaseShift);
+			END_IF
+		END_IF
+	ELSE
+		xRealAxesReadyForACommand	:= TRUE;
+		xSynchroWithOffset			:= FALSE;
+		xModuleStopped				:= TRUE;
+		xRealAxesSynchronized		:= TRUE;
+		xPhaseShiftDone				:= FALSE;
+		xSelHomingDone				:= FALSE;
+		xModuleHomed				:= TRUE;
+		xModuleInitialized			:= TRUE;
+END_CASE
+
+stInletModule.iq_stStatus.q_xModulePowered	:= FALSE;
+stInletModule.iq_stStatus.q_xReactionActive	:= xReactionActive;
+
+FOR uiAxisIndex := uiFirstInletModuleAxis TO uiLastInletModuleAxis BY 1 DO
+	// Axis powered cumulative memory
+	stInletModule.iq_stStatus.q_xModulePowered	:= stInletModule.iq_stStatus.q_xModulePowered		OR
+													(stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPoweredOn 		AND
+													NOT stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xPowerSupply 	AND
+													stInletModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal);
+END_FOR
+
+stInletModule.iq_stStatus.q_xModuleSynchronized		:= stInletModule.iq_stStatus.q_xRealAxesSynchronized;
+(*DA IMPLEMENTARE FB COME C'E' NEL MODULO FILLER*)
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM (Input,SubModuleCalls,SetException,Output) TO Disabled:=
+FALSE
+END_TRANSITION
+(* @SFCNOJUMP := 'Disabled' *)
+STEP Disabled:
+(* @LANGUAGE := 'st' *)
+stInletModule.iq_stStatus.q_xAlarmXCoreEnabled	:= TRUE;
+ST_tmp_suspend(0);	// Suspend the outlet module task
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Disabled TO Init:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'Init' *)
+END_PROGRAM

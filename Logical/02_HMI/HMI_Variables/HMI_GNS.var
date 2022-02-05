@@ -1,0 +1,12 @@
+VAR
+	HMI_204PSF : HMI_DI_Type;
+	HMI_204EVF : HMI_Valve_Type;
+	HMI_201PTF : HMI_Analog_IN_Type;
+	HMI_204PTF : HMI_Analog_IN_Type;
+	HMI_217DSR : HMI_DI_Type; (*V4.A.A.1.6.12h*)
+	HMI_296CPB_I : HMI_DI_Type; (*V4.A.A.1.7.0 Rinser Bypass control*)
+	HMI_297CPB_I : HMI_DI_Type; (*V4.A.A.1.7.0 Rinser Bypass control*)
+	HMI_Beacon : HMI_Beacon_Type;
+	HMI_BeaconHome : ARRAY[0..1] OF HMI_BeaconHome_Type; (*Reserved Home Page HMI V4.A.A.1.6.8*)
+	HMI_GNS_LadderRestPosition : BOOL;
+END_VAR

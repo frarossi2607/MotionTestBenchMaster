@@ -1,0 +1,141 @@
+PROGRAM _CYCLIC
+(* @LANGUAGE := 'sfc' *)
+INITIAL_STEP CFGInit:
+(* @LANGUAGE := 'st' *)
+CFG_MC;
+CFG_Par;
+HMI_PAO_2;
+CFG_ITC;
+CFG_OPS;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM CFGInit TO (MapRcpVar,Manager,FbCall,HmiData,Alarm):=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'MapRcpVar' *)
+(* @SFCNOJUMP := 'Manager' *)
+(* @SFCNOJUMP := 'FbCall' *)
+(* @SFCNOJUMP := 'HmiData' *)
+(* @SFCNOJUMP := 'Alarm' *)
+STEP MapRcpVar:
+(* @LANGUAGE := 'st' *)
+pMpLinkRecipeCsv					:= ADR(gRecipeCsv);
+
+(* MpRecipeCsv - Initialization *)
+FB_MpRecipeCsv.MpLink				:= pMpLinkRecipeCsv;
+FB_MpRecipeCsv.DeviceName			:= ADR(CST_DeviceName);
+FB_MpRecipeCsv.FileName				:= ADR(VAR_FileName);
+FB_MpRecipeCsv.Header				:= ADR(VAR_Header);
+FB_MpRecipeCsv.Enable				:= TRUE;
+
+IF AID.DataOut.ProjectType = CST_AID_ProjectMachine THEN
+	(* MpRecipePar - Motion Configuration *)
+	FB_MpRecipeRegPar_Motion.MpLink		:= FB_MpRecipeCsv.MpLink;
+	FB_MpRecipeRegPar_Motion.Category	:= ADR(VAR_CategoryMotion);
+	FB_MpRecipeRegPar_Motion.PVName		:= ADR(VAR_PvNameMotion);
+	FB_MpRecipeRegPar_Motion.Enable		:= TRUE;
+
+	(* MpRecipePar - Hmi Pao *)
+	FB_MpRecipeRegPar_Hmi.MpLink		:= FB_MpRecipeCsv.MpLink;
+	FB_MpRecipeRegPar_Hmi.Category		:= ADR(VAR_CategoryHmi);
+	FB_MpRecipeRegPar_Hmi.PVName		:= ADR(VAR_PvNameHmi);
+	FB_MpRecipeRegPar_Hmi.Enable		:= TRUE;
+	
+	(* MpRecipePar - Operator Safety Configuration *)
+	FB_MpRecipeRegPar_CfgOps.MpLink		:= FB_MpRecipeCsv.MpLink;
+	FB_MpRecipeRegPar_CfgOps.Category	:= ADR(VAR_CategoryCfgDoor);
+	FB_MpRecipeRegPar_CfgOps.PVName		:= ADR(VAR_PvNameCfgDoor);
+	FB_MpRecipeRegPar_CfgOps.Enable		:= TRUE;
+	
+	(* MpRecipePar - Capper Configuration *)
+	FB_MpRecipeRegPar_CfgCap.MpLink		:= FB_MpRecipeCsv.MpLink;
+	FB_MpRecipeRegPar_CfgCap.Category	:= ADR(VAR_CategoryCfgCap);
+	FB_MpRecipeRegPar_CfgCap.PVName		:= ADR(VAR_PvNameCfgCap);
+	FB_MpRecipeRegPar_CfgCap.Enable		:= TRUE;
+END_IF
+	
+(* MpRecipePar - Machine configuration *)
+FB_MpRecipeRegPar_Config.MpLink		:= FB_MpRecipeCsv.MpLink;
+FB_MpRecipeRegPar_Config.Category	:= ADR(VAR_CategoryConfig);
+FB_MpRecipeRegPar_Config.PVName		:= ADR(VAR_PvNameConfig);
+FB_MpRecipeRegPar_Config.Enable		:= TRUE;
+
+(* MpRecipePar - Itc Configuration *)
+FB_MpRecipeRegPar_Itc.MpLink		:= FB_MpRecipeCsv.MpLink;
+FB_MpRecipeRegPar_Itc.Category		:= ADR(VAR_CategoryItc);
+FB_MpRecipeRegPar_Itc.PVName		:= ADR(VAR_PvNameItc);
+FB_MpRecipeRegPar_Itc.Enable		:= TRUE;
+
+(* File Manager *)
+(* Folder create *)
+FB_DirCreate.enable					:= TRUE;
+FB_DirCreate.pDevice				:= ADR(CST_RootName);
+FB_DirCreate.pName					:= ADR(CST_DirName);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Manager:
+(* @LANGUAGE := 'st' *)
+CsvManager;
+FileManager;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP FbCall:
+(* @LANGUAGE := 'st' *)
+FB_MpRecipeCsv;
+FB_MpRecipeRegPar_Motion;
+FB_MpRecipeRegPar_Config;
+FB_MpRecipeRegPar_CfgCap;
+FB_MpRecipeRegPar_Hmi;
+FB_MpRecipeRegPar_Itc;
+FB_MpRecipeRegPar_CfgOps;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP HmiData:
+(* @LANGUAGE := 'st' *)
+HmiVariablesBrowse;
+
+HMI_PB[PB_CFG_SavePao].Enable		:= VAR_CsvMngState = 800;
+HMI_PB[PB_CFG_SavePao].Visibility	:= TRUE;
+HMI_PB[PB_CFG_SavePao].LampON		:= HMI_PB[PB_CFG_SavePao].ON;
+HMI_PB[PB_CFG_SavePao].Blink		:= VAR_CsvMngState >= 1050 AND VAR_CsvMngState <= 1099 ;
+	
+HMI_PB[PB_CFG_LoadPao].Enable		:= VAR_CsvMngState = 800;
+HMI_PB[PB_CFG_LoadPao].Visibility	:= TRUE;
+HMI_PB[PB_CFG_LoadPao].LampON		:= HMI_PB[PB_CFG_LoadPao].ON;
+HMI_PB[PB_CFG_LoadPao].Blink		:= VAR_CsvMngState >= 1000  AND VAR_CsvMngState <= 1049;
+
+HMI_PB[PB_CFG_SaveCfg].Enable		:= VAR_CsvMngState = 800 AND VAR_InitialVariableName <> '';
+HMI_PB[PB_CFG_SaveCfg].Visibility	:= TRUE;
+HMI_PB[PB_CFG_SaveCfg].LampON		:= HMI_PB[PB_CFG_SaveCfg].ON;
+HMI_PB[PB_CFG_SaveCfg].Blink		:= (VAR_CsvMngState >= 1150 AND VAR_CsvMngState <= 1199) OR (VAR_CsvMngState >= 1250 AND VAR_CsvMngState <= 1299);
+	
+HMI_PB[PB_CFG_LoadCfg].Enable		:= VAR_CsvMngState = 800 AND VAR_InitialVariableName <> '';
+HMI_PB[PB_CFG_LoadCfg].Visibility	:= TRUE;
+HMI_PB[PB_CFG_LoadCfg].LampON		:= HMI_PB[PB_CFG_LoadCfg].ON;
+HMI_PB[PB_CFG_LoadCfg].Blink		:= (VAR_CsvMngState >= 1100 AND VAR_CsvMngState <= 1149) OR (VAR_CsvMngState >= 1200 AND VAR_CsvMngState <= 1249);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Alarm:
+(* @LANGUAGE := 'st' *)
+//V4.A.A.1.6.13
+ALR[110].Active := CFG.DataOut.CfgDefault OR CFG.DataOut.ItcDefault OR CFG.DataOut.PaoDefault OR CFG.DataOut.CfgCapDefault OR CFG.DataOut.MotionDefault OR CFG.DataOut.OPSDefault;
+ALR[111].Active := HMI_MachineId = 'Error Name';
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM (MapRcpVar,Manager,FbCall,HmiData,Alarm) TO CFGInit:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'CFGInit' *)
+END_PROGRAM

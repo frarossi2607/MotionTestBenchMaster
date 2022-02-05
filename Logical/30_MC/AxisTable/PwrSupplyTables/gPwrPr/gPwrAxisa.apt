@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<AcoposParameterTable>
+  <Root Name="Parameters">
+    <Group Name="COMMON">
+      <Parameter Name="PHASE_MON_IGNORE" ID="80" Value="1" Description="Power mains: Ignore phase failure" />
+      <Parameter Name="UVLIM_MODE" ID="368" Value="0" Description="CTRL DC bus: Limiter: Mode" />
+      <Parameter Name="ERRESP_UDC_POWERFAIL" ID="351" Value="0" Description="Power mains: Error response" />
+      <Parameter Name="UDC_NOMINAL" ID="390" Value="400" Unit="V" Description="CTRL DC bus: Nominal voltage" />
+    </Group>
+    <Group Name="Declaration">
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CMP_MODE+0" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CMP_MODE+1" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CMP_MODE+2" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="BIT_MODE+0" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="ARITH_MODE+5" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="VAR_R4_0+0" Description="Function block: Create a FB instance" />
+    </Group>
+    <Group Name="Bleeder">
+      <Parameter Name="UDC_BLEEDER_ON" ID="345" Value="750" Unit="V" Description="CTRL DC bus: Limiter: Switch on threshold" />
+      <Parameter Name="R_BLEEDER_EXT" ID="10" Value="33" Unit="Ohm" Description="Bleeder: External: Resistance" />
+      <Parameter Name="TEMP_MAX_BLEEDER_EXT" ID="11" Value="670" Unit="°C" Description="Bleeder: External: Limit temperature" />
+      <Parameter Name="RTH_BLEEDER_AMB_EXT" ID="12" Value="0.852" Unit="K/W" Description="Bleeder: External: Thermal resistance" />
+      <Parameter Name="CTH_BLEEDER_EXT" ID="13" Value="22.6" Unit="Ws/K" Description="Bleeder: External: Thermal capacity" />
+      <Parameter Name="BLEEDER_SELECTOR_EXT" ID="398" Value="1" Description="Bleeder: Selector" />
+      <Parameter Name="CMP_MODE+1" ID="6689" Value="0" Description="FB0 CMP mode" />
+      <Parameter Name="CMP_IN_PARID+1" ID="6657" Value="TEMP_BLEEDER" Description="FB0 CMP parameter ID of input" />
+      <Parameter Name="CMP_THRESHOLD+1" ID="6665" Value="620" Description="FB0 CMP threshold" />
+      <Parameter Name="CMP_WINDOW+1" ID="6673" Value="0" Description="FB0 CMP window" />
+      <Parameter Name="CMP_HYSTERESIS+1" ID="6681" Value="0" Description="FB0 CMP hysteresis window" />
+      <Parameter Name="CMP_MODE+1" ID="6689" Value="6" Description="FB0 CMP mode" />
+    </Group>
+    <Group Name="POWER FAIL MANAGEMENT">
+      <Parameter Name="CMP_MODE+0" ID="6688" Value="0" Description="FB0 CMP mode" />
+      <Parameter Name="CMP_IN_PARID+0" ID="6656" Value="UDC_ACT" Description="FB0 CMP parameter ID of input" />
+      <Parameter Name="CMP_THRESHOLD+0" ID="6664" Value="480" Description="FB0 CMP threshold" />
+      <Parameter Name="CMP_WINDOW+0" ID="6672" Value="0" Description="FB0 CMP window" />
+      <Parameter Name="CMP_HYSTERESIS+0" ID="6680" Value="0" Description="FB0 CMP hysteresis window" />
+      <Parameter Name="CMP_MODE+0" ID="6688" Value="3" Description="FB0 CMP mode" />
+    </Group>
+    <Group Name="SUPPLY VOLTAGE CALCULATION" Description="Voltage Monitor">
+      <Parameter Name="VAR_R4_0+0" ID="4128" Value="1.414" Description="FB0 FB VAR: Variable0 R4" />
+      <Parameter Name="ARITH_MODE+5" ID="3589" Value="0" Description="FB5 FB ARITH: Mode" />
+      <Parameter Name="ARITH_IN1_PARID+5" ID="3597" Value="UDC_ACT" Description="FB5 FB ARITH: Parameter ID of input1" />
+      <Parameter Name="ARITH_IN2_PARID+5" ID="3605" Value="VAR_R4_0+0" Description="FB5 FB ARITH: Parameter ID of input2" />
+      <Parameter Name="ARITH_MODE+5" ID="3589" Value="5" Description="FB5 FB ARITH: Mode" />
+    </Group>
+    <Group Name="SUPPLY VOLTAGE CHECK" Description="Voltage Monitor">
+      <Parameter Name="CMP_MODE+2" ID="6690" Value="0" Description="FB0 CMP mode" />
+      <Parameter Name="CMP_IN_PARID+2" ID="6658" Value="ARITH_VALUE_R4+5" Description="FB0 CMP parameter ID of input" />
+      <Parameter Name="CMP_THRESHOLD+2" ID="6666" Value="360" Description="FB0 CMP threshold" />
+      <Parameter Name="CMP_MODE+2" ID="6690" Value="3" Description="FB0 CMP mode" />
+    </Group>
+    <Group Name="POWER SUPPLY ERROR MUX">
+      <Parameter Name="BIT_MODE+0" ID="12800" Value="0" Description="FB0 BIT Mode" />
+      <Parameter Name="BIT_A1+0" ID="12808" Value="16" Description="FB0 BIT Operand a1 - Gc_PhaseMonitorError" />
+      <Parameter Name="BIT_A2+0" ID="12816" Value="1" Description="FB0 BIT Operand a2 - Gc_DcBusUndervoltageError" />
+      <Parameter Name="BIT_A3+0" ID="12824" Value="1" Description="FB0 FB BIT: Operand a3 - Gc_BleederError" />
+      <Parameter Name="BIT_A4+0" ID="12832" Value="1" Description="FB0 FB BIT: Operand a4 - Gc_PowerSupplyVoltageMonitor" />
+      <Parameter Name="BIT_B1+0" ID="12872" Value="0" Description="FB0 BIT Operand b1" />
+      <Parameter Name="BIT_B2+0" ID="12880" Value="1" Description="FB0 BIT Operand b2" />
+      <Parameter Name="BIT_B3+0" ID="12888" Value="0" Description="FB0 FB BIT: Operand b3" />
+      <Parameter Name="BIT_B4+0" ID="12896" Value="2" Description="FB0 FB BIT: Operand b4 - Voltage Monitor" />
+      <Parameter Name="BIT_IN1_PARID+0" ID="12936" Value="STAT_PHASE_MON" Description="FB0 BIT Parameter ID of input1" />
+      <Parameter Name="BIT_IN2_PARID+0" ID="12944" Value="CMP_VALUE+0" Description="FB0 BIT Parameter ID of input2" />
+      <Parameter Name="BIT_IN3_PARID+0" ID="12952" Value="CMP_VALUE+1" Description="FB0 FB BIT: Parameter ID of input3" />
+      <Parameter Name="BIT_IN4_PARID+0" ID="12960" Value="CMP_VALUE+2" Description="FB0 FB BIT: Parameter ID of input4" />
+      <Parameter Name="BIT_MODE+0" ID="12800" Value="4" Description="FB0 BIT Mode" />
+    </Group>
+  </Root>
+</AcoposParameterTable>

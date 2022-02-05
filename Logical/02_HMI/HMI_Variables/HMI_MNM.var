@@ -1,0 +1,55 @@
+VAR
+	HMI_MNM_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_MNM_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_MNM_MachineSpeedAct : REAL;
+	HMI_MNM_MachineSpeedReq : REAL;
+END_VAR
+VAR CONSTANT
+	HMI_MNM_MinMachineSpeed : REAL := 2000.0;
+END_VAR
+VAR
+	HMI_MNM_MinMachineJogSpeed : REAL;
+	HMI_MNM_MaxMachineJogSpeed : REAL;
+	HMI_MNM_MinInMotionAdjustement : REAL;
+	HMI_MNM_MaxInMotionAdjustement : REAL;
+	HMI_MNM_MaxMachineSpeed : REAL;
+	HMI_MNM_AxisPositionOffset : REAL;
+	HMI_MNM_AxisStepByStepOffset : UINT;
+	HMI_MNM_AxisInMotionAdjustment : REAL;
+	HMI_MNM_MachinePosition : UINT;
+	HMI_MNM_MachinePitch : REAL;
+	HMI_MNM_AxisSelected : UINT;
+	HMI_MNM_ConveyorSpeed : REAL;
+	HMI_MNM_FlrSpeedWidget : HMI_SpeedWidget_Type;
+	HMI_MNM_SmrSpeedWidget : HMI_SpeedWidget_Type;
+	HMI_MNM_CamName : ARRAY[1..11] OF USINT; (*V4.A.A.1.7.0*)
+	HMI_MNM_MachineRunning : BOOL;
+END_VAR
+(*MOTORS*)
+VAR
+	HMI_InCvr : HMI_Motor_FC_Type; (*Outfeed conveyor motor*) (*Master nuovo*)
+	HMI_OutCvr : HMI_Motor_FC_Type; (*Outfeed conveyor motor*)
+END_VAR
+(*DRIVERS*)
+VAR
+	HMI_VFD_InCvr : HMI_Danfoss_Diag_Type; (*Outfeed conveyor VFD*) (*Master nuovo*)
+	HMI_VFD_OutCvr : HMI_Danfoss_Diag_Type; (*Outfeed conveyor VFD*)
+END_VAR
+(*DIGITAL INSTRUMENT*)
+VAR
+	HMI_241DSE : HMI_DI_Type; (*Caps Discharge*)
+	HMI_230DSE : HMI_DI_Type; (*Spot safety*)
+	HMI_236DSE : HMI_DI_Type; (*Outlet obstructed*)
+	HMI_ContainerFallInlet1 : BOOL; (*Container fall at inlet 1*)
+	HMI_ContainerFallInlet2 : BOOL; (*Container fall at inlet 2*)
+	HMI_NoContainerInlet1 : BOOL; (*No container at Inlet 1*)
+	HMI_NoContainerInlet2 : BOOL; (*No container at Inlet 2*)
+	HMI_OutletFull : BOOL;
+END_VAR
+(*INLET CANS SENSOR*)
+VAR
+	HMI_InletSafetyLow1 : HMI_DI_Type;
+	HMI_InletSafetyHigh1 : HMI_DI_Type;
+	HMI_InletSafetyLow2 : HMI_DI_Type;
+	HMI_InletSafetyHigh2 : HMI_DI_Type;
+END_VAR

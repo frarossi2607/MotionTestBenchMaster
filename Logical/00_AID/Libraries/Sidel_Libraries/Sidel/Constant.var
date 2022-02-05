@@ -1,0 +1,21 @@
+(*ITC*)
+VAR CONSTANT
+	CST_MinITCPartner : USINT := 11;
+	CST_MaxITCPartner : USINT := 89; (*V4.A.A.1.6.12*)
+END_VAR
+(*HMI Rele Station and Channel State*)
+VAR CONSTANT
+	CST_MAX_Nr_Channels : USINT := 16;
+	CST_RELE_NO_COMMUN : USINT := 0; (*White + X Red Symbol*)
+	CST_RELE_ON : USINT := 1; (*Green*)
+	CST_RELE_ON_BY_PLC : USINT := 2; (*Green*)
+	CST_RELE_ON_WARNING : USINT := 3; (*Green + Warning Symbol*)
+	CST_RELE_ON_CONFIG_ERROR : USINT := 4; (*Green + Yellow with X Blue*)
+	CST_RELE_OFF_FAULT : USINT := 5; (*Black + Fault Symbol*)
+	CST_RELE_OFF_BY_PB_HW : USINT := 6; (*Black + HW Symbol*)
+	CST_RELE_OFF_BY_HMI : USINT := 7; (*Black + HMI Symbol*)
+	CST_RELE_OFF_BY_PLC : USINT := 8; (*Black + PLC Symbol*)
+	CST_RELE_OFF : USINT := 9; (*Black*)
+	CST_RELE_OFF_CONFIG_ERROR : USINT := 10; (*Black + Yellow with X Blue*)
+	CST_RELE_NOT_DEFINE : USINT := 11; (*Yellow + X Blue*)
+END_VAR

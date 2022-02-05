@@ -1,0 +1,3 @@
+VAR
+	CFG_MC : CFG_Motion_Type;
+END_VAR

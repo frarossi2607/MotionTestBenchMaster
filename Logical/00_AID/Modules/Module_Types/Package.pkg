@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">AID_Global.typ</Object>
+    <Object Type="File">BTC_Global.typ</Object>
+    <Object Type="File">RNS_Global.typ</Object>
+    <Object Type="File">CAP_Global.typ</Object>
+    <Object Type="File">COP_Global.typ</Object>
+    <Object Type="File">CFG_Global.typ</Object>
+    <Object Type="File">CRW_Global.typ</Object>
+    <Object Type="File">CSR_Global.typ</Object>
+    <Object Type="File">DMC_Global.typ</Object>
+    <Object Type="File">EIT_Global.typ</Object>
+    <Object Type="File">FMC_Global.typ</Object>
+    <Object Type="File">GNS_Global.typ</Object>
+    <Object Type="File">ICO_Global.typ</Object>
+    <Object Type="File">ITC_Global.typ</Object>
+    <Object Type="File">MAU_Global.typ</Object>
+    <Object Type="File">MC_Global.typ</Object>
+    <Object Type="File">MNM_Global.typ</Object>
+    <Object Type="File">MNT_Global.typ</Object>
+    <Object Type="File">OPS_Global.typ</Object>
+    <Object Type="File">REL_Global.typ</Object>
+    <Object Type="File">RCP_Global.typ</Object>
+    <Object Type="File">SFT_Global.typ</Object>
+    <Object Type="File">TNK_Global.typ</Object>
+    <Object Type="File">DOS_Global.typ</Object>
+    <Object Type="File">Sequencer.typ</Object>
+  </Objects>
+</Package>

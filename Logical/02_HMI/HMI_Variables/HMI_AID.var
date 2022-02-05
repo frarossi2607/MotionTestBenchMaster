@@ -1,0 +1,20 @@
+VAR
+	HMI_CmdBar_PB : ARRAY[MIN_CmdBar_PB..MAX_CmdBar_PB] OF CmdBarPB_Type := [25((Enable:=FALSE,LampON:=FALSE,Blink:=FALSE,Visibility:=FALSE,ON:=FALSE,Command:=FALSE))]; (*1: Mixer Start/Stop
+2: Filler Start/Stop
+3: Labeller Start/Stop
+4: Blower Start/Stop
+5: Labeller Master/Slave
+6: Preform Loading
+7: Bottle with label ejection
+8: Empty bottle ejection
+9: Preform ejection
+10: Filler/Labeller coupling
+11: Labeller/Blower coupling
+12: Filler door unlock
+13: Labeller door unlock
+14: Blower door unlock*)
+	HMI_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_SS2P_Custom : ARRAY[0..2] OF SS2PCustom_Type; (*V4.A.A.1.6.13*)
+	BP_ActisFillingCoupled : PB_Type_Actis; (*V4.A.A.1.7.0*)
+END_VAR

@@ -1,0 +1,6 @@
+ACTION HMI_CO_Loading:
+	HMI_APCO;
+	HMI_APCO_TypeOfChangeCFG;
+	HMI_CO_SS2P;
+	HMI_APCO_TypeOfChange;
+END_ACTION

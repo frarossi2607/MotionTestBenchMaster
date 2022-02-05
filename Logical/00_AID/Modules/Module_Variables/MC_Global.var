@@ -1,0 +1,3 @@
+VAR
+	MC_InputOutput : ST_MotionInterface;
+END_VAR

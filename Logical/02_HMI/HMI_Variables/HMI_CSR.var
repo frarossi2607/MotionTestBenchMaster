@@ -1,0 +1,52 @@
+VAR
+	HMI_CSR_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_CSR_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_CSR_SS3P : ARRAY[MIN_SS3P_CFG..MAX_SS3P_CFG] OF SS3P_Type;
+END_VAR
+(*SENSORS*)
+VAR
+	HMI_LTK : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF HMI_Analog_IN_Type;
+END_VAR
+(*MOTORS*)
+VAR
+	HMI_VFD_RnsLift : HMI_Danfoss_Diag_Type; (*master nuovo*)
+	HMI_VFD_TnkLift : HMI_Danfoss_Diag_Type; (*master nuovo*)
+	HMI_RnsLift : HMI_Motor_FC_Type; (*master nuovo*)
+	HMI_TnkLift : HMI_Motor_FC_Type; (*master nuovo*)
+	HMI_2768U0 : HMI_Motor_Type;
+	HMI_2809M2 : HMI_Motor_Type; (*master nuovo*)
+	HMI_2808M1 : HMI_Motor_Type;
+	HMI_2806M1 : HMI_Motor_Type;
+	HMI_2806M1_Brake : HMI_Motor_Type; (*master nuovo*)
+	HMI_CSR_TnkLinftingMotor : HMI_Motor_Type; (*Tank Lift motor*)
+END_VAR
+(*VALVES*)
+VAR
+	HMI_204CPC : HMI_Valve_Type;
+	HMI_202CPB : HMI_Valve_Type; (*Containers sectors block*)
+	HMI_YV26 : HMI_Valve_Type; (*master nuovo*)
+	HMI_YV39 : HMI_Valve_Type; (*master nuovo*)
+END_VAR
+(*Sequencer Step*)
+VAR
+	HMI_CSR_State : Seq_Type;
+	HMI_CSR_Column : ARRAY[1..3] OF HMI_Column_Type;
+	HMI_CSR_SCU : HMI_SCU_Type;
+	HMI_CSR_Data : HMI_CSR_Data_Type;
+	HMI_212DSB : HMI_DI_Type; (*master nuovo*)
+	HMI_213DSB : HMI_DI_Type; (*master nuovo*)
+	HMI_3565S5 : HMI_DI_Type; (*master nuovo*)
+	HMI_3565S7 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ26 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ45A2 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ45A1 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ70 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ5 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ40 : HMI_DI_Type; (*master nuovo*)
+	HMI_SQ6 : HMI_DI_Type; (*master nuovo*)
+	HMI_CSR_SikoActualPosition : HMI_CSR_SikoActualPosition_Type; (*master nuovo*)
+	HMI_CSR_SikoConveyorData : HMI_CSR_SikoMotorData_Type; (*master nuovo*)
+	HMI_CSR_SikoGuideData : HMI_CSR_SikoMotorData_Type; (*master nuovo*)
+	HMI_238DSE : HMI_DI_Type; (*Belt Lifting Height Sensor*) (*master nuovo*)
+	HMI_243DSE : HMI_DI_Type; (*Body Guide Presence*) (*master nuovo*)
+END_VAR

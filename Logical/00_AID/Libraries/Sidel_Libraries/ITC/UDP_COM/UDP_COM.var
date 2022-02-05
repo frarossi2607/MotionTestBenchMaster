@@ -1,0 +1,18 @@
+(********************************************************************
+ * COPYRIGHT -- Sidel
+ ********************************************************************
+ * Library: UDP_COM
+ * File: UDP_COM.var
+ * Author: Andrea.Cortesi
+ * Created: May 28, 2013
+ ********************************************************************
+ * Constants of library UDP_COM
+ ********************************************************************)
+VAR CONSTANT
+	UDP_Connected_OK : USINT := 0;
+	UDP_Not_Enabled : USINT := 1;
+	UDP_Error_Sending : USINT := 2;
+	UDP_Error_Receiving : USINT := 3;
+	UDP_Connection_Close : USINT := 4;
+	UDP_Connection_Waiting : USINT := 10;
+END_VAR

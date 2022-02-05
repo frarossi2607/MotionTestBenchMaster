@@ -1,0 +1,128 @@
+(*General*)
+VAR CONSTANT
+	PB_CmdStop : USINT := 0;
+	PB_CmdStart : USINT := 1;
+	PB_CmdSkip : USINT := 2;
+	PB_CmdPause : USINT := 3;
+	PB_CmdAbort : USINT := 4;
+END_VAR
+(*CAP*)
+VAR CONSTANT
+	PB_GeasingCmdStart : USINT := 2;
+	PB_CAP_HeadChartDataReset : USINT := 4; (*V4.A.A.1.6.11*)
+	PB_CAP_RecipeDataRestore : USINT := 5; (*V4.A.A.1.6.11*)
+	PB_CAP_DataStore : USINT := 6; (*V4.A.A.1.6.11*)
+	PB_CAP_HeadDataRestore : USINT := 7; (*V4.A.A.1.6.11*)
+	PB_CAP_HeadJogBackward : USINT := 8; (*V4.A.A.1.6.11*)
+	PB_CAP_HeadJogForward : USINT := 9; (*V4.A.A.1.6.11*)
+	PB_CAP_BufferAdjustReduce : USINT := 12; (*V4.A.A.1.6.11*)
+	PB_CAP_BufferAdjustExpand : USINT := 13; (*V4.A.A.1.6.11*)
+END_VAR
+(*CSR*)
+VAR CONSTANT
+	PB_CSR_ConveyorCalibration : USINT := 1;
+	PB_CSR_ConveyorParDownload : USINT := 6;
+	PB_CSR_ConveyorParUpload : USINT := 7;
+	PB_CSR_ConveyorGuideCalibration : USINT := 8;
+	PB_CSR_ConveyorGuideParDownload : USINT := 9;
+	PB_CSR_ConveyorGuideParUpload : USINT := 2;
+	PB_CSR_PositionOffset : USINT := 3;
+	PB_CSR_PositionOffsetDec : USINT := 4;
+	PB_CSR_PositionOffsetInc : USINT := 13;
+	PB_CSR_PositionGuideOffset : USINT := 14;
+	PB_CSR_PositionGuideOffsetDec : USINT := 17;
+	PB_CSR_PositionGuideOffsetInc : USINT := 18;
+	PB_CSR_Down : USINT := 16;
+	PB_CSR_LiftConfirm : USINT := 5;
+	PB_CSR_SkfInit : USINT := 10; (*SKF Control Unit -System Initialization*)
+	PB_CSR_SkfAcquireLowPos : USINT := 11; (*SKF Control Unit -Lowest Position Permitted*)
+	PB_CSR_SkfAcquireHighPos : USINT := 12; (*SKF Control Unit -Highest Position Permitted*)
+	PB_CSR_Up : USINT := 15;
+	PB_CSR_Down : USINT := 16;
+	PB_CSR_CrownerPositioning : USINT := 19; (*V4.A.A.1.7.0*)
+	PB_CSR_CapperPositioning : USINT := 20; (*V4.A.A.1.7.0*)
+END_VAR
+(*HMI*)
+VAR CONSTANT
+	PB_PAR_Initialization : USINT := 0;
+	PB_CFG_SavePao : USINT := 1;
+	PB_CFG_LoadPao : USINT := 2;
+	PB_CFG_SaveCfg : USINT := 3;
+	PB_CFG_LoadCfg : USINT := 4;
+	PB_BeaconTest : USINT := 5;
+END_VAR
+(*MAU*)
+VAR CONSTANT
+	PB_MAU_MachineLight : USINT := 2;
+END_VAR
+(*MAU Container Lubrication*)
+VAR CONSTANT
+	PB_LbCon_Test : USINT := 10;
+END_VAR
+(*MAU Container Chloride Water Washing*)
+VAR CONSTANT
+	PB_LbCon_Cmd : USINT := 11;
+	PB_LbInt_Cmd : USINT := 12;
+END_VAR
+(*MAU Lift Lubrification*)
+VAR CONSTANT
+	PB_LbConExtLift_Cmd : USINT := 13;
+END_VAR
+(*MAU Greasing*)
+VAR CONSTANT
+	PB_GrLb_Manual : USINT := 0;
+END_VAR
+(*MNM*)
+VAR CONSTANT
+	PB_MNM_AxisHoming : USINT := 2;
+	PB_MNM_AxisPositioning : USINT := 3;
+	PB_MNM_AxisStepByStep : USINT := 4;
+	PB_MNM_AxisInMotionAdjustment : USINT := 5;
+	PB_MNM_FootboardPosition : USINT := 6;
+	PB_MNM_BrakeRelease : USINT := 7;
+	PB_MNM_VelocityTest : USINT := 8;
+	PB_MNM_Autotuning : USINT := 9;
+	PB_MNM_MotorSetup : USINT := 10;
+	PB_MNM_RinserFootboardPosition : USINT := 12; (*V4.A.A.1.7.0*)
+END_VAR
+(*OPS*)
+VAR CONSTANT
+	PB_OPS_SaveCfg : USINT := 0;
+END_VAR
+(*RNS*)
+VAR CONSTANT
+	PB_RNS_CounterReset : USINT := 5; (*V4.A.A.1.7.0*)
+	PB_RNS_PageUp : USINT := 6; (*V4.A.A.1.7.0*)
+	PB_RNS_PageDown : USINT := 7; (*V4.A.A.1.7.0*)
+END_VAR
+(*SFT*)
+VAR CONSTANT
+	PB_SFT_CounterReset : USINT := 0;
+	PB_SFT_SamplingMoldStart : USINT := 1; (*v1.63*)
+	PB_SFT_SamplingMoldSelectAll : USINT := 2; (*v1.63*)
+	PB_SFT_SamplingMoldReset : USINT := 3; (*v1.63*)
+	PB_SFT_SamplingReq : USINT := 10;
+	PB_SFT_BurstColorStatusReset : USINT := 11;(*Master nuovo*)
+	PB_SFT_BurstCounterReset : USINT := 12;
+	PB_SFT_BurstAckowledge : USINT := 13;(*Master nuovo*)
+END_VAR
+(*SMR*)
+VAR CONSTANT
+	PB_SMR_Flushing : USINT := 5;
+	PB_SMR_Whasing : USINT := 6;
+END_VAR
+(*TNK*)
+VAR CONSTANT
+	PB_TNK_ModeEndProd : USINT := 5;
+	PB_TNK_CO2_Purge : USINT := 6;
+	PB_TNK_Priming : USINT := 7; (*Filling Valves Priming *)
+	PB_TNK_StartAutotuning : USINT := 10; (*PPF201 Autotuning Start*)
+	PB_TNK_StopAutotuning : USINT := 11; (*PPF201 Autotuning Stop*)
+	PB_TNK_SaveAutotuning : USINT := 12; (*PPF201 Autotuning Save New Values*)
+	PB_TNK_SamplingReq : USINT := 10;
+END_VAR
+(*CONTAINER BURST HMI BUTTONS*)
+VAR CONSTANT
+	PB_BBT_Restore : USINT := 0; (*Master nuovo*)
+	PB_BBT_CounterReset : USINT := 1; (*Master nuovo*)
+END_VAR

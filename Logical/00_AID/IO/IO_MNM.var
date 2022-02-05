@@ -1,0 +1,53 @@
+VAR
+	IO_PB_FlStart : PB_Type; (*Filler start Hw button*)
+	IO_PB_FlStop : PB_Type := (ON:=TRUE); (*Filler stop Hw button*)
+	IO_PB_ResetOp : PB_Type; (*Reset Hw button*)
+	IO_PB_ResetBkIn : PB_Type; (*Reset Hw button*)
+	IO_PB_ResetBkOut : PB_Type; (*Reset Hw button*)
+	IO_KochModuleOk : IO_Digital_IN_Type;
+END_VAR
+(*MOTORS*)
+VAR
+	IO_InCvrFC280 : IO_MotorFC280_Type; (*Outfeed Conveyor Motor*)(*Master nuovo*)
+	IO_OutCvrFC280 : IO_MotorFC280_Type; (*Outfeed Conveyor Motor*)(*Master nuovo*)
+	IO_InCvr : IO_Motor_Type; (*Outfeed Conveyor Motor*)(*Master nuovo*)
+	IO_OutCvr : IO_Motor_Type; (*Outfeed Conveyor Motor*)
+END_VAR
+(*DRIVERS*)
+VAR
+	IO_VFD_InCvrFC280 : IO_PLK_DanfossFC280_Drive_Type; (*Outfeed Conveyor VFD*)(*Master nuovo*)
+	IO_VFD_OutCvrFC280 : IO_PLK_DanfossFC280_Drive_Type; (*Outfeed Conveyor VFD*)(*Master nuovo*)
+	IO_VFD_InCvr : IO_PLK_Danfoss_Drive_Type; (*Outfeed Conveyor VFD*)(*Master nuovo*)
+	IO_VFD_OutCvr : IO_PLK_Danfoss_Drive_Type; (*Outfeed Conveyor VFD*)
+END_VAR
+(*DIGITAL INSTUMENTS*)
+VAR
+	IO_241DSE : IO_Digital_IN_Type; (*Caps Discharge*)
+	IO_230DSE : IO_Digital_IN_Type; (*Spot safety*)
+	IO_236DSE : IO_Digital_IN_Type; (*Outlet obstructed*)
+	IO_217DSR : IO_Digital_IN_Type; (*Machine upper part access tool position control V4.A.A.1.6.13*)
+	IO_296CPB_I : IO_Digital_IN_Type; (*V4.A.A.1.7.0 RInser Bypass Control*)
+	IO_297CPB_I : IO_Digital_IN_Type; (*V4.A.A.1.7.0 Rinser Bypass Control*)
+END_VAR
+(*MOTION Feedback*)
+VAR
+	IO_MNM_MotionFan : IO_MotionFanMachine_Type;
+	IO_MNM_PowerSupply1Overload : IO_Digital_IN_Type := (DI_Input:=TRUE);
+	IO_MNM_PowerSupply2Overload : IO_Digital_IN_Type := (DI_Input:=TRUE);
+END_VAR
+(*INLET CANS SENSOR*)
+VAR
+	IO_InletSafetyLow1 : IO_Digital_IN_Type;
+	IO_InletSafetyHigh1 : IO_Digital_IN_Type;
+	IO_InletSafetyLow2 : IO_Digital_IN_Type;
+	IO_InletSafetyHigh2 : IO_Digital_IN_Type;
+END_VAR
+(*INLET CONTAINER RESET*)(*Master nuovo*)
+VAR
+	IO_PB_ResetInlet1 : PB_Type;(*Master nuovo*)
+	IO_PB_ResetInlet2 : PB_Type;(*Master nuovo*)
+END_VAR
+(* *)
+VAR
+	IO_LimitTorqueBlowerTransfer : IO_Digital_IN_Type := (DI_Input:=TRUE);
+END_VAR

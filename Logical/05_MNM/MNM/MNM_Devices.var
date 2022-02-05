@@ -1,0 +1,52 @@
+(*MOTORS*)
+VAR
+	_InCvrFC280 : Motor_FC280_Vfd;(*Master nuovo*)
+	_OutCvrFC280 : Motor_FC280_Vfd; (*Outfeed Conveyor*)
+	_InCvr : Motor_Vfd;(*Master nuovo*)
+	_OutCvr : Motor_Vfd; (*Outfeed Conveyor*)
+END_VAR
+(*DIGITAL INSTRUMENTS*)
+VAR
+	_241DSE : Digital_Obj; (*Spot safety*)
+	_230DSE : Digital_Obj; (*Spot safety*)
+	_236DSE : Digital_Obj; (*Outlet obstructed*)
+END_VAR
+(*INLET CANS SENSOR*)
+VAR
+	InletSafetyLow1 : Digital_Obj;
+	InletSafetyHigh1 : Digital_Obj;
+	InletSafetyLow2 : Digital_Obj;
+	InletSafetyHigh2 : Digital_Obj;
+END_VAR
+(*MOTORS FANS*)
+(*Filler*)
+VAR
+	FillerFanMain : MotionFan_Obj;
+	FillerFanIn1 : MotionFan_Obj;
+	FillerFanIn2 : MotionFan_Obj;
+	FillerFanIn3 : MotionFan_Obj;
+	FillerFanIn4 : MotionFan_Obj;
+	FillerFanIn5 : MotionFan_Obj;
+	FillerFanIn6 : MotionFan_Obj;
+	FillerFanIn7 : MotionFan_Obj;
+	FillerFanIn8 : MotionFan_Obj;
+	FillerFanIn9 : MotionFan_Obj;
+	FillerFanIn10 : MotionFan_Obj;
+	FillerFanOut1 : MotionFan_Obj;
+	FillerFanOut2 : MotionFan_Obj;
+	FillerFanOut3 : MotionFan_Obj;
+	FillerFanOut4 : MotionFan_Obj;
+	FillerFanOut5 : MotionFan_Obj;
+END_VAR
+(*Seamer*)
+VAR
+	OutletFanMain : MotionFan_Obj;
+	OutletFanIn1 : MotionFan_Obj;
+	OutletFanIn2 : MotionFan_Obj;
+	OutletFanIn3 : MotionFan_Obj;
+	OutletFanIn4 : MotionFan_Obj;
+	OutletFanOut1 : MotionFan_Obj;
+	OutletFanOut2 : MotionFan_Obj;
+	OutletFanOut3 : MotionFan_Obj;
+	OutletFanOut4 : MotionFan_Obj;
+END_VAR

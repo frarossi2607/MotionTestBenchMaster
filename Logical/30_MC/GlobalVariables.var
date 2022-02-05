@@ -1,0 +1,98 @@
+(*General axis task global interface*)
+VAR
+	VAR_Machine : ST_Machine;
+END_VAR
+(*Simulation Variables*)
+VAR
+	VAR_SimulationOn : BOOL;
+END_VAR
+(*Machine Master Fast*)
+VAR
+	fbMachineMasterFast : FB_MasterAxis;
+END_VAR
+(*Master Module Axis Declaration*)
+VAR
+	VAR_AxPowerSupply01 : ACP10AXIS_typ;
+	VAR_AxPowerSupply02 : ACP10AXIS_typ;
+	VAR_AxMachineMaster : ACP10AXIS_typ;
+END_VAR
+(*Filler Module Axis Declaration*)
+VAR
+	VAR_AxEncEmul : ACP10AXIS_typ;
+	VAR_AxFillerModuleMaster : ACP10AXIS_typ;
+	VAR_AxFillerIn10 : ACP10AXIS_typ;
+	VAR_AxFillerIn09 : ACP10AXIS_typ;
+	VAR_AxFillerIn08 : ACP10AXIS_typ;
+	VAR_AxFillerIn07 : ACP10AXIS_typ;
+	VAR_AxFillerIn06 : ACP10AXIS_typ;
+	VAR_AxFillerIn05 : ACP10AXIS_typ;
+	VAR_AxFillerIn04 : ACP10AXIS_typ;
+	VAR_AxFillerIn03 : ACP10AXIS_typ;
+	VAR_AxFillerIn02 : ACP10AXIS_typ;
+	VAR_AxFillerIn01 : ACP10AXIS_typ;
+	VAR_AxFillerMain : ACP10AXIS_typ;
+	VAR_AxFillerOut01 : ACP10AXIS_typ;
+	VAR_AxFillerOut02 : ACP10AXIS_typ;
+	VAR_AxFillerOut03 : ACP10AXIS_typ;
+	VAR_AxFillerOut04 : ACP10AXIS_typ;
+	VAR_AxFillerOut05 : ACP10AXIS_typ;
+	VAR_AxFillerOut06 : ACP10AXIS_typ;
+END_VAR
+(*Doser Module Axis Declaration*)
+VAR
+	VAR_AxDoserModuleMaster : ACP10AXIS_typ;
+	VAR_AxDoserMain : ACP10AXIS_typ;
+END_VAR
+(*Inlet Module Axis Declaration*)
+VAR
+	VAR_AxInletModuleMaster : ACP10AXIS_typ;
+	VAR_AxInletIn04 : ACP10AXIS_typ;
+	VAR_AxInletIn03 : ACP10AXIS_typ;
+	VAR_AxInletIn02 : ACP10AXIS_typ;
+	VAR_AxInletIn01 : ACP10AXIS_typ;
+	VAR_AxInletMain : ACP10AXIS_typ;
+	VAR_AxInletOut01 : ACP10AXIS_typ;
+	VAR_AxInletOut02 : ACP10AXIS_typ;
+	VAR_AxInletOut03 : ACP10AXIS_typ;
+	VAR_AxInletOut04 : ACP10AXIS_typ;
+END_VAR
+(*Outlet Module Axis Declaration*)
+VAR
+	VAR_AxOutletModuleMaster : ACP10AXIS_typ;
+	VAR_AxOutletIn04 : ACP10AXIS_typ;
+	VAR_AxOutletIn03 : ACP10AXIS_typ;
+	VAR_AxOutletIn02 : ACP10AXIS_typ;
+	VAR_AxOutletIn01 : ACP10AXIS_typ;
+	VAR_AxOutletMain : ACP10AXIS_typ;
+	VAR_AxOutletOut01 : ACP10AXIS_typ;
+	VAR_AxOutletOut02 : ACP10AXIS_typ;
+	VAR_AxOutletOut03 : ACP10AXIS_typ;
+	VAR_AxOutletOut04 : ACP10AXIS_typ;
+END_VAR
+(*Modules mapp link*)
+VAR
+	VAR_SpareLink : MpComIdentType; (*Mapp link to spare axes*)
+	VAR_MachineLink : MpComIdentType; (*Mapp link for machine*)
+	VAR_MasterModuleLink : MpComIdentType; (*Mapp link for master module*)
+	VAR_FillerModuleLink : MpComIdentType; (*Mapp link for filler module*)
+	VAR_InletModuleLink : MpComIdentType; (*Mapp link for outlet module*)
+	VAR_OutletModuleLink : MpComIdentType; (*Mapp link for outlet module*)
+	VAR_MpComLinkToParentSpare : UDINT;
+END_VAR
+(*DECELERATION*)
+VAR
+	VAR_EmergencyDec : REAL;
+	VAR_ShutDownDec : REAL;
+END_VAR
+(*CAM*)
+VAR
+	VAR_xMachineInitDone : BOOL;
+	VAR_xInletInitDone : BOOL;
+	VAR_xFillerInitDone : BOOL;
+	VAR_xOutletInitDone : BOOL;
+	VAR_CamInitialized : BOOL; (*//v4.A.A.1.6.7*)
+END_VAR
+(*INTERCHANGE MOTION*)
+VAR
+	ITC_Motion : ST_LabellerMotionInterface;
+END_VAR

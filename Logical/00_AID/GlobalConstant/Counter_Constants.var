@@ -1,0 +1,61 @@
+(*Machine Counters*)
+VAR CONSTANT
+	FillerLaps : USINT := 0;
+	ClosingUnit1Laps : USINT := 1;
+	ClosingUnit2Laps : USINT := 2;
+	RinserLaps : USINT := 3;
+	FlaworDoserLaps : USINT := 4;
+	PulpDoserLaps : USINT := 5;
+	PowerOn : USINT := 6;
+END_VAR
+(*Containers Counters*)
+VAR CONSTANT
+	FillingFault : USINT := 0;
+	FillingBurst : USINT := 1;
+	ClosingUnit1Fault : USINT := 2;
+	ClosingUnit2Fault : USINT := 3;
+	RinsingFault : USINT := 4;
+	PulpDoserFault : USINT := 5;
+	FlaworDoserFault : USINT := 6;
+	BurstEjected : USINT := 7;
+	ManualEjected : USINT := 8;
+	LowFillingEjected : USINT := 9;
+	NotFilledEjected : USINT := 10;
+	ContainersEntered : USINT := 11;
+	ContainersProduced : USINT := 12;
+	EjectionBySIS : USINT := 13; (*V4.A.A.1.6.8*)
+	SIS_EjectionToBlower : USINT := 14; (*V4.A.A.1.6.8*)
+	SIS_ContainersProducedToBlower : USINT := 15; (*V4.A.A.1.6.8*)
+END_VAR
+(*Process Counters*)
+VAR CONSTANT
+	FillerProduction : USINT := 0;
+	ClosingUnit1Production : USINT := 1;
+	ClosingUnit2Production : USINT := 2;
+	RinserProduction : USINT := 3;
+	PulpDoserProduction : USINT := 4;
+	FlaworDoserProduction : USINT := 5;
+	Cop : USINT := 6;
+	FillerCip : USINT := 7;
+	ClosingUnit1Cip : USINT := 8;
+	ClosingUnit2Cip : USINT := 9;
+	RinserCip : USINT := 10;
+	PulpDoserCip : USINT := 11;
+	FlaworDoserCip : USINT := 12;
+END_VAR
+(*ECO Counters*)
+VAR CONSTANT
+	Power : USINT := 0;
+	Air : USINT := 1;
+	GeneralCO2 : USINT := 2;
+	ClosingUnitCO2 : USINT := 3;
+	N2 : USINT := 4;
+	ProcessWater : USINT := 5;
+	CopWater : USINT := 6;
+	BottomBottleCoolingWater : USINT := 7;
+	Product : USINT := 8;
+	Steam : USINT := 9;
+	FoodSteam : USINT := 10;
+	ProductWater : USINT := 11; (*V4.A.A.1.6.14k*)
+	Syrup : USINT := 12; (*V4.A.A.1.6.14k*)
+END_VAR

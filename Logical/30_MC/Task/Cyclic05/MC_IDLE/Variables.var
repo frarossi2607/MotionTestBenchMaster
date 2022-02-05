@@ -1,0 +1,9 @@
+(*Main*)
+VAR
+	tonUpdateHmiUi : TON;
+	xUpdateUi : BOOL;
+	uiStringCounter : UINT;
+	stMainUIConnect : MpAlarmXListUIConnectType := (0);
+	fbMpAlarmXListUI_Main : MpAlarmXListUI;
+	stMainAlarmSetup : MpAlarmXListUISetupType;
+END_VAR

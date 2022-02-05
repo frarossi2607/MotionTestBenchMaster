@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<AcoposParameterTable>
+  <Root Name="Parameters">
+    <Group Name="COMMON_INITIALIZATION">
+      <Parameter Name="SGEN_SW_END_IGNORE" ID="128" Value="1" Description="Limit values: Ignore SW end positions" />
+      <Parameter Name="UVLIM_MODE" ID="368" Value="0" Description="CTRL DC bus: Limiter: Mode (DcBus Alarm Off)" />
+      <Parameter Name="UDC_NOMINAL" ID="390" Value="400" Unit="V" Description="CTRL DC bus: Nominal voltage" />
+      <Parameter Name="F_SWITCH" ID="347" Value="5000" Unit="cps" Description="Power stage: Switch frequency" />
+      <Parameter Name="ERRESP_UDC_POWERFAIL" ID="351" Value="0" Description="Power mains: Error response" />
+      <Parameter Name="MA1_CYCLIC_IPL_MODE" ID="602" Value="2" Description="Network coupling: Interpolation mode for cyclic position master1" />
+      <Parameter Name="PCTRL_S_ACT_PARID" ID="230" Value="ENCOD0_S_ACT" Description="CTRL Position controller: Actual encoder position parameter ID - The Loop Is Open" />
+      <Parameter Name="BRAKE_MODE" ID="90" Value="0" Disabled="FALSE" Description="Motor holding brake: Mode" />
+    </Group>
+    <Group Name="Torque And Lag Error Control">
+      <Group Name="Declarations">
+        <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CMP_MODE+0" Description="Function block: Create a FB instance" />
+        <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CMP_MODE+1" Description="Function block: Create a FB instance" />
+        <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="VAR_I4_0+0" Description="Function block: Create a FB instance" />
+        <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="VAR_R4_0+0" Description="Function block: Create a FB instance" />
+        <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="BIT_MODE+0" Description="Function block: Create a FB instance" />
+      </Group>
+      <Group Name="Torque Control">
+        <Parameter Name="CMP_MODE+0" ID="6688" Value="0" Description="FB0 CMP mode : &lt;&gt;" />
+        <Parameter Name="CMP_IN_PARID+0" ID="6656" Value="TORQUE_ACT" Description="FB0 CMP parameter ID of input" />
+        <Parameter Name="CMP_THRESHOLD+0" ID="6664" Value="0" Description="FB0 CMP threshold" />
+        <Parameter Name="CMP_WINDOW+0" ID="6672" Value="0" Description="FB0 CMP window - This value has to be written on grey code = Limit Value" />
+        <Parameter Name="CMP_HYSTERESIS+0" ID="6680" Value="0" Description="FB0 CMP hysteresis window" />
+        <Parameter Name="CMP_MODE+0" ID="6688" Value="5" Description="FB0 CMP mode : &lt;&gt;" />
+      </Group>
+      <Group Name="Lag Error Control">
+        <Parameter Name="CMP_MODE+1" ID="6689" Value="0" Description="FB0 CMP mode" />
+        <Parameter Name="CMP_IN_PARID+1" ID="6657" Value="PCTRL_LAG_ERROR" Description="FB0 CMP parameter ID of input" />
+        <Parameter Name="CMP_THRESHOLD+1" ID="6665" Value="0" Description="FB0 CMP threshold" />
+        <Parameter Name="CMP_WINDOW+1" ID="6673" Value="1e6" Description="FB0 CMP window - This value has to be written on grey code = Limit Value" />
+        <Parameter Name="CMP_HYSTERESIS+1" ID="6681" Value="0" Description="FB0 CMP hysteresis window" />
+        <Parameter Name="CMP_MODE+1" ID="6689" Value="5" Description="FB0 CMP mode" />
+      </Group>
+      <Group Name="BIT">
+        <Parameter Name="BIT_MODE+0" ID="12800" Value="0" Description="FB0 BIT Mode" />
+        <Parameter Name="BIT_A1+0" ID="12808" Value="1" Description="FB0 BIT Operand a1" />
+        <Parameter Name="BIT_A2+0" ID="12816" Value="1" Description="FB0 BIT Operand a2" />
+        <Parameter Name="BIT_B1+0" ID="12872" Value="0" Description="FB0 BIT Operand b1" />
+        <Parameter Name="BIT_B2+0" ID="12880" Value="1" Description="FB0 BIT Operand b2" />
+        <Parameter Name="BIT_IN1_PARID+0" ID="12936" Value="CMP_VALUE+0" Description="FB0 BIT Parameter ID of input1" />
+        <Parameter Name="BIT_IN2_PARID+0" ID="12944" Value="CMP_VALUE+1" Description="FB0 BIT Parameter ID of input2" />
+        <Parameter Name="BIT_MODE+0" ID="12800" Value="4" Description="FB0 BIT Mode" />
+      </Group>
+    </Group>
+    <Parameter Name="ENCOD0_MODE" ID="1320" Value="1" Description="Virtual Encoder: Mode" />
+    <Parameter Name="VCTRL_S_ACT_PARID" ID="722" Value="ENCOD0_S_ACT" Description="CTRL Vector controller: Actual position parameter ID" />
+    <Parameter Name="PHASING_MODE" ID="276" Value="0" Description="Motor: Phasing: Mode" />
+  </Root>
+</AcoposParameterTable>

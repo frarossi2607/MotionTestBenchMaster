@@ -1,0 +1,32 @@
+(*SENSORS*)
+VAR
+	IO_201DSF : IO_Digital_IN_Type; (*Filling valve 1 sensor*)
+	IO_202DSF : IO_Digital_IN_Type; (*Filler inlet container presence*)
+	IO_203DSF : IO_Digital_IN_Type; (*Container presence outlet filler*)
+	IO_204DSF : IO_Digital_IN_Type; (*Container presence for filling valve opening*)
+	IO_207DSF : IO_Digital_IN_Type; (*Rinser inlet container presence*)
+	IO_208DSF : IO_Digital_IN_Type; (*Rinser outlet container presence*)
+	IO_204DSB : IO_Digital_IN_Type; (*Doser outlet container presence //V4.A.A.1.6.11*)
+	IO_BurstCheck : ARRAY[0..2] OF IO_Digital_IN_Type; (*Container Burst Check 1*) (*Master nuovo*)
+END_VAR
+(*VALVES*)
+VAR
+	IO_205EVB : IO_Valve_Type; (*Container ejection blow*)
+	IO_201CPB : IO_Valve_Type; (*Bottle Stop*)
+	IO_207CPF : IO_Valve_Type; (*ROLLER SECURITY vrma*)
+	IO_207CPB : IO_Valve_Type; (*Nob Nos 1° Treatment*)
+	IO_208CPB : IO_Valve_Type; (*Nob Nos 2° Treatment*)
+	IO_201AVB : IO_Valve_Type; (*Filler Bottle Ejector v1.7.2*)
+	IO_214CPB : IO_Valve_Type; (*Container ejection cam*)
+	IO_202EVR : IO_Valve_Type; (*Ev guide heater (VBS)*)
+END_VAR
+(*FLOW-SWITCHES*)
+VAR
+	IO_206FSE : IO_Digital_IN_Type; (*Washing Ramp1 Flow-switch*)
+	IO_207FSE : IO_Digital_IN_Type; (*Washing Ramp2 Flow-switch*)
+	IO_208FSE : IO_Digital_IN_Type; (*Washing Ramp3 Flow-switch*)
+END_VAR
+(*ANOLOG SENSORS*)
+VAR
+	IO_TTBottomBottleDetection : IO_Analog_IN_Type; (*V4.A.A.1.6.12*)
+END_VAR

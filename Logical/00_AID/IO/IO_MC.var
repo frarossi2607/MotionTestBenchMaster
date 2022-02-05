@@ -1,0 +1,5 @@
+VAR
+	IO_MCRaw : IO_MCRaw_Type;
+	ITC_Motion_ExtEncModuleOk : BOOL;
+	ITC_Motion_ExtEnc : DINT;
+END_VAR

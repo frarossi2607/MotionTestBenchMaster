@@ -1,0 +1,12 @@
+VAR
+	xModuleOutletInizialized : BOOL; (*1.7.2*)
+	xModuleInletInizialized : BOOL; (*1.7.2*)
+	xModuleFillerInizialized : BOOL; (*1.7.2*)
+	uiHmiAxisIndex : UINT;
+	uiAxisIndex : UINT;
+	tofShiftDoneOff : TOF;
+	xPhasingRunning : BOOL;
+	xAxisInVelocityControl : BOOL;
+	iTempInt : INT; (*v1.2*)
+	iTempInt2 : INT; (*v1.2*)
+END_VAR

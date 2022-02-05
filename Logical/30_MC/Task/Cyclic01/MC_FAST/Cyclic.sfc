@@ -1,0 +1,544 @@
+PROGRAM _CYCLIC
+(* @LANGUAGE := 'sfc' *)
+INITIAL_STEP Init:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION Configuration Loaded FROM Init TO InitModule:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND
+VAR_Machine.stInletModule.iq_stStatus.q_xInitDone	AND
+VAR_Machine.stFillerModule.iq_stStatus.q_xInitDone	AND
+VAR_Machine.stOutletModule.iq_stStatus.q_xInitDone
+END_TRANSITION
+(* @SFCNOJUMP := 'InitModule' *)
+STEP InitModule:
+(* @LANGUAGE := 'st' *)
+(*MACHINE MASTER AXIS*)
+fbMachineMasterFast.i_xEnable					:= TRUE;	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pAxisADR 					:= ADR(VAR_AxMachineMaster);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pstCmd					:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_MachineMasterAxis].iq_stCmd);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pstParameter				:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_MachineMasterAxis].iq_stParam);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pstStatus					:= ADR(VAR_Machine.stMasterModule.iq_astSubModuleAxis[CST_MachineMasterAxis].iq_stStatus);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pstAxisHome				:= ADR(VAR_AxMachineMasterHomeData);	//V4.A.A.1.6.10
+
+// Only for machine master
+fbMachineMasterFast.i_pstAbsEncPerm				:= ADR(VAR_AbsEncPerm);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_xCmdEnableCurves			:= FALSE;	//V4.A.A.1.6.10
+
+IF CFG_MC.Generic.SyncroPar.ExternalEncoder THEN	//V4.A.A.1.6.10(COMBI with encoder*)
+	fbMachineMasterFast.i_xExternalEncoder			:= TRUE;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_ExtEncNumberOfExtCycles;	//V4.A.A.1.6.10
+ELSIF CFG_Par.Machine.Combi.BAF THEN (*ACTIS*)
+	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//v4.A.A.1.7.0
+	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_BAFNumberOfExtCycles;	//V4.A.A.1.6.10
+ELSIF CFG_Par.Machine.Combi.BF AND NOT CFG_MC.Generic.SyncroPar.ExternalEncoder THEN//V4.A.A.1.7.0(*Combi without encoder*)
+	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.7.0
+	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//V4.A.A.1.7.0
+	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.7.0
+	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_BFNumberOfExtCycles;	//V4.A.A.1.7.0
+ELSE	//V4.A.A.1.6.10          (*SSC*)
+	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//v4.A.A.1.7.0
+	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_FilteringCoefficient;	//V4.A.A.1.6.10
+	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_NumberOfExtCycles;	//V4.A.A.1.6.10
+END_IF	//V4.A.A.1.6.10
+
+fbMachineMasterFast.i_uiNumberOfSteps			:= CFG_MC.Generic.SyncroPar.NumberOfSteps;	//V4.A.A.1.6.10
+fbMachineMasterFast.i_udiExternalSignalPeriod	:= CFG_MC.Generic.SyncroPar.ExternalSignalPeriod;	//V4.A.A.1.6.10
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+IF CFG_MC.Generic.SyncroPar.ExternalPositionFormat THEN//v4.A.A.1.7.0
+	fbMachineMasterFast.i_pstExtEncoderPosition		:= ITC.DataOut.AdrExternalPosition;//v4.A.A.1.7.0
+ELSE//v4.A.A.1.7.0
+	fbMachineMasterFast.i_pstExtEncoderPosition		:= ADR(ITC_Motion_ExtEnc);//v4.A.A.1.7.0
+END_IF//v4.A.A.1.7.0
+
+//fbMachineMasterFast.i_pstExtEncoderPosition		:= ADR(ITC_Motion_ExtEnc);	//V4.A.A.1.6.10
+fbMachineMasterFast.i_pstMasterPositionStruct	:= VAR_Machine.stMasterModule.iq_stParameters.i_pstMasterPositionStruct;	//V4.A.A.1.6.10
+END_ACTION
+TRANSITION FROM InitModule TO CamCfgMachineModule:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'CamCfgMachineModule' *)
+STEP CamCfgMachineModule:
+(* @LANGUAGE := 'st' *)
+(* Initialization of cyclic position reading for Inlet module *)
+fbReadCyclicParID[1].Axis			:= ADR(VAR_AxInletModuleMaster);
+fbReadCyclicParID[1].DataAddress	:= ADR(diInletModuloPos);
+fbReadCyclicParID[1].DataType		:= ncPAR_TYP_DINT;
+fbReadCyclicParID[1].ParID			:= ACP10PAR_CURVE_VALUE_REL_I4 + 5;
+
+(* Initialization of cyclic position reading for Filler module *)
+fbReadCyclicParID[2].Axis			:= ADR(VAR_AxFillerModuleMaster);
+fbReadCyclicParID[2].DataAddress	:= ADR(diFillerModuloPos);
+fbReadCyclicParID[2].DataType		:= ncPAR_TYP_DINT;
+fbReadCyclicParID[2].ParID			:= ACP10PAR_CURVE_VALUE_REL_I4 + 5;
+
+(* Initialization of cyclic position reading for Outlet module *)
+fbReadCyclicParID[3].Axis			:= ADR(VAR_AxOutletModuleMaster);
+fbReadCyclicParID[3].DataAddress	:= ADR(diOutletModuloPos);
+fbReadCyclicParID[3].DataType		:= ncPAR_TYP_DINT;
+fbReadCyclicParID[3].ParID			:= ACP10PAR_CURVE_VALUE_REL_I4 + 5;
+
+
+//V4.A.A.1.6.12d
+VAR_xMachineInitDone	:= FALSE;
+VAR_xInletInitDone		:= FALSE;
+VAR_xFillerInitDone		:= FALSE;
+VAR_xOutletInitDone		:= FALSE;
+
+fbReadCyclicParID[1].Execute := FALSE;//V4.A.A.1.6.12d
+fbReadCyclicParID[2].Execute := FALSE;//V4.A.A.1.6.12d
+fbReadCyclicParID[3].Execute := FALSE;//V4.A.A.1.6.12d
+
+
+fbReadCyclicParID[1]();//V4.A.A.1.6.12d
+fbReadCyclicParID[2]();//V4.A.A.1.6.12d
+fbReadCyclicParID[3]();//V4.A.A.1.6.12d
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION CamConfiguredMachine FROM CamCfgMachineModule TO CamInitMachine:=
+(* @LANGUAGE := 'st' *)
+NOT fbReadCyclicParID[1].C_Execute AND
+NOT fbReadCyclicParID[2].C_Execute AND
+NOT fbReadCyclicParID[3].C_Execute //V4.A.A.1.6.12d
+END_TRANSITION
+(* @SFCNOJUMP := 'CamInitMachine' *)
+STEP CamInitMachine:
+(* @LANGUAGE := 'st' *)
+(* Initialization of cyclic position reading for Inlet module *)
+IF VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal THEN
+	IF NOT VAR_xInletInitDone THEN
+		IF NOT fbReadCyclicParID[1].Execute THEN
+			fbReadCyclicParID[1].Execute	:= TRUE;
+		ELSE
+			IF fbReadCyclicParID[1].Done OR fbReadCyclicParID[1].Error THEN
+				VAR_xInletInitDone := TRUE;
+				fbReadCyclicParID[1].Execute := FALSE;//1.7.2a
+			END_IF
+		END_IF
+	ELSE
+		fbReadCyclicParID[1].Execute := FALSE;
+	END_IF
+ELSE
+	VAR_xInletInitDone := TRUE;
+END_IF
+
+IF fbReadCyclicParID[1].Execute OR fbReadCyclicParID[1].Busy THEN
+	fbReadCyclicParID[1]();
+END_IF
+
+(* Initialization of cyclic position reading for Filler module *)
+IF VAR_Machine.stFillerModule.iq_stStatus.q_xModuleReal THEN
+	IF NOT VAR_xFillerInitDone THEN
+		IF NOT fbReadCyclicParID[2].Execute THEN
+			fbReadCyclicParID[2].Execute	:= TRUE;
+		ELSE
+			IF fbReadCyclicParID[2].Done OR fbReadCyclicParID[2].Error THEN
+				VAR_xFillerInitDone := TRUE;
+				fbReadCyclicParID[2].Execute := FALSE;//1.7.2a
+			END_IF
+		END_IF
+	ELSE
+		fbReadCyclicParID[2].Execute := FALSE;
+	END_IF
+ELSE
+	VAR_xFillerInitDone := TRUE;	
+END_IF
+
+IF fbReadCyclicParID[2].Execute OR fbReadCyclicParID[2].Busy THEN
+	fbReadCyclicParID[2]();
+END_IF
+
+(* Initialization of cyclic position reading for Outlet module *)
+IF VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal THEN
+	IF NOT VAR_xOutletInitDone THEN
+		IF NOT fbReadCyclicParID[3].Execute THEN
+			fbReadCyclicParID[3].Execute	:= TRUE;
+		ELSE
+			IF fbReadCyclicParID[3].Done OR fbReadCyclicParID[3].Error THEN
+				VAR_xOutletInitDone := TRUE;
+				fbReadCyclicParID[3].Execute := FALSE;//1.7.2a
+			END_IF
+		END_IF
+	ELSE
+		fbReadCyclicParID[3].Execute := FALSE;
+	END_IF
+ELSE
+	VAR_xOutletInitDone := TRUE;
+END_IF
+
+IF fbReadCyclicParID[3].Execute OR fbReadCyclicParID[3].Busy THEN
+	fbReadCyclicParID[3]();
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION Cam Initialized Machine FROM CamInitMachine TO CamCfgMasterModule:=
+(* @LANGUAGE := 'st' *)
+(VAR_xInletInitDone		OR NOT VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal) AND
+(VAR_xFillerInitDone	OR NOT VAR_Machine.stFillerModule.iq_stStatus.q_xModuleReal) AND
+(VAR_xOutletInitDone	OR NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal) AND 
+VAR_Machine.stMasterModule.iq_astSubModuleAxis[0].iq_stStatus.q_stMainAxisStatus.q_xInitDone
+END_TRANSITION
+(* @SFCNOJUMP := 'CamCfgMasterModule' *)
+STEP CamCfgMasterModule:
+(* @LANGUAGE := 'st' *)
+//V4.A.A.1.6.12d new position
+(* Initialization of cyclic position reading for Master module *)
+fbReadCyclicParID[0].Axis			:= ADR(VAR_AxMachineMaster);
+fbReadCyclicParID[0].DataAddress	:= ADR(diMachineModuloPos);
+fbReadCyclicParID[0].DataType		:= ncPAR_TYP_DINT;
+fbReadCyclicParID[0].Mode			:= mcEVERY_RECORD; // V 1.1
+fbReadCyclicParID[0].ParID			:= ACP10PAR_CURVE_VALUE_REL_I4 + 5;
+
+fbReadCyclicParID[0].Execute := FALSE;//V4.A.A.1.6.12d
+
+fbReadCyclicParID[0]();//V4.A.A.1.6.12d
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION CamConfiguredMaster FROM CamCfgMasterModule TO CamInitMaster:=
+(* @LANGUAGE := 'st' *)
+NOT fbReadCyclicParID[0].C_Execute
+END_TRANSITION
+(* @SFCNOJUMP := 'CamInitMaster' *)
+STEP CamInitMaster:
+(* @LANGUAGE := 'st' *)
+(* Initialization of cyclic position reading for Master module *)
+IF NOT VAR_xMachineInitDone THEN
+	IF NOT fbReadCyclicParID[0].Execute THEN
+		fbReadCyclicParID[0].Execute	:= TRUE;
+	ELSE
+		IF fbReadCyclicParID[0].Done OR fbReadCyclicParID[0].Error THEN
+			VAR_xMachineInitDone := TRUE;
+			fbReadCyclicParID[0].Execute := FALSE;//1.7.2a
+		END_IF
+	END_IF
+ELSE
+	fbReadCyclicParID[0].Execute := FALSE;
+END_IF
+
+IF fbReadCyclicParID[0].Execute OR fbReadCyclicParID[0].Busy THEN
+	fbReadCyclicParID[0]();
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+IF CFG_MC.Generic.Aseptic THEN
+	fbCamMachineCkAB.i_rOnPositionA		:= CST_OnPositionCkA_Fma;
+	fbCamMachineCkAB.i_rOffPositionA	:= CST_OffPositionCkA_Fma;
+	fbCamMachineCkAB.i_rOnPositionB		:= CST_OnPositionCkB_Fma;
+	fbCamMachineCkAB.i_rOffPositionB	:= CST_OffPositionCkB_Fma;
+ELSE
+	fbCamMachineCkAB.i_rOnPositionA		:= CST_OnPositionCkA;
+	fbCamMachineCkAB.i_rOffPositionA	:= CST_OffPositionCkA;
+	fbCamMachineCkAB.i_rOnPositionB		:= CST_OnPositionCkB;
+	fbCamMachineCkAB.i_rOffPositionB	:= CST_OffPositionCkB;
+END_IF
+fbCamMachineCkAB.i_rAdvanceTime			:= CST_AdvTimeCkA;
+fbCamMachineCkAB.i_pxPointerStepAdvA	:= ADR(xDummy);
+fbCamMachineCkAB.i_pxPointerStepAdvB	:= ADR(xDummy);
+
+fbCamMachineCkAB.i_pdiAxisPosition	:= ADR(diMachineModuloPos);
+fbCamMachineCkAB.i_prAxisVelocity	:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam01.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam01.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam02.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam02.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam03.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam03.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam04.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam04.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam05.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam05.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam06.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam06.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam07.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam07.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam08.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam08.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam09.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam09.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+fbCam10.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam10.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+(* TODO: Insert Program *)
+
+
+VAR_CamInitialized	:= TRUE;
+END_ACTION
+TRANSITION Cam Initialized Master FROM CamInitMaster TO (FbMaster,CamMasterManagement,CamFb):=
+(* @LANGUAGE := 'st' *)
+VAR_xMachineInitDone
+END_TRANSITION
+(* @SFCNOJUMP := 'FbMaster' *)
+(* @SFCNOJUMP := 'CamMasterManagement' *)
+(* @SFCNOJUMP := 'CamFb' *)
+STEP FbMaster:
+(* @LANGUAGE := 'st' *)
+fbMachineMasterFast;	//V4.A.A.1.6.10
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP CamMasterManagement:
+(* @LANGUAGE := 'st' *)
+IF MC_InputOutput.Network.Machine.Status.MultiModalityActive AND NOT xMultiModActive THEN//V4.A.A.1.6.12i
+	fbCamMachineCkAB.i_pdiAxisPosition	:= ADR(diFillerModuloPos);
+	fbCamMachineCkAB.i_prAxisVelocity	:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam01.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam01.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam02.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam02.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam03.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam03.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam04.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam04.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam05.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam05.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam06.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam06.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam07.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam07.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	fbCam08.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam08.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	
+	IF VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal THEN
+		fbCam09.i_pdiAxisPosition			:= ADR(VAR_AxOutletMain.monitor.s);
+		fbCam09.i_prAxisVelocity			:= ADR(VAR_AxOutletMain.monitor.v);
+		
+		fbCam10.i_pdiAxisPosition			:= ADR(VAR_AxOutletMain.monitor.s);
+		fbCam10.i_prAxisVelocity			:= ADR(VAR_AxOutletMain.monitor.v);
+	ELSE
+		fbCam09.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+		fbCam09.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+		
+		fbCam10.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+		fbCam10.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+	END_IF
+	
+	fbCam11.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
+	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
+
+	xMultiModActive := TRUE; //V4.A.A.1.6.12i
+	xAutoModActive 	:= FALSE;//V4.A.A.1.6.12i
+	
+ELSIF NOT MC_InputOutput.Network.Machine.Status.MultiModalityActive AND NOT xAutoModActive THEN//V4.A.A.1.6.12i
+	fbCamMachineCkAB.i_pdiAxisPosition	:= ADR(diMachineModuloPos);
+	fbCamMachineCkAB.i_prAxisVelocity	:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam01.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam01.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam02.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam02.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam03.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam03.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam04.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam04.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam05.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam05.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam06.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam06.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam07.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam07.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam08.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam08.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam09.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam09.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+	
+	fbCam10.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam10.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+	fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
+	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
+
+	xMultiModActive := FALSE;//V4.A.A.1.6.12i
+	xAutoModActive 	:= TRUE;//V4.A.A.1.6.12i
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_CamInitialized := FALSE;
+(* TODO: Insert Program *)
+END_ACTION
+STEP CamFb:
+(* @LANGUAGE := 'st' *)
+fbCamMachineCkAB(
+i_xEnable			:= TRUE,
+i_pxPointerOutputA	:= ADR(MC_InputOutput.Network.Machine.Status.MachineClockA),
+i_pxPointerOutputB	:= ADR(MC_InputOutput.Network.Machine.Status.MachineClockB),
+);
+
+fbCam01(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock01),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock01AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam01OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam01OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam01AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam01Pulse,
+);
+
+fbCam02(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock02),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock02AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam02OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam02OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam02AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam02Pulse,
+);
+
+fbCam03(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock03),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock03AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam03OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam03OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam03AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam03Pulse,
+);
+
+fbCam04(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock04),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock04AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam04OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam04OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam04AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam04Pulse,
+);
+
+fbCam05(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock05),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock05AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam05OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam05OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam05AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam05Pulse,
+);
+
+fbCam06(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock06),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock06AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam06OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam06OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam06AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam06Pulse,
+);
+
+fbCam07(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock07),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock07AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam07OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam07OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam07AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam07Pulse,
+);
+
+fbCam08(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock08),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock08AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam08OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam08OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam08AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam08Pulse,
+);
+
+fbCam09(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock09),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock09AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam09OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam09OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam09AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam09Pulse,
+);
+
+fbCam10(
+i_xEnable			:= TRUE,
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock10),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock10AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam10OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam10OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam10AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam10Pulse,
+);
+
+
+fbCam11(
+i_xEnable			:= TRUE,// da inserire se ho il doser present
+i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock11),
+i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock11AdvStep),
+i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam11OnValue,
+i_rOffPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam11OffValue,
+i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam11AdvTime,
+i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam11Pulse,
+);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION ReturnToInitCondition FROM (FbMaster,CamMasterManagement,CamFb) TO Init:=
+(* @LANGUAGE := 'st' *)
+//V4.A.A.1.6.12d
+
+(NOT VAR_Machine.stInletModule.iq_stStatus.q_xInitDone AND VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal) OR 
+(NOT VAR_Machine.stFillerModule.iq_stStatus.q_xInitDone AND VAR_Machine.stFillerModule.iq_stStatus.q_xModuleReal) OR
+(NOT VAR_Machine.stOutletModule.iq_stStatus.q_xInitDone AND VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)
+END_TRANSITION
+(* @SFCISJUMP := 'Init' *)
+END_PROGRAM

@@ -1,0 +1,17 @@
+(********************************************************************
+ * COPYRIGHT --  
+ ********************************************************************
+ * Library: TCP_COMM
+ * File: TCP_COMM.var
+ * Author: SIDEL Conveying France
+ * Created: October 02, 2008
+ ********************************************************************
+ * Constants of library TCP_COM
+ ********************************************************************)
+VAR CONSTANT
+	TCP_Connected_OK : USINT := 0;
+	TCP_Error_Sending : USINT := 2;
+	TCP_Connection_Waiting : USINT := 10;
+	TCP_Error_Receiving : USINT := 3;
+	TCP_Not_Enabled : UINT := 1;
+END_VAR

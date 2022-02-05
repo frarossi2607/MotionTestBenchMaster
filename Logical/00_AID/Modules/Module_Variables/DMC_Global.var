@@ -1,0 +1,3 @@
+VAR RETAIN
+	VAR_DMC_Sequence : DMC_SequencerType;
+END_VAR

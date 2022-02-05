@@ -1,0 +1,3 @@
+ACTION HMI_TNK_Loading:
+	HMI_FMC_ActualFlowRate;
+END_ACTION

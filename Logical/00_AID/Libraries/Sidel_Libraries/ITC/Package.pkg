@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Library" Language="ANSIC" Description="ModBusTCP">MBTCP</Object>
+    <Object Type="Library" Language="IEC">TCP_COM</Object>
+    <Object Type="Library" Language="IEC">UDP_COM</Object>
+    <Object Type="Library" Language="IEC" Description="4.00.1 - ETHIP COM Library by Sidel">ETHIP_COM</Object>
+  </Objects>
+</Package>

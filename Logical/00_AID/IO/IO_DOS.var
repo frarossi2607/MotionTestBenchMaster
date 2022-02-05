@@ -1,0 +1,3 @@
+VAR
+	IO_DOS_OverloadOk : IO_Digital_IN_Type;
+END_VAR

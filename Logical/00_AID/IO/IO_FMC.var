@@ -1,0 +1,5 @@
+VAR
+	IO_PB_FmcStartFilling : PB_Type; (*Manual filling start from Hw button*)
+	IO_PB_FmcStopFilling : PB_Type; (*Manual filling stop from Hw button*)
+	IO_PB_FmcStep : PB_Type; (*Single step from Hw button*)
+END_VAR

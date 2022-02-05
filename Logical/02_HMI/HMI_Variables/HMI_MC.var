@@ -1,0 +1,9 @@
+VAR
+	HMI_MC_MachineStatus : ST_HmiMachineStatus;
+	HMI_AxisIndex : USINT; (*V4.A.A.1.7.0*)
+	HMI_MC_GenericAxisDataNew : ARRAY[0..13] OF ST_HmiNewAxisData; (*V4.A.A.1.7.0*)
+	HMI_MC_GenericAxisData : ST_HmiAxisData;
+	HMI_MC_AlarmList : ARRAY[0..9] OF STRING[50];
+	HMI_MC_AxisPresent : ST_HmiAxisPresent;
+	HMI_MC_EncoderDiagnostic : ST_HMIEncoderDiagnostic;
+END_VAR

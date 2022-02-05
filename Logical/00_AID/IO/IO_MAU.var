@@ -1,0 +1,31 @@
+(*MOTORS*)
+VAR
+	IO_201GPE : IO_GreasingPump_Type; (*MACHINE GREASING PUMP*)
+END_VAR
+(*OUTPUT*)
+VAR
+	IO_MachineLight : IO_Digital_OUT_Type;
+END_VAR
+(*PRESSURIZER*)
+VAR
+	IO_FanBase : IO_FanMain_Type;
+	IO_FanFiller : IO_FanMain_Type;
+	IO_FanRinser : IO_FanMain_Type;
+	IO_FanTransfer : IO_FanMain_Type;
+END_VAR
+(*PLC*)
+VAR
+	IO_CPU : IO_CPU_Type;
+END_VAR
+(*LIFT CONTAINERS*)
+VAR
+	IO_203PSF : IO_Digital_IN_Type;
+	IO_203RVF : IO_Analog_IN_OUT_Type;
+	IO_206DSF : IO_Digital_IN_Type; (*Filling valve 1 sensor*)
+	IO_FSF : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF IO_Digital_IN_Type;
+END_VAR
+(*TRAY DSEVICES*)
+VAR
+	IO_209DSF : IO_Digital_IN_Type; (*Tray Piston Inserted v1.4*)
+	IO_227CPB : IO_Valve_Type; (*Tray Piston v1.4*)
+END_VAR

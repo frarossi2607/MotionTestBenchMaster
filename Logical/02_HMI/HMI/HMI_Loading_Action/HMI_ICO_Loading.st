@@ -1,0 +1,3 @@
+ACTION HMI_ICO_Loading:
+	HMI_ICO;
+END_ACTION

@@ -1,0 +1,7 @@
+VAR RETAIN
+	VAR_CRW_ActualConfig : CRW_Config_Type;
+	VAR_CRW_ModeActual : INT;
+END_VAR
+VAR
+	CRW : CRW_Type;
+END_VAR

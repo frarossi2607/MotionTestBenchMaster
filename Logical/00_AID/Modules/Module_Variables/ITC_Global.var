@@ -1,0 +1,132 @@
+VAR
+	ITC : ITC_Type;
+END_VAR
+(*BLOWER COMMUNICATION*)
+VAR
+	BlrFlr_Motion : BlrFlrMotion_Type;
+	BlrCommStatus : ITC_CommStatus_Type;
+	BlrFlr : BlrFlr_Type;
+	FlrBlr : FlrBlr_Type;
+END_VAR
+(*LABELLER COMMUNICATION*)
+VAR
+	LbrCommStatus : ITC_CommStatus_Type;
+	LbrFlr : LbrFlr_Type;
+	LbrFlr_Motion : LbrFlrMotion_Type;
+	FlrLbr : FlrLbr_Type;
+END_VAR
+(*ACTIS COMMUNICATION*)
+VAR
+	ActCommStatus : ITC_CommStatus_Type; (*V4.A.A.1.6.12*)
+	ActFlr : ActFlr_Type; (*V4.A.A.1.6.12*)
+	ActFlr_Motion : ActFlrMotion_Type; (*V4.A.A.1.6.12*)
+	FlrAct : FlrAct_Type; (*V4.A.A.1.6.12*)
+END_VAR
+(*SKID COMMUNICATION*)
+VAR
+	SkdCommStatus : ITC_CommStatus_Type;
+	SkdFlr : SidelPrcFlr_Type;
+	FlrSkd : FlrSidelPrc_Type;
+END_VAR
+(*COREBLEND COMMUNICATION*)
+VAR
+	CrbCommStatus : ITC_CommStatus_Type;
+	CrbFlr : SidelPrcFlr_Type;
+	FlrCrb : FlrSidelPrc_Type;
+END_VAR
+(*CAPFEEDER COMMUNICATION*)
+VAR
+	CfdCommStatus : ITC_CommStatus_Type;
+	CfdFlr : CfdFlr_Type;
+	FlrCfd : FlrCfd_Type;
+END_VAR
+(*CAPFEEDER2 COMMUNICATION *)
+VAR
+	Cfd2CommStatus : ITC_CommStatus_Type; (*V4.A.A.1.7.0*)
+	Cfd2Flr : CfdFlr_Type; (*V4.A.A.1.7.0*)
+	FlrCfd2 : FlrCfd_Type; (*V4.A.A.1.7.0*)
+END_VAR
+(*CAPDIS COMMUNICATION V4.A.A.1.7.0*)
+VAR
+	CdsCommStatus : ITC_CommStatus_Type; (*V4.A.A.1.7.0*)
+	CdsFlr : CdsFlr_Type; (*V4.A.A.1.7.0*)
+	FlrCds : FlrCds_Type; (*V4.A.A.1.7.0*)
+END_VAR
+(*INLET CONVEYOR COMMUNICATION //V4.A.A.1.6.14*)
+VAR
+	CviCommStatus : ITC_CommStatus_Type;
+	CviFlr : CviFlr_Type;
+	FlrCvi : FlrCvi_Type;
+END_VAR
+(*OUTLET CONVEYOR COMMUNICATION*)
+VAR
+	CvoCommStatus : ITC_CommStatus_Type;
+	CvoFlr : CvoFlr_Type;
+	FlrCvo : FlrCvo_Type;
+END_VAR
+(*VACUUM BARRIER COMPANY*)
+VAR
+	VbcCommStatus : ITC_CommStatus_Type;
+	VbcFlr : VbcFlr_Type;
+	FlrVbc : FlrVbc_Type;
+END_VAR
+(*COP COMMUNICATION*)
+VAR
+	CopCommStatus : ITC_CommStatus_Type;
+	CopFlr : CopFlr_Type;
+	FlrCop : FlrCop_Type;
+END_VAR
+(*FULL CONTAINERS INSPECTOR*)
+VAR
+	FciCommStatus : ITC_CommStatus_Type;
+	FciFlr : FciFlr_Type;
+	FlrFci : FlrFci_Type;
+END_VAR
+(*PRODUCT CHANGE OVER*)
+VAR
+	IcoFlr : EIT_ChangeOver_From_Type;
+	FlrIco : EIT_ChangeOver_To_Type;
+END_VAR
+(*UV LAMP CAPS TREATMENTS*)
+VAR
+	UvlCommStatus : ITC_CommStatus_Type;
+	UvlFlr : UvlFlr_Type;
+	FlrUvl : FlrUvl_Type;
+END_VAR
+(*CAP COMMUNICATION*)
+VAR
+	CapCommStatus : ITC_CommStatus_Type;
+	CapFlr : CapFlr_Type;
+	FlrCap : FlrCap_Type;
+END_VAR
+(*FLAVOR DOSER //V4.A.A.1.6.11*)
+VAR
+	DosCommStatus : ITC_CommStatus_Type;
+	DosFlr : DosFlr_Type;
+	FlrDos : FlrDos_Type;
+END_VAR
+(*DATA ACQUISITION //V4.A.A.1.6.14*)
+VAR
+	DaqCommStatus : ITC_CommStatus_Type;
+	DaqFlr : DaqFlr_Type;
+	FlrDaq : FlrDaq_Type;
+END_VAR
+(*SCC COMMUNICATION //V4.A.A.1.6.14*)
+VAR
+	FlrScc : ARRAY[0..100] OF UINT;
+	FlrScc_AliveBit : BOOL;
+	SccFlr : ARRAY[0..100] OF UINT;
+	SccFlr_AliveBit : BOOL;
+END_VAR
+(*WTT COMMUNICATION*)
+VAR
+	WttCommStatus : ITC_CommStatus_Type; (*V4.A.A.1.7.0*)
+	WttFlr : WttFlr_Type; (*V4.A.A.1.7.0*)
+	FlrWtt : FlrWtt_Type; (*V4.A.A.1.7.0*)
+END_VAR
+(*CDR COMMUNICATION V4.A.A.1.7.0*)
+VAR
+	CdrCommStatus : ITC_CommStatus_Type;
+	CdrFlr : CdrFlr_Type;
+	FlrCdr : FlrCdr_Type;
+END_VAR

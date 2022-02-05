@@ -1,0 +1,10 @@
+VAR
+	HMI_DMC_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_DMC_State : Seq_Type;
+	HMI_DMC_Number : UINT;
+	HMI_DMC_InsertionSensor : HMI_DI_Type;
+	HMI_DMC_InsertionPiston : HMI_Valve_Type;
+	HMI_DMC_Installed : BOOL;
+	HMI_DMC_Visualization : BOOL;
+	HMI_DMC_StepActual : USINT;
+END_VAR

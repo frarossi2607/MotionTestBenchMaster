@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Program" Language="IEC" Description="HMI Main Program - C#6 - 200ms">HMI</Object>
+    <Object Type="Package" Description="HMI Global data types">HMI_Types</Object>
+    <Object Type="Package" Description="HMI Global variables">HMI_Variables</Object>
+    <Object Type="Package" Description="Parameters">0210_PAR</Object>
+  </Objects>
+</Package>

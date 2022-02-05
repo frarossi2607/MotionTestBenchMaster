@@ -1,0 +1,3 @@
+ACTION HMI_MNT_Loading:
+	HMI_MNT;
+END_ACTION

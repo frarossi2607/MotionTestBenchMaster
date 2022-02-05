@@ -1,0 +1,74 @@
+(*Link To Parent Machine*)
+VAR
+	fbMpComLinkToParent_Machine : MpComLinkToParent;
+	fbMpComLinkToParent_Spare : MpComLinkToParent;
+	fbMpComLinkToParentAlarmMain : MpComLinkToParent;
+END_VAR
+(*Link To Paret Master Module*)
+VAR
+	fbMpComLinkToParent_Master : MpComLinkToParent;
+	fbMpComLinkToParent_Pwr01 : MpComLinkToParent;
+	fbMpComLinkToParent_Pwr02 : MpComLinkToParent;
+	fbMpComLinkToParent_MasterAxis : MpComLinkToParent;
+	fbMpComLinkToParent_AlarmXMaster : MpComLinkToParent;
+END_VAR
+(*Link To Paret Filler Module*)
+VAR
+	fbMpComLinkToParent_Filler : MpComLinkToParent;
+	fbMpComLinkToParent_FillerMas : MpComLinkToParent;
+	fbMpComLinkToParent_Carousel : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet05 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet06 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet07 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet08 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet09 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrInlet10 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet05 : MpComLinkToParent;
+	fbMpComLinkToParent_FlrOutlet06 : MpComLinkToParent;
+	fbMpComLinkToParent_AlarmXFiller : MpComLinkToParent;
+END_VAR
+(*Link To Paret Inlet Module*)
+VAR
+	fbMpComLinkToParent_Inlet : MpComLinkToParent;
+	fbMpComLinkToParent_InletMas : MpComLinkToParent;
+	fbMpComLinkToParent_InletMain : MpComLinkToParent;
+	fbMpComLinkToParent_InInlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_InInlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_InInlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_InInlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_InOutlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_InOutlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_InOutlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_InOutlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_AlarmXInlet : MpComLinkToParent;
+END_VAR
+(*Link To Paret Outlet Module*)
+VAR
+	fbMpComLinkToParent_Outlet : MpComLinkToParent;
+	fbMpComLinkToParent_OutletMas : MpComLinkToParent;
+	fbMpComLinkToParent_OutletMain : MpComLinkToParent;
+	fbMpComLinkToParent_OutInlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_OutInlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_OutInlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_OutInlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_OutOutlet01 : MpComLinkToParent;
+	fbMpComLinkToParent_OutOutlet02 : MpComLinkToParent;
+	fbMpComLinkToParent_OutOutlet03 : MpComLinkToParent;
+	fbMpComLinkToParent_OutOutlet04 : MpComLinkToParent;
+	fbMpComLinkToParent_AlarmXOutlet : MpComLinkToParent;
+END_VAR
+(*Link To Paret Inlet Module*)
+VAR
+	fbMpComLinkToParent_Doser : MpComLinkToParent;
+	fbMpComLinkToParent_DoserMas : MpComLinkToParent;
+	fbMpComLinkToParent_DoserMain : MpComLinkToParent;
+	fbMpComLinkToParent_AlarmXDoser : MpComLinkToParent;
+END_VAR

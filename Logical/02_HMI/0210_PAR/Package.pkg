@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Program" Language="IEC" Description="PAR Main Program - C#6 - 200ms">PAR</Object>
+    <Object Type="File" Description="Global variables">PAR.var</Object>
+    <Object Type="File">PAR_CFG.typ</Object>
+    <Object Type="File">HMI_PAC_1.typ</Object>
+    <Object Type="File">HMI_PAM_1.typ</Object>
+    <Object Type="File">HMI_PAM_3.typ</Object>
+    <Object Type="File">HMI_PAM_A1.typ</Object>
+    <Object Type="File">HMI_PAM_B1.typ</Object>
+    <Object Type="File">HMI_PAM_C1.typ</Object>
+    <Object Type="File">HMI_PAM_D1.typ</Object>
+    <Object Type="File">HMI_PAR_1.typ</Object>
+    <Object Type="File">HMI_PAT_1.typ</Object>
+    <Object Type="File">HMI_PAO_2.typ</Object>
+  </Objects>
+</Package>

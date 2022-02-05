@@ -1,0 +1,30 @@
+VAR
+	HMI_ITC_PageData : REFERENCE TO HMI_ITC_Data_Type;
+	HMI_ITC_PartnerOld : USINT;
+	VAR_CoupledModality : SR := (Q1:=TRUE);
+	VAR_BlrCombiModality : SR;
+	VAR_LbrCombiModality : SR;
+	VAR_ActCombiModality : SR; (*V4.A.A.1.6.12*)
+	VAR_ContUnblock1 : SR;
+	VAR_ContUnblock2 : SR;
+	VAR_ContBlock1 : SR;
+	VAR_ContBlock2 : SR;
+	TMR_TON_WatchDogOn : TON;
+	TMR_TON_WatchDogOff : TON;
+	VAR_Temp_HmiPartnerID : USINT;
+	VAR_ITCindex : USINT;
+	RCPType_APCO : REAL;
+	VAR_CoTypeOfChangeCFG : INT;
+	HMI_CounterPartialDataPageDB : REFERENCE TO ARRAY[0..15] OF Counters_Type;
+	HMI_CounterPartialCfgPageDB : REFERENCE TO ARRAY[0..15] OF HmiCounterData_Type;
+	HMI_CounterTotalDataPageDB : REFERENCE TO ARRAY[0..15] OF Counters_Type;
+	HMI_CounterTotalCfgPageDB : REFERENCE TO ARRAY[0..15] OF HmiCounterData_Type;
+	HMI_CounterPageCategory : USINT;
+	HMI_WatchDog : BOOL;
+	VAR_BlrCombiModalityReset : BOOL; (*V4.A.A.1.6.12h*)
+	VAR_SafetyVersionTemp : USINT; (*V4.A.A.1.6.13*)
+	VAR_SafetyVersionData1 : STRING[2] := '0'; (*V4.A.A.1.6.13*)
+	VAR_SafetyVersionData2 : STRING[2] := '0'; (*V4.A.A.1.6.13*)
+	VAR_SafetyVersionData3 : STRING[2] := '0'; (*V4.A.A.1.6.13*)
+	VAR_SafetyVersionData4 : STRING[2] := '0'; (*V4.A.A.1.6.13*)
+END_VAR

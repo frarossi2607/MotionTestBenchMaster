@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="Program" Language="IEC" Description="MC_MACHINE - C#1 0.8ms or C#2 10.4ms">MC_MACHINE</Object>
+    <Object Type="Program" Language="IEC" Description="MC_MASTER - C#1 0.8ms or C#2 10.4ms">MC_MASTER</Object>
+    <Object Type="Program" Language="IEC" Description="MC_FILLER - C#1 0.8ms or C#2 10.4ms">MC_FILLER</Object>
+    <Object Type="Program" Language="IEC" Description="MC_INLET - C#1 0.8ms or C#2 10.4ms">MC_INLET</Object>
+    <Object Type="Program" Language="IEC" Description="MC_OUTLET - C#1 0.8ms or C#2 10.4ms">MC_OUTLET</Object>
+  </Objects>
+</Package>

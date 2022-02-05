@@ -1,0 +1,16 @@
+VAR
+	IO_201PUX_1 : USINT;
+	IO_201PUX_2 : USINT;
+	IO_201PUX_3 : USINT;
+	IO_201PUE_1 : USINT;
+	IO_201PUE_2 : USINT;
+	IO_201PUF_1 : USINT;
+	IO_201PUF_2 : USINT;
+	IO_202PUF_1 : USINT;
+	IO_202PUF_2 : USINT;
+	IO_PB_COP_FoamingGunStop : PB_Type;
+	IO_PB_COP_FoamingGunRinse : PB_Type;
+	IO_PB_COP_FoamingGunP1 : PB_Type;
+	IO_PB_COP_FoamingGunP2 : PB_Type;
+	IO_PB_COP_FoamingGunP3 : PB_Type;
+END_VAR

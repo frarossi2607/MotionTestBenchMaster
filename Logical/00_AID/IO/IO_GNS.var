@@ -1,0 +1,48 @@
+(*VALVES*)
+VAR
+	IO_201EVR : IO_Valve_Type; (*Ev MB05 Cooling*)
+	IO_204EVF : IO_Valve_Type; (*Ev Pilot valve air (X: Discharge / Y: Charge)*)
+	IO_205EVF : IO_Valve_Type;
+END_VAR
+(*SENSORS*)
+VAR
+	IO_204PSF : IO_Digital_IN_Type; (*Carousel air pressure switch*)
+	IO_201PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
+	IO_204PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
+	IO_235DSE : IO_Digital_IN_Type; (*Cop mode Conveyor Outlet*)
+	IO_239DSE : IO_Digital_IN_Type; (*Production mode Transfer Inlet*)
+	IO_240DSE : IO_Digital_IN_Type; (*Cop mode Transfer Inlet*)
+	IO_242DSE : IO_Digital_IN_Type; (*Production mode Conveyor Outlet*)
+	IO_ContainerBurst1 : IO_Digital_IN_Type; (*ContainerBurst#1*)
+	IO_ContainerBurst2 : IO_Digital_IN_Type; (*ContainerBurst#2 *)
+END_VAR
+(*INSTRUMENTS - DIGITAL*)
+VAR
+	IO_MB05_Cooling : IO_Cooling_Type; (*MB05 Cooling*)
+	IO_MB05_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MB05 Auxiliary circuit ON*)
+	IO_MB15_Cooling : IO_Cooling_Type; (*MB15 Cooling v1.62*)
+	IO_MB15_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MB15 Auxiliary circuit ON*)
+	IO_MB25_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MB25 Auxiliary circuit ON*)
+	IO_MC01_Cooling : IO_Cooling_Type; (*MC01 Cooling*)
+	IO_MC01_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC01 Auxiliary circuit ON*)
+	IO_MC02_Cooling : IO_Cooling_Type; (*MC02 Cooling*)
+	IO_MC02_5VOverload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC02 Auxiliary circuit ON*)
+	IO_MC02_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC02 Auxiliary circuit ON*)
+	IO_MC04_Cooling : IO_Cooling_Type; (*MC04 Cooling*)
+	IO_MC04_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC04 Auxiliary circuit ON*)
+	IO_MC04_CabinetDoorsUnlockFbk : IO_Digital_IN_Type; (*MC04 Cabinet Doors Unlock Feedback*)
+	IO_MC04_CabinetDoorsUnlockReq : IO_Digital_IN_Type; (*MC04 Cabinet Doors Unlock Request*)
+	IO_MC04_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC04 Cabinet Door Opened*)
+	IO_MC07_Cooling : IO_Cooling_Type; (*MC07 Cooling*)
+	IO_MC07_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC07 Auxiliary circuit ON*)
+	IO_MC07_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC07 Cabinet Door Opened*)
+	IO_MC19_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC19 Auxiliary circuit ON*)
+	IO_MC19_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC19 Cabinet Door Opened*)
+	IO_CapFeederOverload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*CapFeeder Overload ON*)
+	IO_OptifeedOverload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*Optifeed Overload ON //V4.A.A.1.6.11*)
+	IO_UPS : IO_UPS_Type;
+END_VAR
+(*OUTPUT*)
+VAR
+	IO_FlrBeacon : IO_Beacon_Type;
+END_VAR

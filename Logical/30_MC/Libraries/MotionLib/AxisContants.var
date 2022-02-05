@@ -1,0 +1,74 @@
+(*Master Sub Module*)
+VAR CONSTANT
+	CST_MasterSubModule : UINT := 0;
+	CST_MachineMasterAxis : UINT := 0;
+	CST_FirstMasterModuleAxis : UINT := 4;
+	CST_LastMasterModuleAxis : UINT := 5;
+	CST_MasterPowerSupply01 : UINT := 4;
+	CST_MasterPowerSupply02 : UINT := 5;
+	CST_NumberOfAxesMasterModule : UINT := 5;
+	CST_MachinePhasingOffset : UINT := 99;
+END_VAR
+(*Doser Module*)
+VAR CONSTANT
+	CST_DoserSubModuleHmiStart : UINT := 500;
+	CST_DoserSubModule : UINT := 5;
+	CST_DoserModuleAxis : UINT := 1;
+	CST_LastDoserModuleAxis : UINT := 2;
+END_VAR
+(*Filler Sub Module*)
+VAR CONSTANT
+	CST_FillerSubModuleHmiStart : UINT := 100;
+	CST_FillerSubModule : UINT := 1;
+	CST_FirstFillerModuleAxis : UINT := 5;
+	CST_LastFillerModuleAxis : UINT := 21;
+END_VAR
+(*Inlet Sub Module*)
+VAR CONSTANT
+	CST_InletSubModuleHmiStart : UINT := 200;
+	CST_InletSubModule : UINT := 2;
+	CST_FirstInletModuleAxis : UINT := 11;
+	CST_LastInletModuleAxis : UINT := 19;
+END_VAR
+(*Outlet Sub Module*)
+VAR CONSTANT
+	CST_OutletSubModuleHmiStart : UINT := 300;
+	CST_OutletSubModule : UINT := 3;
+	CST_FirstOutletModuleAxis : UINT := 11;
+	CST_LastOutletModuleAxis : UINT := 19;
+END_VAR
+(*Power Supply Message Const*)
+VAR CONSTANT
+	CST_BleederError : USINT := 1;
+	CST_DcBusUndervoltageError : USINT := 2;
+	CST_PowerSupplyVoltageMonitor : USINT := 4;
+	CST_PhaseMonitorError : USINT := 16;
+END_VAR
+(*All modules axis constants*)
+VAR CONSTANT
+	CST_ModuleMasterAxis : UINT := 0;
+	CST_Inlet10 : UINT := 5;
+	CST_Inlet09 : UINT := 6;
+	CST_Inlet08 : UINT := 7;
+	CST_Inlet07 : UINT := 8;
+	CST_Inlet06 : UINT := 9;
+	CST_Inlet05 : UINT := 10;
+	CST_Inlet04 : UINT := 11;
+	CST_Inlet03 : UINT := 12;
+	CST_Inlet02 : UINT := 13;
+	CST_Inlet01 : UINT := 14;
+	CST_MainAxis : UINT := 15;
+	CST_Outlet01 : UINT := 16;
+	CST_Outlet02 : UINT := 17;
+	CST_Outlet03 : UINT := 18;
+	CST_Outlet04 : UINT := 19;
+	CST_Outlet05 : UINT := 20;
+	CST_Outlet06 : UINT := 21;
+	CST_RinserCarousel : USINT := 1;
+	CST_DoserCarousel : USINT := 1;
+END_VAR
+(*Const*)
+VAR CONSTANT
+	CST_MaxBackwardMovement : REAL := 3.0; (*Degrees*)
+	CST_RunningThreshold : REAL := 5.0;
+END_VAR

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">FB_Step2PeriodicPosition.st</Object>
+    <Object Type="File">FB_CamGenerator.st</Object>
+    <Object Type="File">FB_ExceptionAlarmX.st</Object>
+    <Object Type="File">FB_Position2Velocity.st</Object>
+    <Object Type="File">FB_Periodic2ContinuePosition.st</Object>
+    <Object Type="File">FB_EncEmul.st</Object>
+    <Object Type="File">FB_CamGeneratorAB.st</Object>
+    <Object Type="File">FB_DigitalCam.st</Object>
+    <Object Type="File">FB_AbsolutePosCalculation.st</Object>
+  </Objects>
+</Package>

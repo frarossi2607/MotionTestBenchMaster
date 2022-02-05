@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">HMI_AID_Loading.st</Object>
+    <Object Type="File">HMI_ALR_Loading.st</Object>
+    <Object Type="File">HMI_RNS_Loading.st</Object>
+    <Object Type="File">HMI_BTC_Loading.st</Object>
+    <Object Type="File">HMI_CAP_Loading.st</Object>
+    <Object Type="File">HMI_CRW_Loading.st</Object>
+    <Object Type="File">HMI_CO_Loading.st</Object>
+    <Object Type="File">HMI_COP_Loading.st</Object>
+    <Object Type="File">HMI_CSR_Loading.st</Object>
+    <Object Type="File">HMI_DMC_Loading.st</Object>
+    <Object Type="File">HMI_GNS_Loading.st</Object>
+    <Object Type="File">HMI_ICO_Loading.st</Object>
+    <Object Type="File">HMI_ITC_Loading.st</Object>
+    <Object Type="File">HMI_MAU_Loading.st</Object>
+    <Object Type="File">HMI_MNM_Loading.st</Object>
+    <Object Type="File">HMI_MNT_Loading.st</Object>
+    <Object Type="File">HMI_OPS_Loading.st</Object>
+    <Object Type="File">HMI_OPT_Loading.st</Object>
+    <Object Type="File">HMI_PAO_Loading.st</Object>
+    <Object Type="File">HMI_SFT_Loading.st</Object>
+    <Object Type="File">HMI_TNK_Loading.st</Object>
+    <Object Type="File">HMI_Device_Loading.st</Object>
+    <Object Type="File">HMI_Variables_Loading.st</Object>
+  </Objects>
+</Package>

@@ -1,0 +1,6 @@
+VAR
+	OPS : OPS_Type;
+END_VAR
+VAR RETAIN
+	VAR_OPS_Permanent : INT; (*V4.A.A.1.6.12h*)
+END_VAR

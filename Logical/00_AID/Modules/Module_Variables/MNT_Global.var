@@ -1,0 +1,6 @@
+VAR RETAIN
+	VAR_MNT_Macao : HMI_Macao_Type;
+END_VAR
+VAR
+	MNT : MNT_Type;
+END_VAR

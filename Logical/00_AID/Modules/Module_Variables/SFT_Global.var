@@ -1,0 +1,15 @@
+VAR RETAIN
+	VAR_SFT_FillerShift : ARRAY[1..CST_ShiftDimension] OF MachineShift_Type;
+	VAR_SFT_ShiftStartPosition : INT;
+	VAR_SFT_ShiftRinserControlAir : INT; (*V4.A.A.1.7.0*)
+	VAR_SFT_ShiftRinserControlWater : INT; (*V4.A.A.1.7.0*)
+	VAR_SFT_ShiftRinserControlIns : INT; (*V4.A.A.1.7.0*)
+	VAR_SFT_NumberDmcInserted : INT;
+END_VAR
+(*FILLING VALVE DATA master nuovo*)
+VAR RETAIN
+	VAR_SFT_FillingValveData : ARRAY[1..200] OF FillingValveDataStructure_Type;
+END_VAR
+VAR
+	SFT : SFT_Type;
+END_VAR

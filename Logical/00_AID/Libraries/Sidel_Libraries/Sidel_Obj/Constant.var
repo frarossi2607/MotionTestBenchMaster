@@ -1,0 +1,35 @@
+VAR CONSTANT
+	CST_Valve_Dig_Mono_CFG : USINT := 0;
+	CST_Valve_Dig_Bi_CFG : USINT := 1;
+	CST_AI_Compare_OFF : USINT := 0; (*FALSE*)
+	CST_AI_Compare_LT : USINT := 1; (*PV < SP*)
+	CST_AI_Compare_GT : USINT := 2; (*PV > SP*)
+	CST_AI_Compare_EQ : USINT := 3; (*PV = SP*)
+	CST_AI_Compare_ON : USINT := 4; (*TRUE*)
+	CST_AI_FaultMode_Hold : USINT := 0; (*Hold on fault*)
+	CST_AI_FaultMode_Low : USINT := 1; (*Low on fault*)
+	CST_AI_FaultMode_High : USINT := 2; (*High on fault*)
+END_VAR
+(*Communication Type*)
+VAR CONSTANT
+	CST_CFG_NotPresent : USINT := 0;
+	CST_CFG_TCP : USINT := 1; (*TCP IP*)
+	CST_CFG_ETH : USINT := 2; (*ETHERNET IP*)
+	CST_CFG_MODBUS : USINT := 3;
+	CST_CFG_PROFIBUS : USINT := 4;
+	CST_CFG_POWERLINK : USINT := 5;
+	CST_CFG_HW : USINT := 6;
+	CST_CFG_UDP : USINT := 7;
+	CST_CFG_SCC : USINT := 8;
+	CST_CFG_PROFINET : USINT := 9;
+	CST_CFG_OPC : USINT := 10;
+END_VAR
+(*Comparison Constants*)
+VAR CONSTANT
+	CST_EQ : USINT := 0; (*The equality operator symbol '=' *)
+	CST_GE : USINT := 1; (*The greater than or equal to symbol '>=' *)
+	CST_LE : USINT := 2; (*The less than or equal to symbol '<='*)
+	CST_GT : USINT := 3; (*The greater than operator symbol '>'*)
+	CST_LT : USINT := 4; (*The division operator symbol '<'*)
+	CST_NE : USINT := 5; (*The unequality operator symbol '<>'*)
+END_VAR

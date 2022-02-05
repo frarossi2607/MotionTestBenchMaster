@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="1.00.0" xmlns="http://br-automation.co.at/AS/Library">
+  <Objects>
+    <Object Type="File" Description="Exported functions and function blocks">MotionLib.fun</Object>
+    <Object Type="File" Description="Exported data types">MotionTypes.typ</Object>
+    <Object Type="File">AxisContants.var</Object>
+    <Object Type="File">MotionGlobalConstant.var</Object>
+    <Object Type="Package">FB_Axis</Object>
+    <Object Type="Package">FB</Object>
+    <Object Type="Package">FC</Object>
+  </Objects>
+  <Dependencies>
+    <Dependency ObjectName="FiltLib" />
+    <Dependency ObjectName="MpAxis" />
+    <Dependency ObjectName="MpAlarmX" />
+    <Dependency ObjectName="MpCom" />
+  </Dependencies>
+</Library>

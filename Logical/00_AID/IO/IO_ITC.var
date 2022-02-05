@@ -1,0 +1,8 @@
+VAR
+	IO_PB_LbStart : PB_Type; (*Labeller start Hw button*)
+	IO_PB_LbStop : PB_Type; (*Labeller stop Hw button*)
+END_VAR
+(*HARDWARE\DP COMMUNICATION*)
+VAR
+	IO_ITC : IO_ITC_Type;
+END_VAR

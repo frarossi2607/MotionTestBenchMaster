@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<AcoposParameterTable>
+  <Root Name="Parameters">
+    <Parameter Name="ERRESP_UDC_POWERFAIL" ID="351" Value="0" Description="Power mains: Error response" />
+    <Parameter Name="PHASE_MON_IGNORE" ID="80" Value="1" Disabled="TRUE" Description="Power mains: Ignore phase failure" />
+    <Parameter Name="UVLIM_MODE" ID="368" Value="0" Description="CTRL DC bus: Limiter: Mode" />
+    <Group Name="COMBI SYNCHRONIZATION">
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="VAR_I4_0+0" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="IPL_MODE+0" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CURVE_MODE+0" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CURVE_MODE+1" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CURVE_MODE+3" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CURVE_MODE+4" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="CURVE_MODE+5" Description="Function block: Create a FB instance" />
+      <Parameter Name="FUNCTION_BLOCK_CREATE" ID="777" Value="ARITH_MODE+0" Description="Function block: Create a FB instance" />
+      <Group Name="VAR">
+        <Parameter Name="VAR_I4_0+0" ID="4096" Value="0" Description="FB0 VAR I4 variable0" />
+        <Parameter Name="VAR_I4_3+0" ID="4120" Value="0" Description="FB0 FB VAR: Variable3 I4" />
+      </Group>
+      <Group Name="IPL">
+        <Parameter Name="IPL_MODE+0" ID="8704" Value="0" Description="FB0 IPL Mode" />
+        <Parameter Name="IPL_IN_PARID+0" ID="8712" Value="VAR_I4_0+0" Description="FB0 IPL Parameter ID of input" />
+        <Parameter Name="IPL_EV_PARID+0" ID="8760" Value="0" Description="FB0 IPL Parameter ID of event input" />
+        <Parameter Name="IPL_CYCLE_TIME+0" ID="8720" Value="800" Unit="us" Description="FB0 IPL Cycle time" />
+        <Parameter Name="IPL_EXTRAPOLATION_TIME+0" ID="8728" Value="400" Unit="us" Description="FB0 IPL Extrapolation time" />
+        <Parameter Name="IPL_MODE+0" ID="8704" Value="1" Description="FB0 IPL Mode = LINEAR INTERPOLATION" />
+      </Group>
+      <Group Name="CURVE 0">
+        <Parameter Name="CURVE_MODE+0" ID="8192" Value="0" Description="FB0 CURVE Mode" />
+        <Parameter Name="CURVE_IN_PARID+0" ID="8200" Value="IPL_VALUE_I4+0" Description="FB0 CURVE Parameter ID of input" />
+        <Parameter Name="CURVE_AUT_DATA_INDEX+0" ID="8208" Value="65535" Description="FB0 CURVE Index of cam profile data" />
+        <Parameter Name="CURVE_X_FACTOR+0" ID="8272" Value="3600000" Description="FB0 CURVE Multiplication factor for input interval" />
+        <Parameter Name="CURVE_Y_FACTOR+0" ID="8280" Value="324000" Description="FB0 CURVE Multiplication factor for output interval" />
+        <Parameter Name="CURVE_MODE+0" ID="8192" Value="2" Description="FB0 CURVE Mode" />
+      </Group>
+      <Group Name="ARITH 0">
+        <Parameter Name="ARITH_MODE+0" ID="3584" Value="0" Description="FB0 ARITH Mode" />
+        <Parameter Name="ARITH_IN1_PARID+0" ID="3592" Value="CURVE_VALUE_I4+0" Description="FB0 ARITH Parameter ID of input1" />
+        <Parameter Name="ARITH_IN2_PARID+0" ID="3600" Value="VAR_I4_1+0" Description="FB0 ARITH Parameter ID of input2" />
+        <Parameter Name="ARITH_K1+0" ID="3632" Value="1" Description="FB0 ARITH Multiplication factor1" />
+        <Parameter Name="ARITH_K2+0" ID="3640" Value="1" Description="FB0 ARITH Multiplication factor2" />
+        <Parameter Name="ARITH_MODE+0" ID="3584" Value="1" Description="FB0 ARITH Mode" />
+      </Group>
+      <Group Name="CURVE 1">
+        <Parameter Name="CURVE_MODE+1" ID="8193" Value="0" Description="FB1 FB CURVE: Mode" />
+        <Parameter Name="CURVE_IN_PARID+1" ID="8201" Value="ARITH_VALUE_I4+0" Description="FB1 FB CURVE: Parameter ID of input" />
+        <Parameter Name="CURVE_AUT_DATA_INDEX+1" ID="8209" Value="65535" Description="FB1 FB CURVE: Index of cam profile data" />
+        <Parameter Name="CURVE_X_FACTOR+1" ID="8273" Value="36000" Description="FB1 FB CURVE: Multiplication factor for input interval" />
+        <Parameter Name="CURVE_Y_FACTOR+1" ID="8281" Value="36000" Description="FB1 FB CURVE: Multiplication factor for output interval" />
+        <Parameter Name="CURVE_MODE+1" ID="8193" Value="2" Description="FB1 FB CURVE: Mode" />
+      </Group>
+      <Group Name="CURVE 3">
+        <Parameter Name="CURVE_MODE+3" ID="8195" Value="0" Description="FB3 FB CURVE: Mode" />
+        <Parameter Name="CURVE_IN_PARID+3" ID="8203" Value="VAR_I4_3+0" Description="FB3 FB CURVE: Parameter ID of input" />
+        <Parameter Name="CURVE_AUT_DATA_INDEX+3" ID="8211" Value="65535" Description="FB3 FB CURVE: Index of cam profile data" />
+        <Parameter Name="CURVE_X_FACTOR+3" ID="8275" Value="3600000" Description="FB3 FB CURVE: Multiplication factor for input interval" />
+        <Parameter Name="CURVE_Y_FACTOR+3" ID="8283" Value="324000" Description="FB3 FB CURVE: Multiplication factor for output interval" />
+        <Parameter Name="CURVE_MODE+3" ID="8195" Value="2" Description="FB3 FB CURVE: Mode" />
+      </Group>
+      <Group Name="CURVE 4">
+        <Parameter Name="CURVE_MODE+4" ID="8196" Value="0" Description="FB4 FB CURVE: Mode" />
+        <Parameter Name="CURVE_IN_PARID+4" ID="8204" Value="CURVE_VALUE_I4+3" Description="FB4 FB CURVE: Parameter ID of input" />
+        <Parameter Name="CURVE_AUT_DATA_INDEX+4" ID="8212" Value="65535" Description="FB4 FB CURVE: Index of cam profile data" />
+        <Parameter Name="CURVE_X_FACTOR+4" ID="8276" Value="36000" Description="FB4 FB CURVE: Multiplication factor for input interval" />
+        <Parameter Name="CURVE_Y_FACTOR+4" ID="8284" Value="36000" Description="FB4 FB CURVE: Multiplication factor for output interval" />
+        <Parameter Name="CURVE_MODE+4" ID="8196" Value="2" Description="FB4 FB CURVE: Mode" />
+      </Group>
+      <Group Name="CURVE 5">
+        <Parameter Name="CURVE_MODE+5" ID="8197" Value="0" Description="FB5 FB CURVE: Mode" />
+        <Parameter Name="CURVE_IN_PARID+5" ID="8205" Value="S_SET_VAX1" Description="FB5 FB CURVE: Parameter ID of input" />
+        <Parameter Name="CURVE_AUT_DATA_INDEX+5" ID="8213" Value="65535" Description="FB5 FB CURVE: Index of cam data" />
+        <Parameter Name="CURVE_X_FACTOR+5" ID="8277" Value="36000" Description="FB5 FB CURVE: Multiplication factor for input interval" />
+        <Parameter Name="CURVE_Y_FACTOR+5" ID="8285" Value="36000" Description="FB5 FB CURVE: Multiplication factor for output interval" />
+        <Parameter Name="CURVE_MODE+5" ID="8197" Value="2" Description="FB5 FB CURVE: Mode" />
+      </Group>
+    </Group>
+  </Root>
+</AcoposParameterTable>

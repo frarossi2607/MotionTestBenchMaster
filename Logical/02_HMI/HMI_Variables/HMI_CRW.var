@@ -1,0 +1,17 @@
+VAR
+	HMI_CRW_Step : INT;
+	HMI_CRW_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_CRW_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_CRW_SS3P : ARRAY[MIN_SS3P_CFG..MAX_SS3P_CFG] OF SS3P_Type;
+	HMI_CRW_CrownsTypeCFG : STRING[500];
+	HMI_CRW_ManualCapsSelection : HMI_CRW_ManualCrwSelection_Type;
+	HMI_CRW_ConfigStructure : HMI_CRW_ConfigStructure_Type;
+END_VAR
+(*VALVES*)
+VAR
+	HMI_230CPC : HMI_Valve_Type;
+	HMI_231CPC : HMI_Valve_Type; (*EV chute 1 crowns release*)
+	HMI_231EVC : HMI_Valve_Type;
+	HMI_205EVC : HMI_Valve_Type; (*EXTRACTOR CLEANING BLOWING VALVE vrma*)
+	HMI_274DSC : HMI_DI_Type; (*Head 1 sensor*) (*master nuovo*)
+END_VAR

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File" Description="Push buttons constants">PB_Constants.var</Object>
+    <Object Type="File" Description="Selectors switch two positions constants">SS2P_Constants.var</Object>
+    <Object Type="File" Description="Selectors switch three positions constants">SS3P_Constants.var</Object>
+  </Objects>
+</Package>

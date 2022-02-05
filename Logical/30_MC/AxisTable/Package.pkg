@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="DataObject" Language="Ett">acp10etxen</Object>
+    <Object Type="Package" Description="Package">VirtualTables</Object>
+    <Object Type="Package" Description="gPwrAxisobj">PwrSupplyTables</Object>
+    <Object Type="Package" Description="gMasterAxobj">RealTablesNoBrake</Object>
+    <Object Type="Package" Description="gMasterAxobj">RealTablesWithBrake</Object>
+    <Object Type="Package" Description="gMasterAxobj">RealTablesOnlyVelocity</Object>
+    <Object Type="Package">EncoderEmulation</Object>
+    <Object Type="Package" Description="gMasterAxobj">TempTables</Object>
+  </Objects>
+</Package>

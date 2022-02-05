@@ -1,0 +1,49 @@
+VAR
+	HMI_MAU_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_MAU_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+END_VAR
+(*GREASING/LUBRIFICATION*)
+VAR
+	HMI_201GPE : HMI_GreasingPump_Type;
+	HMI_GrLb_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_GrLb_Data : HMI_GrLb_Data_Type;
+	HMI_GrLb_Data2 : HMI_GrLb_Data_Type; (*//V4.A.A.1.6.11*)
+END_VAR
+(*WHITE ROOM*)
+VAR
+	HMI_WhRoom_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_FanBase : HMI_Fan_Type;
+	HMI_FanFiller : HMI_Fan_Type;
+	HMI_FanRinser : HMI_Fan_Type;
+	HMI_FanTransfer : HMI_Fan_Type;
+END_VAR
+(*UPS*)
+VAR
+	HMI_UPS_ShutdownRequest : BOOL;
+END_VAR
+(*LIFT CONTAINERS*)
+VAR
+	HMI_203RVF : HMI_Analog_IN_Type;
+	HMI_205EVF : HMI_Valve_Type;
+	HMI_LftCon_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+END_VAR
+(*SAFE LOGIC*)
+VAR
+	HMI_SL_PB : HMI_SL_PB_Type;
+	HMI_SL_Info : HMI_SL_Info_Type;
+END_VAR
+(*LUBRIFICATION*)
+VAR
+	HMI_MAU_ChlRns : HMI_MAU_ChlRns_Type;(*master nuovo*)
+	HMI_LbCon_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+END_VAR
+(*PLC*)
+VAR
+	HMI_TimeZoneOffset : INT;
+	HMI_FSF : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF HMI_DI_Type;
+END_VAR
+(*TRAY DSEVICES*)
+VAR
+	HMI_209DSF : HMI_DI_Type; (*Tray Piston Inserted v1.4*)
+	HMI_227CPB : HMI_Valve_Type; (*Tray Piston v1.4*)
+END_VAR

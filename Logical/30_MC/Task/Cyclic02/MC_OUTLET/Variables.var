@@ -1,0 +1,143 @@
+(* Input Variables *)
+VAR
+	xInputAuto : BOOL;
+	xInputVelocity : BOOL;
+	xInputJogMulti : BOOL;
+	xInputAutoMulti : BOOL;
+	xInputSelHoming : BOOL;
+	xInputInductionSetup : BOOL;
+	xInputThirdPartySetup : BOOL;
+	xInputPositioning : BOOL;
+	xInputSlowMotion : BOOL;
+	xInputBrakeRelease : BOOL;
+	xInputStepByStep : BOOL;
+END_VAR
+(*Modality Bits*)
+VAR
+	xModeReady : BOOL;
+	xExitStep : BOOL; (*Exit Step Variables*)
+	xAutoMode : BOOL; (*Auto Mode Command Variables*)
+	xVelocityMode : BOOL;
+	xPositioningMode : BOOL; (*Positioning Mode Command Variable*)
+	xThirdPartySetupMode : BOOL;
+	xInductionSetupMode : BOOL;
+	xSelectiveHomingMode : BOOL; (*Selective Homing Command Variable*)
+	xBrakeReleaseMode : BOOL;
+	xAutoMultiMode : BOOL;
+	xJogMultiMode : BOOL;
+	xStepByStepMode : BOOL;
+	xSlowMotionMode : BOOL;
+	xModulePowered : BOOL;
+	xRealAxesReadyForACommand : BOOL;
+	xSynchroWithOffset : BOOL;
+	xModuleStopped : BOOL;
+	xRealAxesSynchronized : BOOL;
+	xPhaseShiftDone : BOOL;
+	xSelHomingDone : BOOL;
+	xModuleInitialized : BOOL;
+	xModuleHomed : BOOL;
+END_VAR
+(*Active Modality Bits*)
+VAR
+	xNoOpActive : BOOL;
+	xAutoActive : BOOL;
+	xPositioningActive : BOOL;
+	xThirdPartySetupActive : BOOL;
+	xInductionSetupActive : BOOL;
+	xSelHomingActive : BOOL;
+	xBrakeReleaseActive : BOOL;
+	xVelocityActive : BOOL;
+	xSlowMotionActive : BOOL;
+	xJogMultiActive : BOOL;
+	xAutoMultiActive : BOOL;
+	xStepByStepActive : BOOL;
+END_VAR
+(*Axes presence*)
+VAR
+	axAxisPresent : ARRAY[CST_FirstOutletModuleAxis..CST_LastOutletModuleAxis] OF BOOL := [9(FALSE)];
+END_VAR
+(*Local master management*)
+VAR
+	usiMasterRequest : E_MasterStatus;
+	usiMasterStatus : E_MasterStatus;
+	usiMasterTempStatus : E_MasterStatus;
+END_VAR
+(*FB axis Declarations*)
+VAR
+	fbOutletMaster : FB_GeneralAxis;
+	fbMain : FB_GeneralAxis;
+	fbInlet01 : FB_GeneralAxis;
+	fbInlet02 : FB_GeneralAxis;
+	fbInlet03 : FB_GeneralAxis;
+	fbInlet04 : FB_GeneralAxis;
+	fbOutlet01 : FB_GeneralAxis;
+	fbOutlet02 : FB_GeneralAxis;
+	fbOutlet03 : FB_GeneralAxis;
+	fbOutlet04 : FB_GeneralAxis;
+END_VAR
+(*Local Module Struct*)
+VAR
+	stOutletModule : REFERENCE TO ST_OutletModuleInterface; (*Outlet Module Interface Variables*)
+	fbMpAlarmXCore : MpAlarmXCore;
+END_VAR
+(*Alarms bits*)
+VAR
+	fbQuickStopFromPlc : FB_ExceptionAlarmX;
+	fbMasterError : FB_ExceptionAlarmX;
+	fbMainAxisLagError : FB_ExceptionAlarmX;
+	fbMainAxisError : FB_ExceptionAlarmX;
+	fbInlet01LagError : FB_ExceptionAlarmX;
+	fbInlet02LagError : FB_ExceptionAlarmX;
+	fbInlet03LagError : FB_ExceptionAlarmX;
+	fbInlet04LagError : FB_ExceptionAlarmX;
+	fbOutlet01LagError : FB_ExceptionAlarmX;
+	fbOutlet02LagError : FB_ExceptionAlarmX;
+	fbOutlet03LagError : FB_ExceptionAlarmX;
+	fbOutlet04LagError : FB_ExceptionAlarmX;
+	fbInlet01Error : FB_ExceptionAlarmX;
+	fbInlet02Error : FB_ExceptionAlarmX;
+	fbInlet03Error : FB_ExceptionAlarmX;
+	fbInlet04Error : FB_ExceptionAlarmX;
+	fbOutlet01Error : FB_ExceptionAlarmX;
+	fbOutlet02Error : FB_ExceptionAlarmX;
+	fbOutlet03Error : FB_ExceptionAlarmX;
+	fbOutlet04Error : FB_ExceptionAlarmX;
+	fbEmergencyStopAlarm : FB_ExceptionAlarmX;
+END_VAR
+(*Local Variables*)
+VAR
+	xPositionValid : BOOL;
+	xReactionActive : BOOL;
+	uiAxisIndex : UINT; (*Axis Index*)
+	uiOldAxisSelected : UINT;
+	uiNextHomingPositionIndex : UINT; (*Temp var for initializing homing position chain*)
+	uiFirstOutletModuleAxis : UINT; (*First present axis index in outlet module*)
+	uiLastOutletModuleAxis : UINT; (*Last present axis index in outlet module*)
+	uiNumberOfSteps : UINT;
+	uiAxisToken : UINT;
+	uiSlowAxisIndex : UINT;
+	rModuleVelocity : REAL;
+	rAxisDistance : REAL;
+	lrAbsolutePosition : LREAL;
+	lrIncrement : LREAL;
+	lrOldPosition : LREAL;
+	tonPositDone : TON;
+	tofReactionActive : TOF;
+	axPresentIndex : USINT;
+END_VAR
+(*Sequencer Steps*)
+VAR
+	uiVelocityStep : UINT;
+	uiAutoStep : UINT;
+	uiPositioningStep : UINT;
+	uiInductionSetupStep : UINT;
+	uiThirdPartySetupStep : UINT;
+	uiSelectiveHomeStep : UINT;
+	uiBrakeReleaseStep : UINT;
+	uiSlowMotionStep : UINT;
+	uiJogMulti : UINT;
+	uiAutoMulti : UINT;
+	uiStepByStep : UINT;
+	auiAxisTokenList : ARRAY[0..20] OF UINT;
+	uiTokenIndex : UINT;
+END_VAR

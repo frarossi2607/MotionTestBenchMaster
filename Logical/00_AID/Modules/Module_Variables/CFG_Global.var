@@ -1,0 +1,8 @@
+VAR
+	CFG_Par : CFG_Par_Type;
+	CFG_ITC : CFG_ITC_Type;
+	CFG_Cap_Par : CFG_Cap_Par_Type;
+	CFG_Crw_Par : CFG_Crw_Par_Type;
+	CFG_OPS : CFG_OPS_Type;
+	CFG : CFG_Type;
+END_VAR

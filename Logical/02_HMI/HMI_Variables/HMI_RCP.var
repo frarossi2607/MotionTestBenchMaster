@@ -1,0 +1,3 @@
+VAR RETAIN
+	HMI_RCP_PRD_Mngt : RCP_Management_Type; (*Production recipe managment*)
+END_VAR

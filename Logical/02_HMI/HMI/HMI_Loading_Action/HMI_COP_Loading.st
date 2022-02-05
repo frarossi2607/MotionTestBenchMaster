@@ -1,0 +1,19 @@
+ACTION HMI_COP_Loading:
+	HMI_COP_StatusWidget;
+	HMI_COP_PB;
+	HMI_COP_SS2P;
+	HMI_COP_SS3P;
+	HMI_COP_Rcp;
+	HMI_COP_RcpTemp;
+	HMI_COP_RcpSelection;
+	HMI_COP_RcpInfo;
+	HMI_COP_State;
+	HMI_COP_ZoneCfg;
+	HMI_RCP_COP_Mngt;
+	HMI_COP_PhaseTypeCFG;
+	HMI_COP_FuTypeCFG;
+	HMI_COP_FuGunTypeCFG;
+	HMI_COP_FuDrainableCFG;
+	HMI_COP_ITC;
+	HMI_COP_OptPlangerPresent;//VRMA
+END_ACTION

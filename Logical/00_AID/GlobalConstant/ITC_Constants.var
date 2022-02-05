@@ -1,0 +1,59 @@
+(*Coupled Machine*)
+VAR CONSTANT
+	CST_ITC_BLR : USINT := 11; (*Blower*)
+	CST_ITC_LBR : USINT := 12; (*Labeller*)
+	CST_ITC_SMF : USINT := 13; (*Seamer Ferrum*)
+	CST_ITC_ACTIS : USINT := 14; (*Actis*)
+	CST_ITC_PULPDOSER : USINT := 15; (*Pulp Doser*)
+	CST_ITC_CLOSINGUNIT : USINT := 16; (*Closing unit*)
+END_VAR
+(*Sidel Process*)
+VAR CONSTANT
+	CST_ITC_SKD_FLR : USINT := 21; (*Skid/Filler*)
+	CST_ITC_COREBLEND : USINT := 22; (*Coreblend*)
+END_VAR
+(*External Process*)
+VAR CONSTANT
+	CST_ITC_MXR : USINT := 31; (*Mixer*)
+	CST_ITC_CARBO : USINT := 32; (*Carbo*)
+	CST_ITC_PRD : USINT := 33; (*Product Room*)
+	CST_ITC_BBT : USINT := 34; (*BBT*)
+	CST_ITC_ASEPTICTANK : USINT := 35; (*Aseptic Tank*)
+END_VAR
+(*Product treatments*)
+VAR CONSTANT
+	CST_ITC_PFLASH : USINT := 41; (*Pasto Flash*)
+	CST_ITC_DOSER : USINT := 42; (*Doser*)
+	CST_ITC_OZONIZER : USINT := 43; (*Ozonizer*)
+	CST_ITC_WTT : USINT := 44; (*Water Treatment*)
+END_VAR
+(*Hygiene*)
+VAR CONSTANT
+	CST_ITC_CIP : USINT := 51; (*CIP Room*)
+	CST_ITC_COP : USINT := 52; (*COP*)
+	CST_ITC_WHITEROOM : USINT := 53; (*White room*)
+END_VAR
+(*External equipments*)
+VAR CONSTANT
+	CST_ITC_CVI : USINT := 61; (*Inlet Conveyor*)
+	CST_ITC_CVO : USINT := 62; (*Outlet Conveyor*)
+	CST_ITC_FCI : USINT := 63; (*Filler Container Inspector*)
+	CST_ITC_VBC : USINT := 64; (*Vacuum Barrier Company*)
+	CST_ITC_CFD : USINT := 65; (*Cap Feeder*)
+	CST_ITC_CFD2 : USINT := 66; (*Cap Feeder 2*)
+	CST_ITC_CODER : USINT := 67; (*Coder*)
+	CST_ITC_LDF : USINT := 68; (*Lid feeder*)
+END_VAR
+(*Data*)
+VAR CONSTANT
+	CST_ITC_SCC : USINT := 71; (*Signals Customer Concentrator*)
+	CST_ITC_DATA : USINT := 72; (*Data Acquisition*)
+	CST_ITC_PCO : USINT := 73; (*Product change over*)
+END_VAR
+(*Communication Status*)
+VAR CONSTANT
+	CST_CommStatus_NotPresent : USINT := 0;
+	CST_CommStatus_NotConnected : USINT := 1;
+	CST_CommStatus_Connecting : USINT := 2;
+	CST_CommStatus_Connected : USINT := 3;
+END_VAR

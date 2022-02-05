@@ -1,0 +1,7 @@
+(*INTERCHANGE PAGE*)
+VAR
+	HMI_ITC_PageDB : ARRAY[CST_MinITCPartner..CST_MaxITCPartner] OF HMI_ITC_Data_Type;
+	HMI_ITC_Page : HMI_ITC_Page_Type;
+	HMI_ITC_Partner_CFG : ARRAY[CST_MinITCPartner..CST_MaxITCPartner] OF BOOL;
+	HMI_MachineComm : HMI_MachineComm_Type;
+END_VAR

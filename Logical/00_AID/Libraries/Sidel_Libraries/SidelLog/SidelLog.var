@@ -1,0 +1,34 @@
+(********************************************************************
+ * COPYRIGHT --  
+ ********************************************************************
+ * Library: SidelLog
+ * File: SidelLog.var
+ * Author: Administrator
+ * Created: July 15, 2014
+ ********************************************************************
+ * Constants of library SidelLog
+ ********************************************************************)
+(*************************************************************************************                                UPS LOGGER                       ****************************************************************************************)
+VAR CONSTANT
+	ERR_UPS_BATTERY_FAULT : UINT := 55000; (*Ups battery fault*)
+	ERR_UPS_BATTERY_OK : UINT := 55001; (*Ups battery ok*)
+	ERR_UPS_BATTERY_CHARGED : UINT := 55002; (*Ups  battery charged*)
+	ERR_UPS_BATTERY_LOW : UINT := 55003; (*Ups battery low*)
+	ERR_UPS_SUPPLY_BACK : UINT := 55004; (*Returned back the power supply*)
+	ERR_UPS_NO_SUPPLY : UINT := 55005; (*Ups no power spply*)
+	ERR_UPS_SHUTDOWN_REQ : UINT := 55006; (*Ups shutdown request*)
+	ERR_UPS_SHUTDOWN_TIME : UINT := 50007; (*Ups shutdown time*)
+END_VAR
+(************************************************************************************                 MACHINE SYNCHRONIZATION            ****************************************************************************************)
+VAR CONSTANT
+	LOG_AXIS_POSITION : UINT := 55010; (*Axis position during machine synchronization*)
+	LOG_SYNC_AXIS : UINT := 55011; (*Synchronized axis*)
+END_VAR
+(************************************************************************************                 SOFTWARE OBJECT MONITOR           ****************************************************************************************)
+VAR CONSTANT
+	LOG_SW_OBJ_RM : UINT := 55022; (*Software object removed*)
+	LOG_SW_OBJ_NEW : UINT := 55021; (*New software object*)
+	LOG_SW_OBJ_CHG : UINT := 55020; (*Software object changed*)
+	swListDatObjName : STRING[7] := 'swList'; (*Software list*)
+	swListTempDataObjName : STRING[7] := 'swListT'; (*Temporary software list*)
+END_VAR

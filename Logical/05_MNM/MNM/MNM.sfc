@@ -1,0 +1,2440 @@
+PROGRAM _CYCLIC
+(* @LANGUAGE := 'sfc' *)
+INITIAL_STEP MNMInit:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM MNMInit TO InitCpu:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'InitCpu' *)
+STEP InitCpu:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+InletConveyor_Hardware_CFG;
+OutletConveyor_Hardware_CFG;
+HMI_MNM_FlrSpeedWidget.AutoSpeedReq := REAL_TO_DINT(HMI_MNM_MinMachineSpeed);
+	
+HMI_CFG_PAR_1._020	:= TRUE;
+HMI_CFG_PAR_1._160	:= TRUE;//MasterBottle
+//HMI_CFG_PAR_1._162	:= _OutCvr.IN_ConfigPresent;
+HMI_CFG_PAR_1._162	:= _OutCvrFC280.IN_ConfigPresent;
+
+HMI_CFG_PAM_1._001	:= NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BFL AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._003	:= TRUE;
+HMI_CFG_PAM_1._010	:= TRUE;
+HMI_CFG_PAM_1._011	:= TRUE;
+HMI_CFG_PAM_1._012	:= TRUE;
+HMI_CFG_PAM_1._013	:= TRUE;
+HMI_CFG_PAM_1._020	:= TRUE;
+
+HMI_CFG_PAM_1._396	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._397	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._398	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._399	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._400	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._401	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._402	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._403	:= CFG_Par.Machine.Type.SRMA OR CFG_Par.Machine.Type.SRME OR (NOT CFG_Par.Machine.Combi.BF AND NOT CFG_Par.Machine.Combi.BLF AND NOT CFG_Par.Machine.Combi.BAF AND NOT CFG_Par.Machine.Combi.BFL);//V4.A.A.1.7.0
+HMI_CFG_PAM_1._404	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._405	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._406	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._407	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._408	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._409	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._410	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._411	:= CFG_Par.ClosingUnit.Capper.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._412	:= CFG_Par.Machine.Type.SRMB OR CFG_Par.Rinser.NoBottleNoSpray;//V4.A.A.1.7.0//vrma
+HMI_CFG_PAM_1._413	:= CFG_Par.Machine.Type.SRMB OR CFG_Par.Rinser.NoBottleNoSpray;;//V4.A.A.1.7.0//vrma
+HMI_CFG_PAM_1._414	:= CFG_Par.Machine.Type.SRMB OR CFG_Par.Rinser.NoBottleNoSpray;;//V4.A.A.1.7.0//vrma
+HMI_CFG_PAM_1._415	:= CFG_Par.Machine.Type.SRMB OR CFG_Par.Rinser.NoBottleNoSpray;;//V4.A.A.1.7.0//vrma
+HMI_CFG_PAM_1._416	:= TRUE;//HMI_PAO_2._176 <> 0;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._417	:= TRUE;//HMI_PAO_2._176 <> 0;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._418	:= TRUE;//HMI_PAO_2._176 <> 0;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._419	:= TRUE;//HMI_PAO_2._176 <> 0;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._420	:= CFG_Par.ClosingUnit.Crowner.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._421	:= CFG_Par.ClosingUnit.Crowner.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._422	:= CFG_Par.ClosingUnit.Crowner.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._423	:= CFG_Par.ClosingUnit.Crowner.Present;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._424	:= TRUE;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._425	:= TRUE;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._426	:= TRUE;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._427	:= TRUE;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._428	:= CFG_Par.FCI.Filltec OR CFG_Par.FCI.FTSystem OR CFG_Par.FCI.Heuft OR CFG_Par.FCI.Pressco OR CFG_Par.FCI.SIS OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._429	:= CFG_Par.FCI.Filltec OR CFG_Par.FCI.FTSystem OR CFG_Par.FCI.Heuft OR CFG_Par.FCI.Pressco OR CFG_Par.FCI.SIS OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._430	:= CFG_Par.FCI.Filltec OR CFG_Par.FCI.FTSystem OR CFG_Par.FCI.Heuft OR CFG_Par.FCI.Pressco OR CFG_Par.FCI.SIS OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._431	:= CFG_Par.FCI.Filltec OR CFG_Par.FCI.FTSystem OR CFG_Par.FCI.Heuft OR CFG_Par.FCI.Pressco OR CFG_Par.FCI.SIS OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._432	:= CFG_Par.FCI.Heuft OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._433	:= CFG_Par.FCI.Heuft OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._434	:= CFG_Par.FCI.Heuft OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+HMI_CFG_PAM_1._435	:= CFG_Par.FCI.Heuft OR CFG_Par.FCI.Stratec;//V4.A.A.1.7.0
+
+
+HMI_CFG_PAC_1._130	:= CFG_Par.Motors.FootbarPresent;
+HMI_CFG_PAC_1._132	:= CFG_Par.Machine.Type.SRMA;//V4.A.A.1.7.0
+HMI_CFG_PAC_1._219	:= CFG_Par.Rinser.FootbarPresent;//V4.A.A.1.7.0
+HMI_CFG_PAC_1._220	:= CFG_Par.Rinser.FootbarPresent;//V4.A.A.1.7.0
+END_ACTION
+TRANSITION FROM InitCpu TO (MNMVar,MNMIdle,SpeedMng,MC_Interface,Fan,HmiData,InletConveyor,OutletConveyor,DataTo):=
+CFG.DataOut.ConfigLoaded
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMVar' *)
+(* @SFCNOJUMP := 'MNMIdle' *)
+(* @SFCNOJUMP := 'SpeedMng' *)
+(* @SFCNOJUMP := 'MC_Interface' *)
+(* @SFCNOJUMP := 'Fan' *)
+(* @SFCNOJUMP := 'HmiData' *)
+(* @SFCNOJUMP := 'InletConveyor' *)
+(* @SFCNOJUMP := 'OutletConveyor' *)
+(* @SFCNOJUMP := 'DataTo' *)
+STEP MNMVar:
+(* @LANGUAGE := 'st' *)
+// IF CFG_MC.Generic.DisengageImmediately THEN - v 1.1
+//	VAR_MNM_DisengageForStop		:= (AID.DataOut.ALR.Bit.ALR_CSR_StopAfterEmptying	OR AID.DataOut.ALR.Bit.ALR_CSA_StopAfterEmptying);
+// END_IF
+//VAR_MNM_StopIfNotEmpty			:= AID.DataOut.ALR.Bit.ALR_CSR_StopIfNotEmpty AND NOT SFT.DataOut.MachineEmpty; //V4.A.A.1.6.13
+VAR_MNM_NormalStop				:= AID.DataOut.ALR.Bit.ALR_MS_NormalStop;
+VAR_MNM_QuickStop				:= AID.DataOut.ALR.Bit.ALR_MS_QuickStop;
+VAR_MNM_NormalStopWithJog		:= AID.DataOut.ALR.Bit.ALR_MS_NormalWithJog;
+VAR_MNM_NormalWithJogMnt		:= AID.DataOut.ALR.Bit.ALR_MS_NormalWithJogMnt; //V4.A.A.1.6.13
+VAR_MNM_QuickStopWithJog		:= AID.DataOut.ALR.Bit.ALR_MS_QuickWithJog;
+//VAR_MNM_StopAfterEmpty 			:= (AID.DataOut.ALR.Bit.ALR_CSR_StopAfterEmptying OR AID.DataOut.ALR.Bit.ALR_CSA_StopAfterEmptying) AND SFT.DataOut.CombiEmpty; //V4.A.A.1.6.13 //v 1.1
+VAR_MNM_StopAfterEmpty 			:= AID.DataOut.ALR.Bit.ALR_CSR_StopAfterEmptying AND SFT.DataOut.CombiEmpty; //V4.A.A.1.6.13
+
+IF (MC_InputOutput.Network.Machine.Status.AutoModalityActive OR MC_InputOutput.Network.Machine.Status.MultiModalityActive) AND
+	NOT VAR_MNM_NormalStop AND NOT VAR_MNM_QuickStop AND
+	NOT VAR_MNM_NormalStopWithJog AND NOT  VAR_MNM_QuickStopWithJog AND NOT VAR_MNM_StopAfterEmpty THEN
+	//added condition for stopping after pre-closing and washing cycle end//MasterBottle
+	IF EDGEPOS(MAU_DumCon.DataOut.MachineStop) OR  EDGEPOS(SEL(CFG_Par.Process.BlendFill, SkdFlr.MachineStop, CrbFlr.MachineStop)) OR SFT.DataOut.FillingValvePositionReq OR CSR.DataOut.MachineStop OR EDGEPOS(CAP.DataOut.MachineStop) OR EDGEPOS(COP.DataOut.MachineStop) THEN//V4.A.A.1.7.0
+		VAR_MNM_AutoStopRequest		:= TRUE;
+		VAR_MNM_FlrAutoStopRequest	:= TRUE;
+	END_IF
+		
+	IF EDGEPOS(MAU_DumCon.DataOut.MachineStart) OR EDGEPOS(RNS.DataOut.MachineStart) OR EDGEPOS(SEL(CFG_Par.Process.BlendFill, SkdFlr.MachineStart, CrbFlr.MachineStart)) OR EDGEPOS(CAP.DataOut.MachineStart) OR EDGEPOS(COP.DataOut.MachineStart) THEN//V4.A.A.1.7.0
+		VAR_MNM_AutoStartRequest	:= TRUE;
+		VAR_MNM_FlrAutoStartRequest := TRUE;
+	END_IF
+ELSE
+	VAR_MNM_AutoStopRequest		:= FALSE;
+	VAR_MNM_FlrAutoStopRequest	:= FALSE;
+	VAR_MNM_AutoStartRequest	:= FALSE;
+	VAR_MNM_FlrAutoStartRequest	:= FALSE;
+END_IF
+
+IF MC_InputOutput.Network.Machine.Status.AutoModalityActive THEN 
+	IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+		VAR_MNM_AutoStartRequest := FALSE;
+	ELSE
+		VAR_MNM_AutoStopRequest	:= FALSE;
+	END_IF
+	VAR_MNM_FlrAutoStopRequest	:= FALSE;
+	VAR_MNM_FlrAutoStartRequest	:= FALSE;
+ELSIF MC_InputOutput.Network.Machine.Status.MultiModalityActive THEN
+	IF MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+		VAR_MNM_FlrAutoStartRequest	:= FALSE;
+	ELSE
+		VAR_MNM_FlrAutoStopRequest	:= FALSE;
+	END_IF
+	VAR_MNM_AutoStopRequest		:= FALSE;
+	VAR_MNM_AutoStartRequest	:= FALSE;
+END_IF
+
+(* Machine Start and Stop Management *)
+VAR_MNM_FpMachineStartPb := EDGEPOS(HMI_CmdBar_PB[PB_FillerStartStop].Command);
+
+IF CFG_Par.Machine.Combi.BF OR CFG_Par.Machine.Combi.BFL OR CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF THEN//V4.A.A.1.7.0
+	IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+		IF VAR_MNM_FpMachineStartPb THEN
+			VAR_MNM_MachineStart	:= TRUE;
+		ELSIF NOT HMI_CmdBar_PB[PB_FillerStartStop].Command THEN
+			VAR_MNM_MachineStart	:= FALSE;
+		END_IF
+		VAR_MNM_MachineStop		:= TRUE;
+	ELSE
+		VAR_MNM_MachineStart	:= FALSE;
+		IF VAR_MNM_FpMachineStartPb THEN
+			VAR_MNM_MachineStop	:= FALSE;
+		END_IF
+	END_IF
+ELSE
+	VAR_MNM_MachineStart	:= IO_PB_FlStart.ON AND IO_PB_FlStart.Enable;
+	VAR_MNM_MachineStop		:= IO_PB_FlStop.ON;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP MNMIdle:
+(* @LANGUAGE := 'st' *)
+VAR_MNM_HornFlrRequest				:= FALSE;
+
+MNM.DataOut.StartLightFixRequest	:= FALSE;
+MNM.DataOut.StartLightBlinkRequest	:= FALSE;
+
+TMR_TON_StartingHornElapsed.IN		:= FALSE;
+
+TMR_TON_TimeoutModality.IN			:= FALSE;
+TMR_TON_TimeoutModality();
+
+FlrFmc.FillerOneStepReceived		:= FALSE;
+
+MC_InputOutput.Network.Machine.Commands.MachineStart				:= FALSE;
+MC_InputOutput.Network.Machine.Commands.JogPushButton				:= FALSE;
+MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq			:= FALSE;
+MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq	:= FALSE;//V1.7.2
+MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest	:= FALSE;//V1.7.2
+
+MC_InputOutput.Network.Machine.Commands.AutoModalityRequest			:= FALSE;
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.JogMachineModalityRequest	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.MultiModalityRequest		:= FALSE;
+
+MC_InputOutput.Network.Filler.Commands.AutoFillerModule				:= FALSE;
+MC_InputOutput.Network.Filler.Commands.JogFillerModule				:= FALSE;
+MC_InputOutput.Network.Filler.Commands.StartFillerModule			:= FALSE;
+MC_InputOutput.Network.Filler.Commands.JogPushButtonFillerModule	:= FALSE;
+
+MC_InputOutput.Network.Inlet.Commands.AutoInletModule				:= FALSE;
+MC_InputOutput.Network.Inlet.Commands.JogInletModule				:= FALSE;
+MC_InputOutput.Network.Inlet.Commands.StartInletModule				:= FALSE;
+MC_InputOutput.Network.Inlet.Commands.JogPushButtonInletModule		:= FALSE;
+
+MC_InputOutput.Network.Outlet.Commands.AutoOutletModule				:= FALSE;
+MC_InputOutput.Network.Outlet.Commands.JogOutletModule				:= FALSE;
+MC_InputOutput.Network.Outlet.Commands.StartOutletModule			:= FALSE;
+MC_InputOutput.Network.Outlet.Commands.JogPushButtonOutletModule	:= FALSE;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION AutoMode FROM MNMIdle TO MNMAutoEntry:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized AND//VXXXXXX
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+MC_InputOutput.Network.Machine.Status.EnableAuto				AND
+OPS.DataOut.FlrModeSelectorAuto		AND
+OPS.DataOut.BlowerTrasferGateOpened AND
+OPS.DataOut.ActisTrasferGateOpened AND//V4.A.A.1.7.0
+NOT (	(CFG_Par.Machine.Combi.BLF 	AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+		(CFG_Par.Machine.Combi.BF 	AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR 
+(CFG_Par.Machine.Combi.BAF 	AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException  //V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAutoEntry' *)
+TRANSITION AutoCombiMode FROM MNMIdle TO MNMAutoCombiEntry:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized	AND
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+MC_InputOutput.Network.Machine.Status.EnableCombi				AND
+OPS.DataOut.BlowerTrasferGateOpened	AND
+OPS.DataOut.ActisTrasferGateOpened AND//V4.A.A.1.7.0
+OPS.DataOut.FlrModeSelectorAuto	AND
+(	(CFG_Par.Machine.Combi.BLF 	AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+	(CFG_Par.Machine.Combi.BF 	AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR
+	(CFG_Par.Machine.Combi.BAF 	AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command))AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAutoCombiEntry' *)
+STEP MNMAutoCombiEntry:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest	:= TRUE;
+TMR_TON_TimeoutModality(IN := TRUE, PT := t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION AutoCombiModeActive FROM MNMAutoCombiEntry TO MNMAutoCombi:=
+(* @LANGUAGE := 'st' *)
+NOT CFG_Par.Machine.Combi.BAF AND (MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive OR TMR_TON_TimeoutModality.Q)//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAutoCombi' *)
+TRANSITION AutoCombiModeActive_BAF FROM MNMAutoCombiEntry TO MNMAutoCombi_BAF:=
+(* @LANGUAGE := 'st' *)
+CFG_Par.Machine.Combi.BAF AND (MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive OR TMR_TON_TimeoutModality.Q)//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAutoCombi_BAF' *)
+STEP MNMAutoCombi_BAF:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest	:= TRUE;
+
+IF (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) AND (VAR_MNM_AutoCombiStep > MNM_AutoCombiBLFWaitStart) THEN//V1.3
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiFault;
+ELSIF VAR_MNM_DisengageForStop THEN
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiMachineFixEmptying;
+ELSIF NOT (NOT MC_InputOutput.Network.Machine.Status.NoModalityActive AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive) THEN
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+END_IF
+
+TMR_TON_StartingHornElapsed.IN := FALSE;
+MC_InputOutput.Network.Machine.Commands.MachineStart		:= FALSE;
+MNM.DataOut.DesyncroRequest	:= FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+MNM.DataOut.StartLightFixRequest	:= FALSE;
+MNM.DataOut.StartLightBlinkRequest	:= FALSE;
+
+CASE VAR_MNM_AutoCombiStep OF
+	MNM_AutoCombiInit://V1.3
+		VAR_MNM_AutoCombiStep	:= MNM_AutoCombiBAFWaitStart;//V4.A.A.1.7.0
+		
+	MNM_AutoCombiBAFWaitStart://V4.A.A.1.7.0
+		IF MC_InputOutput.Network.Machine.Status.EnableStart AND
+			NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN//V4.A.A.1.7.0
+			IF ActFlr.Stopped THEN//V4.A.A.1.7.0
+				IF EDGEPOS(ActFlr.CmdStart) THEN//V4.A.A.1.7.0
+					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiSyncroStart;//V4.A.A.1.7.0
+				END_IF//V4.A.A.1.7.0
+			ELSE//V4.A.A.1.7.0
+				IF (BlrFlr.PbStart OR IO_PB_LbStart.ON OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V4.A.A.1.7.0
+					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiHornBlow;//V4.A.A.1.7.0
+				END_IF//V4.A.A.1.7.0
+			END_IF//V4.A.A.1.7.0
+		END_IF//V4.A.A.1.7.0
+		
+		IF (BlrFlr.PbStart OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V4.A.A.1.7.0
+			MNM.DataOut.StartLightFixRequest	:= TRUE;//V4.A.A.1.7.0
+		ELSE//V4.A.A.1.7.0
+			MNM.DataOut.StartLightBlinkRequest	:= IO_PB_FlStart.Enable;//V4.A.A.1.7.0
+		END_IF//V4.A.A.1.7.0
+	
+	MNM_AutoCombiHornBlow://V1.3
+		MNM.DataOut.StartLightFixRequest	:= TRUE;//V1.3
+		TMR_TON_StartingHornElapsed.IN		:= TRUE;//V1.3
+		VAR_MNM_HornFlrRequest	:= TRUE;//V1.3
+		
+		IF MC_InputOutput.Network.Machine.Status.EnableStart THEN//V1.3
+			IF NOT (BlrFlr.PbStart OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V4.A.A.1.7.0	
+				VAR_MNM_AutoCombiStep := MNM_AutoCombiBAFWaitStart;//V4.A.A.1.7.0
+			END_IF//V1.3
+		END_IF//V1.3
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN//V1.3
+			VAR_MNM_AutoCombiStep := MNM_AutoCombiSyncroStart;//V1.3
+		END_IF//V1.3
+		
+	MNM_AutoCombiSyncroStart:
+		IF CFG_MC.Generic.SyncroPar.ExternalEncoder THEN//V1.3
+			MC_InputOutput.Network.Machine.Commands.MachineStart := NOT BlrFlr.Stopped;//V1.3
+		ELSE//V1.3
+			MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;//V1.3
+		END_IF//V1.3
+	
+		IF MC_InputOutput.Network.Machine.Status.CombiSynchronized THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+		
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+	
+	MNM_AutoCombiMachineReadyToRun:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningEmpty;
+		END_IF
+	
+	MNM_AutoCombiMachineRunningEmpty:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF NOT ActFlr.NoAlarm  THEN//V4.A.A.1.7.0
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//V4.A.A.1.7.0
+		ELSIF MC_InputOutput.Network.Machine.Status.MachineRunning AND NOT SFT.DataOut.CombiEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningFull;
+		ELSIF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+
+		IF EDGENEG(BlrFlr.CmdStart) THEN//V4.A.A.1.7.0 DA GUARDARE SE METTERE ActFlr.CmdStart
+				VAR_MNM_MachineStopRequest := TRUE ;//V4.A.A.1.7.0
+		END_IF 
+		
+		IF VAR_MNM_MachineStopRequest AND (MC_InputOutput.Network.Machine.Status.ActualSpeed <= 5000.0) THEN//V4.A.A.1.7.0
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//V4.A.A.1.7.0
+		END_IF//V4.A.A.1.7.0
+		
+		IF EDGEPOS(HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].ON) THEN
+			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= HMI_MNM_AxisInMotionAdjustment;
+			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
+			ALR[686].Active	:= TRUE;
+		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone THEN
+			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
+			HMI_MNM_AxisInMotionAdjustment	:= 0.0;
+			ALR[686].Active	:= FALSE;
+		ELSIF NOT MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq THEN
+			ALR[686].Active	:= FALSE;
+		END_IF
+	
+	MNM_AutoCombiMachineRunningFull:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF NOT ActFlr.NoAlarm  THEN//V4.A.A.1.7.0
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//V4.A.A.1.7.0
+		ELSIF MC_InputOutput.Network.Machine.Status.MachineRunning AND SFT.DataOut.CombiEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningEmpty;
+		ELSIF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+	
+	MNM_AutoCombiMachineFixEmptying:
+		MC_InputOutput.Network.Machine.Commands.MachineStart		:= TRUE;
+		MNM.DataOut.DesyncroRequest	:= TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF SFT.DataOut.MachineEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineStopping;
+		END_IF
+	
+	MNM_AutoCombiMachineStopping:
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_MachineStopRequest := FALSE;//V4.A.A.1.6.6
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiInit;//V1.3
+		END_IF
+	
+	MNM_AutoCombiFault:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := NOT CFG_MC.Generic.DisengageImmediately;
+			
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty) AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN//V1.61//v1.65
+			VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+END_ACTION
+TRANSITION IdleMode FROM MNMAutoCombi_BAF TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened) OR (NOT OPS.DataOut.FlrModeSelectorAuto AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning) OR//V4.A.A.1.7.0
+NOT ((CFG_Par.Machine.Combi.BLF AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+(CFG_Par.Machine.Combi.BF AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR 
+(CFG_Par.Machine.Combi.BAF 	AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) OR //V4.A.A.1.7.0
+TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+STEP MNMAutoCombi:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest	:= TRUE;
+
+IF (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) AND (VAR_MNM_AutoCombiStep > MNM_AutoCombiBLFWaitStart) THEN//V1.3
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiFault;
+ELSIF VAR_MNM_DisengageForStop THEN
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiMachineFixEmptying;
+ELSIF NOT (NOT MC_InputOutput.Network.Machine.Status.NoModalityActive AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive) THEN
+	VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+END_IF
+
+TMR_TON_StartingHornElapsed.IN := FALSE;
+MC_InputOutput.Network.Machine.Commands.MachineStart		:= FALSE;
+MNM.DataOut.DesyncroRequest	:= FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+MNM.DataOut.StartLightFixRequest	:= FALSE;
+MNM.DataOut.StartLightBlinkRequest	:= FALSE;
+
+CASE VAR_MNM_AutoCombiStep OF
+	MNM_AutoCombiInit://V1.3
+		IF CFG_Par.Machine.Combi.BF THEN//V1.3
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiBFWaitStart;//V1.3
+		ELSIF CFG_Par.Machine.Combi.BLF THEN//V1.3
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiBLFWaitStart;//V1.3
+		END_IF//V1.3
+		
+	MNM_AutoCombiBFWaitStart://V1.3
+		IF MC_InputOutput.Network.Machine.Status.EnableStart AND
+			NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN//V1.3
+//			IF NOT BlrFlr.Stopped THEN//V1.3 //v1.6
+//				IF EDGEPOS(BlrFlr.CmdStart) THEN//V1.3 //v1.6
+//					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiSyncroStart;//V1.3 //v1.6
+//				END_IF//V1.3 //v1.6
+//			ELSE//V1.3 //v1.6
+				IF (BlrFlr.PbStart OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiHornBlow;//V1.3
+				END_IF//V1.3
+//			END_IF//V1.3 //v1.6
+		END_IF//V1.3
+
+		IF (BlrFlr.PbStart OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+			MNM.DataOut.StartLightFixRequest	:= TRUE;//V1.3
+		ELSE//V1.3
+			MNM.DataOut.StartLightBlinkRequest	:= IO_PB_FlStart.Enable;//V1.3
+		END_IF//V1.3
+	
+	MNM_AutoCombiBLFWaitStart://V1.3
+		IF MC_InputOutput.Network.Machine.Status.EnableStart AND
+			NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN//V1.3
+			IF LbrFlr.Stopped THEN//V1.3
+				IF EDGEPOS(LbrFlr.CmdStart) THEN//V1.3
+					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiSyncroStart;//V1.3
+				END_IF//V1.3
+			ELSE//V1.3
+				IF (BlrFlr.PbStart OR IO_PB_LbStart.ON OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+					VAR_MNM_AutoCombiStep	:= MNM_AutoCombiHornBlow;//V1.3
+				END_IF//V1.3
+			END_IF//V1.3
+		END_IF//V1.3
+		
+		IF (BlrFlr.PbStart OR IO_PB_LbStart.ON OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+			MNM.DataOut.StartLightFixRequest	:= TRUE;//V1.3
+		ELSE//V1.3
+			MNM.DataOut.StartLightBlinkRequest	:= IO_PB_FlStart.Enable;//V1.3
+		END_IF//V1.3
+			
+	MNM_AutoCombiHornBlow://V1.3
+		MNM.DataOut.StartLightFixRequest	:= TRUE;//V1.3
+		TMR_TON_StartingHornElapsed.IN		:= TRUE;//V1.3
+		VAR_MNM_HornFlrRequest	:= TRUE;//V1.3
+		
+		IF MC_InputOutput.Network.Machine.Status.EnableStart THEN//V1.3
+			IF CFG_Par.Machine.Combi.BLF AND NOT (BlrFlr.PbStart OR IO_PB_LbStart.ON OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+				VAR_MNM_AutoCombiStep := MNM_AutoCombiBLFWaitStart;//V1.3
+			ELSIF CFG_Par.Machine.Combi.BF AND NOT (BlrFlr.PbStart OR (IO_PB_FlStart.ON AND IO_PB_FlStart.Enable)) THEN//V1.3
+				VAR_MNM_AutoCombiStep := MNM_AutoCombiBFWaitStart;//V1.3
+			END_IF//V1.3
+		END_IF//V1.3
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN//V1.3
+			VAR_MNM_AutoCombiStep := MNM_AutoCombiSyncroStart;//V1.3
+		END_IF//V1.3
+		
+	MNM_AutoCombiSyncroStart:
+		IF CFG_MC.Generic.SyncroPar.ExternalEncoder THEN//V1.3
+			MC_InputOutput.Network.Machine.Commands.MachineStart := NOT BlrFlr.Stopped;//V1.3
+		ELSE//V1.3
+			MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;//V1.3
+		END_IF//V1.3
+	
+		IF MC_InputOutput.Network.Machine.Status.CombiSynchronized THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+		
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+	
+	MNM_AutoCombiMachineReadyToRun:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningEmpty;
+		END_IF
+	
+	MNM_AutoCombiMachineRunningEmpty:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF CFG_Par.Machine.Combi.BLF AND LbrFlr.DesynchroReq AND LbrFlr.MachOutFree THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;
+		ELSIF CFG_Par.Machine.Combi.BF AND NOT BlrFlr.NoAlarm THEN//v1.4
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//v1.4
+		ELSIF MC_InputOutput.Network.Machine.Status.MachineRunning AND NOT SFT.DataOut.CombiEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningFull;
+		ELSIF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+		
+		IF CFG_Par.Machine.Combi.BF THEN//V4.A.A.1.6.6
+			IF EDGENEG(BlrFlr.CmdStart) THEN//V4.A.A.1.6.6
+				VAR_MNM_MachineStopRequest := TRUE ;//V4.A.A.1.6.6
+			END_IF
+			IF VAR_MNM_MachineStopRequest AND (MC_InputOutput.Network.Machine.Status.ActualSpeed <= 5000.0) THEN//V4.A.A.1.6.6
+				VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//V4.A.A.1.6.6
+			END_IF//V4.A.A.1.6.6
+		END_IF//V4.A.A.1.6.6
+		
+		
+		IF EDGEPOS(HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].ON) THEN
+			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= HMI_MNM_AxisInMotionAdjustment;
+			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
+			ALR[686].Active	:= TRUE;
+		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone THEN
+			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
+			HMI_MNM_AxisInMotionAdjustment	:= 0.0;
+			ALR[686].Active	:= FALSE;
+		ELSIF NOT MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq THEN
+			ALR[686].Active	:= FALSE;
+		END_IF
+	
+	MNM_AutoCombiMachineRunningFull:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF CFG_Par.Machine.Combi.BLF AND LbrFlr.DesynchroReq AND LbrFlr.MachOutFree THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;
+		ELSIF CFG_Par.Machine.Combi.BF AND NOT BlrFlr.NoAlarm THEN//v1.4
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//v1.4
+		ELSIF MC_InputOutput.Network.Machine.Status.MachineRunning AND SFT.DataOut.CombiEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineRunningEmpty;
+		ELSIF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineReadyToRun;
+		END_IF
+		
+		IF CFG_Par.Machine.Combi.BF THEN//V4.A.A.1.6.6
+			IF EDGENEG(BlrFlr.CmdStart)  THEN//V4.A.A.1.6.6
+				VAR_MNM_MachineStopRequest := TRUE ;//V4.A.A.1.6.6
+			END_IF
+			IF VAR_MNM_MachineStopRequest AND (MC_InputOutput.Network.Machine.Status.ActualSpeed <= 5000.0) THEN//V4.A.A.1.6.6
+				VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineFixEmptying;//V4.A.A.1.6.6
+				END_IF//V4.A.A.1.6.6
+			END_IF//V4.A.A.1.6.6
+	
+	MNM_AutoCombiMachineFixEmptying:
+		MC_InputOutput.Network.Machine.Commands.MachineStart		:= TRUE;
+		MNM.DataOut.DesyncroRequest	:= TRUE;
+	
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF SFT.DataOut.MachineEmpty THEN
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiMachineStopping;
+		END_IF
+	
+	MNM_AutoCombiMachineStopping:
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_MachineStopRequest := FALSE;//V4.A.A.1.6.6
+			VAR_MNM_AutoCombiStep	:= MNM_AutoCombiInit;//V1.3
+		END_IF
+	
+	MNM_AutoCombiFault:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := NOT CFG_MC.Generic.DisengageImmediately;
+			
+		MNM.DataOut.StartLightFixRequest	:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+		MNM.DataOut.StartLightBlinkRequest	:= NOT MC_InputOutput.Network.Machine.Status.MachineRunning;
+
+		IF NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty) AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN//V1.61//v1.65
+			VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_AutoCombiStep := MNM_AutoCombiInit;//V1.3
+END_ACTION
+TRANSITION IdleMode FROM MNMAutoCombi TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened) OR (NOT OPS.DataOut.FlrModeSelectorAuto AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning) OR //V4.A.A.1.7.0
+NOT (	(CFG_Par.Machine.Combi.BLF 	AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+		(CFG_Par.Machine.Combi.BF 	AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR
+		(CFG_Par.Machine.Combi.BAF 	AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) OR //V4.A.A.1.7.0
+TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+TRANSITION JogMode FROM MNMIdle TO MNMJogEntry:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized	AND
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+MC_InputOutput.Network.Machine.Status.EnableJog					AND
+OPS.DataOut.BlowerTrasferGateOpened	AND
+OPS.DataOut.ActisTrasferGateOpened	AND//V4.A.A.1.7.0
+OPS.DataOut.FlrModeSelectorJog	AND
+NOT (	(CFG_Par.Machine.Combi.BLF	 AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+		(CFG_Par.Machine.Combi.BF	 AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR 
+		(CFG_Par.Machine.Combi.BAF	 AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command))AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMJogEntry' *)
+STEP MNMJogEntry:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.JogMachineModalityRequest		:= TRUE;
+TMR_TON_TimeoutModality(IN := TRUE, PT := t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION JogModeActive FROM MNMJogEntry TO MNMJog:=
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Status.JogModalityActive OR TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMJog' *)
+STEP MNMJog:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.JogMachineModalityRequest		:= TRUE;
+
+IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop THEN
+	VAR_MNM_JogStep := MNM_JogFault;
+ELSIF NOT (NOT MC_InputOutput.Network.Machine.Status.NoModalityActive AND MC_InputOutput.Network.Machine.Status.JogModalityActive) THEN
+	VAR_MNM_JogStep := MNM_JogWaitStart;
+ELSIF EDGENEG(OPS.DataOut.JogStartPb)  THEN
+	VAR_MNM_JogStep := MNM_JogWaitStart;
+END_IF
+
+TMR_TON_StartingHornElapsed.IN	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.JogPushButton				:= FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+
+CASE VAR_MNM_JogStep OF
+	MNM_JogWaitStart:
+		IF OPS.DataOut.JogStartPb AND NOT CSR.DataOut.MachineStop THEN (*Master nuovo*)
+			VAR_MNM_JogStep := MNM_JogHornBlow;
+		END_IF
+	
+	MNM_JogHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+	
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_JogStep := MNM_JogMachineStart;
+		END_IF
+	
+	MNM_JogMachineStart:
+		MC_InputOutput.Network.Machine.Commands.JogPushButton := TRUE;
+	
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogStep := MNM_JogMachineRunning;
+		END_IF
+	
+	MNM_JogMachineRunning:
+		MC_InputOutput.Network.Machine.Commands.JogPushButton := TRUE;
+	
+	MNM_JogMachineStopping:
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogStep := MNM_JogWaitStart;
+		END_IF
+	
+	MNM_JogFault:
+		IF NOT VAR_MNM_NormalStop AND NOT VAR_MNM_QuickStop THEN
+			VAR_MNM_JogStep := MNM_JogWaitStart;
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_JogStep := MNM_JogWaitStart;
+END_ACTION
+TRANSITION IdleMode FROM MNMJog TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened) OR (NOT OPS.DataOut.FlrModeSelectorJog AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning) OR //V4.A.A.1.7.0
+((CFG_Par.Machine.Combi.BLF AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+(CFG_Par.Machine.Combi.BF AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR
+(CFG_Par.Machine.Combi.BAF AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) OR//V4.A.A.1.7.0
+TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+TRANSITION JogCombiMode FROM MNMIdle TO MNMJogCombiEntry:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized	AND
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+MC_InputOutput.Network.Machine.Status.EnableCombi				AND
+OPS.DataOut.BlowerTrasferGateOpened	AND
+OPS.DataOut.ActisTrasferGateOpened	AND//V4.A.A.1.7.0
+OPS.DataOut.FlrModeSelectorJog	AND
+((CFG_Par.Machine.Combi.BLF AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command))AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException//V4.A.A.1.7.0
+
+// OR 
+//(CFG_Par.Machine.Combi.BAF AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command))//V4.A.A.1.7.0 Da agiungere in caso di possibilità di Jog con Actis (T Total)
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMJogCombiEntry' *)
+STEP MNMJogCombiEntry:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest := TRUE;
+TMR_TON_TimeoutModality(IN := TRUE, PT := t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION JogCombiModeActive FROM MNMJogCombiEntry TO MNMJogCombi:=
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive OR TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMJogCombi' *)
+STEP MNMJogCombi:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest		:= TRUE;
+
+IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop THEN
+	VAR_MNM_JogCombiStep := MNM_JogCombiFault;
+ELSIF NOT (NOT MC_InputOutput.Network.Machine.Status.NoModalityActive AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive) THEN
+	VAR_MNM_JogCombiStep := MNM_JogCombiWaitStart;
+END_IF
+
+TMR_TON_StartingHornElapsed.IN	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.MachineStart := FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+
+CASE VAR_MNM_JogCombiStep OF
+	MNM_JogCombiWaitStart:
+		IF LbrFlr.CmdStart AND MC_InputOutput.Network.Machine.Status.EnableStart THEN
+			VAR_MNM_JogCombiStep := MNM_JogCombiSyncroStart;
+		END_IF
+	
+	MNM_JogCombiSyncroStart:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		IF MC_InputOutput.Network.Machine.Status.CombiSynchronized THEN
+			VAR_MNM_JogCombiStep	:= MNM_JogCombiMachineReadyToRun;
+		END_IF
+	
+	MNM_JogCombiMachineReadyToRun:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogCombiStep	:= MNM_JogCombiMachineStart;
+		END_IF
+	
+	MNM_JogCombiMachineStart:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogCombiStep := MNM_JogCombiMachineRunning;
+		END_IF
+	
+	MNM_JogCombiMachineRunning:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+	
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogCombiStep := MNM_JogCombiMachineReadyToRun;
+		END_IF
+	
+	MNM_JogCombiMachineStopping:
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_JogCombiStep := MNM_JogCombiWaitStart;
+		END_IF
+	
+	MNM_JogCombiFault:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+		IF NOT VAR_MNM_NormalStop AND VAR_MNM_QuickStop THEN
+			VAR_MNM_JogCombiStep := MNM_JogCombiWaitStart;
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_JogCombiStep := MNM_JogCombiWaitStart;
+END_ACTION
+TRANSITION IdleMode FROM MNMJogCombi TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened) OR (NOT OPS.DataOut.FlrModeSelectorJog AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning) OR NOT OPS.DataOut.ActisTrasferGateOpened OR//V4.A.A.1.7.0
+NOT ((CFG_Par.Machine.Combi.BLF AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) AND (CFG_Par.Machine.Combi.BAF AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) OR//V4.A.A.1.7.0
+TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+TRANSITION MultiMode FROM MNMIdle TO MNMMultiEntry:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized	AND
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+NOT OPS.DataOut.FlrModeSelectorAdjustment	AND
+MC_InputOutput.Network.Machine.Status.EnableMulti	AND
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened)AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMMultiEntry' *)
+STEP MNMMultiEntry:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.MultiModalityRequest	:= TRUE;
+TMR_TON_TimeoutModality(IN := TRUE, PT := t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION MultiModeActive FROM MNMMultiEntry TO MNMMulti:=
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Status.MultiModalityActive OR TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMMulti' *)
+STEP MNMMulti:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.MultiModalityRequest	:= TRUE;
+
+(* FILLER MULTI *)
+IF EDGE(OPS.DataOut.FlrModeSelectorAuto) THEN
+	VAR_MNM_FlrMultiStep := MNM_MultiModeSelection;
+ELSIF VAR_MNM_FlrMultiStep >= MNM_MultiAutoWaitStart AND VAR_MNM_FlrMultiStep <= MNM_MultiAutoMachineStopping THEN
+	IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty THEN
+		VAR_MNM_FlrMultiStep := MNM_MultiFault;
+	ELSIF NOT VAR_MNM_MachineStop OR VAR_MNM_FlrAutoStopRequest THEN
+		VAR_MNM_FlrMultiStep := MNM_MultiAutoMachineStopping;
+	END_IF
+ELSIF VAR_MNM_FlrMultiStep >= MNM_MultiJogWaitStart AND VAR_MNM_FlrMultiStep <= MNM_MultiJogMachineStopping THEN
+	IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop THEN
+		VAR_MNM_FlrMultiStep := MNM_MultiFault;
+	ELSIF EDGENEG(OPS.DataOut.JogStartPb)  THEN
+		VAR_MNM_FlrMultiStep := MNM_MultiJogMachineStopping;
+	END_IF
+END_IF		
+		
+TMR_TON_StartingHornElapsed.IN	:= FALSE;
+MC_InputOutput.Network.Filler.Commands.AutoFillerModule				:= FALSE;
+MC_InputOutput.Network.Filler.Commands.StartFillerModule			:= FALSE;
+MC_InputOutput.Network.Filler.Commands.JogFillerModule				:= FALSE;
+MC_InputOutput.Network.Filler.Commands.JogPushButtonFillerModule	:= FALSE;
+VAR_MNM_HornFlrRequest					:= FALSE;
+MNM.DataOut.StartLightFixRequest		:= FALSE;
+MNM.DataOut.StartLightBlinkRequest		:= FALSE;
+
+CASE VAR_MNM_FlrMultiStep OF
+	MNM_MultiModeSelection:
+		IF OPS.DataOut.FlrModeSelectorAuto AND MC_InputOutput.Network.Filler.Status.EnableAutoModality THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		ELSIF OPS.DataOut.FlrModeSelectorJog AND MC_InputOutput.Network.Filler.Status.EnableJogModality THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiJogWaitStart;			
+		END_IF
+	
+	MNM_MultiAutoWaitStart:
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule := TRUE;
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+		
+		IF ((VAR_MNM_MachineStart OR VAR_MNM_FlrAutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Filler.Status.EnableAutoModality) THEN
+			VAR_MNM_FlrMultiStep	:= MNM_MultiAutoHornBlow;
+		ELSIF VAR_MNM_AutoVortexCalibActive THEN
+			VAR_MNM_FlrMultiStep	:= MNM_MultiVortexCalibIdle;
+		ELSIF FmcFlr.VortexCalibrActive THEN
+			VAR_MNM_FlrMultiStep 	:= MNM_MultiVortexCalibHornBlow;
+		ELSIF HMI_MNM_PB[PB_MNM_AxisStepByStep].ON THEN
+			VAR_MNM_FlrMultiStep 	:= MNM_MultiStepHornBlow;
+		ELSIF CSR.DataOut.CapPositioningReq THEN//V4.A.A.1.7.0//vrma
+			VAR_MNM_FlrMultiStep	:= MNM_MultiCapperPosHornBlow;
+		END_IF
+	
+	MNM_MultiAutoHornBlow:
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule	:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		TMR_TON_StartingHornElapsed.IN		:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF NOT ((VAR_MNM_MachineStart OR VAR_MNM_FlrAutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Filler.Status.EnableAutoModality) THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoMachineStart;
+		END_IF
+		
+	MNM_MultiAutoMachineStart:
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule		:= TRUE;
+		MC_InputOutput.Network.Filler.Commands.StartFillerModule	:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+			
+		IF MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoMachineRunning;
+		END_IF
+	
+	MNM_MultiAutoMachineRunning:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule		:= TRUE;
+		MC_InputOutput.Network.Filler.Commands.StartFillerModule	:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+	
+	MNM_MultiAutoMachineStopping:
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule		:= TRUE;
+		
+		IF NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+	
+	MNM_MultiVortexCalibHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiVortexCalibPosStart;
+		END_IF
+	
+	MNM_MultiVortexCalibPosStart:
+		MC_InputOutput.Network.Filler.Parameters.StepNumber	:= 1;
+		MC_InputOutput.Network.Filler.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Filler.Status.StepByStepModalityActive THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiVortexCalibPosWaitStop;
+		END_IF
+	
+	MNM_MultiVortexCalibPosWaitStop:
+		IF NOT MC_InputOutput.Network.Filler.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiVortexCalibIdle;
+			VAR_MNM_AutoVortexCalibActive := TRUE;
+		END_IF
+	
+	MNM_MultiVortexCalibIdle:
+		IF EDGEPOS(FmcFlr.FillerOneStepReq) THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiStepFmcHornBlow;
+		END_IF
+	
+		IF NOT FmcFlr.VortexCalibrActive THEN
+			VAR_MNM_AutoVortexCalibActive := FALSE;
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+	
+	MNM_MultiStepFmcHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			FlrFmc.FillerOneStepReceived	:= FmcFlr.FillerOneStepReq;
+			VAR_MNM_FlrMultiStep := MNM_MultiStepFmcStart;
+		END_IF
+	
+	MNM_MultiStepFmcStart:
+		MC_InputOutput.Network.Filler.Parameters.StepNumber	:= 1;
+		MC_InputOutput.Network.Filler.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Filler.Status.StepByStepModalityActive THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiStepFmcWaitStop;
+		END_IF
+	
+	MNM_MultiStepFmcWaitStop:
+		IF NOT MC_InputOutput.Network.Filler.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiVortexCalibIdle;
+		END_IF
+	
+	MNM_MultiStepHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiStepStart;
+		END_IF
+	
+	MNM_MultiStepStart:
+		MC_InputOutput.Network.Filler.Parameters.StepNumber	:= HMI_MNM_AxisStepByStepOffset;
+		MC_InputOutput.Network.Filler.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Filler.Status.StepByStepModalityActive THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiStepWaitStop;
+		END_IF
+	
+	MNM_MultiStepWaitStop:
+		IF NOT MC_InputOutput.Network.Filler.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+	
+	MNM_MultiFootboardHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiFootboardStart;
+		END_IF
+		
+	MNM_MultiFootboardStart:
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) < HMI_PAC_1._130 THEN
+			MC_InputOutput.Network.Filler.Parameters.StepNumber		:= HMI_PAC_1._130 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0));
+		ELSE
+			MC_InputOutput.Network.Filler.Parameters.StepNumber	:= HMI_PAC_1._100 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) + HMI_PAC_1._130;
+		END_IF
+		
+		MC_InputOutput.Network.Filler.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Filler.Status.StepByStepModalityActive THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiFootboardWaitStop;
+		END_IF
+	
+	MNM_MultiFootboardWaitStop:
+		IF NOT MC_InputOutput.Network.Filler.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+	
+	MNM_MultiCapperPosHornBlow:
+	
+	MNM_MultiCapperPosStart:
+		
+	MNM_MultiCapperPosWaitStop:
+	
+	MNM_MultiCapperFinePosStart:
+		
+	MNM_MultiCapperFinePosWaitStop:
+		
+	MNM_MultiJogWaitStart:
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule	:= TRUE;
+		IF OPS.DataOut.JogStartPb THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiJogHornBlow;
+		END_IF
+	
+	MNM_MultiJogHornBlow:
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule	:= TRUE;
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+	
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiJogMachineStart;
+		END_IF
+	
+	MNM_MultiJogMachineStart:
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule	:= TRUE;
+		MC_InputOutput.Network.Filler.Commands.JogPushButtonFillerModule := TRUE;
+	
+		IF MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiJogMachineRunning;
+		END_IF
+	
+	MNM_MultiJogMachineRunning:
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule	:= TRUE;
+		MC_InputOutput.Network.Filler.Commands.JogPushButtonFillerModule:= TRUE;
+	
+	MNM_MultiJogMachineStopping:
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule	:= TRUE;
+		IF NOT MC_InputOutput.Network.Filler.Status.ModuleRunning THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiJogWaitStart;
+		END_IF
+	
+	MNM_MultiFault:
+		MC_InputOutput.Network.Filler.Commands.AutoFillerModule		:= OPS.DataOut.FlrModeSelectorAuto AND MC_InputOutput.Network.Filler.Status.EnableAutoModality;//V4.A.A.1.6.12d
+		MC_InputOutput.Network.Filler.Commands.JogFillerModule		:= OPS.DataOut.FlrModeSelectorJog AND MC_InputOutput.Network.Filler.Status.EnableJogModality;//V4.A.A.1.6.12d
+		
+		IF NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN
+			VAR_MNM_FlrMultiStep := MNM_MultiAutoWaitStart;//V4.A.A.1.6.12d
+		ELSIF MC_InputOutput.Network.Filler.Status.ModuleJogActive THEN
+			IF NOT VAR_MNM_NormalStop AND NOT VAR_MNM_QuickStop THEN
+				VAR_MNM_FlrMultiStep := MNM_MultiJogWaitStart;
+			END_IF
+		END_IF
+END_CASE
+
+(* DOSER MULTI *)
+IF EDGE(OPS.DataOut.FlrModeSelectorAuto) THEN
+	VAR_MNM_FlrMultiStep := MNM_MultiModeSelection;
+ELSIF VAR_MNM_DosMultiStep >= MNM_MultiAutoWaitStart AND VAR_MNM_DosMultiStep <= MNM_MultiAutoMachineStopping THEN
+	IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty THEN
+		VAR_MNM_DosMultiStep := MNM_MultiFault;
+	ELSIF NOT VAR_MNM_MachineStop OR VAR_MNM_FlrAutoStopRequest THEN
+		VAR_MNM_DosMultiStep := MNM_MultiAutoMachineStopping;
+	END_IF
+END_IF		
+		
+TMR_TON_StartingHornElapsed.IN									:= FALSE;
+MC_InputOutput.Network.Doser.Commands.AutoDoserModule			:= FALSE;
+MC_InputOutput.Network.Doser.Commands.StartDoserModule			:= FALSE;
+MC_InputOutput.Network.Doser.Commands.JogDoserModule			:= FALSE;
+MC_InputOutput.Network.Doser.Commands.JogPushButtonDoserModule	:= FALSE;
+VAR_MNM_HornFlrRequest					:= FALSE;
+MNM.DataOut.StartLightFixRequest		:= FALSE;
+MNM.DataOut.StartLightBlinkRequest		:= FALSE;
+
+CASE VAR_MNM_DosMultiStep OF
+	MNM_MultiModeSelection:
+		IF OPS.DataOut.FlrModeSelectorAuto AND MC_InputOutput.Network.Doser.Status.EnableAutoModality THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoWaitStart;	
+		END_IF
+	
+	MNM_MultiAutoWaitStart:
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule := TRUE;
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+		
+		IF ((VAR_MNM_MachineStart OR VAR_MNM_FlrAutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Doser.Status.EnableAutoModality) THEN
+			VAR_MNM_DosMultiStep	:= MNM_MultiAutoHornBlow;
+		ELSIF HMI_MNM_PB[PB_MNM_AxisStepByStep].ON THEN
+			VAR_MNM_DosMultiStep 	:= MNM_MultiStepHornBlow;
+		END_IF
+	
+	MNM_MultiAutoHornBlow:
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule	:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		TMR_TON_StartingHornElapsed.IN		:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF NOT ((VAR_MNM_MachineStart OR VAR_MNM_FlrAutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Doser.Status.EnableAutoModality) THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoMachineStart;
+		END_IF
+		
+	MNM_MultiAutoMachineStart:
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule		:= TRUE;
+		MC_InputOutput.Network.Doser.Commands.StartDoserModule	:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+			
+		IF MC_InputOutput.Network.Doser.Status.ModuleRunning THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoMachineRunning;
+		END_IF
+	
+	MNM_MultiAutoMachineRunning:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule		:= TRUE;
+		MC_InputOutput.Network.Doser.Commands.StartDoserModule		:= TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+	
+	MNM_MultiAutoMachineStopping:
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule		:= TRUE;
+		
+		IF NOT MC_InputOutput.Network.Doser.Status.ModuleRunning THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+		
+	MNM_MultiStepHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_DosMultiStep := MNM_MultiStepStart;
+		END_IF
+	
+	MNM_MultiStepStart:
+		MC_InputOutput.Network.Doser.Parameters.StepNumber	:= HMI_MNM_AxisStepByStepOffset;
+		MC_InputOutput.Network.Doser.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Doser.Status.StepByStepModalityActive THEN
+			VAR_MNM_DosMultiStep := MNM_MultiStepWaitStop;
+		END_IF
+	
+	MNM_MultiStepWaitStop:
+		IF NOT MC_InputOutput.Network.Doser.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Doser.Status.ModuleRunning THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoWaitStart;
+		END_IF
+				
+	MNM_MultiFault:
+		MC_InputOutput.Network.Doser.Commands.AutoDoserModule		:= OPS.DataOut.FlrModeSelectorAuto AND MC_InputOutput.Network.Doser.Status.EnableAutoModality;//V4.A.A.1.6.12d
+		
+		IF NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN
+			VAR_MNM_DosMultiStep := MNM_MultiAutoWaitStart;//V4.A.A.1.6.12d
+		ELSIF MC_InputOutput.Network.Doser.Status.ModuleJogActive THEN
+			IF NOT VAR_MNM_NormalStop AND NOT VAR_MNM_QuickStop THEN
+				VAR_MNM_DosMultiStep := MNM_MultiJogWaitStart;
+			END_IF
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+
+
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_FlrMultiStep		:= MNM_MultiModeSelection;
+VAR_MNM_FlrInletMultiStep	:= MNM_MultiModeSelection;
+END_ACTION
+TRANSITION IdleMode FROM MNMMulti TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+(OPS.DataOut.BlowerTrasferGateOpened AND (CFG_Par.Machine.Combi.BF OR CFG_Par.Machine.Combi.BFL))OR//V4.A.A.1.7.0
+(OPS.DataOut.ActisTrasferGateOpened AND CFG_Par.Machine.Combi.BAF) OR//V4.A.A.1.7.0
+(OPS.DataOut.LabellerTrasferGateOpened AND CFG_Par.Machine.Combi.BLF)OR//V4.A.A.1.7.0
+OPS.DataOut.FlrModeSelectorAdjustment OR TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+TRANSITION AdjustmentMode FROM MNMIdle TO MNMAdjustment:=
+(* @LANGUAGE := 'st' *)
+NOT MC_InputOutput.Network.Machine.Status.ModuleNotInitialized AND//v1.7.2a
+NOT MC_InputOutput.Network.Filler.Status.ModuleNotInitialized	AND
+(NOT MC_InputOutput.Network.Inlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Inlet.Status.ModuleReal)	AND
+(NOT MC_InputOutput.Network.Outlet.Status.ModuleNotInitialized	OR MC_InputOutput.Network.Outlet.Status.ModuleReal)	AND
+OPS.DataOut.FlrModeSelectorAdjustment AND //V4.A.A.1.7.0
+NOT MC_InputOutput.Network.Machine.Exceptions.DcBusLowMachineException//V4.A.A.1.7.0
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAdjustment' *)
+STEP MNMAdjustment:
+(* @LANGUAGE := 'st' *)
+IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty THEN//V4.A.A.1.7.0
+	VAR_MNM_AdjustmentStep := MNM_AdjFault;//V4.A.A.1.7.0
+END_IF//V4.A.A.1.7.0
+IF EDGEPOS(HMI_MNM_PB[PB_MNM_AxisPositioning].ON) THEN
+	MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest	:=  TRUE;
+ELSIF MC_InputOutput.Network.Machine.Status.PositioningModalityActive OR NOT HMI_MNM_PB[PB_MNM_AxisPositioning].ON THEN
+	MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest	:=  FALSE;
+END_IF
+	
+IF EDGENEG(MC_InputOutput.Network.Machine.Status.PositioningModalityActive) THEN
+	HMI_MNM_AxisPositionOffset	:= 0.0;
+END_IF
+	
+IF EDGEPOS(HMI_MNM_PB[PB_MNM_AxisHoming].ON) THEN
+	MC_InputOutput.Network.Machine.Commands.SelectiveHomeModalityRequest	:= TRUE;
+ELSIF MC_InputOutput.Network.Machine.Status.SelectiveHomeModalityActive OR NOT HMI_MNM_PB[PB_MNM_AxisHoming].ON THEN
+	MC_InputOutput.Network.Machine.Commands.SelectiveHomeModalityRequest	:= FALSE;
+END_IF
+
+MC_InputOutput.Network.Machine.Commands.BrakeReleaseModalityRequest	:= HMI_MNM_PB[PB_MNM_BrakeRelease].ON;
+
+MC_InputOutput.Network.Machine.Commands.VelocityModalityRequest		:= HMI_MNM_PB[PB_MNM_VelocityTest].ON;
+MC_InputOutput.Network.Machine.Parameters.ManualVelocity			:= REAL_TO_UINT(HMI_MNM_ConveyorSpeed / 10.0);
+
+
+TMR_TON_StartingHornElapsed.IN	:= FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+MNM.DataOut.StartLightFixRequest	:= FALSE;
+MNM.DataOut.StartLightBlinkRequest	:= FALSE;
+
+//V4.A.A.1.7.0
+CASE VAR_MNM_AdjustmentStep OF
+	MNM_AdjWaitStart://V4.A.A.1.7.0
+		VAR_MNM_AdjAxisPositionOffset := 0.0;
+		
+		MNM.DataOut.StartLightBlinkRequest	:= TRUE;
+		
+		IF HMI_MNM_PB[PB_MNM_FootboardPosition].ON THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjFillerFootbarSettingPos;
+		ELSIF  HMI_MNM_PB[PB_MNM_RinserFootboardPosition].ON THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjRinserFootbarSettingPos;
+		ELSIF CAP.DataOut.GreasingPositioningReq  THEN//V4.A.A.1.7.0
+			VAR_MNM_AdjustmentStep := MNM_AdjCapGreasingSettingPos;
+		ELSIF CSR.DataOut.CrwPositioningReq THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjCrownerSettingPos;
+		ELSIF CSR.DataOut.CapPositioningReq THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjCapperSettingPos;
+		END_IF
+	//Filler Footbar//V4.A.A.1.7.0
+	MNM_AdjFillerFootbarSettingPos:
+		
+		VAR_MNM_AdjAxisFillerFootBar := TRUE; //V4.A.A.1.7.0
+		
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Filler + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := 0.0;
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) < HMI_PAC_1._130 THEN
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._130 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0));
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._100 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) + HMI_PAC_1._130;
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	//Rinser Footbar//V4.A.A.1.7.0
+	MNM_AdjRinserFootbarSettingPos:
+	
+		VAR_MNM_AdjAxisRinserFootBar	:= TRUE;//V4.A.A.1.7.0
+		
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Rinser + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := 0.0;
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.RinserAbsolutePosition / 360.0) < HMI_PAC_1._220 THEN
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._220 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.RinserAbsolutePosition / 360.0));
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._200- (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.RinserAbsolutePosition / 360.0)) + HMI_PAC_1._220;
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	//Doser Pos//V4.A.A.1.7.0
+	MNM_AdjDoserFootbarSettingPos:
+	
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Doser + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := 0.0;
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) < HMI_PAC_1._130 THEN//
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._130 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0));
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._500- (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) + HMI_PAC_1._130;
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	//Capper pos For lifting//V4.A.A.1.7.0
+	MNM_AdjCapperSettingPos:
+	
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Capper + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := HMI_PAM_3._540;
+		
+		MC_InputOutput.Network.Filler.Parameters.CapperAbsolutePositionOffset	:= HMI_PAC_1._134;//V4.A.A.1.7.0
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0) < HMI_PAC_1._134 THEN
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._134 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0));//Fra
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._400 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0)) + HMI_PAC_1._134;//Fra
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	
+	//Crowner  Pos For Lifting//V4.A.A.1.7.0
+	MNM_AdjCrownerSettingPos:
+	
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Crowner + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := HMI_PAM_3._410;
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CrownerAbsolutePosition / 360.0) < HMI_PAC_1._133 THEN
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._133 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CrownerAbsolutePosition / 360.0));//Fra
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._300 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CrownerAbsolutePosition / 360.0)) + HMI_PAC_1._133;//Fra
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	//Capper Greasing Pos//V4.A.A.1.7.0
+	MNM_AdjCapGreasingSettingPos:
+	
+		HMI_MNM_AxisSelected := CFG_MC.Mechanical.ReferenceId.Capper + CST_FillerSubModuleHmiStart;
+		VAR_MNM_AdjAxisPositionOffset := HMI_PAM_3._528;
+		
+		MC_InputOutput.Network.Filler.Parameters.CapperAbsolutePositionOffset	:= HMI_PAC_1._131;//V4.A.A.1.7.0
+		
+		IF LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0) < HMI_PAC_1._130 THEN
+			MC_InputOutput.Network.Machine.Parameters.StepNumber		:= HMI_PAC_1._131 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0));//Fra
+		ELSE
+			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._400 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.CapperAbsolutePosition / 360.0)) + HMI_PAC_1._131;//FRa
+		END_IF
+		
+		VAR_MNM_AdjustmentStep := MNM_AdjHornBlow;
+	
+	MNM_AdjHornBlow:
+		
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjAxisStart;
+		END_IF
+	
+	MNM_AdjAxisStart:
+		
+		MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq := TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjAxisWaitStop;
+		END_IF
+	
+	
+	MNM_AdjAxisWaitStop:
+		
+		VAR_MNM_AdjAxisFillerFootBar	:= FALSE; //V4.A.A.1.7.0
+		VAR_MNM_AdjAxisRinserFootBar	:= FALSE; //V4.A.A.1.7.0
+		
+		MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq := FALSE;
+
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			IF VAR_MNM_AdjAxisPositionOffset <> 0.0 THEN
+				VAR_MNM_AdjustmentStep := MNM_AdjAxisPosStart;
+			ELSE
+				VAR_MNM_AdjustmentStep := MNM_AdjAxisStopped;
+			END_IF
+		END_IF
+			
+	MNM_AdjAxisPosStart:
+		HMI_MNM_AxisPositionOffset := VAR_MNM_AdjAxisPositionOffset;
+		MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest := TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.PositioningModalityActive THEN
+			MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest	:= FALSE;
+			VAR_MNM_AdjustmentStep := MNM_AdjAxisPosWaitStop;
+		END_IF
+	
+	MNM_AdjAxisPosWaitStop:
+		MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest			:= FALSE;
+		IF NOT MC_InputOutput.Network.Machine.Status.PositioningModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			MNM.DataOut.SingleAxisInPosition	:= TRUE;
+			MNM.DataOut.CapperPositioningDone	:= TRUE;//v4.A.A.1.7.0
+			VAR_MNM_AdjustmentStep := MNM_AdjAxisStopped;
+		END_IF
+	
+	MNM_AdjAxisStopped:
+		
+		MNM.DataOut.SingleAxisInPosition	:= TRUE;
+		MNM.DataOut.CapperPositioningDone	:= TRUE;//v4.A.A.1.7.0
+		
+		IF NOT CAP.DataOut.GreasingPositioningReq AND NOT CSR.DataOut.CapPositioningReq AND NOT CSR.DataOut.CrwPositioningReq  THEN
+			MNM.DataOut.SingleAxisInPosition	:= FALSE;
+			MNM.DataOut.CapperPositioningDone	:= FALSE;//v4.A.A.1.7.0
+			VAR_MNM_AdjustmentStep := MNM_AdjWaitStart;
+		END_IF
+	
+	MNM_AdjFault:
+		MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest := FALSE;
+		MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq := FALSE;
+		
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND
+			NOT MC_InputOutput.Network.Machine.Status.PositioningModalityActive THEN
+			VAR_MNM_AdjustmentStep := MNM_AdjWaitStart;
+		END_IF
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_AdjAxisFillerFootBar		:= FALSE;//V1.7.2
+VAR_MNM_AdjAxisRinserFootBar		:= FALSE;//V1.7.2
+MNM.DataOut.SingleAxisInPosition	:= FALSE;//V1.7.2
+MNM.DataOut.CapperPositioningDone	:= FALSE;//V1.7.2
+END_ACTION
+TRANSITION IdleMode FROM MNMAdjustment TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT OPS.DataOut.FlrModeSelectorAdjustment
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+STEP MNMAutoEntry:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoModalityRequest	:= TRUE;
+TMR_TON_TimeoutModality(IN := TRUE, PT := t#2s);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION AutoModeActive FROM MNMAutoEntry TO MNMAuto:=
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Status.AutoModalityActive OR TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCNOJUMP := 'MNMAuto' *)
+STEP MNMAuto:
+(* @LANGUAGE := 'st' *)
+MC_InputOutput.Network.Machine.Commands.AutoModalityRequest	:= TRUE;
+
+IF VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty THEN
+	VAR_MNM_AutoStep := MNM_AutoFault;
+ELSIF NOT (NOT MC_InputOutput.Network.Machine.Status.NoModalityActive AND (MC_InputOutput.Network.Machine.Status.AutoModalityActive OR
+	MC_InputOutput.Network.Machine.Status.StepByStepModalityActive )) AND NOT FmcFlr.VortexCalibrActive THEN//V4.A.A.1.7.0
+	VAR_MNM_AutoStep := MNM_AutoWaitStart;
+ELSIF NOT VAR_MNM_MachineStop OR VAR_MNM_AutoStopRequest THEN
+	VAR_MNM_AutoStep := MNM_AutoMachineStopping;
+ELSIF NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND EDGEPOS(VAR_AutoStepCheck) THEN
+	VAR_MNM_AutoStep := MNM_AutoCheckFillerInletHorn;
+END_IF
+
+TMR_TON_StartingHornElapsed.IN	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.MachineStart				:= FALSE;
+MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= FALSE;
+MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest	:= FALSE;
+VAR_MNM_HornFlrRequest	:= FALSE;
+MNM.DataOut.StartLightFixRequest	:= FALSE;
+MNM.DataOut.StartLightBlinkRequest	:= FALSE;
+MNM.DataOut.FillingValvePositioningDone	:= FALSE;//V4.A.A.1.7.0 -> taked from RMA
+
+CASE VAR_MNM_AutoStep OF
+	MNM_AutoWaitStart:
+		IF (VAR_MNM_MachineStart OR VAR_MNM_AutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Machine.Status.EnableStart THEN
+			VAR_MNM_AutoStep := MNM_AutoHornBlow;
+		END_IF
+		MNM.DataOut.StartLightBlinkRequest	:= NOT FmcFlr.FillingManualTestActive;(*Master nuovo*)
+		
+		IF IO_PB_FmcStep.ON AND FmcFlr.FillingManualTestActive THEN
+			HMI_MNM_AxisStepByStepOffset	:= 1;
+			VAR_MNM_AutoStep := MNM_AutoStepHornBlow;
+		ELSIF VAR_MNM_AutoVortexCalibActive THEN
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibIdle;
+		ELSIF FmcFlr.VortexCalibrActive THEN
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibHornBlow;
+		ELSIF HMI_MNM_PB[PB_MNM_AxisStepByStep].ON THEN
+			VAR_MNM_AutoStep := MNM_AutoStepHornBlow;
+		ELSIF SFT.DataOut.FillingValvePositionReq THEN
+			VAR_MNM_AutoStep := MNM_AutoFillingValvePosHornBlow;
+		END_IF
+	
+	MNM_AutoHornBlow:	
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		TMR_TON_StartingHornElapsed.IN		:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF NOT ((VAR_MNM_MachineStart OR VAR_MNM_AutoStartRequest) AND VAR_MNM_MachineStop AND MC_InputOutput.Network.Machine.Status.EnableStart) THEN
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineStart;
+		END_IF
+		
+	MNM_AutoMachineStart:
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning AND MC_InputOutput.Network.Machine.Status.MachineSynchro THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
+		END_IF
+	
+	MNM_AutoMachineRunningEmpty:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning AND NOT SFT.DataOut.MachineEmpty THEN
+			VAR_MNM_AutoStep	:= MNM_AutoMachineRunningFull;
+		END_IF
+	
+		IF FmcFlr.VortexCalibrActive THEN //V 1.2
+			VAR_MNM_AutoStep := MNM_AutoMachineStopping;
+		END_IF	
+	
+	MNM_AutoMachineRunningFull:	//Wait stop PB or Fault
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+		MNM.DataOut.StartLightFixRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.MachineRunning AND SFT.DataOut.MachineEmpty THEN
+			VAR_MNM_AutoStep	:= MNM_AutoMachineRunningEmpty;
+		END_IF
+	
+	MNM_AutoMachineStopping:
+		IF NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+	
+	MNM_AutoVortexCalibHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibPosStart;
+		END_IF
+	
+	MNM_AutoVortexCalibPosStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= 1;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibPosWaitStop;
+		END_IF
+	
+	MNM_AutoVortexCalibPosWaitStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoVortexCalibActive := TRUE; // V1.2
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibIdle;
+		END_IF
+	
+	MNM_AutoVortexCalibIdle:
+		IF EDGEPOS(FmcFlr.FillerOneStepReq) THEN
+			VAR_MNM_AutoStep := MNM_AutoStepFmcHornBlow;
+		END_IF
+	
+		IF NOT FmcFlr.VortexCalibrActive THEN
+			VAR_MNM_AutoVortexCalibActive := FALSE;
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+			
+	MNM_AutoStepFmcHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			FlrFmc.FillerOneStepReceived	:= FmcFlr.FillerOneStepReq;
+			VAR_MNM_AutoStep := MNM_AutoStepFmcStart;
+		END_IF
+	
+	MNM_AutoStepFmcStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= 1;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoStepFmcWaitStop;
+		END_IF
+	
+	MNM_AutoStepFmcWaitStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoStep := MNM_AutoVortexCalibIdle;
+		END_IF
+			
+	MNM_AutoStepHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoStepStart;
+		END_IF
+	
+	MNM_AutoStepStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_MNM_AxisStepByStepOffset;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoStepWaitStop;
+		END_IF
+	
+	MNM_AutoStepWaitStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+	
+	MNM_AutoFillingValvePosHornBlow:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoFillingValvePosStart;
+		END_IF
+		
+	MNM_AutoFillingValvePosStart:
+//		IF (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) + HMI_PAC_1._132) <= SFT.DataOut.FillingValvePosValue THEN//V4.A.A.1.7.0 -> taked from RMA
+//			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= SFT.DataOut.FillingValvePosValue - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) + HMI_PAC_1._132);//V4.A.A.1.7.0 -> taked from RMA
+//		ELSE//V4.A.A.1.7.0 -> taked from RMA
+//			MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._100 - (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) + HMI_PAC_1._132 + SFT.DataOut.FillingValvePosValue;//V4.A.A.1.7.0 -> taked from RMA
+//		END_IF//V4.A.A.1.7.0 -> taked from RMA
+		IF (HMI_PAC_1._132 + (HMI_PAC_1._100 - ((LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) - SFT.DataOut.FillingValvePosValue)) > HMI_PAC_1._100) THEN//V4.A.A.1.7.0 -> taked from RMA
+			MC_InputOutput.Network.Machine.Parameters.StepNumber := HMI_PAC_1._132 + (HMI_PAC_1._100 - ((LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) - SFT.DataOut.FillingValvePosValue)) - HMI_PAC_1._100;//V4.A.A.1.7.0 -> taked from RMA
+		ELSE//V4.A.A.1.7.0
+			MC_InputOutput.Network.Machine.Parameters.StepNumber := HMI_PAC_1._132 + (HMI_PAC_1._100 - ((LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0)) - SFT.DataOut.FillingValvePosValue));//V4.A.A.1.7.0 -> taked from RMA
+		END_IF
+		IF MC_InputOutput.Network.Machine.Parameters.StepNumber > 0 THEN
+			MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		ELSE
+			VAR_MNM_AutoStep := MNM_AutoFillingValvePosWaitStop;
+		END_IF
+			
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoFillingValvePosWaitStop;
+		END_IF
+		
+	MNM_AutoFillingValvePosWaitStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning THEN
+			MNM.DataOut.FillingValvePositioningDone	:= TRUE;//V4.A.A.1.7.0 -> taked from RMA
+			IF NOT SFT.DataOut.FillingValvePositionReq THEN
+				MNM.DataOut.FillingValvePositioningDone := FALSE;//V4.A.A.1.7.0 -> taked from RMA
+				VAR_MNM_AutoStep := MNM_AutoWaitStart;
+			END_IF
+		END_IF 
+		
+	MNM_AutoFault:
+		IF NOT (VAR_MNM_NormalStop OR VAR_MNM_QuickStop OR VAR_MNM_NormalStopWithJog OR VAR_MNM_QuickStopWithJog OR VAR_MNM_StopAfterEmpty OR VAR_MNM_StopIfNotEmpty) THEN
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+	
+	MNM_AutoCheckFillerInletHorn:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerInletStart;
+		END_IF
+		
+	MNM_AutoCheckFillerInletStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._001;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerInletStop;
+		END_IF
+		
+	MNM_AutoCheckFillerInletStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND
+			VAR_AutoStepCheckNext THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerTangencyHorn;
+		END_IF
+
+	MNM_AutoCheckFillerTangencyHorn:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerTangencyStart;
+		END_IF
+	
+	MNM_AutoCheckFillerTangencyStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= (HMI_PAC_1._150 - SFT.DataOut.RinserBypassedPointer) - HMI_PAC_1._001;//V4.A.A.1.7.0
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerTangencyStop;
+		END_IF
+			
+	MNM_AutoCheckFillerTangencyStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND
+			VAR_AutoStepCheckNext THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerOutletHorn;
+		END_IF
+	
+	MNM_AutoCheckFillerOutletHorn:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerOutletStart;
+		END_IF
+	
+	MNM_AutoCheckFillerOutletStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._006 - HMI_PAC_1._150;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckFillerOutletStop;
+		END_IF
+	
+	MNM_AutoCheckFillerOutletStop:	
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND
+			VAR_AutoStepCheckNext THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckCapsReleaseHorn;
+		END_IF
+	
+	MNM_AutoCheckCapsReleaseHorn:
+		TMR_TON_StartingHornElapsed.IN	:= TRUE;
+		VAR_MNM_HornFlrRequest	:= TRUE;
+		
+		IF TMR_TON_StartingHornElapsed.Q THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckCapsReleaseStart;
+		END_IF
+	
+	MNM_AutoCheckCapsReleaseStart:
+		MC_InputOutput.Network.Machine.Parameters.StepNumber	:= HMI_PAC_1._402 - HMI_PAC_1._006;
+		MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest	:= TRUE;
+		
+		IF MC_InputOutput.Network.Machine.Status.StepByStepModalityActive THEN
+			VAR_MNM_AutoStep := MNM_AutoCheckCapsReleaseStop;
+		END_IF
+	
+	MNM_AutoCheckCapsReleaseStop:
+		IF NOT MC_InputOutput.Network.Machine.Status.StepByStepModalityActive AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND
+			VAR_AutoStepCheckNext THEN
+			VAR_MNM_AutoStep := MNM_AutoWaitStart;
+		END_IF
+
+	
+END_CASE
+
+TMR_TON_StartingHornElapsed(PT:= t#2s);
+
+IF NOT FmcFlr.FillerOneStepReq THEN
+	FlrFmc.FillerOneStepReceived	:= FALSE;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+ENTRY_ACTION
+(* @LANGUAGE := 'st' *)
+VAR_MNM_AutoStep := MNM_AutoWaitStart;
+END_ACTION
+TRANSITION IdleMode FROM MNMAuto TO MNMIdle:=
+(* @LANGUAGE := 'st' *)
+NOT (OPS.DataOut.BlowerTrasferGateOpened AND OPS.DataOut.ActisTrasferGateOpened) OR (NOT OPS.DataOut.FlrModeSelectorAuto AND NOT MC_InputOutput.Network.Machine.Status.MachineRunning) OR//V4.A.A.1.7.0
+(	(CFG_Par.Machine.Combi.BLF 	AND HMI_CmdBar_PB[PB_FillerLabellerCoupling].Command) OR 
+	(CFG_Par.Machine.Combi.BF 	AND HMI_CmdBar_PB[PB_FillerBlowerCoupling].Command) OR
+	(CFG_Par.Machine.Combi.BAF	AND HMI_CmdBar_PB[PB_FillerActisCoupled].Command)) OR//V4.A.A.1.7.0
+TMR_TON_TimeoutModality.Q
+END_TRANSITION
+(* @SFCISJUMP := 'MNMIdle' *)
+STEP SpeedMng:
+(* @LANGUAGE := 'st' *)
+(*FIX SPEED FROM DMC*)
+VAR_FixSpeed[1].Module			:= 2;
+VAR_FixSpeed[1].Interruptible	:= FALSE;
+VAR_FixSpeed[1].Value			:= HMI_PAM_1._003;
+VAR_FixSpeed[1].Req				:= MAU_DumCon.DataOut.FixSpeedRequest;
+VAR_FixSpeed[1].CmpMode			:= CST_LT;
+(*FIX SPEED FROM PROCESS CPU*)
+VAR_FixSpeed[2].Module			:= 2;//V1.7.2
+VAR_FixSpeed[2].Interruptible	:= TRUE;//V1.7.2
+VAR_FixSpeed[2].Value			:= SEL(CFG_Par.Process.BlendFill, SkdFlr.FixSpeedSP, CrbFlr.FixSpeedSP);
+VAR_FixSpeed[2].Req				:= SEL(CFG_Par.Process.BlendFill, SkdFlr.FixSpeedRequest, CrbFlr.FixSpeedRequest);
+VAR_FixSpeed[2].CmpMode			:= CST_EQ;
+(*PROCESS REDUCE SPEED REQUEST*)
+VAR_FixSpeed[3].Module			:= 0;
+VAR_FixSpeed[3].Interruptible	:= NOT MNM.DataOut.ContBlockSpeedReached AND SFT.DataOut.ContBlockSpeedReq;
+VAR_FixSpeed[3].Value			:= MAX(2000.0,(DINT_TO_REAL(HMI_MNM_FlrSpeedWidget.AutoSpeedReq) * HMI_PAM_1._000) / 100.0);
+VAR_FixSpeed[3].Req				:= (ITC.DataOut.SlowDownReq OR SEL(CFG_Par.Process.BlendFill, SkdFlr.ReduceSpeedRequest, CrbFlr.ReduceSpeedRequest AND NOT CFG_Par.Machine.Combi.BLF)) AND NOT SFT.DataOut.MachineEmpty; //V1.61
+VAR_FixSpeed[3].CmpMode			:= CST_EQ;
+(*FIX SPEED FOR MCHINE EMPTY*)
+VAR_FixSpeed[4].Module			:= 0;//V1.7.2
+VAR_FixSpeed[4].Interruptible	:= TRUE;
+VAR_FixSpeed[4].Value			:= HMI_PAM_1._001;
+VAR_FixSpeed[4].Req				:= SFT.DataOut.MachineEmpty AND HMI_CFG_PAM_1._001 AND NOT SkdFlr.FixSpeedRequest; //vrma
+VAR_FixSpeed[4].CmpMode			:= CST_EQ;
+(*FIX SPEED FROM COP*)
+VAR_FixSpeed[5].Module			:= 2;
+VAR_FixSpeed[5].Interruptible	:= TRUE;//V1.7.2
+VAR_FixSpeed[5].Value			:= COP.DataOut.FixSpeedValue;
+VAR_FixSpeed[5].Req				:= COP.DataOut.FixSpeedRequest;
+VAR_FixSpeed[5].CmpMode			:= CST_EQ;
+(*FIX SPEED FOR CAPPER EMPTYING*)
+VAR_FixSpeed[6].Module			:= 2;//V1.7.2
+VAR_FixSpeed[6].Interruptible	:= FALSE;
+VAR_FixSpeed[6].Value			:= HMI_PAM_1._007; 
+VAR_FixSpeed[6].Req				:= CAP.DataOut.SlowSpeedForEmptyReq;
+VAR_FixSpeed[6].CmpMode			:= CST_EQ;
+(*FIX SPEED FROM RINSER*)
+VAR_FixSpeed[7].Module			:= 2;//V4.A.A.1.7.0
+VAR_FixSpeed[7].Interruptible	:= FALSE;//V4.A.A.1.7.0
+VAR_FixSpeed[7].Value			:= RNS.DataOut.FixSpeedValue;//V4.A.A.1.7.0
+VAR_FixSpeed[7].Req				:= RNS.DataOut.FixSpeedRequest;//V4.A.A.1.7.0
+VAR_FixSpeed[7].CmpMode			:= CST_EQ;//V4.A.A.1.7.0
+(*FIX SPEED FMC RECIPE DOWNLOAD REQ*)
+VAR_FixSpeed[8].Module			:= 0;
+VAR_FixSpeed[8].Interruptible	:= FALSE;
+VAR_FixSpeed[8].Value			:= 74000.0;
+VAR_FixSpeed[8].Req				:= (FmcFlr.FixSpeedRequestRecipeDownload OR FmcFlr.FixSpeedRequestChecking) AND NOT SFT.DataOut.MachineEmpty;
+VAR_FixSpeed[8].CmpMode			:= CST_EQ;
+(*FIX SPEED FROM CONTAINER BLOCK*)
+VAR_FixSpeed[9].Module			:= 0;
+VAR_FixSpeed[9].Interruptible	:= FALSE;
+VAR_FixSpeed[9].Value			:= SFT.DataOut.ContBlockSpeedValue;
+VAR_FixSpeed[9].Req				:= SFT.DataOut.ContBlockSpeedReq;
+VAR_FixSpeed[9].CmpMode			:= CST_LE;
+(*FIX SPEED FROM COP INLET*)
+VAR_FixSpeed[10].Module			:= 2;
+VAR_FixSpeed[10].Interruptible	:= FALSE;
+VAR_FixSpeed[10].Value			:= SFT.DataOut.COPInletContBlockSpeedValue;
+VAR_FixSpeed[10].Req			:= SFT.DataOut.COPInletContSlowSpeedReq;
+VAR_FixSpeed[10].CmpMode		:= CST_EQ;
+
+MNM_MachineSpeedManagemant;
+
+MNM.DataOut.DmcSpeedReqReached				:= VAR_FixSpeed[1].Reached;
+MNM.DataOut.SkidSpeedReqReached				:= VAR_FixSpeed[2].Reached;//V1.7.2
+MNM.DataOut.SftSpeedReqReached				:= VAR_FixSpeed[3].Reached;//V1.7.2
+MNM.DataOut.EmptySpeedReached				:= VAR_FixSpeed[4].Reached;//V1.7.2
+MNM.DataOut.CopSpeedReqReached				:= VAR_FixSpeed[5].Reached OR (COP.DataOut.FixSpeedRequest AND MNM.DataOut.SkidSpeedReqReached);//V1.7.2
+MNM.DataOut.CapSpeedReqReached				:= VAR_FixSpeed[6].Reached;//V1.7.2
+MNM.DataOut.RnsSpeedReqReached				:= VAR_FixSpeed[7].Reached;//V4.A.A.1.7.0
+MNM.DataOut.ContBlockSpeedReached			:= VAR_FixSpeed[9].Reached;//V1.7.2
+MNM.DataOut.COPInletContBlockSpeedReached	:= VAR_FixSpeed[10].Reached;//V1.7.2
+
+IF VAR_FixSpeedActive <> 0 THEN
+	VAR_MNM_MachineSpeedRequest	:= VAR_ModuleSpeed.Machine;
+ELSIF CvoFlr.OverSpeedFromInfeed (*AND CvoFlr.OverSpeedFromOutfeed*) THEN
+	VAR_MNM_MachineSpeedRequest	:= VAR_ModuleSpeed.Machine;
+ELSE
+	IF CvoFlr.LineSpeedReference > 0 THEN
+		VAR_MNM_MachineSpeedRequest	:= MIN(VAR_ModuleSpeed.Machine, INT_TO_REAL(CvoFlr.LineSpeedReference * 60));
+	ELSE
+		VAR_MNM_MachineSpeedRequest	:= VAR_ModuleSpeed.Machine;
+	END_IF
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP MC_Interface:
+(* @LANGUAGE := 'st' *)
+
+MC_InputOutput.Network.Machine.Commands.HandShakeIn;	//Not used in full B&R machines
+
+MC_InputOutput.Network.Machine.Commands.AlarmReset	:= AID.DataOut.Reset;
+
+IF CFG_Par.Machine.Combi.BAF THEN//V4.A.A.1.7.0
+	VAR_MNM_CoupledDesychroReq := NOT ActFlr.ReadyForCoupling OR NOT ActFlr.NoAlarm;//V4.A.A.1.7.0
+ELSE//V4.A.A.1.7.0
+	VAR_MNM_CoupledDesychroReq := LbrFlr.DesynchroReq;//V4.A.A.1.7.0
+END_IF//V4.A.A.1.7.0
+
+MC_InputOutput.Network.Machine.Commands.MachineQuickStop				:= (NOT VAR_MNM_QuickStop AND (NOT VAR_MNM_QuickStopWithJog OR OPS.DataOut.FlrModeSelectorJog) AND (NOT VAR_MNM_CoupledDesychroReq OR NOT MC_InputOutput.Network.Machine.Status.CombiSynchronized));//V4.A.A.1.7.0
+
+MC_InputOutput.Network.Filler.Commands.QuickStopFillerModule			:= NOT VAR_MNM_QuickStop AND (NOT VAR_MNM_QuickStopWithJog OR OPS.DataOut.FlrModeSelectorJog); 
+
+MC_InputOutput.Network.Machine.Commands.OnePitchShiftCommand;
+MC_InputOutput.Network.Machine.Commands.KochModuleReady					:= IO_KochModuleOk.DI_Input;
+
+MC_InputOutput.Network.Machine.Parameters.AutoAccelerationTime			:= HMI_PAM_1._011;
+MC_InputOutput.Network.Machine.Parameters.AutoDecelerationTime			:= HMI_PAM_1._012;
+MC_InputOutput.Network.Machine.Parameters.AutoSpeed						:= MAX(HMI_MNM_MinMachineSpeed, VAR_MNM_MachineSpeedRequest);
+MC_InputOutput.Network.Machine.Parameters.JogSpeed						:= MAX(HMI_MNM_MinMachineJogSpeed, HMI_PAM_1._010);
+MC_InputOutput.Network.Machine.Parameters.AxisSelectedOnHmi				:= HMI_MNM_AxisSelected;
+MC_InputOutput.Network.Machine.Parameters.OffsetPositioning				:= HMI_MNM_AxisPositionOffset;
+
+MC_InputOutput.Network.Filler.Parameters.AutoSpeedFillerModule			:= MAX(HMI_MNM_MinMachineSpeed, VAR_ModuleSpeed.Filler);
+MC_InputOutput.Network.Filler.Parameters.FillerStepsNumber				:= HMI_PAC_1._100;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.RinserStepsNumber				:= HMI_PAC_1._200;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.DoserStepsNumber				;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.CapperStepsNumber				:= HMI_PAC_1._400;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.CrownerStepsNumber				:= HMI_PAC_1._300;//V4.A.A.1.7.0
+
+MC_InputOutput.Network.Filler.Parameters.FillerAbsolutePositionOffset	:= FmcFlr.OffsetSyncFVActTangInlet;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.RinserAbsolutePositionOffset	:= HMI_PAC_1._219;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.DoserAbsolutePositionOffset	;//V4.A.A.1.7.0
+MC_InputOutput.Network.Filler.Parameters.CrownerAbsolutePositionOffset	:= HMI_PAC_1._133;//V4.A.A.1.7.0
+	
+IF RNS.DataOut.ByPassRequest THEN//V4.A.A.1.7.0
+	MC_InputOutput.Network.Filler.Commands.DisableRinserAxis := TRUE;//V4.A.A.1.7.0
+ELSE//V4.A.A.1.7.0
+	MC_InputOutput.Network.Filler.Commands.DisableRinserAxis := FALSE;//V4.A.A.1.7.0
+END_IF//V4.A.A.1.7.0
+
+//doser axis disable logic
+IF VAR_MNM_TempTest THEN
+	MC_InputOutput.Network.Filler.Commands.DisableDoserAxis := TRUE;
+ELSE
+	MC_InputOutput.Network.Filler.Commands.DisableDoserAxis := FALSE;
+END_IF
+//filler axis disable logic
+IF VAR_MNM_TempTestFiller THEN//biosgna ricordarsi che al cambio fra multi e auto modality bisogna riattivare l'asse filler. Se necessario successivamente riattivarlo
+	MC_InputOutput.Network.Filler.Commands.DisableFillerAxis := TRUE;
+ELSE
+	MC_InputOutput.Network.Filler.Commands.DisableFillerAxis := FALSE;
+END_IF
+
+
+IF TNK.DataOut.ProdMode OR COP.DataOut.RcpRunning OR SFT.DataOut.COPInletContConvEmptyRunning THEN
+	MC_InputOutput.Network.Filler.Commands.VelocityAxisStop					:= FALSE;
+	MC_InputOutput.Network.Outlet.Commands.VelocityAxisStop					:= FALSE;
+ELSE
+	MC_InputOutput.Network.Filler.Commands.VelocityAxisStop					:= TRUE;
+	MC_InputOutput.Network.Outlet.Commands.VelocityAxisStop					:= TRUE;
+END_IF
+
+IF NOT FmcFlr.VortexCalibrActive THEN
+	MC_InputOutput.Network.Machine.Parameters.StopPosition	:= MAX(0.1, HMI_PAM_1._013);
+ELSE
+	MC_InputOutput.Network.Machine.Parameters.StopPosition	:= MC_InputOutput.Network.Machine.Status.MachinePitch / 2.0;
+END_IF
+
+(*************************** DOSER Interface *****************************)
+MC_InputOutput.Network.Doser.Commands.DisableDoserCarousel	:= VAR_MNM_TempTest;
+
+
+
+//CONTEINERS BLOCK//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam01OnValue			:= HMI_PAM_1._396;//V4.A.A.1.7.0
+HMI_PAM_1._397	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._396) + 180, 360, 0));//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam01OffValue			:= HMI_PAM_1._397;//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam01AdvTime			:= HMI_PAM_1._398;//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam01Pulse			:= REAL_TO_USINT(HMI_PAM_1._399);//V4.A.A.1.7.0
+HMI_MNM_CamName[1]							:= 1;//V4.A.A.1.7.0
+//CONTEINERS RELEASE//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam02OnValue			:= HMI_PAM_1._400;//V4.A.A.1.7.0
+HMI_PAM_1._401	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._400) + 180, 360, 0));//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam02OffValue			:= HMI_PAM_1._401;//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam02AdvTime			:= HMI_PAM_1._402;//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam02Pulse			:= REAL_TO_USINT(HMI_PAM_1._403);//V4.A.A.1.7.0
+HMI_MNM_CamName[2]							:= 1;//V4.A.A.1.7.0
+
+//CAPS RELEASE / SECOND CROWN RELEASE(optional if it present)//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam03OnValue			:= HMI_PAM_1._404;
+//HMI_PAM_1._405	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._404) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam03OffValue			:= HMI_PAM_1._405;
+MC_InputOutput.Network.Machine.Parameters.Cam03AdvTime			:= HMI_PAM_1._406;
+MC_InputOutput.Network.Machine.Parameters.Cam03Pulse			:= REAL_TO_USINT(HMI_PAM_1._407);
+HMI_MNM_CamName[3]							:= 1;//V4.A.A.1.7.0
+
+//CAPS CHECK//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam04OnValue			:= HMI_PAM_1._408;
+//HMI_PAM_1._409	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._408) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam04OffValue			:= HMI_PAM_1._409;
+MC_InputOutput.Network.Machine.Parameters.Cam04AdvTime			:= HMI_PAM_1._410;
+MC_InputOutput.Network.Machine.Parameters.Cam04Pulse			:= REAL_TO_USINT(HMI_PAM_1._411);
+HMI_MNM_CamName[4]							:= 1;//V4.A.A.1.7.0
+
+//CONTAINERS EJECTION//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam05OnValue			:= HMI_PAM_1._412;
+//HMI_PAM_1._413	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._412) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam05OffValue			:= HMI_PAM_1._413;
+MC_InputOutput.Network.Machine.Parameters.Cam05AdvTime			:= HMI_PAM_1._414;
+MC_InputOutput.Network.Machine.Parameters.Cam05Pulse			:= REAL_TO_USINT(HMI_PAM_1._415);
+IF CFG_Par.Rinser.NoBottleNoSpray THEN
+	HMI_MNM_CamName[5]							:= 2;//Vtest rma
+ELSE 
+	HMI_MNM_CamName[5]							:= 1;//Vtest rma
+END_IF
+	
+//DATA MATRIX Vcam
+MC_InputOutput.Network.Machine.Parameters.Cam06OnValue			:= HMI_PAM_1._416;
+//HMI_PAM_1._417	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._416) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam06OffValue			:= HMI_PAM_1._417;
+MC_InputOutput.Network.Machine.Parameters.Cam06AdvTime			:= HMI_PAM_1._418;
+MC_InputOutput.Network.Machine.Parameters.Cam06Pulse			:= REAL_TO_USINT(HMI_PAM_1._419);
+HMI_MNM_CamName[6]							:= 1;//V4.A.A.1.7.0
+
+//CROWN RELEASE/ Second CAPS RELEASE(optional if it present)Vcam
+MC_InputOutput.Network.Machine.Parameters.Cam07OnValue			:= HMI_PAM_1._420;
+//HMI_PAM_1._421	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._420) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam07OffValue			:= HMI_PAM_1._421;
+MC_InputOutput.Network.Machine.Parameters.Cam07AdvTime			:= HMI_PAM_1._422;
+MC_InputOutput.Network.Machine.Parameters.Cam07Pulse			:= REAL_TO_USINT(HMI_PAM_1._423);
+HMI_MNM_CamName[7]							:= 1;//V4.A.A.1.7.0
+
+//DUMMY CONTAINERS//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam08OnValue			:= HMI_PAM_1._424;
+//HMI_PAM_1._425	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._424) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam08OffValue			:= HMI_PAM_1._425;
+MC_InputOutput.Network.Machine.Parameters.Cam08AdvTime			:= HMI_PAM_1._426;
+MC_InputOutput.Network.Machine.Parameters.Cam08Pulse			:= REAL_TO_USINT(HMI_PAM_1._427);
+HMI_MNM_CamName[8]												:= 1;//Vcam
+
+// FCI - Clock//V4.A.A.1.7.0
+MC_InputOutput.Network.Machine.Parameters.Cam09OnValue			:= HMI_PAM_1._428;
+//HMI_PAM_1._429	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._428) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam09OffValue			:= HMI_PAM_1._429;
+MC_InputOutput.Network.Machine.Parameters.Cam09AdvTime			:= HMI_PAM_1._430;
+MC_InputOutput.Network.Machine.Parameters.Cam09Pulse			:= REAL_TO_USINT(HMI_PAM_1._431);
+HMI_MNM_CamName[9]							:= 1;//V4.A.A.1.7.0
+
+//FCI - Fine pulse
+MC_InputOutput.Network.Machine.Parameters.Cam10OnValue			:= HMI_PAM_1._432;
+//HMI_PAM_1._433	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._432) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam10OffValue			:= HMI_PAM_1._433;
+MC_InputOutput.Network.Machine.Parameters.Cam10AdvTime			:= HMI_PAM_1._434;
+MC_InputOutput.Network.Machine.Parameters.Cam10Pulse			:= REAL_TO_USINT(HMI_PAM_1._435);
+HMI_MNM_CamName[10]							:= 1;//V4.A.A.1.7.0
+//DOSER- camma doser
+MC_InputOutput.Network.Machine.Parameters.Cam11OnValue	;
+//HMI_PAM_1._433	:= INT_TO_REAL(FC_ReminderShift(REAL_TO_INT(HMI_PAM_1._432) + 180, 360, 0));//V4.A.A.1.7.0 to be defined
+MC_InputOutput.Network.Machine.Parameters.Cam11OffValue	;
+MC_InputOutput.Network.Machine.Parameters.Cam11AdvTime	;
+MC_InputOutput.Network.Machine.Parameters.Cam11Pulse	;
+HMI_MNM_CamName[11]							:= 1;//V4.A.A.1.7.0
+
+IF CFG_Par.Machine.Combi.BF THEN
+	MC_InputOutput.Network.Inlet.Parameters.TorqueError.Main	:= 4;
+END_IF
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Fan:
+(* @LANGUAGE := 'st' *)
+FillerFanMain(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.Main.Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.Main.CommandPresent,
+IN_Reset			:= 
+AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.Main
+);
+
+FillerFanIn1(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[1].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[1].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In1
+);
+
+FillerFanIn2(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[2].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[2].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In2
+);
+
+FillerFanIn3(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[3].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[3].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In3
+);
+
+FillerFanIn4(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[4].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[4].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In4
+);
+
+FillerFanIn5(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[5].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[5].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In5
+);
+
+FillerFanIn7(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[7].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[7].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In7
+);
+
+FillerFanIn8(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.In[8].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.In[8].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.In8
+);
+
+FillerFanOut1(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.Out[1].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.Out[1].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.Out1
+);
+
+FillerFanOut2(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.Out[2].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.Out[2].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.Out2
+);
+
+FillerFanOut3(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.Out[3].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.Out[3].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.Out3
+);
+
+FillerFanOut4(
+IN_ConfigPresent	:= CFG_Par.Motors.CoolingFan.Filler.Out[4].Present,
+IN_Enable			:= OPS.DataOut.FlrDoorsOk,
+IN_AutoCnd			:= CFG_Par.Motors.CoolingFan.Filler.Out[4].CommandPresent,
+IN_Reset			:= AID.DataOut.Reset,
+IN_FBKDelay			:= t#500ms,
+IO					:= IO_MNM_MotionFan.Filler.Out4
+);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP HmiData:
+(* @LANGUAGE := 'st' *)
+IF CFG_Par.Machine.Combi.BF OR CFG_Par.Machine.Combi.BFL OR CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF THEN//V4.A.A.1.7.0
+	IF 	(HMI_CmdBar_PB[PB_FillerLabellerCoupling].LampON AND LbrFlr.PbBlrLbrCouplingState) OR 
+		(HMI_CmdBar_PB[PB_FillerActisCoupled].LampON AND ActFlr.PbBlrActCouplingState) OR
+		HMI_CmdBar_PB[PB_FillerBlowerCoupling].LampON THEN
+		HMI_MNM_MachineSpeedAct	:= MC_InputOutput.Network.Machine.Status.ActualSpeed;
+	ELSE
+		HMI_MNM_MachineSpeedAct	:= 0;
+	END_IF
+ELSE
+	HMI_MNM_MachineSpeedAct	:= MC_InputOutput.Network.Machine.Status.ActualSpeed;
+END_IF
+
+HMI_MNM_FlrSpeedWidget.Visibility		:= NOT HMI_CmdBar_PB[PB_FillerLabellerCoupling].LampON AND NOT HMI_CmdBar_PB[PB_FillerBlowerCoupling].LampON;
+IF MC_InputOutput.Network.Machine.Status.AutoModalityActive THEN
+	HMI_MNM_FlrSpeedWidget.ActualSpeed		:= REAL_TO_DINT(MC_InputOutput.Network.Machine.Status.ActualSpeed);
+ELSIF MC_InputOutput.Network.Machine.Status.MultiModalityActive THEN
+	HMI_MNM_FlrSpeedWidget.ActualSpeed		:= REAL_TO_DINT(MC_InputOutput.Network.Filler.Status.Velocity);
+ELSIF MC_InputOutput.Network.Machine.Status.JogModalityActive THEN//vrma
+	HMI_MNM_FlrSpeedWidget.ActualSpeed		:= REAL_TO_DINT(MC_InputOutput.Network.Machine.Status.ActualSpeed);//vrma
+END_IF
+
+HMI_MNM_FlrSpeedWidget.Modality			:= OPS.DataOut.FlrModeSelectorJog;
+
+IF EDGEPOS(OPS.DataOut.FlrModeSelectorJog) THEN
+	HMI_MNM_FlrSpeedWidget.JogSpeedReq	:= REAL_TO_DINT(HMI_PAM_1._010);
+	VAR_MNM_JogSpeedOld					:= HMI_PAM_1._010;
+ELSIF OPS.DataOut.FlrModeSelectorJog THEN
+	IF DINT_TO_REAL(HMI_MNM_FlrSpeedWidget.JogSpeedReq) <> VAR_MNM_JogSpeedOld THEN
+		HMI_PAM_1._010 		:= DINT_TO_REAL(HMI_MNM_FlrSpeedWidget.JogSpeedReq);
+		VAR_MNM_JogSpeedOld	:= HMI_PAM_1._010;
+	ELSIF HMI_PAM_1._010 <> VAR_MNM_JogSpeedOld THEN
+		HMI_MNM_FlrSpeedWidget.JogSpeedReq	:= REAL_TO_DINT(HMI_PAM_1._010);
+		VAR_MNM_JogSpeedOld					:= HMI_PAM_1._010;
+	END_IF
+END_IF
+
+(* Filler Status *)
+IF OPS.DataOut.SelModeChange THEN//V1.3
+	HMI_MNM_FlrSpeedWidget.Status	:= 0;
+ELSIF OPS.DataOut.FlrModeSelectorAuto THEN
+	HMI_MNM_FlrSpeedWidget.Status	:= 1;
+ELSIF OPS.DataOut.FlrModeSelectorJog THEN
+	HMI_MNM_FlrSpeedWidget.Status	:= 2;
+ELSIF OPS.DataOut.FlrModeSelectorAdjustment THEN
+	HMI_MNM_FlrSpeedWidget.Status	:= 3;
+END_IF
+
+HMI_MNM_MachinePitch	:= MC_InputOutput.Network.Machine.Status.MachinePitch;
+HMI_MNM_MaxMachineSpeed := MC_InputOutput.Network.Machine.Status.MachineMaxSpeed;
+HMI_MNM_MachinePosition;	//COMPLETARE
+
+HMI_MNM_PB[PB_MNM_AxisPositioning].Visibility	:= TRUE;
+HMI_MNM_PB[PB_MNM_AxisPositioning].Enable		:= OPS.DataOut.FlrModeSelectorAdjustment AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND
+													MC_InputOutput.Network.Machine.Status.EnablePositioning AND SFT.DataOut.MachineEmpty AND (HMI_MNM_AxisPositionOffset <> 0.0);
+HMI_MNM_PB[PB_MNM_AxisPositioning].LampON		:= MC_InputOutput.Network.Machine.Status.PositioningModalityActive OR MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest OR HMI_MNM_PB[PB_MNM_AxisPositioning].ON;
+
+HMI_MNM_PB[PB_MNM_AxisHoming].Visibility	:= TRUE;
+HMI_MNM_PB[PB_MNM_AxisHoming].Enable		:= OPS.DataOut.FlrModeSelectorAdjustment AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND
+												MC_InputOutput.Network.Machine.Status.EnableHoming;
+HMI_MNM_PB[PB_MNM_AxisHoming].LampON		:= MC_InputOutput.Network.Machine.Status.SelectiveHomeModalityActive OR MC_InputOutput.Network.Machine.Commands.SelectiveHomeModalityRequest OR HMI_MNM_PB[PB_MNM_AxisHoming].ON;
+
+HMI_MNM_PB[PB_MNM_AxisStepByStep].Visibility	:= TRUE;
+HMI_MNM_PB[PB_MNM_AxisStepByStep].Enable		:= MC_InputOutput.Network.Machine.Status.AutoModalityActive AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND
+													NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND MC_InputOutput.Network.Machine.Status.EnableStepByStep AND
+													(HMI_MNM_AxisStepByStepOffset <> 0);
+HMI_MNM_PB[PB_MNM_AxisStepByStep].LampON		:= (MC_InputOutput.Network.Machine.Status.StepByStepModalityActive OR MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest) AND
+													((VAR_MNM_AutoStep = MNM_AutoStepHornBlow) OR (VAR_MNM_AutoStep = MNM_AutoStepStart) OR (VAR_MNM_AutoStep = MNM_AutoStepWaitStop));
+
+//Footbar
+HMI_MNM_PB[PB_MNM_FootboardPosition].Visibility	:= CFG_Par.Motors.FootbarPresent;
+HMI_MNM_PB[PB_MNM_FootboardPosition].Enable		:= OPS.DataOut.FlrModeSelectorAdjustment AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND SFT.DataOut.MachineEmpty AND //V4.A.A.1.7.1
+													NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND MC_InputOutput.Network.Machine.Status.EnableStepByStep AND 
+													MC_InputOutput.Network.Filler.Status.FillerAbsolutePositionValid AND (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.FillerAbsolutePosition / 360.0) <> HMI_PAC_1._130);//V4.A.A.1.7.0
+HMI_MNM_PB[PB_MNM_FootboardPosition].LampON		:= (MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive OR MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq) AND//V4.A.A.1.7.0
+													VAR_MNM_AdjAxisFillerFootBar;//V4.A.A.1.7.0
+
+HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].Visibility	:= TRUE;
+HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].Enable		:= (MC_InputOutput.Network.Machine.Parameters.AxisSelectedOnHmi = 99) AND //V4.A.A.1.6.10
+															MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive AND OPS.DataOut.FlrModeSelectorAuto AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND
+															MC_InputOutput.Network.Machine.Status.MachineRunning AND MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND SFT.DataOut.CombiEmpty;
+HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].LampON		:= MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq;
+
+IF SFT.DataOut.MachineEmpty THEN
+	HMI_MNM_MinInMotionAdjustement	:= -40.0;
+	HMI_MNM_MaxInMotionAdjustement	:= 40.0;
+ELSE
+	HMI_MNM_MinInMotionAdjustement	:= -10.0;
+	HMI_MNM_MaxInMotionAdjustement	:= 10.0;
+END_IF
+
+HMI_MNM_PB[PB_MNM_BrakeRelease].Visibility	:= HMI_MC_GenericAxisData.xMotorWithBrake;
+HMI_MNM_PB[PB_MNM_BrakeRelease].Enable		:= OPS.DataOut.FlrModeSelectorAdjustment AND MC_InputOutput.Network.Machine.Status.EnableBrakeRelease;
+HMI_MNM_PB[PB_MNM_BrakeRelease].LampON		:= MC_InputOutput.Network.Machine.Commands.BrakeReleaseModalityRequest;
+
+HMI_MNM_PB[PB_MNM_VelocityTest].Visibility	:= TRUE;
+HMI_MNM_PB[PB_MNM_VelocityTest].Enable		:= (OPS.DataOut.FlrModeSelectorAdjustment AND MC_InputOutput.Network.Machine.Status.EnableVelocity) OR MC_InputOutput.Network.Machine.Commands.VelocityModalityRequest;
+HMI_MNM_PB[PB_MNM_VelocityTest].LampON		:= MC_InputOutput.Network.Machine.Commands.VelocityModalityRequest;
+
+HMI_MNM_PB[PB_MNM_RinserFootboardPosition].Visibility      := 	CFG_Par.Rinser.FootbarPresent;//V4.A.A.1.7.0 wait CFG_Par.Rinser.FootbarPresent in CFG_Par structur 
+HMI_MNM_PB[PB_MNM_RinserFootboardPosition].Enable          := 	OPS.DataOut.FlrModeSelectorAdjustment AND OPS.DataOut.DoorsOk AND OPS.DataOut.EmergencyOk AND
+																NOT MC_InputOutput.Network.Machine.Status.MachineRunning AND MC_InputOutput.Network.Machine.Status.EnableStepByStep AND 
+                                                           	MC_InputOutput.Network.Filler.Status.RinserAbsolutePositionValid AND (LREAL_TO_INT(MC_InputOutput.Network.Filler.Status.RinserAbsolutePosition / 360.0) <> HMI_PAC_1._130);//V4.A.A.1.7.0
+HMI_MNM_PB[PB_MNM_RinserFootboardPosition].LampON          := 	(MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive OR MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq) AND
+																VAR_MNM_AdjAxisRinserFootBar;//V4.A.A.1.7.0
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP InletConveyor:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION PAO Conveyor VFD FROM InletConveyor TO InletConveyorVFD:=
+(* @LANGUAGE := 'st' *)
+CFG_Par.Motors.ConveyorVFD AND CFG_Par.Machine.Type.SRMA
+END_TRANSITION
+(* @SFCNOJUMP := 'InletConveyorVFD' *)
+TRANSITION PAO Conveyor Motion FROM InletConveyor TO InletConveyorMotion:=
+(* @LANGUAGE := 'st' *)
+NOT CFG_Par.Motors.ConveyorVFD AND CFG_Par.Machine.Type.SRMA
+END_TRANSITION
+(* @SFCNOJUMP := 'InletConveyorMotion' *)
+STEP InletConveyorMotion:
+(* @LANGUAGE := 'st' *)
+InletConveyorHMI;
+InletConveyorAlarm;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM InletConveyorMotion TO InletConveyor:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'InletConveyor' *)
+STEP InletConveyorVFD:
+(* @LANGUAGE := 'st' *)
+InletConveyorVar_VFD;
+InletConveyorDigitalIn;
+InletConveyorAlarm;
+
+//IF VAR_MNM_ConveyorProduction THEN //v1.6//Master Bottle +PET
+InletConveyorSeq_Run_VFD;
+//ELSIF VAR_MNM_ConveyorClean THEN //v1.6//Master Bottle +PET
+//	OutletConveyorSeq_Cleaning_VFD; //v1.6//Master Bottle +PET
+//ELSE //v1.6//Master Bottle +PET
+//	OutletConveyorSeq_Idle_VFD; //v1.6//Master Bottle +PET
+//END_IF //v1.6//Master Bottle +PET
+
+InletConveyorMotors_VFD;
+InletConveyorInterchange;
+InletConveyorDataOut_VFD;
+InletConveyorAlarm_VFD;
+InletConveyorHMI;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM InletConveyorVFD TO InletConveyor:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'InletConveyor' *)
+STEP OutletConveyor:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION PAO Conveyor VFD FROM OutletConveyor TO ConveyorVFD:=
+(* @LANGUAGE := 'st' *)
+CFG_Par.Motors.ConveyorVFD
+END_TRANSITION
+(* @SFCNOJUMP := 'ConveyorVFD' *)
+TRANSITION PAO Conveyor Motion FROM OutletConveyor TO ConveyorMotion:=
+(* @LANGUAGE := 'st' *)
+NOT CFG_Par.Motors.ConveyorVFD
+END_TRANSITION
+(* @SFCNOJUMP := 'ConveyorMotion' *)
+STEP ConveyorMotion:
+(* @LANGUAGE := 'st' *)
+OutletConveyorDigitalIn;
+OutletConveyorInterchange;
+OutletConveyorMotors_Motion;
+OutletConveyorAlarm_Motion;
+OutletConveyorDataOut_Motion;
+OutletConveyorHMI;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM ConveyorMotion TO OutletConveyor:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'OutletConveyor' *)
+STEP ConveyorVFD:
+(* @LANGUAGE := 'st' *)
+OutletConveyorVar_VFD;
+OutletConveyorDigitalIn;
+
+//IF VAR_MNM_ConveyorProduction THEN //v1.6
+	OutletConveyorSeq_Run_VFD;
+//ELSIF VAR_MNM_ConveyorClean THEN //v1.6
+//	OutletConveyorSeq_Cleaning_VFD; //v1.6
+//ELSE //v1.6
+//	OutletConveyorSeq_Idle_VFD; //v1.6
+//END_IF //v1.6
+
+OutletConveyorMotors_VFD;
+OutletConveyorInterchange;
+OutletConveyorDataOut_VFD;
+OutletConveyorAlarm_VFD;
+OutletConveyorHMI;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM ConveyorVFD TO OutletConveyor:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'OutletConveyor' *)
+STEP DataTo:
+(* @LANGUAGE := 'st' *)
+MNM_DataOut;
+MNM_MotionAlarm;
+MNM_MotionModuleAlarm;
+MNM_Alarm;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM (MNMVar,SpeedMng,MC_Interface,Fan,HmiData,DataTo) TO MNMInit:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'MNMInit' *)
+END_PROGRAM

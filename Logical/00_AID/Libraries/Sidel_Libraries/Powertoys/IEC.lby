@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="1.05.0" Description="Set of tools" xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported data types">Powertoys.typ</File>
+    <File Description="Exported constants">Powertoys.var</File>
+    <File Description="Write a custom entry into the specified logger">CustomLogEntry.st</File>
+    <File Description="Exported functions and function blocks">Powertoys.fun</File>
+    <File Description="Show hardware list component">SearchIO.st</File>
+    <File Description="Powerlink list">PlkList.st</File>
+    <File Description="Profiler archive manager">profiMan.st</File>
+    <File>sdmMAN.st</File>
+    <File Description="Clean old files from a folder">CleanMgr.st</File>
+    <File Description="Save the network comand trace into one file">saveNCT.st</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="AsIODiag" FromVersion="0.00.0" />
+    <Dependency ObjectName="AsArProf" />
+    <Dependency ObjectName="AsARCfg" />
+    <Dependency ObjectName="AsArSdm" />
+    <Dependency ObjectName="FileIO" />
+  </Dependencies>
+</Library>

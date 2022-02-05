@@ -1,0 +1,14 @@
+VAR CONSTANT
+	cINVALID : USINT := 16#00;
+	cON : USINT := 16#0F;
+	cLOADING : USINT := 16#33;
+	cSTOP_SAFE : USINT := 16#55;
+	cRUN_SAFE : USINT := 16#66;
+	cHALT_SAFE : USINT := 16#99;
+	cSTOP_DEBUG : USINT := 16#AA;
+	cRUN_DEBUG : USINT := 16#CC;
+	cNO_EXECUTION : USINT := 16#F0;
+	cFAIL_SAFE_OK : USINT := 16#55;
+	CST_SafePasswordBlank : ARRAY[0..15] OF USINT := [212,29,140,217,143,0,178,4,233,128,9,152,236,248,66,126]; (*Password of the SafeKey coded MD5*)
+	CST_SafePasswordNull : ARRAY[0..15] OF USINT := [16(0)]; (*Password of the SafeKey coded MD5*)
+END_VAR

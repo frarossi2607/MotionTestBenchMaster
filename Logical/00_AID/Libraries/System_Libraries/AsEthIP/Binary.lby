@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Description="The AsEthIP library is a communication driver for CIP Ethernet/IP." xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File>AsEthIP.fun</File>
+    <File>AsEthIP.typ</File>
+    <File>AsEthIP.var</File>
+  </Files>
+  <Dependencies>
+    <Dependency ObjectName="AsARCfg" />
+    <Dependency ObjectName="brsystem" />
+    <Dependency ObjectName="DataObj" />
+    <Dependency ObjectName="runtime" />
+    <Dependency ObjectName="sys_lib" />
+  </Dependencies>
+</Library>

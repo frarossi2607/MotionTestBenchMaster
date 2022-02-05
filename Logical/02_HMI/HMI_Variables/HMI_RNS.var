@@ -1,0 +1,11 @@
+(*RINSER*)
+VAR
+	HMI_RNS_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_RNS_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_RNS_SS3P : ARRAY[MIN_SS3P_CFG..MAX_SS3P_CFG] OF SS3P_Type;
+	HMI_RNS_MultiChoiceMng : USINT; (*0=Rinser Instant Data Not Present  1=Rinser Instant Data Present V4.A.A.1.7.0*)
+	HMI_RNS_State : HMI_BTC_State_Type;
+	HMI_RNS_ManualSelection : HMI_RNS_ManualCapsSelection_Type; (*V4.A.A.1.7.0*)
+	HMI_RNS_TypeCFG : STRING[500]; (*V4.A.A.1.7.0*)
+	HMI_RNS_Treatments : ARRAY[0..16] OF HMI_ComboBoxElements_Type := [(Present:=TRUE,Name:='Full Treatment'),(Present:=TRUE,Name:='Water Only'),(Present:=FALSE,Name:='Air Only'),14((0))]; (*V4.A.A.1.7.0*)
+END_VAR

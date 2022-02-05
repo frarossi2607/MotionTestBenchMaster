@@ -1,0 +1,17 @@
+(********************************************************************
+ * COPYRIGHT -- Bernecker + Rainer
+ ********************************************************************
+ * Library: Powertoys
+ * File: Powertoys.var
+ * Author: gibertinim
+ * Created: March 27, 2014
+ ********************************************************************
+ * Constants of library Powertoys
+ ********************************************************************)
+VAR CONSTANT
+	CST_SW_OBJ_CHANGED : UINT := 55100; (*Software object changed*)
+	CST_SDM_DISABLE : UINT := 55110; (*Disable SDM*)
+	CST_SDM_ACTIVE : UINT := 55111; (*Activate SDM*)
+	CST_SDM_DUMP_DONE : UINT := 55112; (*System dump completed*)
+	CST_NO_NTC : UINT := 55120; (*No network command trace available*)
+END_VAR

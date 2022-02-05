@@ -1,0 +1,44 @@
+VAR
+	PO : PO_Safety_Type;
+	PI : PI_Safety_Type;
+	IO_OPS_Door : ARRAY[MIN_CFG_SafetyZone..MAX_CFG_SafetyZone,MIN_CFG_SafetyDoor..MAX_CFG_SafetyDoor] OF IO_OPS_Door_Type; (*1: Forward
+2: Backward 1
+3: Backward 2
+4: Inlet Transfer Forward
+5: Inlet Transfer Backward
+6: Outlet Transfer Forward
+7: Outlet Transfer Backward
+8: Maintenance 1
+9: Maintenance 2
+10: Inlet Transfer Gate
+11: Outlet Transfer Gate
+12: Capper*)
+	IO_OPS_Zone : ARRAY[MIN_CFG_SafetyZone..MAX_CFG_SafetyZone] OF IO_OPS_Zone_Type; (*1: Forward
+2: Backward 1
+3: Backward 2
+4: Inlet Transfer Forward
+5: Inlet Transfer Backward
+6: Outlet Transfer Forward
+7: Outlet Transfer Backward
+8: Maintenance 1
+9: Maintenance 2
+10: Inlet Transfer Gate
+11: Outlet Transfer Gate
+12: Capper*)
+	IO_OPS_JOG : ARRAY[MIN_CFG_SafetyJog..MAX_CFG_SafetyJog] OF IO_OPS_JOG_Type;
+	IO_207EVF : IO_Valve_Type; (*Soffio Paratia automatica COP V4.A.A.1.6.12*)
+	IO_208CPF : IO_Valve_Type; (*Paratia automatica COP V4.A.A.1.6.12*)
+	IO_208DSFX : IO_Digital_IN_Type; (*Paratia automatica COP Aperta V4.A.A.1.6.12*)
+	IO_208DSFY : IO_Digital_IN_Type; (*Paratia automatica COP Chiusa V4.A.A.1.6.12*)
+	IO_209DSFX : IO_Digital_IN_Type; (*Paratia automatica COP Aperta V4.A.A.1.6.12*)
+	IO_209DSFY : IO_Digital_IN_Type; (*Paratia automatica COP Chiusa V4.A.A.1.6.12*)
+	IO_209EVF : IO_Valve_Type;
+	IO_SS3P_Modality : IO_SS3PModality_Type;
+	SI_SafeLogicModuleOk : BOOL;
+	IO_Euchner_Key : IO_Digital_IN_Type; (*V1.3*)
+	IO_Euchner_Strobe : IO_Digital_IN_Type; (*V1.3*)
+	IO_Euchner_CodeA : IO_Digital_IN_Type; (*V1.3*)
+	IO_Euchner_CodeB : IO_Digital_IN_Type; (*V1.3*)
+	IO_Euchner_CodeC : IO_Digital_IN_Type; (*V1.3*)
+	IO_Euchner_CodeD : IO_Digital_IN_Type; (*V1.3*)
+END_VAR

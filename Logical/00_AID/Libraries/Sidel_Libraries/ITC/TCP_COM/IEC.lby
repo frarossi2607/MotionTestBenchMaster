@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="4.00.0" xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="Exported functions and function blocks">TCP_COM.fun</File>
+    <File Description="Exported data types">TCP_COM.typ</File>
+    <File Description="Exported constants">TCP_COM.var</File>
+    <File>TCP_Fun.st</File>
+    <File>PING_Fun.st</File>
+  </Files>
+</Library>

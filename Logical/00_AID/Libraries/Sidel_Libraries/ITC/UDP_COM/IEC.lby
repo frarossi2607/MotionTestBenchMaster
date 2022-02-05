@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Library Version="3.00.0" xmlns="http://br-automation.co.at/AS/Library">
+  <Files>
+    <File Description="UDP Communication Type">UDP_COM.typ</File>
+    <File Description="UDP Communication Var">UDP_COM.var</File>
+    <File Description="UDP Exported functions and function blocks">UDP_COM.fun</File>
+    <File Description="UDP Communication St">UDP_COM.st</File>
+  </Files>
+</Library>

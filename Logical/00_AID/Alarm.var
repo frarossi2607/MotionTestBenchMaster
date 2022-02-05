@@ -1,0 +1,17 @@
+VAR
+	ALR : ARRAY[1..8000] OF AlarmCmd_Type;
+	ALR_OldStatus : ARRAY[1..8000] OF BOOL;
+	ALR_CFG : ARRAY[1..8000] OF AlarmCFG_Type;
+	VAR_ALR_FirstAlertAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstCriticalAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstExternalAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstExtCritAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstExtAlertAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstCsAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_CriticalAcknoledgeReq : BOOL;
+	VAR_ALR_AlarmAcknoledgeReq : BOOL;
+	VAR_AlarmActionOper : ActionSum_Type; (*V4.A.A.1.6.13*)
+	VAR_FMC_AlarmActionOper : ActionSum_Type;
+	VAR_SKD_AlarmActionOper : ActionSum_Type;
+END_VAR

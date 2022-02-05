@@ -1,0 +1,10 @@
+VAR
+	FMC : FMC_DataTo_Type;
+	FmcFlr : FmcFlr_Type;
+	FmcCommStatus : ITC_CommStatus_Type;
+	FlrFmc : FlrFmc_Type;
+END_VAR
+(*Filling Valves Control*)
+VAR
+	FMC_FillingValves : ARRAY[1..200] OF FMC_ValvesControl_Type;
+END_VAR

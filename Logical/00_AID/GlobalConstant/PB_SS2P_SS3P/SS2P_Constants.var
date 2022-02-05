@@ -1,0 +1,90 @@
+(*General*)
+VAR CONSTANT
+	SS2P_SelAutoMan : USINT := 0;
+	SS2P_SelProduction : USINT := 1;
+	SS2P_SelEmptying : USINT := 2;
+	SS2P_SelDrain : USINT := 3;
+	SS2P_SelCIP : USINT := 4;
+END_VAR
+(*BTC*)
+VAR CONSTANT
+	SS2P_BTC_UvLampEnable : USINT := 5;
+	SS2P_BTC_WaterCooling : USINT := 6;
+END_VAR
+(*CAP*)
+VAR CONSTANT
+	SS2P_CAP_BufferSafety : USINT := 4;
+	SS2P_CAP_CapsReleaseSafety : USINT := 5;
+	SS2P_CAP_ChannelSafety : USINT := 6;
+	SS2P_CAP_CompleteEmptying : USINT := 9;
+	SS2P_CAP_ChannelEmptying : USINT := 8;
+END_VAR
+(*CRW*)
+VAR CONSTANT
+	SS2P_CRW_ChannelSafety : USINT := 6;
+	SS2P_CRW_ChannelEmptying : USINT := 8;
+END_VAR
+(*CO*)
+VAR CONSTANT
+	SS2P_APCO_ON : USINT := 0;
+END_VAR
+(*COP*)
+VAR CONSTANT
+	SS2P_COP_FoamingGun : USINT := 1; (*Foaming in Manual Mode - Present if Cip of Cop*)
+	SS2P_COP_Drain : USINT := 2;
+	SS2P_COP_CipMode : USINT := 3; (*Cleaning in Auto Mode - Present if Cip of Cop*)
+	SS2P_COP_Priming : USINT := 4;
+	SS2P_COP_ExtCleaning : USINT := 7;
+	SS2P_COP_Satellites : USINT := 9;
+END_VAR
+(*CSR*)
+VAR CONSTANT
+	SS2P_CSR_ManualTank : USINT := 1;
+	SS2P_CSR_ManualCamma : USINT := 2;
+	SS2P_CSR_SectorUnlock : USINT := 5;
+END_VAR
+(*HMI*)
+VAR CONSTANT
+	SS2P_HMI_DeviceEnable : USINT := 0;
+	SS2P_HMI_SelEnable : USINT := 1;
+	SS2P_HMI_PilotAirUnload : USINT := 2;
+END_VAR
+(*MAU Container lifting*)
+VAR CONSTANT
+	SS2P_LftCon_BlowOff : USINT := 3; (*HMI_LftCon_SS2P*)
+END_VAR
+(*MAU Dummy Containers*)
+VAR CONSTANT
+	SS2P_DumCon_ManualTest : USINT := 0;
+END_VAR
+(*MAU White room*)
+VAR CONSTANT
+	SS2P_WhRoom_Enable : USINT := 1;
+END_VAR
+(*OPT SS2P*)
+VAR CONSTANT
+	SS2P_OPT_VbcEnable : USINT := 0;
+	SS2P_OPT_FciEnable : USINT := 1;
+	SS2P_OPT_CoderEnable : USINT := 2;
+	SS2P_OPT_IntelliChangeOverEnable : USINT := 9;
+	SS2P_OPT_CvoSlowDown : USINT := 10;
+	SS2P_OPT_FerrumGasEnable : USINT := 15;
+END_VAR
+(*SFT*)
+VAR CONSTANT
+	SS2P_SFT_StepCounter : USINT := 5;
+	SS2P_SFT_SamplingMode : USINT := 10;
+	SS2P_SFT_SamplingNoFill : USINT := 11;
+	SS2P_SFT_SamplingNoCap : USINT := 12;
+	SS2P_SFT_InletContBlock1_ManTest : USINT := 15;
+	SS2P_SFT_InletContBlock2_ManTest : USINT := 16;
+END_VAR
+(*SMR*)
+VAR CONSTANT
+	SS2P_SMR_ModeCip : USINT := 0;
+	SS2P_SMR_ModeRinse : USINT := 2;
+	SS2P_SMR_ModeProd : USINT := 3;
+	SS2P_SMR_TestOp1 : USINT := 10;
+	SS2P_SMR_RoofOpening : USINT := 11;
+	SS2P_SMR_GasManualMode : USINT := 12;
+END_VAR

@@ -1,0 +1,17 @@
+(*COMMAND BAR PB*)
+VAR CONSTANT
+	PB_MixerProcessStart : USINT := 1;
+	PB_FillerProcessStart : USINT := 2;
+	PB_FillerStartStop : USINT := 4;
+	PB_SeamerStartStop : USINT := 5;
+	PB_FillerDoorUnlock : USINT := 11;
+	PB_SeamerDoorUnlock : USINT := 14;
+	PB_ContainerBlock1 : USINT := 15;
+	PB_ContainerRelease1 : USINT := 16;
+	PB_ContainerBlock2 : USINT := 17;
+	PB_ContainerRelease2 : USINT := 18;
+	PB_FillerLabellerCoupling : USINT := 19;
+	PB_FillerBlowerCoupling : USINT := 20;
+	PB_FillerSeamerCoupled : USINT := 21;
+	PB_FillerActisCoupled : USINT := 22; (*V4.A.A.1.6.13*)
+END_VAR

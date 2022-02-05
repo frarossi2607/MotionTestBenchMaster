@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">HMI_AID.var</Object>
+    <Object Type="File">HMI_ALR.var</Object>
+    <Object Type="File">HMI_BTC.var</Object>
+    <Object Type="File">HMI_CAP.var</Object>
+    <Object Type="File">HMI_RNS.var</Object>
+    <Object Type="File">HMI_CO.var</Object>
+    <Object Type="File">HMI_COP.var</Object>
+    <Object Type="File">HMI_CRW.var</Object>
+    <Object Type="File">HMI_CSR.var</Object>
+    <Object Type="File">HMI_DMC.var</Object>
+    <Object Type="File">HMI_CFG.var</Object>
+    <Object Type="File">HMI_GNS.var</Object>
+    <Object Type="File">HMI_ICO.var</Object>
+    <Object Type="File">HMI_ITC.var</Object>
+    <Object Type="File">HMI_MAU.var</Object>
+    <Object Type="File">HMI_MC.var</Object>
+    <Object Type="File">HMI_MNM.var</Object>
+    <Object Type="File">HMI_MNT.var</Object>
+    <Object Type="File">HMI_OPS.var</Object>
+    <Object Type="File">HMI_RCP.var</Object>
+    <Object Type="File">HMI_SFT.var</Object>
+    <Object Type="File">HMI_TNK.var</Object>
+    <Object Type="File">HMI_C.var</Object>
+    <Object Type="File">HMI_B.var</Object>
+    <Object Type="File">HMI_E.var</Object>
+    <Object Type="File">HMI_S.var</Object>
+    <Object Type="File">HMI_X.var</Object>
+    <Object Type="File">HMI.var</Object>
+  </Objects>
+</Package>

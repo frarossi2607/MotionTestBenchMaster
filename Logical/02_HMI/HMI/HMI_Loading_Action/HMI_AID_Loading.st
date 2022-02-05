@@ -1,0 +1,6 @@
+ACTION HMI_AID_Loading:
+	HMI_CmdBar_PB;
+	HMI_PB;
+	HMI_SS2P;
+	HMI_SS2P_Custom;//V4.A.A.1.6.13
+END_ACTION

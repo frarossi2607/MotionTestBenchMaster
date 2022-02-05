@@ -1,0 +1,99 @@
+(*MAIN MOTORIZATION Variables*)
+VAR
+	VAR_MNM_PACtest : INT;
+	VAR_MNM_MachineSpeedRequest : REAL;
+	VAR_MNM_AdjustmentStep : MNM_AdjustmentStep; (*V4.A.A.1.7.0*)
+	VAR_MNM_AutoStep : MNM_AutoStep;
+	VAR_MNM_AutoCombiStep : MNM_AutoCombiStep;
+	VAR_MNM_JogStep : MNM_JogStep;
+	VAR_MNM_JogCombiStep : MNM_JogCombiStep;
+	VAR_MNM_DosMultiStep : MNM_MultiStep;
+	VAR_MNM_FlrMultiStep : MNM_MultiStep;
+	VAR_MNM_FlrInletMultiStep : MNM_MultiStep;
+	VAR_MNM_FpMachineStartPb : BOOL;
+	VAR_MNM_MachineStart : BOOL;
+	VAR_MNM_MachineStopRequest : BOOL; (*V4.A.A.1.6.6*)
+	VAR_MNM_MachineStop : BOOL;
+	TMR_TON_BlowerStopper : TON; (*1.6*)
+	TMR_TON_ClockGeneration : TON; (*V4.A.A.1.6.13*)
+END_VAR
+(*FAULT VARIABLES*)
+(*Machine*)
+VAR
+	VAR_MNM_NormalStop : BOOL;
+	VAR_MNM_QuickStop : BOOL;
+	VAR_MNM_NormalStopWithJog : BOOL;
+	VAR_MNM_NormalWithJogMnt : BOOL; (*V4.A.A.1.6.13*)
+	VAR_MNM_QuickStopWithJog : BOOL;
+	VAR_MNM_StopIfNotEmpty : BOOL;
+	VAR_MNM_StopAfterEmpty : BOOL;
+	VAR_MNM_DisengageForStop : BOOL;
+	VAR_MNM_HornFlrRequest : BOOL;
+	VAR_MNM_AutoStartRequest : BOOL;
+	VAR_MNM_AutoStopRequest : BOOL;
+	VAR_MNM_FlrAutoStartRequest : BOOL;
+	VAR_MNM_FlrAutoStopRequest : BOOL;
+	VAR_MNM_AutoVortexCalibActive : BOOL;
+	TMR_TON_StartingHornElapsed : TON;
+	VAR_MNM_AdjAxisRinserFootBar : BOOL; (*V4.A.A.1.7.0*)
+	VAR_MNM_AdjAxisFillerFootBar : BOOL; (*V4.A.A.1.7.0*)
+	VAR_MNM_AdjAxisPositionOffset : REAL;
+	VAR_i : UINT;
+	VAR_MNM_JogSpeedOld : REAL; (*V4.A.A.1.7.0*)
+	TMR_TON_TimeoutModality : TON;
+	VAR_MNM_CapperPosAux : BOOL; (*V4.A.A.1.6.12h*)
+	VAR_MNM_CoupledDesychroReq : BOOL; (*V4.A.A.1.7.0*)
+END_VAR
+(*CONVEYOR Variables*)
+VAR
+	VAR_MNM_MachineSpeedRequest1 : REAL; (*Master nuovo*)
+	VAR_MNM_InFixSpeedReq1 : BOOL; (*Master nuovo*)
+	VAR_MNM_ConveyorProduction : BOOL;
+	VAR_MNM_ConveyorClean : BOOL;
+	FB_ScalConveyorInlet : LCRLimScal; (*Master nuovo*)
+	FB_ScalConveyor : LCRLimScal;
+	VAR_AutoStepCheckNext : BOOL;
+	VAR_AutoStepCheck : BOOL;
+	VAR_MNM_InletConveyorSeq_VFD : MNM_InletConveyorVFD; (*1.6*)
+	VAR_MNM_OutletConveyorSeq_VFD : MNM_OutletConveyorVFD; (*1.6*)
+	VAR_MNM_OptionNoGripper : BOOL; (*V1.61 - inserire CFG_Pao?*)
+	VAR_MNM_InCvrAlarm : BOOL; (*1.6*) (*Master nuovo*)
+	VAR_MNM_OutCvrAlarm : BOOL; (*1.6*)
+	VAR_MNM_InCvrFixSpeedLimit : BOOL; (*V1.61*) (*Master nuovo*)
+	VAR_MNM_InCvrFixSpeed : REAL; (*1.6*) (*Master nuovo*)
+	VAR_MNM_OutCvrFixSpeedLimit : BOOL; (*V1.61*)
+	VAR_MNM_OutCvrFixSpeed : REAL; (*1.6*)
+	VAR_MNM_InCvrRampDwStart : REAL; (*V1.61*) (*Master nuovo*)
+	VAR_MNM_OutCvrRampDwStart : REAL; (*V1.61*)
+	TMR_TON_MNM_InCvrFix : TON; (*1.6*) (*Master nuovo*)
+	TMR_TON_MNM_InCvrRamp : TON; (*1.6*) (*Master nuovo*)
+	TMR_TON_MNM_OutCvrFix : TON; (*1.6*)
+	TMR_TON_MNM_OutCvrRamp : TON; (*1.6*)
+END_VAR
+(*Speed Manager*)
+VAR
+	iSpeed : USINT;
+	VAR_FixSpeed : ARRAY[1..CST_FixSpeedMax] OF VAR_FixSpeed_Type;
+	VAR_FixSpeedActive : USINT;
+	VAR_InFixSpeedActive : USINT;
+	VAR_FlrFixSpeedActive : USINT;
+	VAR_OutFixSpeedActive : USINT;
+	VAR_ModuleSpeed : VAR_ModuleSpeed_Type;
+END_VAR
+VAR CONSTANT
+	CST_FixSpeedMax : USINT := 15;
+END_VAR
+VAR
+	TON_ReachedDelay : ARRAY[1..CST_FixSpeedMax] OF TON;
+	VAR_MNM_FixSpeedReq : BOOL;
+	VAR_MNM_FlrFixSpeedReq : BOOL;
+	VAR_MNM_OutFixSpeedReq : BOOL;
+	VAR_MNM_InFixSpeedReq : BOOL;
+	TON_ContainerInletSafety1 : TON; (*V4.A.A.1.7.0*)
+END_VAR
+(*Master MNM Version*)
+VAR
+	VAR_MNM_TempTestFiller : BOOL;
+	VAR_MNM_TempTest : BOOL;
+	VAR_MNM_version : INT := 100; (*v4.a.a.1.7.0 only for internal use*)
+END_VAR

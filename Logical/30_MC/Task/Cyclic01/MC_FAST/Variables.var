@@ -1,0 +1,32 @@
+(*Master MC Version*)
+VAR
+	diMachineModuloPos : DINT;
+	diInletModuloPos : DINT;
+	diFillerModuloPos : DINT;
+	diOutletModuloPos : DINT;
+END_VAR
+(*Virtual position cyclic read*)
+VAR
+	fbReadCyclicParID : ARRAY[0..3] OF MC_BR_InitCyclicRead;
+END_VAR
+(*Cam*)
+VAR
+	fbCamMachineCkAB : FB_CamGeneratorAB_v2;
+	fbCam01 : FB_CamGenerator_v2;
+	fbCam02 : FB_CamGenerator_v2;
+	fbCam03 : FB_CamGenerator_v2;
+	fbCam04 : FB_CamGenerator_v2;
+	fbCam05 : FB_CamGenerator_v2;
+	fbCam06 : FB_CamGenerator_v2;
+	fbCam07 : FB_CamGenerator_v2;
+	fbCam08 : FB_CamGenerator_v2;
+	fbCam09 : FB_CamGenerator_v2;
+	fbCam10 : FB_CamGenerator_v2;
+	fbCam11 : FB_CamGenerator_v2;
+END_VAR
+(*Auxiliary*)
+VAR
+	xDummy : BOOL;
+	xAutoModActive : BOOL; (*V4.A.A.1.6.12i*)
+	xMultiModActive : BOOL; (*V4.A.A.1.6.12i*)
+END_VAR

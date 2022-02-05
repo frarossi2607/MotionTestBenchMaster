@@ -1,0 +1,91 @@
+PROGRAM _CYCLIC
+(* @LANGUAGE := 'sfc' *)
+INITIAL_STEP Init:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Init TO InitCpu:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'InitCpu' *)
+STEP InitCpu:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION Not Integrated FROM InitCpu TO Profibus:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND NOT CFG_MC.Generic.MotionIntegrated
+END_TRANSITION
+(* @SFCNOJUMP := 'Profibus' *)
+TRANSITION Integrated FROM InitCpu TO Integrated:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND CFG_MC.Generic.MotionIntegrated
+END_TRANSITION
+(* @SFCNOJUMP := 'Integrated' *)
+STEP Integrated:
+(* @LANGUAGE := 'st' *)
+IF VAR_SimulationOn THEN
+	//VAR_InputOutput.iq_stNetwork.FieldBus.Input	:= VAR_VisuSimulation;
+ELSE
+	MachineInput;
+	InletInput;
+	FillerInput;
+	OutletInput;
+//	DoserInput;
+END_IF	
+	
+//HmiInterfaces;//FR
+HmiInterfacesNew;//FR
+	
+MachineOutput;
+InletOutput;
+FillerOutput;
+OutletOutput;
+//DoserOutput;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Integrated TO Init:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'Init' *)
+STEP Profibus:
+(* @LANGUAGE := 'st' *)
+MachineOutput;
+InletOutput;
+FillerOutput;
+OutletOutput;
+
+MachineOutput_Profibus;
+//InletOutput_Profibus;
+FillerOutput_Profibus;
+//OutletOutput_Profibus;
+
+IF VAR_SimulationOn THEN
+	//VAR_InputOutput.iq_stNetwork.FieldBus.Input	:= VAR_VisuSimulation;
+ELSE
+	MachineInput_Profibus;
+	//	InletInput_Profibus;
+	FillerInput_Profibus;
+	//	OutletInput_Profibus;
+		
+	MachineInput;
+	InletInput;
+	FillerInput;
+	OutletInput;
+END_IF	
+
+PAR_Profibus;	
+HmiInterfaces;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Profibus TO Init:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'Init' *)
+END_PROGRAM

@@ -1,0 +1,3 @@
+VAR
+	DOS : DOS_Type;
+END_VAR

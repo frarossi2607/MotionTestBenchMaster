@@ -1,0 +1,8 @@
+(*VALVES*)
+VAR
+	IO_230CPC : IO_Valve_Type; (*EV chute 1 crowns release*)
+	IO_231CPC : IO_Valve_Type; (*EV chute 2 crowns release*)
+	IO_231EVC : IO_Valve_Type;
+	IO_205EVC : IO_Valve_Type; (*EXTRACTOR BLOWER CLEANING*)
+	IO_274DSC : IO_Digital_IN_Type; (*Master nuovo*)
+END_VAR

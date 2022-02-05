@@ -1,0 +1,5 @@
+VAR
+	IO_SkdReset : IO_Digital_OUT_Type;
+	IO_InterCpu_NettimeSoC : DINT;
+	IO_InterCpu_CicleOk : BOOL;
+END_VAR

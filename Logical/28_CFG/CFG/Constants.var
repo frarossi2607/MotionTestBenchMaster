@@ -1,0 +1,6 @@
+VAR CONSTANT
+	CST_DeviceName : STRING[16] := 'RECIPE';
+	CST_RootName : STRING[16] := 'ROOT';
+	CST_DirName : STRING[16] := 'Files';
+	CST_DefaultHeader : MpRecipeCsvHeaderType := (Name:='Default Value');
+END_VAR

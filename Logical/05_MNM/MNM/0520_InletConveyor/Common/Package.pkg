@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">InletConveyorHMI.st</Object>
+    <Object Type="File">InletConveyorAlarm.st</Object>
+    <Object Type="File">InletConveyorInterchange.st</Object>
+    <Object Type="File">InletConveyor_Hardware_CFG.st</Object>
+    <Object Type="File">InletConveyorDigitalIn.st</Object>
+  </Objects>
+</Package>

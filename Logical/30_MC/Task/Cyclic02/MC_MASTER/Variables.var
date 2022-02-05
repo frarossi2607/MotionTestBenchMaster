@@ -1,0 +1,75 @@
+(*Initialization*)
+VAR
+	xCpuInitDone : BOOL;
+END_VAR
+(* Input Variables *)
+VAR
+	xInputAuto : BOOL;
+	xInputJog : BOOL;
+	xInputCombi : BOOL;
+	xInputPositioning : BOOL;
+	xInputSelHoming : BOOL;
+END_VAR
+(*Modality Bits*)
+VAR
+	xModeReady : BOOL;
+	xExitStep : BOOL; (*Exit Step Variables*)
+	xAutoMode : BOOL; (*Auto Mode Command Variables*)
+	xJogMode : BOOL; (*Jog Mode Command Variables*)
+	xCombiMode : BOOL; (*Combi Mode Command Variables*)
+	xPositioningMode : BOOL; (*Positioning Mode Command Variable*)
+	xSelectiveHomeMode : BOOL;
+END_VAR
+(*Axes Enabling*)
+VAR
+	xPowerSupply01 : BOOL;
+	xPowerSupply02 : BOOL;
+END_VAR
+(*FB Declarations*)
+VAR
+	fbPowerSupply01 : FB_GeneralAxis;
+	fbPowerSupply02 : FB_GeneralAxis;
+	fbMachineMasterSlow : FB_GeneralAxis; (*V4.A.A.1.6.10*)
+END_VAR
+(*Local Module Struct*)
+VAR
+	stMasterModule : REFERENCE TO ST_MasterModuleInterface; (*Master Module Interface Variables*)
+	fbMpAlarmXCore : MpAlarmXCore;
+END_VAR
+(*FB Alarms*)
+VAR
+	fbMasterError : FB_ExceptionAlarmX;
+	fbPwr01Error : FB_ExceptionAlarmX;
+	fbPwr02Error : FB_ExceptionAlarmX;
+	fbPwr01Fault : FB_ExceptionAlarmX;
+	fbPwr02Fault : FB_ExceptionAlarmX;
+	fbPwr01BleederFault : FB_ExceptionAlarmX;
+	fbPwr02BleederFault : FB_ExceptionAlarmX;
+END_VAR
+(*Local Variables*)
+VAR
+	xReactionActive : BOOL; (*Quick stop, emergency stop or shutdown requested to Master module*)
+	uiAxisIndex : UINT; (*Axis Index*)
+	uiAxisToken : UINT;
+	uiNumberOfSteps : UINT;
+	rAxisDistance : REAL;
+	tofReactionActive : TOF;
+END_VAR
+(*Active Modality Bits*)
+VAR
+	xNoOpActive : BOOL;
+	xAutoActive : BOOL;
+	xPositioningActive : BOOL;
+	xCombiActive : BOOL;
+	xJogActive : BOOL;
+	xSelHomingActive : BOOL;
+	xCombiSynchroStopDone : BOOL;
+END_VAR
+(*Sequencer Steps*)
+VAR
+	uiPositioningStep : UINT;
+	uiAutoStep : UINT;
+	uiJogStep : UINT;
+	uiCombiStep : UINT;
+	uiSelectiveHomeStep : UINT;
+END_VAR

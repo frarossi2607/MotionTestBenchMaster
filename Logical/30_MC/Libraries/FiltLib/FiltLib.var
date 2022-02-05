@@ -1,0 +1,17 @@
+(********************************************************************
+ * COPYRIGHT -- Bernecker + Rainer
+ ********************************************************************
+ * Library: FiltLib
+ * File: FiltLib.var
+ * Author: passaglial
+ * Created: July 16, 2010
+ ********************************************************************
+ * Constants of library FiltLib
+ ********************************************************************)
+VAR CONSTANT
+	FLTLIB_ER_GET_TASKTIME : UINT := 901; (*Not possible to compute the task class time*)
+	FLTLIB_ER_CUT_FREQ_TOO_LOW : UINT := 902; (*Cut Frequency too low*)
+	FLTLIB_ER_EXT_TIME_TOO_LOW : UINT := 903; (*Extrapolation time too low*)
+	FLTLIB_ER_T1_TOO_LOW : UINT := 904; (*Time constant T1 is too low*)
+	FLTLIB_ER_T2_TOO_LOW : UINT := 905; (*Time constant T2 is too low*)
+END_VAR
