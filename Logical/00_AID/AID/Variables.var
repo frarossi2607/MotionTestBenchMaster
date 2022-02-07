@@ -1,4 +1,9 @@
 VAR
+	TMR_TP_HornAlarmStop : TP_Reset;
+	VAR_AlarmLightReset : BOOL;
+	VAR_CriticalLight : BOOL;
+	VAR_AlarmLight : BOOL;
+	VAR_AlarmHorn : BOOL;
 	FB_Blink_05Hz : FB_Blinker;
 	FB_Blink_1Hz : FB_Blinker;
 	FB_Blink_2Hz : FB_Blinker;
