@@ -5,10 +5,7 @@ PROGRAM _INIT
 	
 	//ALR - Alarm
 	HMI_ALR_Loading;
-	
-	//BTC - Bottles Bottom Cooling
-	HMI_BTC_Loading;
-	
+		
 	//CAP - Capper
 	HMI_CAP_Loading;
 	
@@ -63,6 +60,9 @@ PROGRAM _INIT
 	//TNK - Tank
 	HMI_TNK_Loading;
 	
+	//DAQ - Data Aquisition v1.7.4a
+	HMI_DAQ_Loading;
+	
 	//Device (Valves - Instruments - Pumps)
 	HMI_Valves_Loading;
 	HMI_Instruments_Loading;
@@ -72,4 +72,11 @@ PROGRAM _INIT
 	HMI_Variables_Loading;
 	
 	HMI_CounterInit;
+	
+	//CTP - CAP TRATMENT PREPARATION
+	HMI_CTP_Loading;
+	
+	//DOS - PULPDOSER v999hema
+	HMI_DOS_Loading;
+	
 END_PROGRAM

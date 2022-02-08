@@ -63,6 +63,8 @@ TYPE
 		PartnerID : USINT;
 		ComType : USINT;
 		ComAddress : STRING[35];
+		LocalPort : UINT; (*Local port number used to Receive*)
+		RemotePort : UINT; (*Remote port number used o Send*)
 		ComSwap : BOOL;
 		PageUp : HMI_ITC_PB_Type := (Visibility:=TRUE);
 		PageDown : HMI_ITC_PB_Type := (Visibility:=TRUE);
@@ -236,5 +238,10 @@ TYPE
 	AlarmAreaCfg_Type : 	STRUCT  (*V4.A.A.1.6.13*)
 		From : UINT;
 		To : UINT;
+	END_STRUCT;
+	Vfd_Data_Type : 	STRUCT  (*v999_Daq*)
+		Node : USINT;
+		Name : STRING[80];
+		ReadData : ARRAY[0..15]OF DINT;
 	END_STRUCT;
 END_TYPE

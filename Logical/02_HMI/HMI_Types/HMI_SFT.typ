@@ -130,14 +130,28 @@ END_TYPE
 (*FILLING VALVE*)
 
 TYPE
-		FillingValveDataStructure_Type : 	STRUCT 
-		FillingDisabled : BOOL;(*SHIFT master nuovo*)
+	DummyContainerDataStructure_Type : 	STRUCT 
+		FillingNozzle : USINT;
+		DummyInstalled : BOOL; (*SHIFT master nuovo*)
+		DummyNotInserted : BOOL;
+		DummyRemoved : BOOL;
+		DummyNotRemoved : BOOL;
+	END_STRUCT;
+	FillingValveDataStructure_Type : 	STRUCT 
+		FillingDisabled : BOOL; (*SHIFT master nuovo*)
 		ContainerBurst : BOOL;
 		ContainerPresence : BOOL;
 		PreClosingEnd : BOOL;
 		WashingLapsEnd : BOOL;
+		PreClosingCmdLap1 : BOOL;
+		PreClosingCmdLap2 : BOOL;
+		PreClosingCmdLap3 : BOOL;
+		PreClosingCmdLap4 : BOOL;
+		PreClosingCmdLap5 : BOOL;
+		PreClosingCmdLap6 : BOOL;
+		PreClosingCmdLap7 : BOOL;
 		OperatorInspectionReq : BOOL;
-		PreClosingLaps : USINT;
+		PreClosingActualLap : USINT;
 		WashingLaps : USINT;
 		ConsecutiveFillNotOk : USINT;
 		AbsoluteFillNotOk : USINT;

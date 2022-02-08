@@ -146,8 +146,6 @@ TYPE
 		_317 : UINT;
 		_318 : UINT;
 		_319 : UINT;
-		_500 : UINT;
-		_515 : UINT;
 	END_STRUCT;
 	ST_HMIEncoderDiagnostic : 	STRUCT 
 		Present : BOOL;

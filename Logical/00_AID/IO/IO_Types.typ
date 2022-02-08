@@ -50,6 +50,7 @@ Close = Disinserction (Forward)*)
 		Production : BOOL; (*Machine on Production Running (the Product Inlet Valves stay Open with Doors Unlocked)*)
 		PB_ResetBkInRoom : BOOL; (*Push Button Command: Room Door Inlet Reset Push Button*)
 		PB_ResetBkOutRoom : BOOL; (*Push Button Command: Room Door Outlet Reset Push Button*)
+		PB_ResetFwRoom : BOOL; (*Push Button Command: Room Door Outlet Reset Push Button*)
 		BF_CoupledBF : BOOL; (*Combi Blower: Blower+Filler Coupled*)
 		SSC_CoupledBlower : BOOL; (*SuperCombi BLF/BAF: Blower+Labeler / Blower+Actis Coupled//V4.A.A.1.6.10c*)
 		SSC_CoupledFiller : BOOL; (*SuperCombi BLF/BAF: Labeler+Filler / Actis+Filler Coupled//V4.A.A.1.6.10c*)
@@ -116,8 +117,8 @@ Close = Disinserction (Forward)*)
 		OPMnOut_Jog : BOOL; (*OP Capper Platform Safety Flag: Jog Selected*)
 		OPRnBkIn_Jog : BOOL; (*OP Rinser Backward Inlet Safety Flag: Jog Selected*)
 		OPRnBkOut_Jog : BOOL; (*OP Rinser Backward Outlet Safety Flag: Jog Selected //V4.A.A.1.6.10c*)
-		BOOL017 : BOOL;
-		BOOL018 : BOOL;
+		OPFwEx_Jog : BOOL; (*OP Forward External Safety Flag: Jog Selected //vrma 106*)
+		OPFwEx_JogError : BOOL; (*OP Forward External Safety Flag: Jog Selected Fault vrma106*)
 		BOOL019 : BOOL;
 		SS_LockOutOff : BOOL; (*V4.A.A.1.7.1*)
 		SS_LockOutError : BOOL; (*V4.A.A.1.7.1*)
@@ -157,8 +158,8 @@ Close = Disinserction (Forward)*)
 		EMERGENCY_LABELER : BOOL; (*EMERGENCY LABELER CIRCUIT READY*)
 		EMERGENCY_LABELER_Fault : BOOL; (*EMERGENCY LABELER CIRCUIT Feed-back Fault*)
 		EmgSkidFault : BOOL; (*Emergency Skid Feed-Back Circuit FAULT*)
-		FillerLiftPw : BOOL;(*Master nuovo*)
-		FillerLiftPwFault : BOOL;(*Master nuovo*)
+		FillerLiftPw : BOOL; (*Master nuovo*)
+		FillerLiftPwFault : BOOL; (*Master nuovo*)
 		SelMode_Auto : BOOL; (*Mode Selection: Automatic*)
 		SelMode_JOG : BOOL; (*Mode Selection: JOG*)
 		SelMode_Setting : BOOL; (*Mode Selection: Setting*)
@@ -218,10 +219,10 @@ Close = Disinserction (Forward)*)
 		CapArolHighFault : BOOL; (*Arol Capper Buffer: High Position Feed-Back Fault*)
 		CapArolBlockedFault : BOOL; (*Arol Capper Buffer: Blocked Position Feed-Back Fault*)
 		BOOLext0024 : BOOL;
-		BOOLext0025 : BOOL;
-		BOOLext0026 : BOOL;
-		BOOLext0027 : BOOL;
-		BOOLext0028 : BOOL;
+		CapExtr1Op_Opened : BOOL; (*Cap Extractor 1: Door Opened*)
+		CapExtr1Op_Shc : BOOL; (*Cap Extractor 1: Door Short Circuit Safety*)
+		CapExtr2Op_Opened : BOOL; (*Cap Extractor 2: Door Opened*)
+		CapExtr2Op_Shc : BOOL; (*Cap Extractor 2: Door Short Circuit Safety*)
 		BOOLext0029 : BOOL;
 		MO_BLO_BaseTest : BOOL; (*Machine Option: BLO Base Machine Test -> "SafeMachineOption00" (on Test = SAFETRUE)V4.A.A.1.6.10c*)
 		BOOLext0031 : BOOL;
@@ -312,7 +313,7 @@ Close = Disinserction (Forward)*)
 		DOS : IO_ITC_DOS_Type; (*V4.A.A.1.6.11*)
 		CVI : IO_ITC_CVI_DP_Type; (*V4.A.A.1.6.14*)
 		CFD2 : IO_ITC_CFD_Type; (*V4.A.A.1.7.1*)
-		CDR : IO_ITC_CDR_Type; (*//RMC275*)
+		CDR : IO_ITC_CDR_Type; (*V4.A.A.1.7.1*)
 	END_STRUCT;
 	IO_ITC_UVL_Type : 	STRUCT 
 		In : UvlFlr_Type;
@@ -350,13 +351,13 @@ Close = Disinserction (Forward)*)
 		DO_PowerON : BOOL;
 		DO_Down : BOOL;
 		DO_Up : BOOL;
-		DI_Powered : BOOL;(*master nuovo*)
-		DO_PowerOn : BOOL;(*Master nuovo*)
+		DI_Powered : BOOL; (*master nuovo*)
+		DO_PowerOn : BOOL; (*Master nuovo*)
 	END_STRUCT;
 	IO_CPU_Type : 	STRUCT 
 		BatteryStatus : USINT; (*Battery status CPU (0 = battery low or missing, 1 = battery ok,)*)
-		CoolingPlateTemperature : UINT; (*Temperature cooling plate [1/10C]*)
-		Temperature : UINT; (*Temperature CPU [1/10C]*)
+		CoolingPlateTemperature : INT; (*Temperature cooling plate [1/10C] vrma*)
+		Temperature : INT; (*Temperature CPU [1/10C] vrma*)
 	END_STRUCT;
 	IO_UPS_Type : 	STRUCT 
 		DI_BatteryReady : BOOL; (*True = UPS in alarm*)

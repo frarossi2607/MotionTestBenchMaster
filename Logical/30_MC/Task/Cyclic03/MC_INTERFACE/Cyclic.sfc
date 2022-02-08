@@ -33,7 +33,6 @@ ELSE
 	InletInput;
 	FillerInput;
 	OutletInput;
-//	DoserInput;
 END_IF	
 	
 //HmiInterfaces;//FR
@@ -43,7 +42,6 @@ MachineOutput;
 InletOutput;
 FillerOutput;
 OutletOutput;
-//DoserOutput;
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)

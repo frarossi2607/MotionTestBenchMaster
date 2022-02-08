@@ -1,21 +1,20 @@
 (*MAIN MOTORIZATION Variables*)
 VAR
-	VAR_MNM_PACtest : INT;
 	VAR_MNM_MachineSpeedRequest : REAL;
 	VAR_MNM_AdjustmentStep : MNM_AdjustmentStep; (*V4.A.A.1.7.0*)
 	VAR_MNM_AutoStep : MNM_AutoStep;
 	VAR_MNM_AutoCombiStep : MNM_AutoCombiStep;
 	VAR_MNM_JogStep : MNM_JogStep;
 	VAR_MNM_JogCombiStep : MNM_JogCombiStep;
-	VAR_MNM_DosMultiStep : MNM_MultiStep;
 	VAR_MNM_FlrMultiStep : MNM_MultiStep;
 	VAR_MNM_FlrInletMultiStep : MNM_MultiStep;
+	VAR_MNM_FlrSecondHalfRunning : BOOL;
+	VAR_MNM_FlrRephasingPosition : USINT;
+	VAR_MNM_FlrFirstHalfRunning : BOOL;
 	VAR_MNM_FpMachineStartPb : BOOL;
 	VAR_MNM_MachineStart : BOOL;
 	VAR_MNM_MachineStopRequest : BOOL; (*V4.A.A.1.6.6*)
 	VAR_MNM_MachineStop : BOOL;
-	TMR_TON_BlowerStopper : TON; (*1.6*)
-	TMR_TON_ClockGeneration : TON; (*V4.A.A.1.6.13*)
 END_VAR
 (*FAULT VARIABLES*)
 (*Machine*)
@@ -29,6 +28,7 @@ VAR
 	VAR_MNM_StopAfterEmpty : BOOL;
 	VAR_MNM_DisengageForStop : BOOL;
 	VAR_MNM_HornFlrRequest : BOOL;
+	VAR_MNM_PAMValueTest : REAL; (*variabile di test*)
 	VAR_MNM_AutoStartRequest : BOOL;
 	VAR_MNM_AutoStopRequest : BOOL;
 	VAR_MNM_FlrAutoStartRequest : BOOL;
@@ -93,7 +93,11 @@ VAR
 END_VAR
 (*Master MNM Version*)
 VAR
-	VAR_MNM_TempTestFiller : BOOL;
-	VAR_MNM_TempTest : BOOL;
 	VAR_MNM_version : INT := 100; (*v4.a.a.1.7.0 only for internal use*)
+END_VAR
+(*VAR TEST FOR DBA*)
+VAR
+	VAR_MNM_PccTestReversePos : INT; (*v999*)
+	VAR_MNM_PccTestSecondHalf : INT; (*v999*)
+	VAR_MNM_PccTestFirstHalf : INT; (*v999*)
 END_VAR

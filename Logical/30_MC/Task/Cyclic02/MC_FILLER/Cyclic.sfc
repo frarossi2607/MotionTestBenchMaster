@@ -1,5 +1,5 @@
 PROGRAM _CYCLIC
-(* @LANGUAGE := 'sfc' *)
+<?AutomationStudio FileVersion="4.9"?>
 INITIAL_STEP InitCPU:
 END_STEP
 (* @SFCMAXTIME := '' *)
@@ -27,6 +27,8 @@ fbFillerMaster.i_xVelocityControl					:= FALSE;
 fbFillerMaster.i_xThirdPartyMotor					:= FALSE;			
 fbFillerMaster.i_pAxisADR 							:= ADR(VAR_AxFillerModuleMaster);
 fbFillerMaster.i_pAxisMpLink						:= ADR(gFillerModuleMasterLink);
+fbFillerMaster.i_pSecondaryAxisADR					:= 0;
+fbFillerMaster.i_pSecondaryAxisMpLink				:= 0;
 fbFillerMaster.i_pstCmd								:= ADR(stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd);
 fbFillerMaster.i_pstParameter						:= ADR(stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam);
 fbFillerMaster.i_pstStatus							:= ADR(stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus);
@@ -60,6 +62,8 @@ fbMain.i_xInductionMotorType		:= CFG_MC.Axes.Filler.Main.InductionMotor;
 fbMain.i_strParTabName				:= 'FlMain';		
 fbMain.i_pAxisADR 					:= ADR(VAR_AxFillerMain);
 fbMain.i_pAxisMpLink				:= ADR(gFillerMainLink);
+fbMain.i_pSecondaryAxisADR			:= 0;
+fbMain.i_pSecondaryAxisMpLink		:= 0;
 fbMain.i_pstCmd						:= ADR(stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd);
 fbMain.i_pstParameter				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam);
 fbMain.i_pstStatus					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus);
@@ -100,6 +104,8 @@ IF VAR_AxFillerIn01.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet01.i_strParTabName			:= 'FlIn01';
 	fbInlet01.i_pAxisADR 				:= ADR(VAR_AxFillerIn01);
 	fbInlet01.i_pAxisMpLink				:= ADR(gFlrIn01Link);
+	fbInlet01.i_pSecondaryAxisADR		:= 0;
+	fbInlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet01.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stCmd);
 	fbInlet01.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam);
 	fbInlet01.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus);
@@ -146,6 +152,8 @@ IF VAR_AxFillerIn02.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet02.i_strParTabName			:= 'FlIn02';
 	fbInlet02.i_pAxisADR 				:= ADR(VAR_AxFillerIn02);
 	fbInlet02.i_pAxisMpLink				:= ADR(gFlrIn02Link);
+	fbInlet02.i_pSecondaryAxisADR		:= 0;
+	fbInlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet02.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stCmd);
 	fbInlet02.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam);
 	fbInlet02.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus);
@@ -191,6 +199,8 @@ IF VAR_AxFillerIn03.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet03.i_strParTabName			:= 'FlIn03';
 	fbInlet03.i_pAxisADR 				:= ADR(VAR_AxFillerIn03);
 	fbInlet03.i_pAxisMpLink				:= ADR(gFlrIn03Link);
+	fbInlet03.i_pSecondaryAxisADR		:= 0;
+	fbInlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet03.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stCmd);
 	fbInlet03.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam);
 	fbInlet03.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus);
@@ -236,6 +246,8 @@ IF VAR_AxFillerIn04.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet04.i_strParTabName			:= 'FlIn04';
 	fbInlet04.i_pAxisADR 				:= ADR(VAR_AxFillerIn04);
 	fbInlet04.i_pAxisMpLink				:= ADR(gFlrIn04Link);
+	fbInlet04.i_pSecondaryAxisADR		:= 0;
+	fbInlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet04.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stCmd);
 	fbInlet04.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam);
 	fbInlet04.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus);
@@ -281,6 +293,8 @@ IF VAR_AxFillerIn05.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet05.i_strParTabName			:= 'FlIn05';
 	fbInlet05.i_pAxisADR 				:= ADR(VAR_AxFillerIn05);
 	fbInlet05.i_pAxisMpLink				:= ADR(gFlrIn05Link);
+	fbInlet05.i_pSecondaryAxisADR		:= 0;
+	fbInlet05.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet05.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stCmd);
 	fbInlet05.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stParam);
 	fbInlet05.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stStatus);
@@ -330,6 +344,8 @@ IF VAR_AxFillerIn06.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet06.i_strParTabName			:= 'FlIn06';
 	fbInlet06.i_pAxisADR 				:= ADR(VAR_AxFillerIn06);
 	fbInlet06.i_pAxisMpLink				:= ADR(gFlrIn06Link);
+	fbInlet06.i_pSecondaryAxisADR		:= 0;
+	fbInlet06.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet06.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stCmd);
 	fbInlet06.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stParam);
 	fbInlet06.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stStatus);
@@ -375,6 +391,8 @@ IF VAR_AxFillerIn07.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet07.i_strParTabName			:= 'FlIn07';
 	fbInlet07.i_pAxisADR 				:= ADR(VAR_AxFillerIn07);
 	fbInlet07.i_pAxisMpLink				:= ADR(gFlrIn07Link);
+	fbInlet07.i_pSecondaryAxisADR		:= 0;	
+	fbInlet07.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet07.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stCmd);
 	fbInlet07.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stParam);
 	fbInlet07.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stStatus);
@@ -420,6 +438,8 @@ IF VAR_AxFillerIn08.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet08.i_strParTabName			:= 'FlIn08';
 	fbInlet08.i_pAxisADR 				:= ADR(VAR_AxFillerIn08);
 	fbInlet08.i_pAxisMpLink				:= ADR(gFlrIn08Link);
+	fbInlet08.i_pSecondaryAxisADR		:= 0;
+	fbInlet08.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet08.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stCmd);
 	fbInlet08.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stParam);
 	fbInlet08.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stStatus);
@@ -465,6 +485,8 @@ IF VAR_AxFillerIn09.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet09.i_strParTabName			:= 'FlIn09';
 	fbInlet09.i_pAxisADR 				:= ADR(VAR_AxFillerIn09);
 	fbInlet09.i_pAxisMpLink				:= ADR(gFlrIn09Link);
+	fbInlet09.i_pSecondaryAxisADR		:= 0;
+	fbInlet09.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet09.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stCmd);
 	fbInlet09.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stParam);
 	fbInlet09.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stStatus);
@@ -510,6 +532,8 @@ IF VAR_AxFillerIn10.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet10.i_strParTabName			:= 'FlIn10';
 	fbInlet10.i_pAxisADR 				:= ADR(VAR_AxFillerIn10);
 	fbInlet10.i_pAxisMpLink				:= ADR(gFlrIn10Link);
+	fbInlet10.i_pSecondaryAxisADR		:= 0;
+	fbInlet10.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet10.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stCmd);
 	fbInlet10.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stParam);
 	fbInlet10.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stStatus);
@@ -556,6 +580,8 @@ IF VAR_AxFillerOut01.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet01.i_strParTabName			:= 'FlOu01';
 	fbOutlet01.i_pAxisADR 				:= ADR(VAR_AxFillerOut01);
 	fbOutlet01.i_pAxisMpLink			:= ADR(gFlrOut01Link);
+	fbOutlet01.i_pSecondaryAxisADR		:= 0;
+	fbOutlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet01.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stCmd);
 	fbOutlet01.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam);
 	fbOutlet01.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus);
@@ -603,6 +629,8 @@ IF VAR_AxFillerOut02.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet02.i_strParTabName			:= 'FlOu02';
 	fbOutlet02.i_pAxisADR 				:= ADR(VAR_AxFillerOut02);
 	fbOutlet02.i_pAxisMpLink			:= ADR(gFlrOut02Link);
+	fbOutlet02.i_pSecondaryAxisADR		:= 0;
+	fbOutlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet02.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stCmd);
 	fbOutlet02.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam);
 	fbOutlet02.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus);
@@ -648,6 +676,8 @@ IF VAR_AxFillerOut03.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet03.i_strParTabName			:= 'FlOu03';
 	fbOutlet03.i_pAxisADR 				:= ADR(VAR_AxFillerOut03);
 	fbOutlet03.i_pAxisMpLink			:= ADR(gFlrOut03Link);
+	fbOutlet03.i_pSecondaryAxisADR		:= 0;
+	fbOutlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet03.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stCmd);
 	fbOutlet03.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam);
 	fbOutlet03.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus);
@@ -695,6 +725,8 @@ IF VAR_AxFillerOut04.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet04.i_strParTabName			:= 'FlOu04';
 	fbOutlet04.i_pAxisADR 				:= ADR(VAR_AxFillerOut04);
 	fbOutlet04.i_pAxisMpLink			:= ADR(gFlrOut04Link);
+	fbOutlet04.i_pSecondaryAxisADR		:= 0;
+	fbOutlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet04.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stCmd);
 	fbOutlet04.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam);
 	fbOutlet04.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus);
@@ -742,6 +774,8 @@ IF VAR_AxFillerOut05.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet05.i_strParTabName			:= 'FlOu05';
 	fbOutlet05.i_pAxisADR 				:= ADR(VAR_AxFillerOut05);
 	fbOutlet05.i_pAxisMpLink			:= ADR(gFlrOut05Link);
+	fbOutlet05.i_pSecondaryAxisADR		:= 0;
+	fbOutlet05.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet05.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stCmd);
 	fbOutlet05.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stParam);
 	fbOutlet05.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stStatus);
@@ -789,6 +823,8 @@ IF VAR_AxFillerOut06.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet06.i_strParTabName			:= 'FlOu06';
 	fbOutlet06.i_pAxisADR 				:= ADR(VAR_AxFillerOut06);
 	fbOutlet06.i_pAxisMpLink			:= ADR(gFlrOut06Link);
+	fbOutlet06.i_pSecondaryAxisADR		:= 0;
+	fbOutlet06.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet06.i_pstCmd					:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stCmd);
 	fbOutlet06.i_pstParameter			:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stParam);
 	fbOutlet06.i_pstStatus				:= ADR(stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stStatus);
@@ -1516,18 +1552,6 @@ xInputSlowMotion			:= stFillerModule.iq_stCmd.i_xSlowMotionForward OR stFillerMo
 xInputBrakeRelease			:= stFillerModule.iq_stCmd.i_xBrakeRelease;
 xInputStepByStep			:= stFillerModule.iq_stCmd.i_xStepByStep;
 xInputStepByStepSingleAxis	:= stFillerModule.iq_stCmd.i_xStepByStepSingleAxis;//V4.A.A.1.7.0 Footbar
-xInputMultiAxis				:= stFillerModule.iq_stCmd.i_xMultiAxis;//v999
-
-
-
-
-writeParID.Axis	:= ADR(VAR_AxFillerMain);
-writeParID.ParID	:= ACP10PAR_POS_CTRL_T_TOTAL;
-writeParID.DataType		:= ncPAR_TYP_REAL ;
-writeParID.DataAddress	:=ADR(value);
-
-
-writeParID();
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
@@ -1546,7 +1570,6 @@ xAutoMultiActive 		:= FALSE;
 xStepByStepActive 		:= FALSE;
 xThirdPartySetupActive	:= FALSE;
 xInductionSetupActive	:= FALSE;
-xMultiAxisMode			:= FALSE;
 
 (* Change status *)
 xModeReady	:= usiMasterRequest = usiMasterStatus	AND
@@ -1559,25 +1582,16 @@ xModeReady	:= usiMasterRequest = usiMasterStatus	AND
 				NOT xJogMultiMode					AND
 				NOT xAutoMultiMode					AND
 				NOT xSlowMotionMode					AND
-				NOT xMultiAxisMode					AND
 				NOT xThirdPartySetupMode			AND
 				NOT xInductionSetupMode				AND
 				NOT tofReactionActive.Q;
 
 IF xModeReady THEN
 	(* Local Master Request *)
-	IF CFG_MC.Generic.DisengageModuleFiller THEN
-		IF xInputJogMulti OR xInputAutoMulti OR xInputMultiAxis OR xInputAuto THEN
-			usiMasterRequest	:= LOCAL_MASTER;
-		ELSIF (*xInputAuto OR*)	xInputPositioning OR xInputSelHoming OR xInputStepByStep OR xInputVelocity OR xInputThirdPartySetup OR xInputInductionSetup THEN
-			usiMasterRequest	:= GLOBAL_MASTER;
-		END_IF
-	ELSE
-		IF xInputJogMulti OR xInputAutoMulti OR xInputMultiAxis THEN
-			usiMasterRequest	:= LOCAL_MASTER;
-		ELSIF xInputAuto OR	xInputPositioning OR xInputSelHoming OR xInputStepByStep OR xInputVelocity OR xInputThirdPartySetup OR xInputInductionSetup THEN
-			usiMasterRequest	:= GLOBAL_MASTER;
-		END_IF
+	IF xInputJogMulti OR xInputAutoMulti THEN
+		usiMasterRequest	:= LOCAL_MASTER;
+	ELSIF xInputAuto OR	xInputPositioning OR xInputSelHoming OR xInputStepByStep OR xInputVelocity OR xInputThirdPartySetup OR xInputInductionSetup THEN
+		usiMasterRequest	:= GLOBAL_MASTER;
 	END_IF
 	
 	IF usiMasterStatus = GLOBAL_MASTER THEN
@@ -1603,8 +1617,6 @@ IF xModeReady THEN
 			xAutoMultiMode 			:= TRUE;
 		ELSIF xInputSlowMotion THEN
 			xSlowMotionMode			:= TRUE;
-		ELSIF xInputMultiAxis THEN
-			xMultiAxisMode			:= TRUE;
 		END_IF
 	END_IF
 ELSIF tofReactionActive.Q THEN
@@ -1690,11 +1702,11 @@ CASE uiPositioningStep OF
 		
 		stFillerModule.iq_astSubModuleAxis[uiOldAxisSelected].iq_stCmd.i_xMoveAdditive	:= TRUE;
 
-		tonPositDone(IN := FALSE, PT := T#1s);
+		tonPositDone(IN := FALSE, PT := T#5s);
 		uiPositioningStep := 120;
 		
 	120:
-		tonPositDone(IN := TRUE, PT := T#1s);
+		tonPositDone(IN := TRUE, PT := T#5s);
 		IF NOT stFillerModule.iq_stStatus.q_xModuleStopped OR tonPositDone.Q THEN
 			uiPositioningStep := 130;
 		END_IF
@@ -2563,140 +2575,6 @@ TRANSITION FROM StepByStepExit TO ModeSelection:=
 xExitStep
 END_TRANSITION
 (* @SFCISJUMP := 'ModeSelection' *)
-TRANSITION FROM ModeSelection TO MultiAxis:=
-xMultiAxisMode
-END_TRANSITION
-(* @SFCNOJUMP := 'MultiAxis' *)
-STEP MultiAxis:
-(* @LANGUAGE := 'st' *)
-IF xReactionActive OR NOT xInputMultiAxis THEN
-	xMultiAxisMode	:= FALSE;
-END_IF
-
-xMultiAxisActive	:= TRUE;
-
-CASE uiMultiAxis OF
-	0:
-		IF stFillerModule.iq_stStatus.q_xRealAxesReadyForACommand AND stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
-			IF NOT stFillerModule.iq_stStatus.q_xSynchroWithOffset THEN
-				uiMultiAxis	:= 100;
-			ELSE
-				uiMultiAxis	:= 50;
-			END_IF
-		END_IF
-		
-	50:
-		 uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-			stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchroWithOffset;
-		uiMultiAxis	:= 60;
-	
-	60:
-		IF NOT stFillerModule.iq_stStatus.q_xSynchroWithOffset THEN
-			uiMultiAxis	:= 70;
-		END_IF
-		
-	70:
-		 uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-			stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation := FALSE;
-		uiMultiAxis	:= 100;
-			
-	100:
-		IF stFillerModule.iq_stCmd.i_xMasterRephasingRequest THEN
-			uiMultiAxis	:= 105;
-		END_IF
-	
-	105:
-		stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome := TRUE;
-		uiMultiAxis	:= 110;
-
-	110:
-		stFillerModule.iq_stStatus.q_xMasterRephased := TRUE;
-		uiMultiAxis	:= 115;
-	 
-	115:
-		IF stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
-			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome := FALSE;
-			uiMultiAxis	:= 116;
-		END_IF
-	
-
-	116:
-		uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
-		
-		IF stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchronized THEN
-			uiMultiAxis	:= 117;
-		END_IF
-	
-	117:
-		uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := FALSE;
-		IF NOT stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchronized THEN
-			uiMultiAxis	:= 118;
-		END_IF
-	118:
-		uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stParam.i_xNegativeStaticCam := TRUE;
-		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear := stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
-		
-		IF stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xSynchronized THEN
-			uiMultiAxis	:= 120;
-		END_IF
-	
-	120:
-		IF stFillerModule.iq_stCmd.i_xStart THEN
-			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rPositioningVelocity	:= 10*CST_PositioningVel;
-			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_rPositioningAccDec	:= 3*CST_PositioningAccDec;
-			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_lrAdditiveDistance	:= -(stFillerModule.iq_stParameters.i_rPositioningOffset);
-//			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam.i_stMotorDirection 		:= 1;
-
-			uiMultiAxis	:= 121;
-		END_IF
-
-	121:
-	
-		stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveAdditive			:= TRUE;
-
-		uiMultiAxis	:= 130;
-
-	130:
-		uiAxisIndex	:= VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected;
-		
-		IF NOT stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stStatus.q_stMainAxisStatus.q_xStopped THEN 
-			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xMoveAdditive := FALSE;
-			uiMultiAxis	:= 140;
-		END_IF
-	
-	140:
-		IF stFillerModule.iq_stStatus.q_xModuleStopped AND stFillerModule.iq_stCmd.i_xStart THEN
-			uiMultiAxis	:= 110;
-		END_IF
-END_CASE
-END_STEP
-(* @SFCMAXTIME := '' *)
-(* @SFCMINTIME := '' *)
-(* @SFCCOMMENT := '' *)
-ENTRY_ACTION
-(* @LANGUAGE := 'st' *)
-uiMultiAxis	:= 0;
-
-(* TODO: Insert Program *)
-END_ACTION
-TRANSITION FROM MultiAxis TO MultiAxisExit:=
-NOT xMultiAxisMode
-END_TRANSITION
-(* @SFCNOJUMP := 'MultiAxisExit' *)
-STEP MultiAxisExit:
-(* @LANGUAGE := 'st' *)
-
-END_STEP
-(* @SFCMAXTIME := '' *)
-(* @SFCMINTIME := '' *)
-(* @SFCCOMMENT := '' *)
-TRANSITION FROM MultiAxisExit TO InitCPU:=
-xExitStep
-END_TRANSITION
-(* @SFCISJUMP := 'InitCPU' *)
 STEP Auto:
 (* @LANGUAGE := 'st' *)
 IF xReactionActive OR NOT xInputAuto THEN
@@ -2704,6 +2582,7 @@ IF xReactionActive OR NOT xInputAuto THEN
 END_IF
 
 xAutoActive	:= TRUE;
+
 CASE uiAutoStep OF
 	0:
 		IF stFillerModule.iq_stStatus.q_xRealAxesReadyForACommand AND stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xReadyForACommand THEN
@@ -2743,18 +2622,8 @@ CASE uiAutoStep OF
 	110:
 		IF stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xIsHomed THEN
 			stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xHome 	:= FALSE;
-			IF CFG_MC.Generic.DisengageModuleFiller THEN
-				uiAutoStep	:= 111;
-			ELSE	
-				uiAutoStep	:= 120;
-			END_IF	
+			uiAutoStep	:= 120;
 		END_IF
-	
-	111:
-		stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd.i_xGear	:=	stFillerModule.iq_stCmd.i_xStart;
-		IF (stFillerModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus.q_stMainAxisStatus.q_xSynchronized) THEN		
-			uiAutoStep	:=	120;
-		END_IF;
 	
 	120:
 		FOR uiAxisIndex	:= uiFirstFillerModuleAxis TO uiLastFillerModuleAxis BY 1 DO
@@ -3092,7 +2961,6 @@ stFillerModule.iq_stStatus.q_xStepByStepActive 		:= xStepByStepActive;
 stFillerModule.iq_stStatus.q_xVelocityActive 		:= xVelocityActive;
 stFillerModule.iq_stStatus.q_xThirdPartySetupActive	:= xThirdPartySetupActive;
 stFillerModule.iq_stStatus.q_xInductionSetupActive	:= xInductionSetupActive;
-stFillerModule.iq_stStatus.q_xMultiAxisActive		:= xMultiAxisActive ;//v999
 
 stFillerModule.iq_stStatus.q_xModuleStartFbk	:= (xAutoMultiActive	AND stFillerModule.iq_stCmd.i_xStart)	OR
 													(xJogMultiActive	AND stFillerModule.iq_stCmd.i_xJogPB)	OR

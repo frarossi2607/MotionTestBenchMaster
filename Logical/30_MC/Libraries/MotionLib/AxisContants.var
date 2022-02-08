@@ -9,13 +9,6 @@ VAR CONSTANT
 	CST_NumberOfAxesMasterModule : UINT := 5;
 	CST_MachinePhasingOffset : UINT := 99;
 END_VAR
-(*Doser Module*)
-VAR CONSTANT
-	CST_DoserSubModuleHmiStart : UINT := 500;
-	CST_DoserSubModule : UINT := 5;
-	CST_DoserModuleAxis : UINT := 1;
-	CST_LastDoserModuleAxis : UINT := 2;
-END_VAR
 (*Filler Sub Module*)
 VAR CONSTANT
 	CST_FillerSubModuleHmiStart : UINT := 100;
@@ -64,8 +57,6 @@ VAR CONSTANT
 	CST_Outlet04 : UINT := 19;
 	CST_Outlet05 : UINT := 20;
 	CST_Outlet06 : UINT := 21;
-	CST_RinserCarousel : USINT := 1;
-	CST_DoserCarousel : USINT := 1;
 END_VAR
 (*Const*)
 VAR CONSTANT

@@ -26,6 +26,10 @@ TYPE
 		MNM_AutoMachineRunningEmpty := 131,
 		MNM_AutoMachineRunningFull := 132,
 		MNM_AutoMachineRunning := 133,
+		MNM_AutoMachineColceaPashing := 134,
+		MNM_AutoMachineStarWheel2Phasing := 137,
+		MNM_AutoMachineRinserPashing := 136,
+		MNM_AutoMachineStarWheel1Pashing := 135,
 		MNM_AutoMachineStopping := 140,
 		MNM_AutoSmr1OpHornBlow := 210,
 		MNM_AutoSmr1OpMachineStart := 220,
@@ -64,11 +68,18 @@ TYPE
 		MNM_AutoCheckCapsReleaseHorn := 1040,
 		MNM_AutoCheckCapsReleaseStart := 1041,
 		MNM_AutoCheckCapsReleaseStop := 1042,
-		MNM_AutoFillerDmcBackSettingPos := 1050,
-		MNM_AutoFillerHalfPosStart := 1051,
-		MNM_AutoFillerHalfPosStop := 1052,
-		MNM_AutoAxisPosWaitStop := 1053,
-		MNM_AutoAxisStopped := 1054,
+		MNM_AutoFillerHalfPosConfig := 1043, (*v999*)
+		MNM_AutoFillerHalfPosHornBlow := 1044, (*v999*)
+		MNM_AutoFillerHalfAxisStart := 1045, (*v999*)
+		MNM_AutoFillerHalfWaitStop := 1046, (*v999*)
+		MNM_AutoFillerHalfStopped := 1047, (*v999*)
+		MNM_AutoFillerReversePosConfig := 1048, (*v999*)
+		MNM_AutoFillerReversePosHornBlow := 1049, (*v999*)
+		MNM_AutoFillerReverseAxisStart := 1050, (*v999*)
+		MNM_AutoFillerReverseWaitStop := 1051, (*v999*)
+		MNM_AutoFillerReverseStopped := 1052, (*v999*)
+		MNM_AutoFillSecondHalfPosConfig := 1053,
+		MNM_AutoFillSecondHalfRevPosConf,
 		MNM_AutoFault := 9999
 		);
 	MNM_AutoCombiStep : 

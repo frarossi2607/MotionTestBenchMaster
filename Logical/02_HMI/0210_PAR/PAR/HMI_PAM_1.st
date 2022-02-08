@@ -1,7 +1,7 @@
 (*HMI_PAM_1 Initialization Action for Filler PLC*)
 (*Author = ????*)
 (*DB Version : 0.10*)
-(*File Version : 2.88*)
+(*File Version : 3.29*)
 
 ACTION HMI_PAM_1_Init :
         HMI_PAM_1._000 := 50;
@@ -81,6 +81,8 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._116 := 10;
         HMI_PAM_1._117 := 20;
         HMI_PAM_1._118 := 30;
+        HMI_PAM_1._119 := 0;
+        HMI_PAM_1._120 := 0;
         HMI_PAM_1._130 := 0;
         HMI_PAM_1._131 := 0;
         HMI_PAM_1._140 := 0;
@@ -95,6 +97,21 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._154 := 0;
         HMI_PAM_1._155 := 0;
         HMI_PAM_1._156 := 0;
+        HMI_PAM_1._160 := 0;
+        HMI_PAM_1._161 := 0;
+        HMI_PAM_1._162 := 0;
+        HMI_PAM_1._163 := 0;
+        HMI_PAM_1._164 := 0;
+        HMI_PAM_1._165 := 0;
+        HMI_PAM_1._166 := 0;
+        HMI_PAM_1._170 := 0;
+        HMI_PAM_1._171 := 0;
+        HMI_PAM_1._172 := 0;
+        HMI_PAM_1._173 := 0;
+        HMI_PAM_1._174 := 0;
+        HMI_PAM_1._175 := 0;
+        HMI_PAM_1._180 := 0;
+        HMI_PAM_1._181 := 0;
         HMI_PAM_1._200 := 0;
         HMI_PAM_1._201 := 0;
         HMI_PAM_1._202 := 0;
@@ -113,6 +130,26 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._236 := 50;
         HMI_PAM_1._237 := 0;
         HMI_PAM_1._238 := 0;
+        HMI_PAM_1._250 := 115;
+        HMI_PAM_1._251 := 115;
+        HMI_PAM_1._260 := 0;
+        HMI_PAM_1._261 := 0;
+        HMI_PAM_1._262 := 0;
+        HMI_PAM_1._263 := 0;
+        HMI_PAM_1._264 := 0;
+        HMI_PAM_1._265 := 0;
+        HMI_PAM_1._266 := 1;
+        HMI_PAM_1._267 := 0;
+        HMI_PAM_1._268 := 0;
+        HMI_PAM_1._269 := 2.42;
+        HMI_PAM_1._270 := 2.42;
+        HMI_PAM_1._271 := 2.42;
+        HMI_PAM_1._272 := 50;
+        HMI_PAM_1._273 := 50;
+        HMI_PAM_1._274 := 50;
+        HMI_PAM_1._275 := 20;
+        HMI_PAM_1._276 := 20;
+        HMI_PAM_1._277 := 20;
         HMI_PAM_1._300 := 50;
         HMI_PAM_1._301 := 60;
         HMI_PAM_1._302 := 80;
@@ -125,6 +162,9 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._315 := 60;
         HMI_PAM_1._316 := 65;
         HMI_PAM_1._317 := 80;
+        HMI_PAM_1._320 := 50;
+        HMI_PAM_1._321 := 60;
+        HMI_PAM_1._322 := 80;
         HMI_PAM_1._396 := 0;
         HMI_PAM_1._397 := 0;
         HMI_PAM_1._398 := 0;
@@ -165,6 +205,10 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._433 := 0;
         HMI_PAM_1._434 := 0;
         HMI_PAM_1._435 := 0;
+        HMI_PAM_1._436 := 0;
+        HMI_PAM_1._437 := 0;
+        HMI_PAM_1._438 := 0;
+        HMI_PAM_1._439 := 0;
         HMI_PAM_1._450 := 0;
         HMI_PAM_1._451 := 0;
         HMI_PAM_1._452 := 0;
@@ -202,4 +246,12 @@ ACTION HMI_PAM_1_Init :
         HMI_PAM_1._560 := 1;
         HMI_PAM_1._561 := 0;
         HMI_PAM_1._562 := 1;
+        HMI_PAM_1._563 := 3;
+        HMI_PAM_1._564 := 0;
+        HMI_PAM_1._565 := 0;
+        HMI_PAM_1._566 := 0;
+        HMI_PAM_1._567 := 0;
+        HMI_PAM_1._568 := 0;
+        HMI_PAM_1._569 := 0;
+        HMI_PAM_1._900 := 0;
 END_ACTION

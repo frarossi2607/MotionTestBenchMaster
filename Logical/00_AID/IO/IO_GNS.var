@@ -8,6 +8,8 @@ END_VAR
 VAR
 	IO_204PSF : IO_Digital_IN_Type; (*Carousel air pressure switch*)
 	IO_201PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
+	IO_205PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
+	IO_206PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
 	IO_204PTF : IO_Analog_IN_Type; (*Carousel air pressure sensor*)
 	IO_235DSE : IO_Digital_IN_Type; (*Cop mode Conveyor Outlet*)
 	IO_239DSE : IO_Digital_IN_Type; (*Production mode Transfer Inlet*)
@@ -15,6 +17,18 @@ VAR
 	IO_242DSE : IO_Digital_IN_Type; (*Production mode Conveyor Outlet*)
 	IO_ContainerBurst1 : IO_Digital_IN_Type; (*ContainerBurst#1*)
 	IO_ContainerBurst2 : IO_Digital_IN_Type; (*ContainerBurst#2 *)
+	IO_201QTB : IO_Analog_IN_Type; (*Basement Air Control - CO2 Sensor //v1.7.4*)
+	IO_201QTB_Warning : IO_Digital_IN_Type; (*Basement Air Control - CO2 Sensor Warning //v1.7.4*)
+	IO_201QTB_Alarm : IO_Digital_IN_Type; (*Basement Air Control - CO2 Sensor Alarm//v1.7.4*)
+	IO_201QTE : IO_Analog_IN_Type; (*Filler Air Control - CO2 Sensor //v1.7.4*)
+	IO_201QTE_Warning : IO_Digital_IN_Type; (*FIller Air Control - CO2 Sensor Warning //v1.7.4*)
+	IO_201QTE_Alarm : IO_Digital_IN_Type; (*Filler Air Control - CO2 Sensor Alarm//v1.7.4*)
+	IO_202QTB : IO_Analog_IN_Type; (*Basement Air Control - Ozozne Sensor //v1.7.4*)
+	IO_202QTB_Warning : IO_Digital_IN_Type; (*Basement Air Control - Ozozne Sensor Warning //v1.7.4*)
+	IO_202QTB_Alarm : IO_Digital_IN_Type; (*Basement Air Control - Ozozne Sensor Alarm//v1.7.4*)
+	IO_202QTE : IO_Analog_IN_Type; (*Filler Air Control - Ozozne Sensor //v1.7.4*)
+	IO_202QTE_Warning : IO_Digital_IN_Type; (*Filler Air Control - Ozozne Sensor Warning //v1.7.4*)
+	IO_202QTE_Alarm : IO_Digital_IN_Type; (*Filler Air Control - Ozozne Sensor Alarm//v1.7.4*)
 END_VAR
 (*INSTRUMENTS - DIGITAL*)
 VAR
@@ -38,6 +52,9 @@ VAR
 	IO_MC07_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC07 Cabinet Door Opened*)
 	IO_MC19_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC19 Auxiliary circuit ON*)
 	IO_MC19_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC19 Cabinet Door Opened*)
+	IO_MC29_Cooling : IO_Cooling_Type; (*MC29 Cooling  //v999hema*)
+	IO_MC29_Overload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC29 Auxiliary circuit ON //v999hema*)
+	IO_MC29_DoorCabinetOpened : IO_Digital_IN_Type := (DI_Input:=TRUE); (*MC29 Cabinet Door Opened VRMA*)
 	IO_CapFeederOverload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*CapFeeder Overload ON*)
 	IO_OptifeedOverload : IO_Digital_IN_Type := (DI_Input:=TRUE); (*Optifeed Overload ON //V4.A.A.1.6.11*)
 	IO_UPS : IO_UPS_Type;

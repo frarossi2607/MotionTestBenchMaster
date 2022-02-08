@@ -1,3 +1,18 @@
+VAR RETAIN
+	VAR_MNM_CocleaPhasingByPassDone : BOOL;
+	VAR_MNM_RinserPhasingByPassDone : BOOL;
+	VAR_MNM_RinserPhasingHemaDone : BOOL;
+	VAR_MNM_CocleaPhasingHemaDone : BOOL;
+END_VAR
 VAR
 	MNM : MNM_Type;
+END_VAR
+VAR RETAIN
+	VAR_MNM_RinserPhasingPerValue : REAL;
+END_VAR
+VAR
+	VAR_MNM_AlarmTest : BOOL;
+END_VAR
+VAR RETAIN
+	VAR_MNM_CocleaPhasingPerValue : REAL;
 END_VAR

@@ -1,7 +1,7 @@
 (*HMI_PAC_1 Initialization Action for Filler PLC*)
 (*Author = UTERF*)
 (*DB Version : 0.11*)
-(*File Version : 2.88*)
+(*File Version : 3,17*)
 
 ACTION HMI_PAC_1_Init :
         HMI_PAC_1._000 := 0;
@@ -16,6 +16,7 @@ ACTION HMI_PAC_1_Init :
         HMI_PAC_1._009 := 0;
         HMI_PAC_1._013 := 205;
         HMI_PAC_1._014 := 0;
+        HMI_PAC_1._015 := 0;
         HMI_PAC_1._016 := 0;
         HMI_PAC_1._017 := 0;
         HMI_PAC_1._018 := 0;
@@ -25,6 +26,7 @@ ACTION HMI_PAC_1_Init :
         HMI_PAC_1._022 := 0;
         HMI_PAC_1._023 := 0;
         HMI_PAC_1._024 := 0;
+        HMI_PAC_1._025 := 0;
         HMI_PAC_1._045 := 0;
         HMI_PAC_1._070 := 0;
         HMI_PAC_1._071 := 0;
@@ -120,12 +122,17 @@ ACTION HMI_PAC_1_Init :
         HMI_PAC_1._502 := 0;
         HMI_PAC_1._503 := 0;
         HMI_PAC_1._504 := 0;
+        HMI_PAC_1._505 := 0;
         HMI_PAC_1._510 := 0;
         HMI_PAC_1._600 := 0;
         HMI_PAC_1._601 := 0;
         HMI_PAC_1._605 := 0;
         HMI_PAC_1._606 := 0;
         HMI_PAC_1._610 := 0;
+        HMI_PAC_1._620 := 0;
+        HMI_PAC_1._621 := 0;
+        HMI_PAC_1._622 := 0;
+        HMI_PAC_1._623 := 0;
         HMI_PAC_1._700 := 0;
         HMI_PAC_1._701 := 0;
         HMI_PAC_1._702 := 0;

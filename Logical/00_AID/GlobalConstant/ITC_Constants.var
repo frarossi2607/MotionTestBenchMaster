@@ -6,6 +6,7 @@ VAR CONSTANT
 	CST_ITC_ACTIS : USINT := 14; (*Actis*)
 	CST_ITC_PULPDOSER : USINT := 15; (*Pulp Doser*)
 	CST_ITC_CLOSINGUNIT : USINT := 16; (*Closing unit*)
+	CST_ITC_FLAVORDOSER : USINT := 17; (*Flavor Doser//1.63*)
 END_VAR
 (*Sidel Process*)
 VAR CONSTANT
@@ -20,13 +21,7 @@ VAR CONSTANT
 	CST_ITC_BBT : USINT := 34; (*BBT*)
 	CST_ITC_ASEPTICTANK : USINT := 35; (*Aseptic Tank*)
 END_VAR
-(*Product treatments*)
-VAR CONSTANT
-	CST_ITC_PFLASH : USINT := 41; (*Pasto Flash*)
-	CST_ITC_DOSER : USINT := 42; (*Doser*)
-	CST_ITC_OZONIZER : USINT := 43; (*Ozonizer*)
-	CST_ITC_WTT : USINT := 44; (*Water Treatment*)
-END_VAR
+(*Product treatments (41-49 RESERVED SKID)*)
 (*Hygiene*)
 VAR CONSTANT
 	CST_ITC_CIP : USINT := 51; (*CIP Room*)
@@ -41,8 +36,16 @@ VAR CONSTANT
 	CST_ITC_VBC : USINT := 64; (*Vacuum Barrier Company*)
 	CST_ITC_CFD : USINT := 65; (*Cap Feeder*)
 	CST_ITC_CFD2 : USINT := 66; (*Cap Feeder 2*)
-	CST_ITC_CODER : USINT := 67; (*Coder*)
+	CST_ITC_CDR : USINT := 67; (*Coder*)
 	CST_ITC_LDF : USINT := 68; (*Lid feeder*)
+	CST_ITC_UVL : USINT := 69; (*UV Lamp Caps treatment v1.4*)
+END_VAR
+(*External equipments 2*)
+VAR CONSTANT
+	CST_ITC_SIKO : USINT := 81; (*Arol Siko Multibody V4.A.A.1.6.12*)
+	CST_ITC_WTT : USINT := 82; (*Water system Water treatment Rinser V4.A.A.1.6.12*)
+	CST_ITC_CDS : USINT := 83; (*Cap Dis   V4.A.A.1.7.0*)
+	CST_ITC_PST : USINT := 85; (*v999hema*)
 END_VAR
 (*Data*)
 VAR CONSTANT

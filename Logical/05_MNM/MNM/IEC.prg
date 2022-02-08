@@ -9,6 +9,7 @@
     <Object Type="Package" Description="Conveyor: motori nastri Ingresso Macchina">0520_InletConveyor</Object>
     <Object Type="Package" Description="Conveyor: motori nastri Uscita Macchina">0530_OutletConveyor</Object>
     <Object Type="Package">0590_DataTo</Object>
+    <Object Type="File">MNM_DisableMotorManagement.st</Object>
     <Object Type="File">MNM_MachineSpeedManagemant.st</Object>
   </Objects>
 </Program>

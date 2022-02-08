@@ -9,6 +9,7 @@ VAR
 	VAR_ALR_FirstExtCritAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
 	VAR_ALR_FirstExtAlertAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
 	VAR_ALR_FirstCsAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+	VAR_ALR_FirstCsExtAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.5a*)
 	VAR_ALR_CriticalAcknoledgeReq : BOOL;
 	VAR_ALR_AlarmAcknoledgeReq : BOOL;
 	VAR_AlarmActionOper : ActionSum_Type; (*V4.A.A.1.6.13*)

@@ -1,3 +1,20 @@
+(*DBA glass Status*)
+
+TYPE
+	HMI_DMC_Status : 	STRUCT 
+		Sector1Position : USINT;
+		Sector1PistonDown : USINT;
+		Sector1RotationToProd : USINT;
+		Sector1RotationToCip : USINT;
+		Sector1PistonUp : USINT;
+		Sector2Position : USINT;
+		Sector2PistonDown : USINT;
+		Sector2RotationToProd : USINT;
+		Sector2RotationToCip : USINT;
+		Sector2PistonUp : USINT;
+	END_STRUCT;
+END_TYPE
+
 (*COMMON*)
 
 TYPE
@@ -21,6 +38,7 @@ TYPE
 END_TYPE
 
 (*SAFE LOGIC*)
+
 TYPE
 	HMI_SL_Info_Type : 	STRUCT 
 		RemoteCtrlStatus : UINT;
@@ -50,7 +68,7 @@ TYPE
 		LedTest : PB_Type;
 		Scan : PB_Type;
 	END_STRUCT;
-	HMI_MAU_ChlRns_Type : 	STRUCT (*master nuovo*)
+	HMI_MAU_ChlRns_Type : 	STRUCT  (*master nuovo*)
 		AVE260_PauseTimeWithBottles : UINT;
 		AVE260_WorkTimeWithBottles : UINT;
 		AVE260_PauseTimeWithoutBottles : UINT;

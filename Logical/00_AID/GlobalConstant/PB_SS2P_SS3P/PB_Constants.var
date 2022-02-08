@@ -68,6 +68,21 @@ END_VAR
 VAR CONSTANT
 	PB_LbConExtLift_Cmd : USINT := 13;
 END_VAR
+(*MAU Dummy Container*)
+VAR CONSTANT
+	PB_DumCon_FirstHalfPos : USINT := 0;
+	PB_DumCon_SecondHalfPos : USINT := 1;
+	PB_DumCon_FirstHalfPistonDown : USINT := 2;
+	PB_DumCon_SecondHalfPistonDown : USINT := 3;
+	PB_DumCon_FirstHalfRotToProd : USINT := 4;
+	PB_DumCon_SecondHalfRotToProd : USINT := 5;
+	PB_DumCon_FirstHalfRotToCip : USINT := 6;
+	PB_DumCon_SecondHalfRotToCip : USINT := 7;
+	PB_DumCon_FirstHalfPistonUp : USINT := 8;
+	PB_DumCon_SecondHalfPistonUp : USINT := 9;
+	PB_DumCon_FirstHalfStartCheck : USINT := 10;
+	PB_DumCon_SecondHalfStartCheck : USINT := 11;
+END_VAR
 (*MAU Greasing*)
 VAR CONSTANT
 	PB_GrLb_Manual : USINT := 0;
@@ -102,14 +117,9 @@ VAR CONSTANT
 	PB_SFT_SamplingMoldSelectAll : USINT := 2; (*v1.63*)
 	PB_SFT_SamplingMoldReset : USINT := 3; (*v1.63*)
 	PB_SFT_SamplingReq : USINT := 10;
-	PB_SFT_BurstColorStatusReset : USINT := 11;(*Master nuovo*)
+	PB_SFT_BurstColorStatusReset : USINT := 11; (*Master nuovo*)
 	PB_SFT_BurstCounterReset : USINT := 12;
-	PB_SFT_BurstAckowledge : USINT := 13;(*Master nuovo*)
-END_VAR
-(*SMR*)
-VAR CONSTANT
-	PB_SMR_Flushing : USINT := 5;
-	PB_SMR_Whasing : USINT := 6;
+	PB_SFT_BurstAckowledge : USINT := 13; (*Master nuovo*)
 END_VAR
 (*TNK*)
 VAR CONSTANT
@@ -125,4 +135,16 @@ END_VAR
 VAR CONSTANT
 	PB_BBT_Restore : USINT := 0; (*Master nuovo*)
 	PB_BBT_CounterReset : USINT := 1; (*Master nuovo*)
+END_VAR
+
+VAR CONSTANT 
+	PB_CmdDosStop : USINT := 0; (*v999hema*)
+	PB_CmdDosStart : USINT := 1;
+	PB_CmdDosSkip : USINT := 2;
+	PB_CmdDosPause : USINT := 3;
+	PB_CmdDosAbort : USINT := 4;
+	PB_CmdLiftMotorStop : USINT := 5;
+	PB_CmdLiftMotorStart : USINT := 6;
+	PB_DOS_Up : USINT := 7;
+	PB_DOS_Down : USINT := 8;
 END_VAR

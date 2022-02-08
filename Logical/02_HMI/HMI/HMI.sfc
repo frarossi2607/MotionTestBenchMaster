@@ -18,7 +18,7 @@ END_STEP
 (* @SFCCOMMENT := '' *)
 EXIT_ACTION
 (* @LANGUAGE := 'st' *)
-HMI_MachinePlcVersion := 'V4.A.A.1.7.2'; //V4.A.A.1.6.14
+HMI_MachinePlcVersion := 'V4.AA.200.8.0';
 
 //V4.A.A.1.6.13
 VAR_SafetyVersionTemp := UINT_TO_USINT(swapUINT(PI.SwVer1));
@@ -42,11 +42,12 @@ strcat(ADR(HMI_MachineSafetyVersion), ADR(VAR_SafetyVersionData3));
 strcat(ADR(HMI_MachineSafetyVersion), ADR('.'));
 strcat(ADR(HMI_MachineSafetyVersion), ADR(VAR_SafetyVersionData4));
 END_ACTION
-TRANSITION FROM InitCpu TO (ITCMng,CmdBar,Counters,Various):=
+TRANSITION FROM InitCpu TO (ITCMng,CmdBar,CmdBar_GLASS,Counters,Various):=
 CFG.DataOut.ConfigLoaded
 END_TRANSITION
 (* @SFCNOJUMP := 'ITCMng' *)
 (* @SFCNOJUMP := 'CmdBar' *)
+(* @SFCNOJUMP := 'CmdBar_GLASS' *)
 (* @SFCNOJUMP := 'Counters' *)
 (* @SFCNOJUMP := 'Various' *)
 STEP ITCMng:
@@ -62,43 +63,6 @@ END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
 (* @SFCCOMMENT := '' *)
-TRANSITION //PAO FROM CmdBar TO CmdBar_PET:=
-(* @LANGUAGE := 'st' *)
-CFG_Par.Machine.Type.SRMB OR CFG_Par.Machine.Type.SRMC OR CFG_Par.Machine.Type.SRMH OR CFG_Par.Machine.Type.SRMO //v1.62
-END_TRANSITION
-(* @SFCNOJUMP := 'CmdBar_PET' *)
-TRANSITION //PAO FROM CmdBar TO CmdBar_CAN:=
-(* @LANGUAGE := 'st' *)
-CFG_Par.Machine.Type.SRME
-END_TRANSITION
-(* @SFCNOJUMP := 'CmdBar_CAN' *)
-STEP CmdBar_CAN:
-(* @LANGUAGE := 'st' *)
-
-// Command Bar - Fixed Visibility and Partner Visibility 
-HMI_CommandBar_Visibility_CAN;
-//
-//	(* Command Bar - Command from HMI and Partner *)
-HMI_CommandBar_Command_CAN;
-//	
-//	(* Command Bar - Enable from PLC and Partner *)
-HMI_CommandBar_Enable_CAN;
-//	
-//	(* Command Bar - State from PLC and Partner *)
-HMI_CommandBar_Status_CAN;
-END_STEP
-(* @SFCMAXTIME := '' *)
-(* @SFCMINTIME := '' *)
-(* @SFCCOMMENT := '' *)
-TRANSITION FROM CmdBar_CAN TO CmdBar:=
-FALSE
-END_TRANSITION
-(* @SFCISJUMP := 'CmdBar' *)
-TRANSITION //PAO FROM CmdBar TO CmdBar_GLASS:=
-(* @LANGUAGE := 'st' *)
-CFG_Par.Machine.Type.SRMA
-END_TRANSITION
-(* @SFCNOJUMP := 'CmdBar_GLASS' *)
 STEP CmdBar_GLASS:
 (* @LANGUAGE := 'st' *)
 // Command Bar - Fixed Visibility and Partner Visibility 
@@ -112,32 +76,12 @@ HMI_CommandBar_Enable_GLASS;
 //	
 //	(* Command Bar - State from PLC and Partner *)
 HMI_CommandBar_Status_GLASS;
+
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
 (* @SFCCOMMENT := '' *)
 TRANSITION FROM CmdBar_GLASS TO CmdBar:=
-FALSE
-END_TRANSITION
-(* @SFCISJUMP := 'CmdBar' *)
-STEP CmdBar_PET:
-(* @LANGUAGE := 'st' *)
-// Command Bar - Fixed Visibility and Partner Visibility 
-HMI_CommandBar_Visibility_PET;
-//
-//	(* Command Bar - Command from HMI and Partner *)
-HMI_CommandBar_Command_PET;
-//	
-//	(* Command Bar - Enable from PLC and Partner *)
-HMI_CommandBar_Enable_PET;
-//	
-//	(* Command Bar - State from PLC and Partner *)
-HMI_CommandBar_Status_PET;
-END_STEP
-(* @SFCMAXTIME := '' *)
-(* @SFCMINTIME := '' *)
-(* @SFCCOMMENT := '' *)
-TRANSITION FROM CmdBar_PET TO CmdBar:=
 FALSE
 END_TRANSITION
 (* @SFCISJUMP := 'CmdBar' *)
@@ -173,7 +117,7 @@ END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
 (* @SFCCOMMENT := '' *)
-TRANSITION FROM (ITCMng,Counters,Various) TO HMIInit:=
+TRANSITION FROM (ITCMng,CmdBar,Counters,Various) TO HMIInit:=
 FALSE
 END_TRANSITION
 (* @SFCISJUMP := 'HMIInit' *)

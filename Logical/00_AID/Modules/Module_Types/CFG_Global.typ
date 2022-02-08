@@ -39,16 +39,17 @@ TYPE
 		WhiteRoom : CFG_WhiteRoom_Type;
 		FCI : CFG_FCI_Type;
 		ProductChangeOver : CFG_ProductChangeOver_Type;
-		BottleBottomCooling : CFG_BTC_Type;
+
 		Rinser : CFG_RNS_Type;
 		CapFedeer : CFG_CFD_Type;
 		CapFedeer2 : CFG_CFD_Type; (*v4.A.A.1.7.0*)
 		OperatorSafety : CFG_OperatorSafety_Type;
 		Maintenance : CFG_MNT_Type;
+		Doser : CFG_DOS_Type; (*v999hema*)
 	END_STRUCT;
 	CFG_Cap_Par_Type : 	STRUCT 
-		Elements : ARRAY[0..16]OF HMI_ComboBoxElements_Type;
-		Data : ARRAY[0..16]OF CFG_CapFormatData_Type;
+		Elements : ARRAY[0..19]OF HMI_ComboBoxElements_Type; (*vrma*)
+		Data : ARRAY[0..19]OF CFG_CapFormatData_Type;
 	END_STRUCT;
 	CFG_Crw_Par_Type : 	STRUCT 
 		Elements : ARRAY[0..15]OF HMI_ComboBoxElements_Type;
@@ -72,6 +73,7 @@ TYPE
 		GreasingPumpPresent : BOOL;
 		Present : BOOL;
 		CapDisPresent : BOOL; (*V4.A.A.1.7.0*)
+		CapTreatment : BOOL; (*v1.7.5*)
 		Buffer : CFG_CapBuffer_Type;
 		Channel : CFG_CapChannel_Type;
 		Type : CFG_CapManufactor_Type;
@@ -154,6 +156,10 @@ END_TYPE
 
 TYPE
 	CFG_DumCon_Type : 	STRUCT 
+		DBA_NumValveReadInPosCheck : USINT;
+		DBA_NumStepForReversePos : USINT;
+		DBA_NumValveInTangSec2 : USINT;
+		DBA_NumValveInTangSec1 : USINT;
 		Automatic : BOOL;
 		Lifting : BOOL;
 	END_STRUCT;
@@ -204,8 +210,8 @@ TYPE
 	END_STRUCT;
 	CFG_LiftingMovement_Type : 	STRUCT 
 		Filler : CFG_LiftingMovementSku_Type; (*V4.A.A.1.6.12*)
-		Crowner : CFG_LiftingMovementClu_Type;(*master nuvo*)
-		Capper : CFG_LiftingMovementClu_Type;(*master nuvo*)
+		Crowner : CFG_LiftingMovementClu_Type; (*master nuvo*)
+		Capper : CFG_LiftingMovementClu_Type; (*master nuvo*)
 		OutletConveyor : CFG_LiftingMovementConveyor_Type; (*V4.A.A.1.6.12*)
 		Rinser : CFG_LiftingMovementMotor_Type; (*V4.A.A.1.6.12*)
 	END_STRUCT;
@@ -390,6 +396,7 @@ TYPE
 		RinserRecSkd : ITC_Parameter_Type; (*V4.A.A.1.6.12*)
 		FlavorDoser : ITC_Parameter_Type; (*V4.A.A.1.6.12*)
 		CapDis : ITC_Parameter_Type; (*V4.A.A.1.7.0*)
+		DoserHema : ITC_Parameter_Type; (*v999hema*)
 	END_STRUCT;
 	ITC_Parameter_Type : 	STRUCT 
 		ComType : USINT; (*Communication Type:
@@ -416,19 +423,6 @@ TYPE
 	END_STRUCT;
 END_TYPE
 
-(*BOTTLE COOLING*)
-
-TYPE
-	CFG_BTC_Type : 	STRUCT 
-		Present : BOOL;
-		UvLamp : BOOL;
-		Loose : BOOL;
-		Recycling : BOOL;
-		DosingPump : BOOL;
-		TankSloped : BOOL;
-	END_STRUCT;
-END_TYPE
-
 (*FILLER V4.A.A.1.6.12*)
 
 TYPE
@@ -442,8 +436,10 @@ END_TYPE
 TYPE
 	CFG_RNS_Type : 	STRUCT 
 		Present : BOOL;
+		PressureNozzleControlInsertion : BOOL; (*vrma*)
+		PressureNozzleControlContinous : BOOL; (*vrma*)
 		Recovery : BOOL;
-		NoBottleNoSpray : BOOL;(*Master nuovo*)
+		NoBottleNoSpray : BOOL; (*Master nuovo*)
 		ExternalRecoverySkid : BOOL; (*V4.A.A.1.6.12*)
 		CipPresent : BOOL; (*V4.A.A.1.7.0*)
 		FootbarPresent : BOOL; (*V4.A.A.1.7.0*)
@@ -493,6 +489,14 @@ TYPE
 	CFG_MNT_Type : 	STRUCT 
 		DeEnergization : BOOL; (*LOTO*)
 		PreventiveMaintenance : BOOL; (*TPM*)
-		SamplingMoldOption : BOOL; (*Mold Sampling at machine exit bottle Ejector present V4.A.A.1.6.12*)
+	END_STRUCT;
+END_TYPE
+
+(*DOSER v999hema*)
+
+TYPE
+	CFG_DOS_Type : 	STRUCT 
+		Present : BOOL;
+		RecoverySkid : BOOL;
 	END_STRUCT;
 END_TYPE

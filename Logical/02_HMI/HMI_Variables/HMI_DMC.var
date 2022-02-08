@@ -1,10 +1,25 @@
 VAR
-	HMI_DMC_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
+	HMI_DMC_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
+	HMI_DMC_AutoModeStatus : HMI_DMC_Status;
+	HMI_DMC_ManModeStatus : HMI_DMC_Status;
+END_VAR
+VAR RETAIN
+	HMI_DMC_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_DMC] OF SS2P_Type;
+END_VAR
+VAR
 	HMI_DMC_State : Seq_Type;
 	HMI_DMC_Number : UINT;
 	HMI_DMC_InsertionSensor : HMI_DI_Type;
+	HMI_211EVF : HMI_Valve_Type;
+	HMI_210EVF : HMI_Valve_Type;
 	HMI_DMC_InsertionPiston : HMI_Valve_Type;
+	HMI_DMC_Sector2LastValveNum : INT;
+	HMI_DMC_Sector2FirstValveNum : INT;
+	HMI_DMC_Sector1LastValveNum : INT;
 	HMI_DMC_Installed : BOOL;
 	HMI_DMC_Visualization : BOOL;
+	HMI_DMC_AbortFromOperatorCheck : BOOL;
+	HMI_DMC_OkFromOperatorCheck : BOOL;
+	HMI_DMC_TankHeightPosOk : BOOL;
 	HMI_DMC_StepActual : USINT;
 END_VAR

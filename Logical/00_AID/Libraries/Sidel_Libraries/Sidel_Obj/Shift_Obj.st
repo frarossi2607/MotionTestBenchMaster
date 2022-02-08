@@ -171,9 +171,10 @@ FUNCTION_BLOCK CapPhotoCell_SftObj
 					END_IF
 				ELSE
 					VAR_RepetitiveCounterArray[VAR_ActualValveCounter]	:= 0;
+					HMI.ConsecutiveErrors	:= 0; //v1.7.4
 				END_IF
-			ELSE
-				HMI.ConsecutiveErrors	:= 0;
+//			ELSE 								//v1.7.4
+//				HMI.ConsecutiveErrors	:= 0;	//v1.7.4
 			END_IF
 			
 			IF ((VAR_CapsReleased - VAR_AbsoluteCounterArray[1]) > IN_CBlockAbsoluteQuantity) AND (IN_CBlockAbsoluteQuantity > 0) THEN

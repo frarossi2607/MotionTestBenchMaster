@@ -32,11 +32,14 @@ VAR
 	HMI_OPS_BufferDoor : ARRAY[1..4] OF HMI_OPS_Door_Type; (*V4.A.A.1.6.12d*)
 	HMI_OPS_Emergency : ARRAY[0..MAX_CFG_EmergencyConfiguration] OF HMI_OPS_Emergency_Type;
 	HMI_OPS_Jog : ARRAY[0..MAX_CFG_JogConfiguration] OF HMI_OPS_Jog_Type;
+	HMI_OPS_JogFwExt : HMI_OPS_Jog_Type; (*vrma106*)
 	HMI_OPS_EmergencyBlower : HMI_OPS_Emergency_Type;
 	HMI_OPS_EmergencyLabeller : HMI_OPS_Emergency_Type;
 	HMI_OPS_EmergencyActis : HMI_OPS_Emergency_Type; (*V4.A.A.1.6.12*)
 	HMI_OPS_EmergencyConveyor : HMI_OPS_Emergency_Type;
 	HMI_OPS_EmergencyNitrodoser : HMI_OPS_Emergency_Type;
+	HMI_OPS_EmergencyCrownFeeder : HMI_OPS_Emergency_Type;
+	HMI_OPS_EmergencyCapsFeeder : HMI_OPS_Emergency_Type;
 	HMI_OPS_ModeSelectorAdjustment : BOOL;
 	HMI_OPS_ModeSelectorJog : BOOL; (*V4.A.A.1.6.13*)
 	HMI_OPS_ModeSelectorAuto : BOOL; (*V4.A.A.1.6.13*)

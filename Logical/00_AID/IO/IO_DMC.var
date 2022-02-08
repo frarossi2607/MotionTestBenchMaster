@@ -1,4 +1,8 @@
 VAR
+	IO_210EVF : IO_Valve_Type; (*master nuovo*)
+	IO_211EVF : IO_Valve_Type; (*master nuovo*)
+	IO_RollSafety1 : IO_Dmc_Type;
+	IO_RollSafety2 : IO_Dmc_Type;
 	IO_DmcDevice : IO_Dmc_Type;
 	IO_205DSF : IO_Digital_IN_Type; (*Dummy container inserted*)
 END_VAR

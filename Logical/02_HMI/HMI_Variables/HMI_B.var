@@ -4,11 +4,16 @@ VAR
 	HMI_RVB : ARRAY[MIN_CFG_RVx..MAX_CFG_RVx] OF HMI_Valve_Mod_Type;
 	HMI_RMB : ARRAY[MIN_CFG_RMx..MAX_CFG_RMx] OF HMI_Valve_Mod_Type;
 	HMI_HVB : ARRAY[MIN_CFG_HVx..MAX_CFG_HVx] OF HMI_Valve_Type; (*V4.A.A.1.6.12*)
+	HMI_EVB : ARRAY[MIN_CFG_EVx..MAX_CFG_EVx] OF HMI_Valve_Type; (*v1.7.4*)
 	HMI_206CPB : HMI_Valve_Type; (*Moovable Spray Control V4.A.A.1.7.0*)
 	HMI_296CPB : HMI_Valve_Type; (*Moovable Cam ByPass Outlet Starwheel V4.A.A.1.7.0*)
 	HMI_297CPB : HMI_Valve_Type; (*Moovable Cam ByPass Inlet Starwheel V4.A.A.1.7.0*)
 	HMI_298CPB : HMI_Valve_Type; (*Moovable ByPass Starwheel Outlet Cam V4.A.A.1.7.0*)
 	HMI_299CPB : HMI_Valve_Type; (*Moovable ByPass Starwheel Inlet Cam V4.A.A.1.7.0*)
+	HMI_211CPB : HMI_Valve_Type; (*Doser ByPass Control RMH017*)
+	HMI_212CPB : HMI_Valve_Type; (*Doser ByPass Control*)
+	HMI_213CPB : HMI_Valve_Type; (*Doser ByPass Control*)
+	HMI_219CPB : HMI_Valve_Type; (*Doser ByPass Control*)
 END_VAR
 (*INSTRUMENTS - DIGITAL*)
 VAR
@@ -16,6 +21,7 @@ VAR
 	HMI_LSB : ARRAY[MIN_CFG_LSx..MAX_CFG_LSx] OF HMI_DI_Type;
 	HMI_HSB : ARRAY[MIN_CFG_HSx..MAX_CFG_HSx] OF HMI_DI_Type; (*V4.A.A.1.6.12*)
 	HMI_FSB : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF HMI_DI_Type;
+	HMI_QSB : ARRAY[MIN_CFG_QSx..MAX_CFG_QSx] OF HMI_DI_Type; (*v1.7.4*)
 	HMI_202DSB : HMI_DI_Type; (*V4.A.A.1.7.0*)
 	HMI_298DSB : HMI_DI_Type; (*V4.A.A.1.7.0*)
 	HMI_299DSB : HMI_DI_Type; (*V4.A.A.1.7.0*)
@@ -24,16 +30,15 @@ END_VAR
 (*INSTRUMENTS - ANALOGIC*)
 VAR
 	HMI_CTB : ARRAY[MIN_CFG_CTx..MAX_CFG_CTx] OF HMI_Analog_IN_Mode_Type;
-	HMI_QTB : ARRAY[MIN_CFG_QTx..MAX_CFG_QTx] OF HMI_Analog_IN_Type;
+	HMI_QTB : ARRAY[MIN_CFG_QTx..MAX_CFG_QTx] OF HMI_Analog_IN_Type; (*v1.7.4*)
 	HMI_FTB : ARRAY[MIN_CFG_FTx..MAX_CFG_FTx] OF HMI_Analog_IN_Type;
 	HMI_TTB : ARRAY[MIN_CFG_TTx..MAX_CFG_TTx] OF HMI_Analog_IN_Type;
 	HMI_PTB : ARRAY[MIN_CFG_PTx..MAX_CFG_PTx] OF HMI_Analog_IN_Type;
 	HMI_LTB : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF HMI_Analog_IN_Type;
-	HMI_TTBottomBottleDetection : HMI_Analog_IN_Type; (*V4.A.A.1.6.12*)
 END_VAR
 (*PIDs*)
 VAR
-	HMI_PID_PPB : ARRAY[MIN_CFG_PID_PPx..MAX_CFG_PID_PPx] OF HMI_PID_Mode_Type;
+	HMI_PID_PPB : ARRAY[MIN_CFG_PID_PPx..MAX_CFG_PID_PPx] OF HMI_PID_Type;
 	HMI_PID_RVB : ARRAY[MIN_CFG_PID_RVx..MAX_CFG_PID_RVx] OF HMI_PID_Mode_Type;
 	HMI_PID_RMB : ARRAY[MIN_CFG_PID_RMx..MAX_CFG_PID_RMx] OF HMI_PID_Mode_Type;
 END_VAR

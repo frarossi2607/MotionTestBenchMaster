@@ -7,6 +7,8 @@ VAR CONSTANT
 	FlaworDoserLaps : USINT := 4;
 	PulpDoserLaps : USINT := 5;
 	PowerOn : USINT := 6;
+	RotatingTime : USINT := 7;
+	PowerOnTime : USINT := 8;
 END_VAR
 (*Containers Counters*)
 VAR CONSTANT
@@ -23,9 +25,9 @@ VAR CONSTANT
 	NotFilledEjected : USINT := 10;
 	ContainersEntered : USINT := 11;
 	ContainersProduced : USINT := 12;
-	EjectionBySIS : USINT := 13; (*V4.A.A.1.6.8*)
-	SIS_EjectionToBlower : USINT := 14; (*V4.A.A.1.6.8*)
-	SIS_ContainersProducedToBlower : USINT := 15; (*V4.A.A.1.6.8*)
+	EjectionBySIS : USINT := 13;
+	BottleProduceToCvo : USINT := 14;
+	Spare : USINT := 15;
 END_VAR
 (*Process Counters*)
 VAR CONSTANT
@@ -56,6 +58,6 @@ VAR CONSTANT
 	Product : USINT := 8;
 	Steam : USINT := 9;
 	FoodSteam : USINT := 10;
-	ProductWater : USINT := 11; (*V4.A.A.1.6.14k*)
+	ProductWater : USINT := 11;
 	Syrup : USINT := 12; (*V4.A.A.1.6.14k*)
 END_VAR

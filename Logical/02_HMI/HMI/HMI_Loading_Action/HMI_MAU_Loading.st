@@ -8,6 +8,7 @@ ACTION HMI_MAU_Loading:
 	HMI_LftCon_Loading;
 	HMI_UPS_Loading;
 	HMI_MAU_Plc;
+	HMI_Exhauster_Loading; //v1.7.4
 END_ACTION
 
 ACTION HMI_GrLb_Loading:
@@ -26,6 +27,7 @@ ACTION HMI_Tray_Loading:
 	HMI_227CPB;
 	HMI_209DSF;
 END_ACTION
+
 ACTION HMI_LftCon_Loading:
 	HMI_LftCon_SS2P;
 	HMI_203RVF;
@@ -40,6 +42,7 @@ ACTION HMI_WhRoom_Loading:
 	HMI_204PTE;
 	HMI_205PTE;
 	HMI_206PTE;
+	HMI_207PTE;//1.7.6
 END_ACTION
 
 ACTION HMI_UPS_Loading:
@@ -53,4 +56,12 @@ END_ACTION
 
 ACTION HMI_MAU_Plc:
 	HMI_TimeZoneOffset;
+	HMI_SDM_RequestInit;//1.7.2b
+ 	HMI_SDM_PLCAvailable;//1.7.2b
+	HMI_SDM_MachineStopped;//1.7.2b
+END_ACTION
+
+ACTION HMI_Exhauster_Loading: //v1.7.4
+HMI_AFE;
+HMI_VFD_AFE;
 END_ACTION

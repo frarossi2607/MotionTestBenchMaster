@@ -24,6 +24,7 @@ FUNCTION_BLOCK AlarmScheduler (*V4.A.A.1.6.13*)
 		FirstExtCriticalAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
 		FirstExtAlertAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
 		FirstCsAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.0*)
+		FirstCsExtAlarmActive : AlarmCFG_Type; (*V4.A.A.1.7.5a*)
 		CriticalAcknoledgeRequest : BOOL;
 		AlarmAcknoledgeRequest : BOOL;
 	END_VAR
@@ -44,10 +45,14 @@ FUNCTION_BLOCK FirstAlarmCombiner (*V4.A.A.1.6.13*)
 		SkidAlarmTo : UINT;
 		SkidFirstAlarm : INT;
 		SkidFirstExternalAlarm : INT;
+		AdrAlarmCFG : UDINT; (*V1.7.4*)
 	END_VAR
 	VAR_IN_OUT
 		FirstAlarmActive : AlarmCFG_Type;
 		FirstExternalAlarmActive : AlarmCFG_Type;
+	END_VAR
+	VAR
+		AlarmCFG : REFERENCE TO AlarmCFG_Type; (*V1.7.4*)
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -90,7 +95,7 @@ END_FUNCTION_BLOCK
 
 FUNCTION ComboBoxString : BOOL
 	VAR_INPUT
-		IN_ElementsStructure : ARRAY[0..16] OF HMI_ComboBoxElements_Type;
+		IN_ElementsStructure : ARRAY[0..19] OF HMI_ComboBoxElements_Type; (*vrma*)
 		OUT_ComboString : REFERENCE TO STRING[500];
 	END_VAR
 	VAR
@@ -1280,6 +1285,29 @@ FUNCTION_BLOCK TP_Reset
 		RT_Info : RTInfo;
 		zzEdge00000 : BOOL;
 		zzEdge00001 : BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK FB_VFD_DataRead (*v999Daq*)
+	VAR_INPUT
+		IN_ReadDataEnable : BOOL;
+		IN_DeviceAddress : UDINT;
+		IN_DeviceNode : USINT;
+		IN_DeviceName : STRING[80];
+		IN_DanfossFC280 : BOOL;
+		IN_IO_PlkVFD_FC280 : IO_PLK_DanfossFC280_Drive_Type;
+		IN_IO_PlkVFD : IO_PLK_Danfoss_Drive_Type;
+	END_VAR
+	VAR_OUTPUT
+		OUT_Error : BOOL;
+	END_VAR
+	VAR_IN_OUT
+		VfdData : Vfd_Data_Type;
+	END_VAR
+	VAR
+		Danfoss_Comm : EplSDORead;
+		VAR_DataReadIndex : INT;
+		TON_Read : TON;
 	END_VAR
 END_FUNCTION_BLOCK
 

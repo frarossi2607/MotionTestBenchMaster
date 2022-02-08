@@ -2,7 +2,6 @@
 <?AutomationStudio Version=4.2.12.129 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="File">HMI_BTC.typ</Object>
     <Object Type="File">HMI_CAP.typ</Object>
     <Object Type="File">HMI_CFG.typ</Object>
     <Object Type="File">HMI_CO.typ</Object>
@@ -18,7 +17,10 @@
     <Object Type="File">HMI_MNT.typ</Object>
     <Object Type="File">HMI_OPS.typ</Object>
     <Object Type="File">HMI_RNS.typ</Object>
+    <Object Type="File">HMI_CTP.typ</Object>
     <Object Type="File">HMI_SFT.typ</Object>
+    <Object Type="File">HMI_DAQ.typ</Object>
+    <Object Type="File">HMI_DOS.typ</Object>
     <Object Type="File">HMI.typ</Object>
   </Objects>
 </Package>

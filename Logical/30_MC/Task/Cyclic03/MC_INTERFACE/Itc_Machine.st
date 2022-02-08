@@ -4,26 +4,25 @@ ACTION MachineInput:
 	VAR_Machine.stFillerModule.iq_stCmd.i_xReset	:= MC_InputOutput.Network.Machine.Commands.AlarmReset;
 	VAR_Machine.stInletModule.iq_stCmd.i_xReset		:= MC_InputOutput.Network.Machine.Commands.AlarmReset;
 	VAR_Machine.stOutletModule.iq_stCmd.i_xReset	:= MC_InputOutput.Network.Machine.Commands.AlarmReset;
-	VAR_Machine.stDoserModule.iq_stCmd.i_xReset		:= MC_InputOutput.Network.Machine.Commands.AlarmReset;
 	VAR_Machine.iq_stCmd.i_xReset					:= MC_InputOutput.Network.Machine.Commands.AlarmReset;
 
 	(* Mode request from ITC *)
-	VAR_Machine.iq_stCmd.i_xOnePitchShift				:= MC_InputOutput.Network.Machine.Commands.OnePitchShiftCommand;
-	VAR_Machine.iq_stCmd.i_xAuto						:= MC_InputOutput.Network.Machine.Commands.AutoModalityRequest;
-	VAR_Machine.iq_stCmd.i_xCombi						:= MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest;
-	VAR_Machine.iq_stCmd.i_xCombiSynchroStop			:= MC_InputOutput.Network.Machine.Commands.CombiSynchroStop;
-	VAR_Machine.iq_stCmd.i_xOkToDisengage				:= MC_InputOutput.Network.Machine.Commands.OkToDisengage;
-	VAR_Machine.iq_stCmd.i_xAxisPhaseShift				:= MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq;
-	VAR_Machine.iq_stCmd.i_xJogMode						:= MC_InputOutput.Network.Machine.Commands.JogMachineModalityRequest;
-	VAR_Machine.iq_stCmd.i_xMulti						:= MC_InputOutput.Network.Machine.Commands.MultiModalityRequest;
-	VAR_Machine.iq_stCmd.i_xPositioning					:= MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest;
-	VAR_Machine.iq_stCmd.i_xSelectiveHoming				:= MC_InputOutput.Network.Machine.Commands.SelectiveHomeModalityRequest;
-	VAR_Machine.iq_stCmd.i_xBrakeRelease				:= MC_InputOutput.Network.Machine.Commands.BrakeReleaseModalityRequest;
-	VAR_Machine.iq_stCmd.i_xVelocity					:= MC_InputOutput.Network.Machine.Commands.VelocityModalityRequest;
-	VAR_Machine.iq_stCmd.i_xStepByStep					:= MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest;
-	VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis		:= MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq;//V4.A.A.1.7.0 Footbar
-	VAR_Machine.iq_stCmd.i_xMultiAxis					:= MC_InputOutput.Network.Machine.Commands.MultiAxisModeRequest;//v999
-	VAR_Machine.iq_stCmd.i_xQuickStop					:= MC_InputOutput.Network.Machine.Commands.MachineQuickStop;
+	VAR_Machine.iq_stCmd.i_xOnePitchShift			:= MC_InputOutput.Network.Machine.Commands.OnePitchShiftCommand;
+	VAR_Machine.iq_stCmd.i_xAuto					:= MC_InputOutput.Network.Machine.Commands.AutoModalityRequest;
+	VAR_Machine.iq_stCmd.i_xCombi					:= MC_InputOutput.Network.Machine.Commands.AutoCombiModalityRequest;
+	VAR_Machine.iq_stCmd.i_xCombiSynchroStop		:= MC_InputOutput.Network.Machine.Commands.CombiSynchroStop;
+	VAR_Machine.iq_stCmd.i_xOkToDisengage			:= MC_InputOutput.Network.Machine.Commands.OkToDisengage;
+	VAR_Machine.iq_stCmd.i_xAxisPhaseShift			:= MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq;
+	VAR_Machine.iq_stCmd.i_xJogMode					:= MC_InputOutput.Network.Machine.Commands.JogMachineModalityRequest;
+	VAR_Machine.iq_stCmd.i_xMulti					:= MC_InputOutput.Network.Machine.Commands.MultiModalityRequest;
+	VAR_Machine.iq_stCmd.i_xPositioning				:= MC_InputOutput.Network.Machine.Commands.PositioningModalityRequest;
+	VAR_Machine.iq_stCmd.i_xSelectiveHoming			:= MC_InputOutput.Network.Machine.Commands.SelectiveHomeModalityRequest;
+	VAR_Machine.iq_stCmd.i_xBrakeRelease			:= MC_InputOutput.Network.Machine.Commands.BrakeReleaseModalityRequest;
+	VAR_Machine.iq_stCmd.i_xVelocity				:= MC_InputOutput.Network.Machine.Commands.VelocityModalityRequest;
+	VAR_Machine.iq_stCmd.i_xStepByStep				:= MC_InputOutput.Network.Machine.Commands.StepByStepModalityRequest;
+	VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis	:= MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisModReq;//V4.A.A.1.7.0 Footbar
+	VAR_Machine.iq_stCmd.i_xStepByStepSingleAxisReverse	:= MC_InputOutput.Network.Machine.Commands.StepByStepSingleAxisRevModReq;//v999
+	VAR_Machine.iq_stCmd.i_xQuickStop				:= MC_InputOutput.Network.Machine.Commands.MachineQuickStop;
 
 	(* Input from ITC *)
 	VAR_Machine.iq_stCmd.i_xStart							:= MC_InputOutput.Network.Machine.Commands.MachineStart;
@@ -90,11 +89,11 @@ ACTION MachineOutput:
 	MC_InputOutput.Network.Machine.Status.MultiModalityActive			:= VAR_Machine.iq_stStatus.q_xMultiModalityActive;
 	MC_InputOutput.Network.Machine.Status.PositioningModalityActive		:= VAR_Machine.iq_stStatus.q_xPositioningActive;
 	MC_InputOutput.Network.Machine.Status.SelectiveHomeModalityActive	:= VAR_Machine.iq_stStatus.q_xSelHomingActive;
-	MC_InputOutput.Network.Machine.Status.StepByStepModalityActive			:= VAR_Machine.iq_stStatus.q_xStepByStepActive;
-	MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive	:= VAR_Machine.iq_stStatus.q_xStepByStepSingleAxisActive;//V4.A.A.1.7.0
-	MC_InputOutput.Network.Machine.Status.MultiAxisModalityActive			:= VAR_Machine.iq_stStatus.q_xMultiAxisModalityActive;//v999
+	MC_InputOutput.Network.Machine.Status.StepByStepModalityActive		:= VAR_Machine.iq_stStatus.q_xStepByStepActive;
+	MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisModeActive:= VAR_Machine.iq_stStatus.q_xStepByStepSingleAxisActive;//V4.A.A.1.7.0
+	MC_InputOutput.Network.Machine.Status.StepByStepSingleAxisRevModActive	:= VAR_Machine.iq_stStatus.q_xStepByStepSingAxisRevActive;//V999
 	MC_InputOutput.Network.Machine.Status.VelocityModalityActive		:= VAR_Machine.iq_stStatus.q_xVelocityActive;
-	MC_InputOutput.Network.Machine.Status.EndlessModalityActive			;
+	MC_InputOutput.Network.Machine.Status.EndlessModalityActive;
 	MC_InputOutput.Network.Machine.Status.ThirdPartMotStatSetupModAct;
 	MC_InputOutput.Network.Machine.Status.ThirdPartMotDynSetupModAct	:= VAR_Machine.iq_stStatus.q_xThirdPartyDynSetupActive;
 	MC_InputOutput.Network.Machine.Status.InductionMotSetupActive		:= VAR_Machine.iq_stStatus.q_xInductionSetupActive;

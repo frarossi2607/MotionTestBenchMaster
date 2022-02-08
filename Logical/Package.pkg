@@ -5,8 +5,10 @@
     <Object Type="Package" Description="Aid memory: memorie ausiliarie al programma">00_AID</Object>
     <Object Type="Package" Description="Human Machine Interface: interfaccia pannello operatore">02_HMI</Object>
     <Object Type="Package" Description="Main Drive: motorizzazione macchina principale">05_MNM</Object>
+    <Object Type="Package" Description="Rinser: gestione Sciacquatrice">08_RNS</Object>
     <Object Type="Package" Description="Machine Auxiliary: funzioni macchina ausiliarie">12_MAU</Object>
     <Object Type="Package" Description="Machine configuration manager">28_CFG</Object>
     <Object Type="Package" Description="Motion Main Folder">30_MC</Object>
+    <Object Type="Package" Description="Doser:gestione per aromi e polpe">31_DOS</Object>
   </Objects>
 </Package>

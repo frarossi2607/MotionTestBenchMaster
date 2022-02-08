@@ -1,5 +1,5 @@
 ACTION InletConveyorMotors_VFD: 
-//	_InCvr(
+//	_InCvr(//Management with FC302
 //	IN_Enable		:= OPS.DataOut.EnableDrive,
 //	IN_AutoCnd		:= _InCvr.IN_AutoCnd,
 //	IN_FrequencyMin	:= 0.0,

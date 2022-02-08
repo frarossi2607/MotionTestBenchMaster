@@ -14,14 +14,12 @@ TYPE
 		Filler : ST_FillerSafetyInterface; (*Filler input/output safety interface*)
 		Inlet : ST_InletSafetyInterface; (*Inlet input/output safety interface*)
 		Outlet : ST_OutletSafetyInterface; (*Outlet input/output safety interface*)
-		Doser : ST_OutletSafetyInterface; (*Doser input/output safety interface*)
 	END_STRUCT;
 	ST_NetworkInterface : 	STRUCT  (*Process-Motion network interface*)
 		Machine : ST_MachineInterface; (*Machine input output interface*)
 		Inlet : ST_InletInterface; (*Inlet input/output interface*)
 		Filler : ST_FillerInterface; (*Filler input/output interface*)
 		Outlet : ST_OutletInterface; (*Outlet input/output interface*)
-		Doser : ST_DoserInterface; (*Outlet input/output interface*)
 	END_STRUCT;
 END_TYPE
 
@@ -43,16 +41,15 @@ TYPE
 		JogPushButton : BOOL; (*Jog Push Button.*)
 		DisableRinserAxis : BOOL; (*The selected axis is disabled rotation V4.A.A.1.7.0*)
 		DisableSelectedAxis : BOOL; (*The selected axis is disabled. This operation works only in emergency.*)
-		MultiAxisStepByStepRequest : BOOL; (*v999 test*)
 		BrakeReleaseModalityRequest : BOOL; (*Brake Release modality request on selected axis.*)
 		SelectiveHomeModalityRequest : BOOL; (*Home modality request on selected axis / external reference.*)
 		AllAxesHomeModalityRequest : BOOL; (*Homing of all axes - Not Implemented yet.*)
-		MultiAxisModeRequest : BOOL; (*v999*)
 		MultiModalityRequest : BOOL; (*Multi modality selected in order to send the command directly to the module.*)
 		PositioningModalityRequest : BOOL; (*Positioning Modality Request.*)
 		AutoModalityRequest : BOOL; (*Auto (stand alone) Modality Request.*)
 		AutoCombiModalityRequest : BOOL; (*Combi modality request. The machine will follow an external reference.*)
 		JogMachineModalityRequest : BOOL; (*Jog modality request.*)
+		StepByStepSingleAxisRevModReq : BOOL; (*Single Axis Step By Step Reverse modality request V999*)
 		StepByStepSingleAxisModReq : BOOL; (*Single Axis Step By Step modality request V4.A.A.1.7.0*)
 		StepByStepModalityRequest : BOOL; (*Step By Step modality request.*)
 		EndlessModalityRequest : BOOL; (*Endless modality request - not implemented yet.*)
@@ -105,10 +102,10 @@ TYPE
 		PositioningModalityActive : BOOL; (*Positioning modality active.*)
 		JogModalityActive : BOOL; (*Jog modality active.*)
 		BrakeReleaseModalityActive : BOOL; (*Brake release modality active.*)
+		StepByStepSingleAxisRevModActive : BOOL; (*Single Axis Step by step Reverse modality active. V999*)
 		StepByStepSingleAxisModeActive : BOOL; (*Single Axis Step by step modality active. V4.A.A.1.7.0*)
 		StepByStepModalityActive : BOOL; (*Step by step modality active.*)
 		EndlessModalityActive : BOOL; (*Endless modality active.*)
-		MultiAxisModalityActive : BOOL; (*Multi modality active. All modules are working indipendently.*)
 		MultiModalityActive : BOOL; (*Multi modality active. All modules are working indipendently.*)
 		ThirdPartMotStatSetupModAct : BOOL; (*Third party motor static setup active.*)
 		ThirdPartMotDynSetupModAct : BOOL; (*Third party motor dynamic setup active.*)
@@ -133,7 +130,7 @@ TYPE
 		Clock08 : BOOL; (*Clock 8 at disposal.*)
 		Clock09 : BOOL; (*Clock 9 at disposal.*)
 		Clock10 : BOOL; (*Clock 10 at disposal.*)
-		Clock11 : BOOL; (*Clock 11 at disposal.*)
+		Clock11 : BOOL; (*Clock 11 at disposal. v999hema*)
 		Clock01AdvStep : BOOL; (*Clock 2 at disposal.*)
 		Clock02AdvStep : BOOL; (*Clock 2 at disposal.*)
 		Clock03AdvStep : BOOL; (*Clock 3 at disposal.*)
@@ -144,7 +141,7 @@ TYPE
 		Clock08AdvStep : BOOL; (*Clock 8 at disposal.*)
 		Clock09AdvStep : BOOL; (*Clock 9 at disposal.*)
 		Clock10AdvStep : BOOL; (*Clock 10 at disposal.*)
-		Clock11AdvStep : BOOL; (*Clock 11 at disposal.*)
+		Clock11AdvStep : BOOL; (*Clock 11 at disposal. v999hema*)
 		AxisSelectedForEndless : INT; (*Axis selected for endlessfeed feedback.*)
 		SpeedForAxisSelectedEndless : INT; (*Speed selected for endlessfeed feedback.*)
 		ActualSpeed : REAL; (*Machine velocity [bph].*)
@@ -203,13 +200,12 @@ TYPE
 		Cam10OffValue : REAL; (*Cam10 Off Value*)
 		Cam10AdvTime : REAL; (*Cam10 Advance Time*)
 		Cam10Pulse : USINT; (*Cam10 Pulse number*)
-		Cam11OffValue : REAL; (*Cam10 Off Value*)
-		Cam11AdvTime : REAL; (*Cam10 Advance Time*)
-		Cam11OnValue : REAL; (*Cam10 On Value*)
-		Cam11Pulse : USINT; (*Cam10 Pulse number*)
+		Cam11OffValue : REAL; (*Cam11 Off Value v999hema*)
+		Cam11AdvTime : REAL; (*Cam11 Advance Time*)
+		Cam11OnValue : REAL; (*Cam11 On Value*)
+		Cam11Pulse : USINT; (*Cam11 Pulse number*)
 		AxisSelectedForEndless : INT; (*Axis Selected for EndlessFeed - not implemented yet*)
 		SpeedForAxisSelectedEndless : INT; (*Speed For Axis Selected for EndlessFeed - not implemented yet*)
-		MotorRotationDirection : MpAxisMoveDirectionEnum;
 		MachinePitch : REAL; (*Machine Pitch [teens of mm]*)
 	END_STRUCT;
 	ST_MachineExceptionsInterface : 	STRUCT  (*Machine exceptions*)
@@ -354,10 +350,9 @@ TYPE
 		QuickStopFillerModule : BOOL; (*Quick stop on filler module; quick stop not active signal 1.*)
 		StartFillerModule : BOOL; (*Start on filler module.*)
 		JogPushButtonFillerModule : BOOL; (*Jog push button for filler module.*)
-		DmcReversePositioningCommand : BOOL;
-		DmcFillerPositioningCommand : BOOL;
 		FillerAbsolutePositionSensor : BOOL;
-		DisableFillerAxis : BOOL;
+		MotorDisableIndex : ARRAY[CST_FirstFillerModuleAxis..CST_LastFillerModuleAxis]OF BOOL; (*v999 test*)
+		DisableFillerAxis : BOOL; (*v999hema*)
 		DisableDoserAxis : BOOL; (*V4.A.A.1.7.0*)
 		DisableRinserAxis : BOOL; (*V4.A.A.1.7.0*)
 		RinserAbsolutePositionSensor : BOOL;
@@ -387,8 +382,9 @@ TYPE
 		CapperAbsolutePositionValid : BOOL;
 		CrownerAbsolutePositionValid : BOOL;
 		DoserAbsolutePositionValid : BOOL;
-		DoserAxisDisabled : BOOL;
-		FillerAxisDisabled : BOOL;
+		AxisDisabledFeedBack : ARRAY[CST_FirstFillerModuleAxis..CST_LastFillerModuleAxis]OF BOOL; (*v999 test*)
+		DoserAxisDisabled : BOOL; (*v999hema*)
+		FillerAxisDisabled : BOOL; (*v999hema*)
 		RinserAxisDisabled : BOOL; (*Rinser axis disable answer V4.A.A.1.7.0*)
 		In01Real : BOOL; (*Axis Inlet01 on filler module is real.*)
 		In02Real : BOOL; (*Axis Inlet02 on filler module is real.*)
@@ -509,115 +505,6 @@ TYPE
 		CarouselTemperatureError : BOOL; (*Carousel temperature exception.*)
 		CarouselSafetyException : BOOL; (*Carousel safety exception.*)
 		CarouselNotInOpException : BOOL; (*Carousel not in operational exception.*)
-		Outlet01TrackException : BOOL; (*Outlet01 track error exception.*)
-		Outlet01HomeException : BOOL; (*Outlet01 home exception.*)
-		Outlet01TorqueException : BOOL; (*Outlet01 torque exception.*)
-		Outlet01DriveException : BOOL; (*Outlet01 drive exception.*)
-		Outlet01TemperatureError : BOOL; (*Outlet01 temperature exception.*)
-		Outlet01SafetyException : BOOL; (*Outlet01 safety exception.*)
-		Outlet01NotInOpException : BOOL; (*Outlet01 not in operational exception.*)
-		Outlet02TrackException : BOOL; (*Outlet02 track error exception.*)
-		Outlet02HomeException : BOOL; (*Outlet02 home exception.*)
-		Outlet02TorqueException : BOOL; (*Outlet02 torque exception.*)
-		Outlet02DriveException : BOOL; (*Outlet02 drive exception.*)
-		Outlet02TemperatureError : BOOL; (*Outlet02 temperature exception.*)
-		Outlet02SafetyException : BOOL; (*Outlet02 safety exception.*)
-		Outlet02NotInOpException : BOOL; (*Outlet02 not in operational exception.*)
-		Outlet03TrackException : BOOL; (*Outlet03 track error exception.*)
-		Outlet03HomeException : BOOL; (*Outlet03 home exception.*)
-		Outlet03TorqueException : BOOL; (*Outlet03 torque exception.*)
-		Outlet03DriveException : BOOL; (*Outlet03 drive exception.*)
-		Outlet03TemperatureError : BOOL; (*Outlet03 temperature exception.*)
-		Outlet03SafetyException : BOOL; (*Outlet03 safety exception.*)
-		Outlet03NotInOpException : BOOL; (*Outlet03 not in operational exception.*)
-		Outlet04TrackException : BOOL; (*Outlet04 track error exception.*)
-		Outlet04HomeException : BOOL; (*Outlet04 home exception.*)
-		Outlet04TorqueException : BOOL; (*Outlet04 torque exception.*)
-		Outlet04DriveException : BOOL; (*Outlet04 drive exception.*)
-		Outlet04TemperatureError : BOOL; (*Outlet04 temperature exception.*)
-		Outlet04SafetyException : BOOL; (*Outlet04 safety exception.*)
-		Outlet04NotInOpException : BOOL; (*Outlet04 not in operational exception.*)
-		Outlet05TrackException : BOOL; (*Outlet05 track error exception.*)
-		Outlet05HomeException : BOOL; (*Outlet05 home exception.*)
-		Outlet05TorqueException : BOOL; (*Outlet05 torque exception.*)
-		Outlet05DriveException : BOOL; (*Outlet05 drive exception.*)
-		Outlet05TemperatureError : BOOL; (*Outlet05 temperature exception.*)
-		Outlet05SafetyException : BOOL; (*Outlet05 safety exception.*)
-		Outlet05NotInOpException : BOOL; (*Outlet05 not in operational exception.*)
-		Outlet06TrackException : BOOL; (*Outlet06 track error exception.*)
-		Outlet06HomeException : BOOL; (*Outlet06 home exception.*)
-		Outlet06TorqueException : BOOL; (*Outlet06 torque exception.*)
-		Outlet06DriveException : BOOL; (*Outlet06 drive exception.*)
-		Outlet06TemperatureError : BOOL; (*Outlet06 temperature exception.*)
-		Outlet06SafetyException : BOOL; (*Outlet06 safety exception.*)
-		Outlet06NotInOpException : BOOL; (*Outlet06 not in operational exception.*)
-	END_STRUCT;
-END_TYPE
-
-(*Doser module*)
-
-TYPE
-	ST_DoserInterface : 	STRUCT  (*Outlet module input/output interface structure*)
-		Commands : ST_DoserCommands; (*Outlet commands structure*)
-		Parameters : ST_DoserParameters; (*Outlet parameters structure*)
-		Status : ST_DoserStatus; (*Outlet status structure*)
-		Exceptions : ST_DoserExceptions; (*Outlet  exceptions structure*)
-	END_STRUCT;
-	ST_DoserCommands : 	STRUCT  (*Outlet module commands structure*)
-		DisableDoserCarousel : BOOL; (*Exclude Axis from rotation*)
-		AutoDoserModule : BOOL; (*Auto modality request for auto module in multi mode.*)
-		JogDoserModule : BOOL; (*Jog modality request for auto module in multi mode.*)
-		QuickStopDoserModule : BOOL; (*Quick stop on Outlet module; quick stop not active signal 1.*)
-		StartDoserModule : BOOL; (*Start on Outlet module.*)
-		JogPushButtonDoserModule : BOOL; (*Jog push button for Outlet module.*)
-		SlowMotionBackward : BOOL; (*Slow motion backward on Outlet module.*)
-		SlowMotionForward : BOOL; (*Slow motion forward on Outlet module.*)
-		AbsolutePositionSensor : BOOL;
-		StepByStepModalityRequest : BOOL;
-		VelocityAxisStop : BOOL;
-	END_STRUCT;
-	ST_DoserStatus : 	STRUCT  (*Outlet module status structure*)
-		ModuleHomed : BOOL; (*Outlet Module Homed; all axes are homed.*)
-		ModuleInPosition : BOOL; (*Outlet Module In Position; all axes are standstill and in position.*)
-		ModuleRunning : BOOL; (*Outlet Module Running; at least one axis is not standstill.*)
-		ModulePowered : BOOL; (*Outlet Module Powered; Outlet module is enabled from a safety point of view.*)
-		EnableAutoModality : BOOL; (*Outlet Module Enable Auto Modality; during machine multi mode all condition are valid for enabling the Auto modality.*)
-		EnableJogModality : BOOL; (*Outlet Module Enable Auto Modality; during machine multi mode all condition are valid for enabling the Jog modality.*)
-		StepByStepModalityActive : BOOL;
-		ModuleJogActive : BOOL; (*Outlet Module Jog Active; the jog modality on the Outlet module is active.*)
-		AutoActive : BOOL; (*Outlet Module Auto Active; the auto modality on the Outlet module is active.*)
-		SlowMotionActive : BOOL; (*Outlet Module Slow Motion Active; the slow motion on the Outlet module is active.*)
-		JogCmdFeedback : BOOL; (*Outlet Module Jog Command Feedback.*)
-		AutoCmdFeedback : BOOL; (*Outlet Module Auto Command Feedback.*)
-		ModuleNotInitialized : BOOL; (*Outlet Module Not Initialized; the Outlet module isn't initialized. PowerOn the module.*)
-		ModuleReal : BOOL; (*Outlet Module Real; at least one axis is real on the Outlet module.*)
-		MainAxisReal : BOOL; (*Main axis on filler module is real.*)
-		Out01Real : BOOL; (*Axis Outlet01 on filler module is real.*)
-		Out02Real : BOOL; (*Axis Outlet02 on filler module is real.*)
-		Out03Real : BOOL; (*Axis Outlet03 on filler module is real.*)
-		Out04Real : BOOL; (*Axis Outlet04 on filler module is real.*)
-		Out05Real : BOOL; (*Axis Outlet05 on filler module is real.*)
-		Out06Real : BOOL; (*Axis Outlet06 on filler module is real.*)
-		Velocity : REAL; (*Outlet module actual velocity [bph]*)
-		AbsolutePosition : LREAL;
-		AbsolutePositionValid : BOOL;
-	END_STRUCT;
-	ST_DoserParameters : 	STRUCT  (*Outlet module parameters structure*)
-		AutoSpeedOutletModule : REAL; (*Auto speed for Outlet module [bph].*)
-		AbsolutePositionValveOffset : UINT;
-		StepNumber : INT; (*Number of step for StepByStep movement [n]*)
-		ConveyorKs : REAL;
-		WheelValvesNumber : UINT;
-		TorqueError : CFG_FillerTorque_Type;
-	END_STRUCT;
-	ST_DoserExceptions : 	STRUCT  (*Outlet module exception structure*)
-		MainAxisTrackException : BOOL; (*Main Axis Outlet module track error exception.*)
-		MainAxisHomeException : BOOL; (*Main Axis Outlet module home exception.*)
-		MainAxisTorqueException : BOOL; (*Main Axis Outlet module torque exception.*)
-		MainAxisDriveException : BOOL; (*Main Axis Outlet module drive exception.*)
-		MainAxisTemperatureError : BOOL; (*Main Axis Outlet module temperature exception.*)
-		MainAxisSafetyException : BOOL; (*Main Axis Outlet module safety exception.*)
-		MainAxisNotInOpException : BOOL; (*Main Axis Outlet module not in operational exception.*)
 		Outlet01TrackException : BOOL; (*Outlet01 track error exception.*)
 		Outlet01HomeException : BOOL; (*Outlet01 home exception.*)
 		Outlet01TorqueException : BOOL; (*Outlet01 torque exception.*)
@@ -798,24 +685,6 @@ TYPE
 	ST_InletSafetyStatus : 	STRUCT  (*Inlet safety status
 *)
 		ModulePowered : BOOL; (*Inlet Module Powered*)
-	END_STRUCT;
-END_TYPE
-
-(*Doser Module Safety Interface*)
-
-TYPE
-	ST_DoserSafetyInterface : 	STRUCT  (*Outlet module input/output safety interface structure*)
-		Commands : ST_DoserSafetyCommands; (*Outlet safety commands
-*)
-		Status : ST_DoserSafetyStatus; (*Outlet safety status*)
-	END_STRUCT;
-	ST_DoserSafetyCommands : 	STRUCT  (*Outlet safety commands
-*)
-		EnableModule : BOOL; (*Hardware enable of outlet module*)
-		AxesDiag : ARRAY[0..CST_LastDoserModuleAxis]OF ST_AxesDiag; (*Diagnostic datapoints for filler module axes*)
-	END_STRUCT;
-	ST_DoserSafetyStatus : 	STRUCT  (*Outlet safety status*)
-		ModulePowered : BOOL; (*Outlet Module Powered*)
 	END_STRUCT;
 END_TYPE
 

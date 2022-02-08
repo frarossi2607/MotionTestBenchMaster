@@ -9,6 +9,7 @@ Master AND Secondary FBs error handling.
 ****************************************************************************************************************************************)
 	IF NOT i_xEnable THEN
 		eMainAxisStep 		:= DISABLE;
+		eSecondaryAxisStep	:= S_DISABLE;
 		RETURN;
 	END_IF
 	
@@ -787,6 +788,7 @@ Master AND Secondary FBs error handling.
 		MAX_TORQUE_CALCULATION:(* MAXIMUM TORQUE CALCULATION *)
 			rM_Max_ACP				:= rM_0 + (rM_Max - rM_0) * (rI_Max_ACP - rI_0) / (rI_Max - rI_0);
 			rTorqueLimit			:= MIN(rM_Max_ACP, rM_Max);
+			rTorqueLimitSecondary	:= rTorqueLimit;
 
 			IF i_pstParameter.i_rMaxGearboxTorque < rTorqueLimit THEN
 				rTorqueLimit	:= MAX(i_pstParameter.i_rMaxGearboxTorque, 0.5);
@@ -863,8 +865,9 @@ Master AND Secondary FBs error handling.
 			END_IF
 				
 		OPEN_POSITION_LOOP:
-			IF i_xVelocityControl AND NOT i_xThirdPartyMotor THEN
-				uiTemp	:= ACP10PAR_PCTRL_S_SET;
+			IF i_pSecondaryAxisADR = 0 OR (eSecondaryAxisStep >= S_WAIT_FOR_POWER AND eSecondaryAxisStep < S_AXIS_ERROR) THEN
+				IF i_xVelocityControl AND NOT i_xThirdPartyMotor THEN
+					uiTemp	:= ACP10PAR_PCTRL_S_SET;
 					IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done THEN
 						fbWriteParID.Axis				:= i_pAxisADR;
 						fbWriteParID.ParID				:= ACP10PAR_PCTRL_S_ACT_PARID;
@@ -892,19 +895,22 @@ Master AND Secondary FBs error handling.
 				ELSE
 					eMainAxisStep := WAIT_FOR_POWER;
 				END_IF
+			END_IF
 		(*************************************************)
 		
 		BRAKE_RELEASE:
-			IF fbMpAxisBasic.BrakeReleased THEN
+			IF fbMpAxisBasic.BrakeReleased AND (fbMpAxisBasicSecondary.BrakeReleased OR i_pSecondaryAxisADR = 0) THEN
 				i_pstStatus.q_stMainAxisStatus.q_xBrakeReleased		:= TRUE;
 				IF NOT i_pstCmd.i_xReleaseBrake THEN
 					fbMpAxisBasic.ReleaseBrake 			:= FALSE;
+					fbMpAxisBasicSecondary.ReleaseBrake	:= FALSE;
+					
 					eMainAxisStep						:= BRAKE_RELEASE_1;
 				END_IF
 			END_IF
 		
 		BRAKE_RELEASE_1:
-			IF NOT fbMpAxisBasic.BrakeReleased THEN
+			IF NOT fbMpAxisBasic.BrakeReleased AND NOT fbMpAxisBasicSecondary.BrakeReleased THEN
 				i_pstStatus.q_stMainAxisStatus.q_xBrakeReleased		:= FALSE;
 				eMainAxisStep := WAIT_FOR_POWER;
 			END_IF
@@ -940,7 +946,9 @@ Master AND Secondary FBs error handling.
 					eMainAxisStep 		:= POWERING;
 				END_IF
 			ELSIF i_pstCmd.i_xReleaseBrake AND i_pstStatus.q_stMainAxisStatus.q_xMotorWithBrake THEN (* Brake management *)
-				fbMpAxisBasic.ReleaseBrake 				:= TRUE;				
+				fbMpAxisBasic.ReleaseBrake 				:= TRUE;
+				fbMpAxisBasicSecondary.ReleaseBrake		:= (i_pSecondaryAxisADR <> 0);
+				
 				eMainAxisStep	:= BRAKE_RELEASE;
 			END_IF
 				
@@ -979,14 +987,16 @@ Master AND Secondary FBs error handling.
 			END_IF
 		
 		WAIT_SECONDARY_AXIS_READY:(* WAIT UNTIL THE SECONDARY AXIS IS READY *)
-			IF fbMpAxisCamSequencer.Update THEN
-				fbMpAxisCamSequencer.Update							:= FALSE;
+			IF i_pSecondaryAxisADR = 0 OR eSecondaryAxisStep = S_READY OR eSecondaryAxisStep = S_WAIT_FOR_TORQUE_RAMP THEN
+				IF fbMpAxisCamSequencer.Update THEN
+					fbMpAxisCamSequencer.Update							:= FALSE;
 					i_pstStatus.q_stMainAxisStatus.q_udiMasterAxisLink	:= 0;
 				END_IF
 				
 				IF NOT fbMpAxisCamSequencer.UpdateDone THEN
 					eMainAxisStep := AXIS_READY;//v4.A.A.1.6.12f
 				END_IF
+			END_IF
 		
 		AXIS_READY: (* READY *)//v4.A.A.1.6.12f
 			xJogActive 					:= FALSE;
@@ -995,7 +1005,7 @@ Master AND Secondary FBs error handling.
 			i_pstStatus.q_stMainAxisStatus.q_xPhasingRunning	:= FALSE;
 			i_pstStatus.q_stMainAxisStatus.q_xInitDone			:= TRUE;
 			
-			stBasicParameter.Direction	:= i_pstParameter.i_stMotorDirection;
+			stBasicParameter.Direction	:= mpAXIS_DIR_POSITIVE;
 			
 			tonPowerOn(IN := fbMpAxisBasic.PowerOn, PT:= t#3s);
 			
@@ -1051,7 +1061,7 @@ Master AND Secondary FBs error handling.
 						stBasicParameter.Velocity		:= i_pstParameter.i_rPositioningVelocity;
 						stBasicParameter.Distance		:= i_pstParameter.i_lrAdditiveDistance;
 						stBasicParameter.Deceleration	:= stBasicParameter.Acceleration;
-						stBasicParameter.Direction		:= i_pstParameter.i_stMotorDirection;
+						stBasicParameter.Direction		:= mpAXIS_DIR_POSITIVE;
 						
 						eMainAxisStep					:= MOVE_ADDITIVE; (* MOVE ADDITIVE *)
 					ELSIF i_pstCmd.i_xJogPositive THEN
@@ -1272,12 +1282,8 @@ Master AND Secondary FBs error handling.
 				END_IF
 				
 				
-				IF xAxisPhased	THEN 
-				IF 	i_pstParameter.i_xNegativeStaticCam THEN//v999
-						NegativeStaticCamInit;
-				ELSE
-						StaticCamInit;
-				END_IF		
+				IF xAxisPhased	THEN 				
+					StaticCamInit;
 					IF fbMpAxisCamSequencer.Active AND i_pstStatus.q_stMainAxisStatus.q_xStopped THEN (* We wait that the master axis is stopped *)
 						fbMpAxisCamSequencer.StartSequence 	:= TRUE;
 						eMainAxisStep := GEAR_4;
@@ -1305,7 +1311,7 @@ Master AND Secondary FBs error handling.
 					
 						stBasicParameter.Direction := mpAXIS_DIR_SHORTEST_WAY;
 					ELSE
-						stBasicParameter.Direction := i_pstParameter.i_stMotorDirection;
+						stBasicParameter.Direction := mpAXIS_DIR_POSITIVE;
 					END_IF
 					
 					IF NOT fbMpAxisBasic.Update AND NOT fbMpAxisBasic.UpdateDone THEN
@@ -1324,13 +1330,9 @@ Master AND Secondary FBs error handling.
 		GEAR_1: (* Move the axis to the master position *)
 			fbMpAxisBasic.MoveAbsolute := i_pstCmd.i_xGear AND NOT fbMpAxisBasic.InPosition;
 			IF fbMpAxisBasic.InPosition THEN
-				stBasicParameter.Direction := i_pstParameter.i_stMotorDirection;
+				stBasicParameter.Direction := mpAXIS_DIR_POSITIVE;
 				IF ABS(FC_LongRealReminder(fbMpAxisBasic.Position, 360.0, 0.0) - FC_LongRealReminder(plrMasterPosition, 360.0, 0.0)) < 0.5 THEN
-					IF 	i_pstParameter.i_xNegativeStaticCam THEN//v999
-						NegativeStaticCamInit;
-					ELSE
-						StaticCamInit;
-					END_IF	
+					StaticCamInit;
 					IF fbMpAxisCamSequencer.Active AND i_pstStatus.q_stMainAxisStatus.q_xStopped THEN
 						fbMpAxisCamSequencer.StartSequence 	:= TRUE;
 						eMainAxisStep 	:= GEAR_4; (* Static 1:1 gear *)
@@ -1606,7 +1608,7 @@ Master AND Secondary FBs error handling.
 		
 		STOP: (* PREPARE FOR STOP *)
 			IF i_pstStatus.q_stMainAxisStatus.q_xStopped THEN
-				stBasicParameter.Direction 		:= i_pstParameter.i_stMotorDirection;
+				stBasicParameter.Direction 		:= mpAXIS_DIR_POSITIVE;
 				eMainAxisStep					:= WAIT_FOR_STOPPED;
 			ELSIF NOT fbMpAxisBasic.Update AND NOT fbMpAxisBasic.UpdateDone THEN
 				IF (stBasicParameter.Velocity > fbMpAxisBasic.Velocity) THEN (* ACCELERATING *)
@@ -1632,6 +1634,7 @@ Master AND Secondary FBs error handling.
 					stBasicParameter.Velocity	:= 0.0;
 					eMainAxisStep				:= WAIT_FOR_STOPPED;
 				ELSE
+					Vtest := TRUE;//da cancellare
 					eMainAxisStep				:= QUICK_STOP;
 				END_IF
 			END_IF
@@ -1647,7 +1650,10 @@ Master AND Secondary FBs error handling.
 				fbMpAxisBasic.MoveAdditive 	:= FALSE;
 				
 				IF xCmdStopActive OR xSlowMotion THEN
-					stBasicParameter.Velocity	:= 0.0;
+					stBasicParameter.Velocity	:= 0.0;//v999
+					fbMpAxisBasic.MoveVelocity 	:= FALSE;//v999
+					fbMpAxisBasic.MoveAbsolute 	:= FALSE;//v999
+					fbMpAxisBasic.MoveAdditive 	:= FALSE;//v999
 					eMainAxisStep				:= WAIT_FOR_STOPPED;
 				ELSE (* In phase stop *)
 					stBasicParameter.Velocity	:= 200.0;
@@ -1665,9 +1671,6 @@ Master AND Secondary FBs error handling.
 			ELSIF fbMpAxisBasic.InVelocity AND ABS(fbMpAxisBasic.Velocity - 200) < 1.0 THEN
 				tonStep(IN:= FALSE, PT:= t#50ms);
 				eMainAxisStep := STOP_IN_PHASE;
-			ELSIF fbMpAxisBasic.InVelocity AND (stBasicParameter.Direction =  mpAXIS_DIR_NEGATIVE) AND (ABS(fbMpAxisBasic.Velocity + 200) >= 0.0) THEN
-				tonStep(IN:= FALSE, PT:= t#50ms);
-				eMainAxisStep := STOP_IN_PHASE;	
 			END_IF
 		
 		STOP_IN_PHASE: (* LAUNCH STOP IN PHASE COMMAND *)
@@ -1714,7 +1717,8 @@ Master AND Secondary FBs error handling.
 			fbMpAxisCamSequencer.Enable	:= fbMpAxisCamSequencer.CommandBusy;
 			
 			IF i_pstStatus.q_stMainAxisStatus.q_xStopped 	AND
-				NOT fbMpAxisCamSequencer.Active	 THEN
+				NOT fbMpAxisCamSequencer.Active				AND
+				(i_pSecondaryAxisADR = 0 OR NOT fbMpAxisBasicSecondary.PowerOn) THEN (* WAIT UNTIL THE SECONDARY AXIS IS POWERED OFF *)
 				
 				fbMpAxisBasic.Power := FALSE;
 			END_IF
@@ -1751,6 +1755,7 @@ Master AND Secondary FBs error handling.
 				END_IF
 			ELSIF i_pstCmd.i_xReleaseBrake AND i_pstStatus.q_stMainAxisStatus.q_xMotorWithBrake AND NOT i_pstStatus.q_stMainAxisStatus.q_xPoweredOn THEN (* Brake management *)
 				fbMpAxisBasic.ReleaseBrake 			:= TRUE;
+				fbMpAxisBasicSecondary.ReleaseBrake	:= (i_pSecondaryAxisADR <> 0);
 				eMainAxisStep	:= BRAKE_RELEASE;
 			END_IF
 		
@@ -2081,6 +2086,325 @@ Master AND Secondary FBs error handling.
 			END_IF
 	END_CASE
 
+	(****************************************)
+	(***** SECONDARY AXIS STATE MACHINE *****)
+	(****************************************)
+	
+	(* No comunication catch or Write ParId error *)
+	IF (eSecondaryAxisStep >= S_INIT AND fbMpAxisBasic.Info.BootState = mpAXIS_BLP_NETWORK_INACTIVE) THEN
+		eSecondaryAxisStep := S_CONNECTION_LOST;
+	ELSIF fbWriteParID.Error AND eSecondaryAxisStep >= S_INIT AND eSecondaryAxisStep < S_INIT_TORQUE_CTRL THEN
+		eSecondaryAxisStep := S_CONNECTION_LOST;
+	ELSIF eSecondaryAxisStep >= S_INIT_MP_AXIS_BASIC AND eSecondaryAxisStep < S_AXIS_ERROR AND fbMpAxisBasicSecondary.Error OR fbTorqueControl.Error THEN (* FBs errors *)
+		eSecondaryAxisStep := S_AXIS_ERROR;
+	ELSIF FALSE AND ( eSecondaryAxisStep >= S_RAMPING_UP AND eSecondaryAxisStep <= S_READY AND (xCmdStopActive OR fbMpAxisBasic.Velocity < 350)) THEN (* Emergency stop or Shutdown handling *)
+		eSecondaryAxisStep := S_CMD_STOP_HANDLING;
+	ELSIF eMainAxisStep >= AXIS_ERROR AND eSecondaryAxisStep < S_AXIS_ERROR AND eSecondaryAxisStep >= S_WAIT_FOR_POWER THEN (* Master Error Catch. The Secondary will be powered off *)
+		eSecondaryAxisStep := S_MAIN_AXIS_ERROR;
+	END_IF
+	
+	CASE eSecondaryAxisStep OF
+		S_DISABLE: (* DISABLE *)
+			fbTorqueControl.Enable			:= FALSE;
+			fbMpAxisBasicSecondary.Enable	:= FALSE;
+			IF i_xEnable 									AND
+				i_pSecondaryAxisADR <> 0 					AND
+				i_pSecondaryAxisMpLink <> 0					AND
+				eMainAxisStep >= OPEN_POSITION_LOOP 		AND
+				eMainAxisStep < AXIS_ERROR 					AND
+				i_pstStatus.q_stMainAxisStatus.q_xAxisReal 	AND
+				NOT i_pstStatus.q_stMainAxisStatus.q_xPowerSupply THEN
+				
+				eSecondaryAxisStep := S_WAIT_SAFETY_READY;
+			END_IF
+
+		S_WAIT_SAFETY_READY: (* Wait safety Ready and primary axis initialization done *)
+			IF i_pstStatus.q_stSecondaryAxisStatus.iq_xNotErrEncoder AND i_pstStatus.q_stSecondaryAxisStatus.iq_xOperational THEN
+				eSecondaryAxisStep := S_INIT;
+			END_IF
+		
+		S_INIT: (* INIT torque control : ACP10PAR_VAR_R4_0 + 0 **** PRELOAD *)
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Busy THEN
+				rTemp	:= i_pstParameter.i_rTorquePreload;
+
+				fbWriteParID.ParID			:= ACP10PAR_VAR_R4_0 + 0;
+				fbWriteParID.DataType		:= ncPAR_TYP_REAL;
+				fbWriteParID.DataAddress	:= ADR(rTemp);
+				fbWriteParID.Axis			:= i_pSecondaryAxisADR;
+				fbWriteParID.Execute		:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = (ACP10PAR_VAR_R4_0 + 0) AND fbWriteParID.Axis = i_pSecondaryAxisADR THEN
+				fbWriteParID.Execute		:= FALSE;
+				eSecondaryAxisStep			:= S_INIT_TORQUE_CTRL;
+			END_IF
+	
+		(****************************************)
+		S_INIT_TORQUE_CTRL:	(* INIT torque control *)
+			stSecondaryAxis		ACCESS i_pSecondaryAxisADR;
+			
+			(* Torque Control  initialization *)
+			fbTorqueControl.Axis			:= i_pSecondaryAxisADR;
+			fbTorqueControl.TorqueRamp 		:= i_pstParameter.i_rTorqueRamp; (* Nm/s *)
+			fbTorqueControl.TorqueParID		:= 0;
+			fbTorqueControl.Torque			:= i_pstParameter.i_rTorquePreload;	(* Nm used during shutdown phases *)
+			fbTorqueControl.Acceleration	:= 1000;	(* PLCopen units /s^2 *)
+			fbTorqueControl.PosMaxVelocity	:= 1000;	(* PLCopen units /s *)
+			fbTorqueControl.NegMaxVelocity	:= -1000;	(* PLCopen units /s *)
+			fbTorqueControl.Mode			:= mcV_LIMIT_OFF + mcCHECK_HOMING_OFF;
+			fbTorqueControl.TorqueParID		:= 0;
+			fbTorqueControl.InitData		:= FALSE;
+			eSecondaryAxisStep 				:= S_INIT_MP_AXIS_BASIC;
+							
+		S_INIT_MP_AXIS_BASIC: (* INIT MpAxisBasic *)
+			fbMpAxisBasicSecondary.MpLink		:= i_pSecondaryAxisMpLink;
+			fbMpAxisBasicSecondary.Axis			:= i_pSecondaryAxisADR;
+			fbMpAxisBasicSecondary.Parameters	:= ADR(stSecondaryBasicParameter);
+			
+			stSecondaryBasicParameter.CyclicRead.TorqueMode	:= mpAXIS_READ_MULTIPLEXED;
+			fbMpAxisBasicSecondary.Enable		:= TRUE;
+
+			IF fbMpAxisBasicSecondary.Active AND eMainAxisStep >= OPEN_POSITION_LOOP THEN
+				IF i_pstParameter.i_rMaxGearboxTorque < rTorqueLimitSecondary THEN
+					rTorqueLimitSecondary		:= MAX(i_pstParameter.i_rMaxGearboxTorque, 0.5);
+					eSecondaryAxisStep 			:= S_SET_TORQUE_LIMIT;
+				ELSE
+					eSecondaryAxisStep 			:= S_WAIT_FOR_POWER;
+				END_IF
+			END_IF
+		
+		S_SET_TORQUE_LIMIT: (* SET THE TORQUE LIMIT *)
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done  THEN
+				fbWriteParID.Axis				:= i_pSecondaryAxisADR;
+				fbWriteParID.ParID				:= ACP10PAR_LIM_T1_POS;
+				fbWriteParID.DataAddress		:= ADR(rTorqueLimitSecondary);
+				fbWriteParID.DataType			:= ncPAR_TYP_REAL;
+				fbWriteParID.Execute			:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = ACP10PAR_LIM_T1_POS AND (fbWriteParID.Axis = i_pSecondaryAxisADR) THEN
+				fbWriteParID.Execute	:= FALSE;
+				eSecondaryAxisStep		:= S_SET_TORQUE_LIMIT_1;
+			END_IF
+		
+		S_SET_TORQUE_LIMIT_1:
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done THEN
+				fbWriteParID.Axis				:= i_pSecondaryAxisADR;
+				fbWriteParID.ParID				:= ACP10PAR_LIM_T1_NEG;
+				fbWriteParID.DataAddress		:= ADR(rTorqueLimitSecondary);
+				fbWriteParID.DataType			:= ncPAR_TYP_REAL;
+				fbWriteParID.Execute			:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = ACP10PAR_LIM_T1_NEG AND (fbWriteParID.Axis = i_pSecondaryAxisADR) THEN
+				fbWriteParID.Execute	:= FALSE;
+				eSecondaryAxisStep		:= S_SET_TORQUE_LIMIT_2;
+			END_IF
+		
+		S_SET_TORQUE_LIMIT_2:
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done THEN
+				fbWriteParID.Axis				:= i_pSecondaryAxisADR;
+				fbWriteParID.ParID				:= ACP10PAR_LIM_T2_POS;
+				fbWriteParID.DataAddress		:= ADR(rTorqueLimitSecondary);
+				fbWriteParID.DataType			:= ncPAR_TYP_REAL;
+				fbWriteParID.Execute			:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = ACP10PAR_LIM_T2_POS AND (fbWriteParID.Axis = i_pSecondaryAxisADR) THEN
+				fbWriteParID.Execute	:= FALSE;
+				eSecondaryAxisStep 		:= S_SET_TORQUE_LIMIT_3;
+			END_IF
+		
+		S_SET_TORQUE_LIMIT_3:
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done  THEN
+				fbWriteParID.Axis				:= i_pSecondaryAxisADR;
+				fbWriteParID.ParID				:= ACP10PAR_LIM_T2_NEG;
+				fbWriteParID.DataAddress		:= ADR(rTorqueLimitSecondary);
+				fbWriteParID.DataType			:= ncPAR_TYP_REAL;
+				fbWriteParID.Execute			:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = ACP10PAR_LIM_T2_NEG AND (fbWriteParID.Axis = i_pSecondaryAxisADR) THEN
+				fbWriteParID.Execute	:= FALSE;
+				eSecondaryAxisStep 		:= S_SET_TORQUE_LIMIT_4;
+			END_IF
+		
+		S_SET_TORQUE_LIMIT_4:
+			rTempTorque :=	rTorqueLimitSecondary / 4;
+			
+			IF NOT fbWriteParID.Execute AND NOT fbWriteParID.Done THEN
+				fbWriteParID.Axis				:= i_pSecondaryAxisADR;
+				fbWriteParID.ParID				:= ACP10PAR_KSCTRL_TORQUE_LIM;
+				fbWriteParID.DataAddress		:= ADR(rTempTorque);
+				fbWriteParID.DataType			:= ncPAR_TYP_REAL;
+				fbWriteParID.Execute			:= TRUE;
+			ELSIF fbWriteParID.Done AND fbWriteParID.ParID = ACP10PAR_KSCTRL_TORQUE_LIM AND (fbWriteParID.Axis = i_pSecondaryAxisADR) THEN
+				fbWriteParID.Execute	:= FALSE;
+				eSecondaryAxisStep 		:= S_WAIT_FOR_POWER;
+			END_IF
+
+		S_WAIT_FOR_POWER:(* WAIT FOR POWER *)
+			IF fbMpAxisBasicSecondary.Info.ReadyToPowerOn AND NOT i_pstCmd.i_xEmergencyStop AND
+				NOT i_pstCmd.i_xShutdown AND fbMpAxisBasic.PowerOn THEN	(* Wait until the main axis is powered on *)
+				
+				fbTorqueControl.Torque			:= i_pstParameter.i_rTorquePreload;
+				fbMpAxisBasicSecondary.Power 	:= TRUE;
+				eSecondaryAxisStep 				:= S_POWERING;
+			END_IF
+		
+		S_POWERING:	(* Powering *)
+			IF fbMpAxisBasicSecondary.PowerOn THEN
+				IF NOT fbTorqueControl.Active AND NOT fbTorqueControl.Busy THEN
+					fbTorqueControl.Enable		:= TRUE;
+				ELSIF fbTorqueControl.WaitingForStart THEN
+					fbTorqueControl.InitData	:= FALSE;
+					fbTorqueControl.StartSignal	:= TRUE;
+					eSecondaryAxisStep 			:= S_RAMPING_UP;
+				END_IF
+			END_IF
+		
+		S_RAMPING_UP: (* Ramping up *)
+			IF fbTorqueControl.InTorque THEN
+				eSecondaryAxisStep 	:= S_POSITIVE_PRELOAD;
+			END_IF
+		
+		S_POSITIVE_PRELOAD:	(* Preload on the front side *)
+			fbTorqueControl.TorqueParID	:= ACP10PAR_ARITH_VALUE_R4 + 0;
+			fbTorqueControl.TorqueRamp	:= 2 * i_pstParameter.i_rTorquePreload / 0.2;
+			fbTorqueControl.InitData	:= TRUE;
+			
+			IF fbTorqueControl.InitData AND fbTorqueControl.DataInitialized THEN
+				fbTorqueControl.InitData	:= FALSE;
+				eSecondaryAxisStep 			:= S_POSITIVE_PRELOAD_2;
+			END_IF
+	
+		S_POSITIVE_PRELOAD_2:
+			tonStepSecondary(IN := TRUE, PT := t#400ms);
+			
+			IF tonStepSecondary.Q THEN
+				tonStepSecondary(IN := FALSE);
+				fbTorqueControl.TorqueRamp	:= 0;
+				fbTorqueControl.InitData	:= TRUE;
+				eSecondaryAxisStep 			:= S_READY;
+			END_IF
+	
+		S_READY: (* STEP READY *)
+			IF fbTorqueControl.InitData AND fbTorqueControl.DataInitialized THEN
+				fbTorqueControl.InitData := FALSE;
+			END_IF
+
+			IF (i_pstCmd.i_xEmergencyStop OR i_pstCmd.i_xShutdown) THEN
+				eSecondaryAxisStep := S_RAMPING_DOWN; (* RAMPING DOWN for SHUT DOWN *)
+			END_IF
+
+		(******************************************************************************)
+		S_CMD_STOP_HANDLING: (* CmdStop Handling *)
+			IF (i_pstCmd.i_xEmergencyStop OR i_pstCmd.i_xShutdown) THEN
+				eSecondaryAxisStep := S_RAMPING_DOWN;(* RAMPING DOWN for SHUT DOWN *)
+			END_IF
+
+		(****** SHUT DOWN AXIS PROCEDURE *****)
+		S_RAMPING_DOWN:	(* RAMPING DOWN 1 *)
+			IF ABS(i_pstStatus.q_stMainAxisStatus.q_rVelocity) <= i_pstParameter.i_rRunningThreshold THEN
+				fbTorqueControl.InitData		:= TRUE;
+				fbTorqueControl.TorqueRamp 		:= i_pstParameter.i_rTorqueRamp;
+				fbTorqueControl.Torque			:= LREAL_TO_REAL(q_lrSecondaryAxisTorque);
+				fbTorqueControl.TorqueParID		:= 0; (* In case of zero in TorqueParID parameter the block uses the Torque input *)
+				eSecondaryAxisStep 				:= S_RAMPING_DOWN_1;
+			END_IF
+		
+		S_RAMPING_DOWN_1: (* RAMPING DOWN 2 *)
+			IF NOT fbTorqueControl.InitData AND fbTorqueControl.InTorque THEN
+				fbTorqueControl.InitData		:= TRUE;
+				fbTorqueControl.TorqueRamp 		:= i_pstParameter.i_rTorqueRamp;
+				fbTorqueControl.Torque			:= 0.1;
+				eSecondaryAxisStep 				:= S_WAIT_FOR_STOPPING;
+			ELSIF fbTorqueControl.DataInitialized THEN
+				fbTorqueControl.InitData		:= FALSE;
+			END_IF
+		
+		S_WAIT_FOR_STOPPING: (* WAIT FOR STOPPING 2 *)
+			IF NOT fbTorqueControl.InitData AND fbTorqueControl.InTorque THEN
+				eSecondaryAxisStep 			:= S_POWER_OFF;
+			ELSIF fbTorqueControl.DataInitialized THEN
+				fbTorqueControl.InitData	:= FALSE;
+			END_IF
+		
+		S_POWER_OFF: (* POWER OFF *)
+			fbMpAxisBasicSecondary.Power :=	FALSE;
+			
+			IF NOT fbMpAxisBasicSecondary.PowerOn THEN (* fbTorqueControl aborted by power off *)
+				fbTorqueControl.Enable		:= FALSE;
+				fbTorqueControl.StartSignal	:= FALSE;
+				fbTorqueControl.InitData	:= FALSE;
+
+				eSecondaryAxisStep := S_WAIT_FOR_POWER; (* WAIT FOR POWER *)
+			END_IF
+
+		(***********************************************)
+		(************* ERROR HANDLING ******************)
+		(***********************************************)
+		S_MAIN_AXIS_ERROR:
+			fbMpAxisBasicSecondary.Power 		:= FALSE;
+			fbTorqueControl.Enable				:= FALSE;
+			fbTorqueControl.StartSignal			:= FALSE;
+			fbTorqueControl.InitData			:= FALSE;
+			fbTorqueControl.TorqueParID			:= 0;
+			fbTorqueControl.TorqueRamp 			:= i_pstParameter.i_rTorqueRamp;
+			
+			fbMpAxisBasicSecondary.ErrorReset 	:= FALSE;
+			
+			IF eMainAxisStep < AXIS_ERROR THEN
+				eSecondaryAxisStep	:= S_WAIT_FOR_POWER;
+			END_IF
+		
+		S_AXIS_ERROR: (* SECONDARY AXIS ERROR *)
+			fbMpAxisBasicSecondary.Power 		:= FALSE;
+			fbTorqueControl.Enable				:= FALSE;
+			fbTorqueControl.StartSignal			:= FALSE;
+			fbTorqueControl.InitData			:= FALSE;
+			fbTorqueControl.TorqueParID			:= 0;
+			fbTorqueControl.TorqueRamp 			:= i_pstParameter.i_rTorqueRamp;
+			
+			fbMpAxisBasicSecondary.ErrorReset	:= i_pstCmd.i_xErrorReset AND fbMpAxisBasicSecondary.Error;
+
+			IF NOT fbTorqueControl.Error THEN
+				fbTorqueControl.Enable				:= FALSE;
+				fbTorqueControl.StartSignal			:= FALSE;
+				fbTorqueControl.InitData			:= FALSE;
+			ELSIF i_pstCmd.i_xErrorReset THEN
+				fbTorqueControl.Enable				:= FALSE;
+				fbTorqueControl.StartSignal			:= FALSE;
+				fbTorqueControl.InitData			:= FALSE;
+			END_IF
+			
+			IF NOT fbMpAxisBasicSecondary.Error AND NOT fbMpAxisBasicSecondary.Error AND eMainAxisStep < 9000 THEN
+				fbMpAxisBasicSecondary.ErrorReset 	:= FALSE;
+				eSecondaryAxisStep					:= S_WAIT_FOR_POWER; (* WAIT FOR POWER *)
+			END_IF
+		
+		S_CONNECTION_LOST: (* Connection Lost *)
+			fbMpAxisBasicSecondary.Power 		:= FALSE;
+			
+			fbTorqueControl.Enable				:= FALSE;
+			fbTorqueControl.StartSignal			:= FALSE;
+			fbTorqueControl.InitData			:= FALSE;
+			fbTorqueControl.TorqueParID			:= 0;
+			fbTorqueControl.TorqueRamp 			:= i_pstParameter.i_rTorqueRamp;
+		
+			IF fbMpAxisBasic.Info.BootState = mpAXIS_BLP_DONE THEN
+				fbMpAxisBasicSecondary.ErrorReset	:= i_pstCmd.i_xErrorReset AND fbMpAxisBasicSecondary.Error;
+				IF fbWriteParID.Error AND i_pstCmd.i_xErrorReset THEN
+					fbWriteParID.Execute	:= FALSE;
+				END_IF
+				
+				IF NOT fbTorqueControl.Error THEN
+					fbTorqueControl.Enable				:= FALSE;
+					fbTorqueControl.StartSignal			:= FALSE;
+					fbTorqueControl.InitData			:= FALSE;
+				ELSIF i_pstCmd.i_xErrorReset THEN
+					fbTorqueControl.Enable				:= FALSE;
+					fbTorqueControl.StartSignal			:= FALSE;
+					fbTorqueControl.InitData			:= FALSE;
+				END_IF
+			
+				IF NOT fbMpAxisBasicSecondary.Error AND NOT fbMpAxisBasicSecondary.Error AND NOT fbWriteParID.Error AND eMainAxisStep < 9000 THEN
+					fbMpAxisBasicSecondary.ErrorReset 	:= FALSE;
+					fbWriteParID.Execute				:= FALSE;
+					eSecondaryAxisStep					:= S_WAIT_SAFETY_READY; (* WAIT SAFETY *)
+				END_IF
+			END_IF
+	END_CASE
 
 	lrOldPosition := fbMpAxisBasic.Position;
 

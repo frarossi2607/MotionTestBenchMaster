@@ -1,3 +1,6 @@
 VAR RETAIN
+	VAR_DMC_FmcComError : BOOL;
+	VAR_DMC_SequenceStatus : DMC_Mode_Type;
+	VAR_DMC_SequenceModeManual : DMC_ModeManualSequencerType;
 	VAR_DMC_Sequence : DMC_SequencerType;
 END_VAR

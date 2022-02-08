@@ -22,17 +22,22 @@ VAR
 	HMI_MNM_ConveyorSpeed : REAL;
 	HMI_MNM_FlrSpeedWidget : HMI_SpeedWidget_Type;
 	HMI_MNM_SmrSpeedWidget : HMI_SpeedWidget_Type;
-	HMI_MNM_CamName : ARRAY[1..11] OF USINT; (*V4.A.A.1.7.0*)
+	HMI_MNM_CamName : ARRAY[1..11] OF USINT; (*V4.A.A.1.7.0 v999hema*)
 	HMI_MNM_MachineRunning : BOOL;
+END_VAR
+(*DMC*)
+VAR
+	HMI_MNM_NumOfDmcInTangentSector2 : USINT;
+	HMI_MNM_NumOfDmcInTangentSector1 : USINT;
 END_VAR
 (*MOTORS*)
 VAR
-	HMI_InCvr : HMI_Motor_FC_Type; (*Outfeed conveyor motor*) (*Master nuovo*)
+	HMI_InCvr : HMI_Motor_FC_Type; (*Infeed conveyor motor v1.7.4a*)
 	HMI_OutCvr : HMI_Motor_FC_Type; (*Outfeed conveyor motor*)
 END_VAR
 (*DRIVERS*)
 VAR
-	HMI_VFD_InCvr : HMI_Danfoss_Diag_Type; (*Outfeed conveyor VFD*) (*Master nuovo*)
+	HMI_VFD_InCvr : HMI_Danfoss_Diag_Type; (*Infeed conveyor VFD v1.7.4a*)
 	HMI_VFD_OutCvr : HMI_Danfoss_Diag_Type; (*Outfeed conveyor VFD*)
 END_VAR
 (*DIGITAL INSTRUMENT*)
@@ -45,6 +50,11 @@ VAR
 	HMI_NoContainerInlet1 : BOOL; (*No container at Inlet 1*)
 	HMI_NoContainerInlet2 : BOOL; (*No container at Inlet 2*)
 	HMI_OutletFull : BOOL;
+END_VAR
+(*INLET SENSOR*)
+VAR
+	HMI_CloseInlet : HMI_DI_Type; (*v1.7.4a*)
+	HMI_FarInlet : HMI_DI_Type; (*v1.7.4a*)
 END_VAR
 (*INLET CANS SENSOR*)
 VAR

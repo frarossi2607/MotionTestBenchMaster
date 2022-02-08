@@ -11,7 +11,8 @@ TYPE
 		(
 		CRW_Idle,
 		CRW_Production,
-		CRW_ProductionReady
+		CRW_ProductionReady,
+		CRW_Emptying
 		);
 END_TYPE
 
@@ -28,7 +29,10 @@ TYPE
 		SlowSpeedForEmptyReq : BOOL;
 		ConfigSaveReq : BOOL;
 		HeadRinsingReq : BOOL;
-		ContainerStop : BOOL; (*//1.63*)
-		Idle : BOOL; (*v1.4*)
+		ContainerStop : BOOL;
+		Idle : BOOL;
+		MachineStart : BOOL; (*vrmaCOP*)
+		ChannelEmptyingReq : BOOL; (*vrmaCOP*)
+		ChannelEmpty : BOOL; (*vrmaCOP*)
 	END_STRUCT;
 END_TYPE

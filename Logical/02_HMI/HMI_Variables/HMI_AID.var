@@ -16,5 +16,4 @@ VAR
 	HMI_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
 	HMI_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
 	HMI_SS2P_Custom : ARRAY[0..2] OF SS2PCustom_Type; (*V4.A.A.1.6.13*)
-	BP_ActisFillingCoupled : PB_Type_Actis; (*V4.A.A.1.7.0*)
 END_VAR

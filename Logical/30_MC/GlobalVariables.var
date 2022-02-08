@@ -38,11 +38,6 @@ VAR
 	VAR_AxFillerOut05 : ACP10AXIS_typ;
 	VAR_AxFillerOut06 : ACP10AXIS_typ;
 END_VAR
-(*Doser Module Axis Declaration*)
-VAR
-	VAR_AxDoserModuleMaster : ACP10AXIS_typ;
-	VAR_AxDoserMain : ACP10AXIS_typ;
-END_VAR
 (*Inlet Module Axis Declaration*)
 VAR
 	VAR_AxInletModuleMaster : ACP10AXIS_typ;

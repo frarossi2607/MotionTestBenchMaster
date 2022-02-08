@@ -1,7 +1,7 @@
 (*HMI_PAM_C1 Database for Filler PLC*)
 (*Author = ????*)
 (*DB Version : 0.00*)
-(*File Version : 2.99*)
+(*File Version : 3,17*)
 
 TYPE
         HMI_PAM_C1_Type:    STRUCT

@@ -1,6 +1,0 @@
-VAR RETAIN
-	VAR_BTC_SeqPermanent : SEQ_Permanent_Type;
-END_VAR
-VAR
-	BTC : BTC_Type;
-END_VAR

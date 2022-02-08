@@ -4,7 +4,6 @@
   <Objects>
     <Object Type="File">InletConveyorHMI.st</Object>
     <Object Type="File">InletConveyorAlarm.st</Object>
-    <Object Type="File">InletConveyorInterchange.st</Object>
     <Object Type="File">InletConveyor_Hardware_CFG.st</Object>
     <Object Type="File">InletConveyorDigitalIn.st</Object>
   </Objects>

@@ -2,12 +2,13 @@
 <?AutomationStudio Version=4.2.12.129 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="Program" Language="IEC" Description="AID Main Program - C#3 - 1.2ms">AID</Object>
+    <Object Type="Program" Language="IEC" Description="AID Main Program - C#3 - 1.6ms">AID</Object>
     <Object Type="File" Description="Global data types">Global.typ</Object>
     <Object Type="File" Description="Alarms structure declaration">Alarm.var</Object>
     <Object Type="Package" Description="Input/Output declaration">IO</Object>
     <Object Type="Package" Description="Global Modules variables">Modules</Object>
     <Object Type="Package">Libraries</Object>
     <Object Type="Package">GlobalConstant</Object>
+    <Object Type="File">V4.AA.200.2.0.txt</Object>
   </Objects>
 </Package>

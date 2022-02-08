@@ -39,11 +39,6 @@ TYPE
 		ON : BOOL; (*Command: Selector Button ON*)
 		Description : STRING[25];
 	END_STRUCT;
-	PB_Type_Actis : 	STRUCT  (*V4.A.A.1.7.0*)
-		State : BOOL; (*State: Command Status*)
-		Enable : BOOL; (*State: Command Enabled*)
-		Command : BOOL; (*State: Command*)
-	END_STRUCT;
 END_TYPE
 
 (*OUTPUT TYPE*)

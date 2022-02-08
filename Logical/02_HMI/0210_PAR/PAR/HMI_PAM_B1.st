@@ -1,7 +1,7 @@
 (*HMI_PAM_B1 Initialization Action for Filler PLC*)
 (*Author = ????*)
 (*DB Version : 0.00*)
-(*File Version : 2.88*)
+(*File Version : 3,17*)
 
 ACTION HMI_PAM_B1_Init :
         HMI_PAM_B1._000 := 0;

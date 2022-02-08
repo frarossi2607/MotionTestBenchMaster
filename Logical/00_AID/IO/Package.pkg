@@ -3,7 +3,6 @@
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="File">IO_AID.var</Object>
-    <Object Type="File">IO_BTC.var</Object>
     <Object Type="File">IO_CAP.var</Object>
     <Object Type="File">IO_CRW.var</Object>
     <Object Type="File">IO_CSR.var</Object>
@@ -20,9 +19,10 @@
     <Object Type="File">IO_RNS.var</Object>
     <Object Type="File">IO_DOS.var</Object>
     <Object Type="File">IO_C.var</Object>
+    <Object Type="File">IO_COP.var</Object>
     <Object Type="File">IO_B.var</Object>
     <Object Type="File">IO_E.var</Object>
-    <Object Type="File">IO_COP.var</Object>
+    <Object Type="File">IO_J.var</Object>
     <Object Type="File">IO_X.var</Object>
     <Object Type="File">IO_Types.typ</Object>
   </Objects>

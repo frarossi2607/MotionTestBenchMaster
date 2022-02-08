@@ -38,11 +38,6 @@ VAR RETAIN
 	VAR_OutletOut03HomeData : ST_AxisHome;
 	VAR_OutletOut04HomeData : ST_AxisHome;
 END_VAR
-(*Doser Module*)
-VAR RETAIN
-	VAR_DoserMasterHomeData : ST_AxisHome;
-	VAR_DoserMainHomeData : ST_AxisHome;
-END_VAR
 (*Inlet Module*)
 VAR RETAIN
 	VAR_InletMasterHomeData : ST_AxisHome;

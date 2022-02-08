@@ -5,7 +5,8 @@ FUNCTION_BLOCK Fan_Obj
 			
 			VAR_AbsoluteFilter		:= FALSE;
 			VAR_PreFilter			:= FALSE;
-			VAR_PressurizedOnAlarm	:= FALSE;
+			VAR_RunFeedback			:= FALSE; //v1.7.4
+			VAR_Overload			:= FALSE; //v1.7.4
 	
 			FOR VAR_i := 1 TO IN_FanNumber DO
 				HMI.HMI_Pressurizer[VAR_i].ConfigPresent	:= TRUE;
@@ -34,6 +35,7 @@ FUNCTION_BLOCK Fan_Obj
 				IO.Pressurizer[VAR_i].AO_Raw	:= REAL_TO_INT(VAR_OUT * 32767 /100);
 				// LAMP
 				
+				//SINGLE FAN: UNIT LIGHTNING COMMAND
 				IF IN_CgfHmiLampOn THEN
 					HMI.HMI_Pressurizer[VAR_i].SS2P_Lamp.Enable := VAR_i = 1;//V4.A.A.1.7.0 to enable the first zone 
 					HMI.HMI_Pressurizer[VAR_i].SS2P_Lamp.Visibility := TRUE;
@@ -46,23 +48,34 @@ FUNCTION_BLOCK Fan_Obj
 					IO.Pressurizer[VAR_i].DO_Lighting := FALSE;
 				END_IF	
 				
+				//SINGLE FAN: UNITS ALARM RESET
 				IF IN_Reset THEN
 					ALARM.Pressurizer[VAR_i].AbsoluteFilterAlarm	:= FALSE;
 					ALARM.Pressurizer[VAR_i].PrefilterAlarm			:= FALSE;
 					ALARM.Pressurizer[VAR_i].PressurizedOnAlarm		:= FALSE;
-					OUT_OverloadFault						:= FALSE;
+					ALARM.Pressurizer[VAR_i].OverloadAlarm			:= FALSE; //v1.7.4
+					OUT_OverloadFault								:= FALSE;
 				END_IF
 				
+				//SINGLE FAN: UNIT ABSOLUTE FILTER CONTROL
 				IF NOT IO.Pressurizer[VAR_i].DI_AbsoluteFilterAlarm AND NOT HMI.HMI_Pressurizer[VAR_i].Mask AND IN_Enable THEN
 					ALARM.Pressurizer[VAR_i].AbsoluteFilterAlarm	:= TRUE;
 				END_IF
 				VAR_AbsoluteFilter	:= ALARM.Pressurizer[VAR_i].AbsoluteFilterAlarm OR VAR_AbsoluteFilter;
 				
+				//SINGLE FAN: UNIT PREFILTER CONTROL 
 				IF NOT IO.Pressurizer[VAR_i].DI_PrefilterAlarm AND NOT HMI.HMI_Pressurizer[VAR_i].Mask AND IN_Enable THEN
 					ALARM.Pressurizer[VAR_i].PrefilterAlarm	:= TRUE;
 				END_IF
 				VAR_PreFilter	:= ALARM.Pressurizer[VAR_i].PrefilterAlarm OR VAR_PreFilter;
+
+				//SINGLE FAN: UNIT OVERLOAD CONTROL
+				IF NOT IO.Pressurizer[VAR_i].DI_OverloadOK AND NOT HMI.HMI_Pressurizer[VAR_i].Mask AND IN_Enable THEN
+					ALARM.Pressurizer[VAR_i].OverloadAlarm := TRUE;
+				END_IF
+				VAR_Overload	:= ALARM.Pressurizer[VAR_i].OverloadAlarm OR VAR_Overload;
 				
+				//SINGLE FAN: UNIT RUNNING FEEDBACK CONTROL
 				TMR_TON_OnDelay[VAR_i](	IN := VAR_OUT > 0,
 										PT := T#10s);   
 				TMR_TON_OffDelay[VAR_i](IN := VAR_OUT = 0,
@@ -72,23 +85,28 @@ FUNCTION_BLOCK Fan_Obj
 					(TMR_TON_OffDelay[VAR_i].Q AND IO.Pressurizer[VAR_i].DI_PressurizerON)) AND NOT HMI.HMI_Pressurizer[VAR_i].Mask AND IN_Enable THEN
 					ALARM.Pressurizer[VAR_i].PressurizedOnAlarm := TRUE;
 				END_IF
-				VAR_PressurizedOnAlarm	:= ALARM.Pressurizer[VAR_i].PressurizedOnAlarm OR VAR_PressurizedOnAlarm;			
+				VAR_RunFeedback	:= ALARM.Pressurizer[VAR_i].PressurizedOnAlarm OR VAR_RunFeedback;			
 				
+				//FAN AREA: AT LEAST ONE ALARM
 				ALARM.PressurizerZone.AbsoluteFilterAlarm	:= VAR_AbsoluteFilter;
 				ALARM.PressurizerZone.PrefilterAlarm		:= VAR_PreFilter;
-				ALARM.PressurizerZone.PressurizedOnAlarm	:= VAR_PressurizedOnAlarm;
-				
-				HMI.HMI_Pressurizer[VAR_i].Alarm		:= OUT_OverloadFault OR ALARM.Pressurizer[VAR_i].PressurizedOnAlarm;
+				ALARM.PressurizerZone.PressurizedOnAlarm	:= VAR_RunFeedback;
+				ALARM.PressurizerZone.OverloadAlarm			:= VAR_Overload; //v1.7.4
+
+				//SINGLE FAN: AT LEAST ONE ALARM
+				HMI.HMI_Pressurizer[VAR_i].Alarm		:= OUT_OverloadFault OR ALARM.Pressurizer[VAR_i].PressurizedOnAlarm OR ALARM.Pressurizer[VAR_i].OverloadAlarm; //v1.7.4
 				HMI.HMI_Pressurizer[VAR_i].AlarmFilter	:= ALARM.Pressurizer[VAR_i].AbsoluteFilterAlarm OR ALARM.Pressurizer[VAR_i].PrefilterAlarm;
 				HMI.HMI_Pressurizer[VAR_i].Out			:= (VAR_OUT > 0.0);
 				HMI.HMI_Pressurizer[VAR_i].OUT_CV		:= VAR_OUT;
 			END_FOR
 			
+			//FAN AREA: OVERLOAD CONTROL
 			IF NOT IO.DI_OverloadOK THEN
 				OUT_OverloadFault := TRUE;
 			END_IF
-			Out_Light	:= HMI.HMI_Pressurizer[1].SS2P_Lamp.LampON;// v4.A.A.1.7.0 
-			OUT_Alarm	:= OUT_OverloadFault OR VAR_AbsoluteFilter OR VAR_PreFilter OR VAR_PressurizedOnAlarm;
+
+			Out_Light	:= HMI.HMI_Pressurizer[1].SS2P_Lamp.LampON; //FAN AREA: AREA LIGHTNING // v4.A.A.1.7.0 
+			OUT_Alarm	:= OUT_OverloadFault OR VAR_Overload OR VAR_AbsoluteFilter OR VAR_PreFilter OR VAR_RunFeedback; //FAN AREA: AT LEAST ONE FAN IN ALARM	
 		ELSE
 			IF NOT VAR_ResetHMI THEN
 				FOR VAR_i := 1 TO 6 DO

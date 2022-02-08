@@ -4,8 +4,8 @@
   <Objects>
     <Object Type="File">HMI_AID.var</Object>
     <Object Type="File">HMI_ALR.var</Object>
-    <Object Type="File">HMI_BTC.var</Object>
     <Object Type="File">HMI_CAP.var</Object>
+    <Object Type="File">HMI_DOS.var</Object>
     <Object Type="File">HMI_RNS.var</Object>
     <Object Type="File">HMI_CO.var</Object>
     <Object Type="File">HMI_COP.var</Object>
@@ -24,9 +24,12 @@
     <Object Type="File">HMI_RCP.var</Object>
     <Object Type="File">HMI_SFT.var</Object>
     <Object Type="File">HMI_TNK.var</Object>
-    <Object Type="File">HMI_C.var</Object>
+    <Object Type="File">HMI_CTP.var</Object>
+    <Object Type="File">HMI_DAQ.var</Object>
     <Object Type="File">HMI_B.var</Object>
+    <Object Type="File">HMI_C.var</Object>
     <Object Type="File">HMI_E.var</Object>
+    <Object Type="File">HMI_J.var</Object>
     <Object Type="File">HMI_S.var</Object>
     <Object Type="File">HMI_X.var</Object>
     <Object Type="File">HMI.var</Object>

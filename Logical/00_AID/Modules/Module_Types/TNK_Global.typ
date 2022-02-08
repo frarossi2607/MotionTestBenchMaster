@@ -20,6 +20,10 @@ TYPE
 		ContainerStop : BOOL; (*//1.63*)
 		DummyContainersIns : BOOL;
 		DummyContainersDis : BOOL;
-		CopInProductionActive : BOOL; (*V4.A.A.1.7.0*)
+		CopInProductionActive : BOOL;
+		StartUpHOT : BOOL;
+		StartCipRinser : BOOL;
+		APCORunning : BOOL;
+		DisableCipRinser : BOOL;
 	END_STRUCT;
 END_TYPE

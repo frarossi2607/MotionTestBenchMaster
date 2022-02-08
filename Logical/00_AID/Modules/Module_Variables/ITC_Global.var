@@ -1,27 +1,6 @@
 VAR
 	ITC : ITC_Type;
 END_VAR
-(*BLOWER COMMUNICATION*)
-VAR
-	BlrFlr_Motion : BlrFlrMotion_Type;
-	BlrCommStatus : ITC_CommStatus_Type;
-	BlrFlr : BlrFlr_Type;
-	FlrBlr : FlrBlr_Type;
-END_VAR
-(*LABELLER COMMUNICATION*)
-VAR
-	LbrCommStatus : ITC_CommStatus_Type;
-	LbrFlr : LbrFlr_Type;
-	LbrFlr_Motion : LbrFlrMotion_Type;
-	FlrLbr : FlrLbr_Type;
-END_VAR
-(*ACTIS COMMUNICATION*)
-VAR
-	ActCommStatus : ITC_CommStatus_Type; (*V4.A.A.1.6.12*)
-	ActFlr : ActFlr_Type; (*V4.A.A.1.6.12*)
-	ActFlr_Motion : ActFlrMotion_Type; (*V4.A.A.1.6.12*)
-	FlrAct : FlrAct_Type; (*V4.A.A.1.6.12*)
-END_VAR
 (*SKID COMMUNICATION*)
 VAR
 	SkdCommStatus : ITC_CommStatus_Type;
@@ -129,4 +108,10 @@ VAR
 	CdrCommStatus : ITC_CommStatus_Type;
 	CdrFlr : CdrFlr_Type;
 	FlrCdr : FlrCdr_Type;
+END_VAR
+(*PST COMMUNICATION*)
+VAR
+	PstCommStatus : ITC_CommStatus_Type; (*v999hema*)
+	PstFlr : PstFlr_Type;
+	FlrPst : FlrPst_Type;
 END_VAR

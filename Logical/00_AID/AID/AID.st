@@ -1,16 +1,18 @@
+PROGRAM _INIT
+	AID.DataOut.ProjectType	:= CST_AID_ProjectMachine;
+END_PROGRAM
+
 PROGRAM _CYCLIC
-	FB_GetTime(enable := TRUE);
-	FB_GetUtcTime(enable := TRUE);
+	TimeAndBlink;
+		
+	Beacon_SidelStandard;
 	
-	FB_Blink_05Hz(IN_Freq := 0.5);
-	AID.DataOut.Blink05Hz	:= FB_Blink_05Hz.OUT;
+	PbLight;
 	
-	FB_Blink_1Hz(IN_Freq := 1.0);
-	AID.DataOut.Blink1Hz	:= FB_Blink_1Hz.OUT;
+	AID.DataOut.Reset		:= IO_PB_ResetOp.ON;//v4 200.2.0
+	IO_SkdReset.DO_Output	:= AID.DataOut.Reset;
 	
-	FB_Blink_2Hz(IN_Freq := 2.0);
-	AID.DataOut.Blink2Hz	:= FB_Blink_2Hz.OUT;
-	
-	AID.DataOut.NetBlinkSlow	:= AID.DataOut.Blink1Hz;
-	AID.DataOut.NetBlinkFast	:= AID.DataOut.Blink2Hz;
+	IF EDGEPOS(IO_PB_ResetOp.ON) THEN
+		AID.DataOut.OperatorPresence	:= TRUE;
+	END_IF
 END_PROGRAM

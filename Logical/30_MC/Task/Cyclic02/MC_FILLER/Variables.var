@@ -8,7 +8,6 @@ VAR
 	xInputThirdPartySetup : BOOL;
 	xInputInductionSetup : BOOL;
 	xInputPositioning : BOOL;
-	xInputMultiAxis : BOOL;
 	xInputSlowMotion : BOOL;
 	xInputBrakeRelease : BOOL;
 	xInputStepByStepSingleAxis : BOOL; (*V4.A.A.1.7.0*)
@@ -18,7 +17,6 @@ END_VAR
 VAR
 	xModeReady : BOOL;
 	xExitStep : BOOL; (*Exit Step Variables*)
-	xAutoCombiMode : BOOL; (*Auto Mode Command Variables*)
 	xAutoMode : BOOL; (*Auto Mode Command Variables*)
 	xVelocityMode : BOOL; (*Positioning Mode Command Variable*)
 	xPositioningMode : BOOL; (*Positioning Mode Command Variable*)
@@ -30,7 +28,6 @@ VAR
 	xJogMultiMode : BOOL;
 	xStepByStepMode : BOOL;
 	xSlowMotionMode : BOOL;
-	xMultiAxisMode : BOOL;
 	xModulePowered : BOOL;
 	xRealAxesReadyForACommand : BOOL;
 	xSynchroWithOffset : BOOL;
@@ -54,7 +51,6 @@ VAR
 	xSlowMotionActive : BOOL;
 	xJogMultiActive : BOOL;
 	xAutoMultiActive : BOOL;
-	xMultiAxisActive : BOOL;
 	xStepByStepActive : BOOL;
 END_VAR
 (*Axes presence*)
@@ -179,15 +175,12 @@ VAR
 	uiJogMulti : UINT;
 	uiAutoMulti : UINT;
 	uiStepByStep : UINT;
-	uiMultiAxis : UINT;
 	auiAxisTokenList : ARRAY[0..20] OF UINT;
 	uiTokenIndex : UINT;
 END_VAR
 (*Absolute Position Calculation FBs*)
 (*//V4.A.A.1.6.12e*)
 VAR
-	value : REAL;
-	writeParID : MC_BR_InitCyclicWrite;
 	fbFillerAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
 	fbRinserAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)
 	fbCapperAbsPos : FB_AbsolutePosCalculation; (*//V4.A.A.1.6.12e*)

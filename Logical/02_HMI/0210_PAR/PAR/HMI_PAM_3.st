@@ -1,7 +1,7 @@
 (*HMI_PAM_3 Initialization Action for Filler PLC*)
 (*Author = ????*)
 (*DB Version : 0.00*)
-(*File Version : 2.88*)
+(*File Version : 3.23*)
 
 ACTION HMI_PAM_3_Init :
         HMI_PAM_3._000 := 80;
@@ -18,6 +18,8 @@ ACTION HMI_PAM_3_Init :
         HMI_PAM_3._109 := 0;
         HMI_PAM_3._112 := 0;
         HMI_PAM_3._113 := 0;
+        HMI_PAM_3._200 := 80;
+        HMI_PAM_3._210 := 8000;
         HMI_PAM_3._400 := 4;
         HMI_PAM_3._401 := 4;
         HMI_PAM_3._410 := 0;
@@ -72,6 +74,13 @@ ACTION HMI_PAM_3_Init :
         HMI_PAM_3._607 := 0;
         HMI_PAM_3._608 := 0;
         HMI_PAM_3._609 := 0;
+        HMI_PAM_3._610 := 0;
+        HMI_PAM_3._611 := 10;
+        HMI_PAM_3._612 := 10;
+        HMI_PAM_3._613 := 10;
+        HMI_PAM_3._614 := 10;
+        HMI_PAM_3._615 := 0;
+        HMI_PAM_3._616 := 20;
         HMI_PAM_3._620 := 0;
         HMI_PAM_3._621 := 0;
         HMI_PAM_3._622 := 0;
@@ -82,9 +91,18 @@ ACTION HMI_PAM_3_Init :
         HMI_PAM_3._627 := 0;
         HMI_PAM_3._628 := 0;
         HMI_PAM_3._629 := 0;
+        HMI_PAM_3._630 := 0;
+        HMI_PAM_3._631 := 0;
+        HMI_PAM_3._632 := 0;
+        HMI_PAM_3._633 := 0;
+        HMI_PAM_3._634 := 10;
+        HMI_PAM_3._635 := 10;
+        HMI_PAM_3._636 := 10;
+        HMI_PAM_3._637 := 10;
         HMI_PAM_3._640 := 0;
         HMI_PAM_3._641 := 0;
         HMI_PAM_3._642 := 0;
         HMI_PAM_3._643 := 0;
         HMI_PAM_3._644 := 0;
+        HMI_PAM_3._645 := 0;
 END_ACTION

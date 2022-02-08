@@ -5,10 +5,14 @@ VAR RETAIN
 	VAR_SFT_ShiftRinserControlWater : INT; (*V4.A.A.1.7.0*)
 	VAR_SFT_ShiftRinserControlIns : INT; (*V4.A.A.1.7.0*)
 	VAR_SFT_NumberDmcInserted : INT;
+	VAR_SFT_NumberDmcFirstHalIns : USINT;
+	VAR_SFT_NumberDmcSecondHalIns : USINT;
 END_VAR
 (*FILLING VALVE DATA master nuovo*)
 VAR RETAIN
-	VAR_SFT_FillingValveData : ARRAY[1..200] OF FillingValveDataStructure_Type;
+	VAR_SFT_DummyIndexStartPos : INT;
+	(*VAR_SFT_DummyContainerData : ARRAY[1..200] OF DummyContainerDataStructure_Type;*)
+	VAR_SFT_FillingValveData : ARRAY[1..150] OF FillingValveDataStructure_Type;
 END_VAR
 VAR
 	SFT : SFT_Type;

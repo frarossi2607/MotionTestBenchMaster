@@ -6,6 +6,7 @@ VAR
 	VAR_AlarmHorn : BOOL;
 	FB_Blink_05Hz : FB_Blinker;
 	FB_Blink_1Hz : FB_Blinker;
+	FB_Blink_4Hz : FB_Blinker;
 	FB_Blink_2Hz : FB_Blinker;
 	VAR_RedLightFix : BOOL;
 	VAR_RedLightFlash : BOOL;

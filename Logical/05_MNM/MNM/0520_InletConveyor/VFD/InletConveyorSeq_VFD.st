@@ -1,5 +1,5 @@
 ACTION InletConveyorSeq_Run_VFD:	
-	//v1.61 New Management
+
 	VAR_MNM_InCvrAlarm			:= ALR[7029].Active OR ALR[7031].Active OR ALR[7032].Active;
 	_InCvrFC280.IN_AutoCnd			:= FALSE;
 	_InCvrFC280.IN_AutoSpeed		:= 0.0;
@@ -16,7 +16,7 @@ ACTION InletConveyorSeq_Run_VFD:
 	//State Management
 	CASE VAR_MNM_InletConveyorSeq_VFD OF
 		MNM_InCvrIdle:		
-			IF MNM.DataOut.MachineRunning AND NOT COP.DataOut.RcpActive AND NOT OPS.DataOut.FlrModeSelectorAdjustment THEN  //v1.61
+			IF MNM.DataOut.MachineRunning AND NOT COP.DataOut.RcpActive AND NOT OPS.DataOut.FlrModeSelectorAdjustment THEN
 				VAR_MNM_InletConveyorSeq_VFD := MNM_InCvrAuto;
 			ELSIF COP.DataOut.RcpActive THEN
 				_InCvrFC280.IN_AutoCnd	:= TRUE;
@@ -27,7 +27,7 @@ ACTION InletConveyorSeq_Run_VFD:
 		
 		MNM_InCvrAuto:
 			
-			_InCvrFC280.IN_AutoCnd		:= FB_ScalConveyorInlet.y>0.0;//V4.A.A.1.6.6
+			_InCvrFC280.IN_AutoCnd		:= FB_ScalConveyorInlet.y>0.0;
 			_InCvrFC280.IN_AutoSpeed	:= FB_ScalConveyorInlet.y;
 			
 			IF NOT MNM.DataOut.MachineRunning THEN	
@@ -38,8 +38,8 @@ ACTION InletConveyorSeq_Run_VFD:
 		
 				
 		MNM_InCvrCleaning:
-			_InCvrFC280.IN_AutoCnd		:= TRUE;
-			_InCvrFC280.IN_AutoSpeed	:= 20.0;
+			_InCvrFC280.IN_AutoCnd		:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+			_InCvrFC280.IN_AutoSpeed	:= 10.0;
 			
 			IF NOT COP.DataOut.RcpActive THEN
 				VAR_MNM_InletConveyorSeq_VFD	:= MNM_InCvrIdle;
@@ -54,6 +54,6 @@ ACTION InletConveyorSeq_Run_VFD:
 	END_CASE
 	
 
-	TMR_TON_MNM_InCvrFix	(IN:= (VAR_MNM_InletConveyorSeq_VFD = MNM_InCvrAutoFixSpeed), PT := t#120s);//<<Change this time to decide how long the conveyour runs after the last bottle or machine stop.
+	TMR_TON_MNM_InCvrFix	(IN:= (VAR_MNM_InletConveyorSeq_VFD = MNM_InCvrAutoFixSpeed), PT := t#120s);
 	TMR_TON_MNM_InCvrRamp	(IN:= (VAR_MNM_InletConveyorSeq_VFD = MNM_InCvrAutoRampDown), PT := t#5s);
 END_ACTION

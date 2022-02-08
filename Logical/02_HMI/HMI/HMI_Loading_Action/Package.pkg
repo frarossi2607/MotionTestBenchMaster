@@ -5,12 +5,12 @@
     <Object Type="File">HMI_AID_Loading.st</Object>
     <Object Type="File">HMI_ALR_Loading.st</Object>
     <Object Type="File">HMI_RNS_Loading.st</Object>
-    <Object Type="File">HMI_BTC_Loading.st</Object>
     <Object Type="File">HMI_CAP_Loading.st</Object>
     <Object Type="File">HMI_CRW_Loading.st</Object>
     <Object Type="File">HMI_CO_Loading.st</Object>
     <Object Type="File">HMI_COP_Loading.st</Object>
     <Object Type="File">HMI_CSR_Loading.st</Object>
+    <Object Type="File">HMI_DAQ_Loading.st</Object>
     <Object Type="File">HMI_DMC_Loading.st</Object>
     <Object Type="File">HMI_GNS_Loading.st</Object>
     <Object Type="File">HMI_ICO_Loading.st</Object>
@@ -23,6 +23,8 @@
     <Object Type="File">HMI_PAO_Loading.st</Object>
     <Object Type="File">HMI_SFT_Loading.st</Object>
     <Object Type="File">HMI_TNK_Loading.st</Object>
+    <Object Type="File">HMI_CTP_Loading.st</Object>
+    <Object Type="File">HMI_DOS_Loading.st</Object>
     <Object Type="File">HMI_Device_Loading.st</Object>
     <Object Type="File">HMI_Variables_Loading.st</Object>
   </Objects>

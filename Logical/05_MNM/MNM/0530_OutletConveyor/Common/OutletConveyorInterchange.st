@@ -1,7 +1,7 @@
 ACTION OutletConveyorInterchange: 
 (***************************      Alarms Standard        ****************************************)
-	ALR[4626].Active	:= (NOT CvoFlr.InfeedContainersLoadEnabled AND NOT SkdFlr.EndProduction) AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp; //MasterBottle(*Master nuovo*)
-	ALR[4629].Active	:= NOT CvoFlr.InfeedConveyorRunning AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp;//MasterBottle(*Master nuovo*)
+	ALR[4626].Active	:= ((NOT CvoFlr.InfeedContainersLoadEnabled AND NOT CvoFlr.Req_Empty AND NOT SkdFlr.EndProduction) AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp); //OR CvoFlr.Req_Empty;
+	ALR[4629].Active	:= NOT CvoFlr.InfeedConveyorRunning AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp;
 	ALR[4632].Active	:= NOT CvoFlr.OutletConveyorRunning AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp;
 	ALR[4635].Active	:= CvoFlr.RejectTableFull AND TNK.DataOut.ProdMode AND NOT TNK.DataOut.StartUp;
 	ALR[4636].Active	:= FALSE;//MasterBottle

@@ -23,6 +23,7 @@ VAR
 END_VAR
 (*LIFT CONTAINERS*)
 VAR
+	HMI_205RVF : HMI_Analog_IN_Type;
 	HMI_203RVF : HMI_Analog_IN_Type;
 	HMI_205EVF : HMI_Valve_Type;
 	HMI_LftCon_SS2P : ARRAY[MIN_SS2P_CFG..MAX_SS2P_CFG] OF SS2P_Type;
@@ -34,16 +35,24 @@ VAR
 END_VAR
 (*LUBRIFICATION*)
 VAR
-	HMI_MAU_ChlRns : HMI_MAU_ChlRns_Type;(*master nuovo*)
+	HMI_MAU_ChlRns : HMI_MAU_ChlRns_Type; (*master nuovo*)
 	HMI_LbCon_PB : ARRAY[MIN_PB_CFG..MAX_PB_CFG] OF PB_Type;
 END_VAR
 (*PLC*)
 VAR
 	HMI_TimeZoneOffset : INT;
+	HMI_SDM_MachineStopped : BOOL; (*machine stopped 1.7.2b*)
+	HMI_SDM_PLCAvailable : BOOL; (*information to HMI that SDM is active 1.7.2*)
+	HMI_SDM_RequestInit : BOOL; (*SDM activation request,operator is in SDM page with machine stopped 1.7.2*)
 	HMI_FSF : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF HMI_DI_Type;
 END_VAR
 (*TRAY DSEVICES*)
 VAR
 	HMI_209DSF : HMI_DI_Type; (*Tray Piston Inserted v1.4*)
 	HMI_227CPB : HMI_Valve_Type; (*Tray Piston v1.4*)
+END_VAR
+(*EXHAUSTER //v1.7.4*)
+VAR
+	HMI_AFE : ARRAY[200..209] OF HMI_Motor_FC_Type; (*Filler aspirator //v1.7.5*)
+	HMI_VFD_AFE : ARRAY[200..209] OF HMI_Danfoss_Diag_Type; (*Filler aspirator //v1.7.5*)
 END_VAR

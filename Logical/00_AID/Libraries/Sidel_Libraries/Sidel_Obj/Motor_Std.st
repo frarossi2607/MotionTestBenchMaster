@@ -28,19 +28,27 @@ FUNCTION_BLOCK Motor_Std
 		(*****************************************************************)
 		(**************************ALARM LOGIC****************************)
 		(*****************************************************************)
-		TMR_TON(IN := IO.DO_MotorON,
-				PT := IN_FBKDelay);
-				
-		TMR_TOF(IN := NOT IO.DO_MotorON,
-				PT := IN_FBKDelay);
+//v1.7.6
+//		TMR_TON(IN := IO.DO_MotorON,
+//				PT := IN_FBKDelay);
+//v1.7.6				
+//		TMR_TOF(IN := NOT IO.DO_MotorON,
+//				PT := IN_FBKDelay);
+//v1.7.6	
+		TMR_TON(IN := (IO.DO_MotorON AND IO.DI_ContactorFBK) OR (NOT IO.DO_MotorON AND NOT IO.DI_ContactorFBK),
+		PT := IN_FBKDelay);
 		
 		IF IN_Reset THEN
 			VAR_ContactorFBK	:= FALSE;
 			VAR_Isolated		:= FALSE;
 			VAR_Overload		:= FALSE;
 		END_IF
-			
-		IF ((TMR_TON.Q AND IO.DI_ContactorFBK) OR (TMR_TOF.Q AND NOT IO.DI_ContactorFBK)) AND NOT IN_ConfigType AND NOT VAR_Mask THEN
+//v1.7.6			
+//		IF ((TMR_TON.Q AND IO.DI_ContactorFBK) OR (TMR_TOF.Q AND NOT IO.DI_ContactorFBK)) AND NOT IN_ConfigType AND NOT VAR_Mask THEN
+//			VAR_ContactorFBK := NOT IN_Simulation;
+//		END_IF
+//v1.7.6		
+		IF TMR_TON.Q AND NOT IN_ConfigType AND NOT VAR_Mask THEN
 			VAR_ContactorFBK := NOT IN_Simulation;
 		END_IF
 		

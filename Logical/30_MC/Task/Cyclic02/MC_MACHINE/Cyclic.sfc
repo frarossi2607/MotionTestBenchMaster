@@ -1,5 +1,5 @@
 PROGRAM _CYCLIC
-(* @LANGUAGE := 'sfc' *)
+<?AutomationStudio FileVersion="4.9"?>
 INITIAL_STEP InitCPU:
 END_STEP
 (* @SFCMAXTIME := '' *)
@@ -112,12 +112,6 @@ IF 	VAR_Machine.stFillerModule.iq_stStatus.q_xInitDone	AND
 	END_IF
 END_IF
 
-
-
-
-
-
-
 //NEW MANAGEMENT //FR 
 HMI_AxisIndex := 2;//0 is master
 //HMI Crate array axis present and name
@@ -154,7 +148,7 @@ IF VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal	THEN
 	END_FOR
 END_IF
 
-FOR HMI_AxisIndex := 2 TO 13 DO 
+FOR HMI_AxisIndex := 2 TO 14 DO //vrma
 	
 CASE HMI_MC_GenericAxisDataNew[HMI_AxisIndex].uiAxisID OF
 			
@@ -279,7 +273,6 @@ VAR_Machine.stMasterModule.iq_stCmd.i_xMachineInitDone	:=	TRUE;
 VAR_Machine.stFillerModule.iq_stCmd.i_xMachineInitDone	:=	TRUE;
 VAR_Machine.stInletModule.iq_stCmd.i_xMachineInitDone	:=	TRUE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xMachineInitDone	:=	TRUE;
-VAR_Machine.stDoserModule.iq_stCmd.i_xMachineInitDone	:=	TRUE;//test
 END_ACTION
 TRANSITION FROM Hierarachy TO (Input,ModeSelection,SetException):=
 xExitStep
@@ -290,19 +283,19 @@ END_TRANSITION
 STEP Input:
 (* @LANGUAGE := 'st' *)
 (* Input Signals *)
-xInputJog				:= VAR_Machine.iq_stCmd.i_xJogMode;
-xInputAuto				:= VAR_Machine.iq_stCmd.i_xAuto	AND NOT VAR_Machine.iq_stCmd.i_xStepByStep AND NOT VAR_Machine.iq_stCmd.i_xMultiAxis;
-xInputCombi				:= VAR_Machine.iq_stCmd.i_xCombi;
-xInputMulti				:= VAR_Machine.iq_stCmd.i_xMulti;
-xInputSelHoming			:= VAR_Machine.iq_stCmd.i_xSelectiveHoming;
-xInputPositioning		:= VAR_Machine.iq_stCmd.i_xPositioning;
-xInputBrakeRelease		:= VAR_Machine.iq_stCmd.i_xBrakeRelease;
-xInputVelocity			:= VAR_Machine.iq_stCmd.i_xVelocity;
-xInputStepByStep		:= VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStep;
-xInputStepByStepSingleAxis	:= VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis;//V4.A.A.1.7.0 FootBar
-xInputMultiAxis	:= VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xMultiAxis;//v999
-xInputThirdPartySetup	:= VAR_Machine.iq_stCmd.i_xThirdPartySetup;
-xInputInductionSetup	:= VAR_Machine.iq_stCmd.i_xInductionSetup;
+xInputJog							:= VAR_Machine.iq_stCmd.i_xJogMode;
+xInputAuto							:= VAR_Machine.iq_stCmd.i_xAuto	AND NOT VAR_Machine.iq_stCmd.i_xStepByStep AND NOT VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis AND NOT VAR_Machine.iq_stCmd.i_xStepByStepSingleAxisReverse;//v999
+xInputCombi							:= VAR_Machine.iq_stCmd.i_xCombi;
+xInputMulti							:= VAR_Machine.iq_stCmd.i_xMulti;
+xInputSelHoming						:= VAR_Machine.iq_stCmd.i_xSelectiveHoming;
+xInputPositioning					:= VAR_Machine.iq_stCmd.i_xPositioning;
+xInputBrakeRelease					:= VAR_Machine.iq_stCmd.i_xBrakeRelease;
+xInputVelocity						:= VAR_Machine.iq_stCmd.i_xVelocity;
+xInputStepByStep					:= VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStep;
+xInputStepByStepSingleAxis			:= (VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis) OR (NOT VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStepSingleAxis);//V4.A.A.1.7.0 FootBar
+xInputStepByStepSingleAxisRev		:= (VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStepSingleAxisReverse) OR (NOT VAR_Machine.iq_stCmd.i_xAuto AND VAR_Machine.iq_stCmd.i_xStepByStepSingleAxisReverse);//v999
+xInputThirdPartySetup				:= VAR_Machine.iq_stCmd.i_xThirdPartySetup;
+xInputInductionSetup				:= VAR_Machine.iq_stCmd.i_xInductionSetup;
 
 (* Acceleration and deceleration calculation *)
 IF 	rOldAccelerationValue <> MC_InputOutput.Network.Machine.Parameters.AutoAccelerationTime 	AND
@@ -360,10 +353,6 @@ VAR_Machine.stMasterModule.iq_stCmd.i_xEnableCurves	:=	MC_InputOutput.Network.Ma
 VAR_Machine.stFillerModule.iq_stCmd.i_xEnable	:= MC_InputOutput.Safety.Filler.Commands.EnableModule;
 VAR_Machine.stInletModule.iq_stCmd.i_xEnable	:= MC_InputOutput.Safety.Inlet.Commands.EnableModule;
 VAR_Machine.stOutletModule.iq_stCmd.i_xEnable	:= MC_InputOutput.Safety.Outlet.Commands.EnableModule;
-VAR_Machine.stDoserModule.iq_stCmd.i_xEnable 						:= MC_InputOutput.Safety.Doser.Commands.EnableModule;//test
-												
-VAR_Machine.stDoserModule.iq_stCmd.i_xDisableDoserCarouselActive	:= MC_InputOutput.Network.Doser.Commands.DisableDoserCarousel;
-
 
 xSlowMotionCommandOutletForward		:= MC_InputOutput.Network.Outlet.Commands.SlowMotionForward;
 xSlowMotionCommandOutletBackward	:= MC_InputOutput.Network.Outlet.Commands.SlowMotionBackward;
@@ -379,7 +368,7 @@ END_STEP
 STEP ModeSelection:
 (* @LANGUAGE := 'st' *)
 xModeReady	:= NOT xAutoMode AND NOT xPositioningMode AND NOT xSelectiveHomingMode	AND NOT xJogMode AND NOT xPositioningMode AND NOT xThirdPartySetupMode AND NOT xInductionSetupMode AND
-				(NOT tofReactionActive.Q OR	xInputMulti OR xInputStepByStepSingleAxis OR xInputMultiAxis);//V1.7.2
+				(NOT tofReactionActive.Q OR	xInputMulti OR xInputStepByStepSingleAxis);//V1.7.2
 
 xNoOpActive				:= TRUE;
 xAutoActive				:= FALSE;
@@ -391,6 +380,7 @@ xMultiActive			:= FALSE;
 xVelocityActive			:= FALSE;
 xStepByStepActive		:= FALSE;
 xStepByStepSingleAxisActive	:= FALSE;//V4.A.A.1.7.0
+xStepByStepSingleAxisRevActive	:= FALSE; //v999
 xCombiActive			:= FALSE;
 xThirdPartySetupActive	:= FALSE;
 xInductionSetupActive	:= FALSE;
@@ -414,8 +404,8 @@ IF xModeReady THEN
 		xStepByStepMode				:= TRUE;
 	ELSIF xInputStepByStepSingleAxis THEN//V4.A.A.1.7.0
 		xStepByStepSingleAxisMode	:= TRUE;//V4.A.A.1.7.0
-	ELSIF xInputMultiAxis THEN//v999
-		xMultiAxisMode	:= TRUE;//v999	
+	ELSIF xInputStepByStepSingleAxisRev THEN//v999
+		xStepByStepSingleAxisReverseMode := TRUE;//v999
 	ELSIF xInputThirdPartySetup THEN
 		xThirdPartySetupMode		:= TRUE;
 	ELSIF xInputInductionSetup THEN
@@ -438,19 +428,19 @@ VAR_Machine.stInletModule.iq_stCmd.i_xStart		:= FALSE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xStart	:= FALSE;
 
 // For safety reason all bits are set to FALSE
-xJogMode 				:= FALSE;
-xAutoMode 				:= FALSE;
-xMultiMode 				:= FALSE;
-xPositioningMode 		:= FALSE;
-xSelectiveHomingMode	:= FALSE;
-xVelocityMode			:= FALSE;
-xCombiMode				:= FALSE;
-xBrakeReleaseMode		:= FALSE;
-xStepByStepMode			:= FALSE;
-xStepByStepSingleAxisMode	:= FALSE;//V4.A.A.1.7.0 Footbar
-xMultiAxisMode			:= FALSE;//v999
-xThirdPartySetupMode	:= FALSE;
-xInductionSetupMode		:= FALSE;
+xJogMode 							:= FALSE;
+xAutoMode 							:= FALSE;
+xMultiMode 							:= FALSE;
+xPositioningMode 					:= FALSE;
+xSelectiveHomingMode				:= FALSE;
+xVelocityMode						:= FALSE;
+xCombiMode							:= FALSE;
+xBrakeReleaseMode					:= FALSE;
+xStepByStepMode						:= FALSE;
+xStepByStepSingleAxisMode			:= FALSE;//V4.A.A.1.7.0 Footbar
+xStepByStepSingleAxisReverseMode	:= FALSE;//V999
+xThirdPartySetupMode				:= FALSE;
+xInductionSetupMode					:= FALSE;
 END_ACTION
 EXIT_ACTION
 (* @LANGUAGE := 'st' *)
@@ -482,7 +472,6 @@ CASE uiCombiStep OF
 		VAR_Machine.stFillerModule.iq_stCmd.i_xAutoMode	:=	TRUE;
 		VAR_Machine.stOutletModule.iq_stCmd.i_xAutoMode	:=	VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal;
 		VAR_Machine.stInletModule.iq_stCmd.i_xAutoMode	:=	VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal;
-		VAR_Machine.stDoserModule.iq_stCmd.i_xAutoMode	:=	VAR_Machine.stDoserModule.iq_stStatus.q_xModuleReal;
 		
 		uiCombiStep	:=	40;
 
@@ -491,14 +480,11 @@ CASE uiCombiStep OF
 			(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR NOT
 			VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)	AND
 			(VAR_Machine.stInletModule.iq_stStatus.q_xAutoActive	OR NOT
-			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)	AND
-			(VAR_Machine.stDoserModule.iq_stStatus.q_xAutoActive	OR NOT
-			VAR_Machine.stDoserModule.iq_stStatus.q_xModuleReal)	THEN
+			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)	THEN
 		
 			IF 	NOT VAR_Machine.stFillerModule.iq_stStatus.q_xSynchroWithOffset		AND
 				NOT VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset		AND
-				NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		AND 
-				NOT VAR_Machine.stDoserModule.iq_stStatus.q_xSynchroWithOffset 		THEN
+				NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		THEN
 		
 				VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition	:=
 					FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
@@ -532,7 +518,6 @@ CASE uiCombiStep OF
 			VAR_Machine.stFillerModule.iq_stCmd.i_xStart	:=	TRUE;
 			VAR_Machine.stOutletModule.iq_stCmd.i_xStart	:=	VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal;
 			VAR_Machine.stInletModule.iq_stCmd.i_xStart		:=	VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal;
-			VAR_Machine.stDoserModule.iq_stCmd.i_xStart		:=	VAR_Machine.stDoserModule.iq_stStatus.q_xModuleReal;
 			uiCombiStep	:=	120;
 		END_IF
 	
@@ -549,12 +534,7 @@ CASE uiCombiStep OF
 			((VAR_Machine.stInletModule.iq_stStatus.q_xRealAxesSynchronized		AND
 			VAR_Machine.stInletModule.iq_stStatus.q_xMasterRephased				AND
 			VAR_Machine.stInletModule.iq_stStatus.q_xAutoActive)				OR NOT
-			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)				AND
-			
-			((VAR_Machine.stDoserModule.iq_stStatus.q_xRealAxesSynchronized		AND
-			VAR_Machine.stDoserModule.iq_stStatus.q_xMasterRephased				AND
-			VAR_Machine.stDoserModule.iq_stStatus.q_xAutoActive)				OR NOT
-			VAR_Machine.stDoserModule.iq_stStatus.q_xModuleReal)				THEN
+			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)				THEN
 			
 			VAR_Machine.stMasterModule.iq_stCmd.i_xStart	:=	TRUE;
 			xEncEmulationEnable	:= TRUE;
@@ -977,9 +957,9 @@ CASE uiPositioningStep OF
 				NOT VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset	THEN
 		
 				VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition	:=
-				FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
-									iq_astFillerSubModuleAxis	:=	VAR_Machine.stFillerModule.iq_astSubModuleAxis,
-									iq_astOutletSubModuleAxis	:=	VAR_Machine.stOutletModule.iq_astSubModuleAxis);
+					FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
+										iq_astFillerSubModuleAxis	:=	VAR_Machine.stFillerModule.iq_astSubModuleAxis,
+										iq_astOutletSubModuleAxis	:=	VAR_Machine.stOutletModule.iq_astSubModuleAxis);
 				
 				VAR_Machine.stFillerModule.iq_stParameters.i_lrRephasingPosition	:=	VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition;
 				VAR_Machine.stOutletModule.iq_stParameters.i_lrRephasingPosition	:=	VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition;
@@ -1953,9 +1933,9 @@ CASE uiJogStep OF
 				NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		THEN
 		
 				VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition :=
-				FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
-									iq_astFillerSubModuleAxis	:=	VAR_Machine.stFillerModule.iq_astSubModuleAxis,
-									iq_astOutletSubModuleAxis	:=	VAR_Machine.stOutletModule.iq_astSubModuleAxis);
+								FC_RephasingMachine(iq_astInletSubModuleAxis	:= VAR_Machine.stInletModule.iq_astSubModuleAxis,
+													iq_astFillerSubModuleAxis	:= VAR_Machine.stFillerModule.iq_astSubModuleAxis,
+													iq_astOutletSubModuleAxis	:= VAR_Machine.stOutletModule.iq_astSubModuleAxis);
 				
 				VAR_Machine.stFillerModule.iq_stParameters.i_lrRephasingPosition
 					:=	VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition;
@@ -2622,9 +2602,9 @@ CASE uiStepByStep OF
 				NOT VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset	THEN
 		
 				VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition :=
-				FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
-									iq_astFillerSubModuleAxis	:=	VAR_Machine.stFillerModule.iq_astSubModuleAxis,
-									iq_astOutletSubModuleAxis	:=	VAR_Machine.stOutletModule.iq_astSubModuleAxis);
+					FC_RephasingMachine(iq_astInletSubModuleAxis	:= VAR_Machine.stInletModule.iq_astSubModuleAxis,
+										iq_astFillerSubModuleAxis	:= VAR_Machine.stFillerModule.iq_astSubModuleAxis,
+										iq_astOutletSubModuleAxis	:= VAR_Machine.stOutletModule.iq_astSubModuleAxis);
 				
 				VAR_Machine.stFillerModule.iq_stParameters.i_lrRephasingPosition
 						:=	VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition;
@@ -2689,6 +2669,7 @@ CASE uiStepByStep OF
 		END_IF
 
 	140:
+		
 		xStepByStepDone	:= TRUE;
 END_CASE
 END_STEP
@@ -2862,7 +2843,6 @@ STEP StepSingleAxisExit:
 xExitStep						:= 	TRUE;
 xStepByStepSingleAxisDone		:=	FALSE;
 xStepByStepSingleAxisActive		:=	FALSE;
-(* TODO: Insert Program *)
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
@@ -2871,195 +2851,91 @@ TRANSITION FROM StepSingleAxisExit TO ModeSelection:=
 xExitStep
 END_TRANSITION
 (* @SFCISJUMP := 'ModeSelection' *)
-TRANSITION FROM ModeSelection TO MultiAxis:=
-xMultiAxisMode
+TRANSITION FROM ModeSelection TO StepByStepSingleAxisRev:=
+xStepByStepSingleAxisReverseMode
 END_TRANSITION
-(* @SFCNOJUMP := 'MultiAxis' *)
-STEP MultiAxis:
+(* @SFCNOJUMP := 'StepByStepSingleAxisRev' *)
+STEP StepByStepSingleAxisRev:
 (* @LANGUAGE := 'st' *)
 xReactionOnFillerModule		:= xReactFillerEmergencyStop 	OR xReactFillerQuickStop		OR xReactFillerStop;//V1.7.2
 
 
-IF xReactionOnFillerModule OR NOT xMultiAxisMode  THEN//V1.7.2
-	xMultiAxisMode	:= FALSE;
+IF xReactionOnFillerModule OR uiStepByStepSingleReverseAxis = 130 THEN//V1.7.2
+	xStepByStepSingleAxisReverseMode	:= FALSE;
 END_IF
 
-xMultiAxisActive	:= TRUE;
-		
-	(******************************* Steb By Step forward Modality for Filler Module *****************************)
-	
-	
-	
-	
-CASE uiMultiAxisStepByStep OF
-			
-			0:
-				IF	VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_FillerSubModuleHmiStart AND
-					VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_FillerSubModuleHmiStart + CST_LastFillerModuleAxis	THEN
+xStepByStepSingleAxisRevActive	:= TRUE;
 
-					VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_FillerSubModuleHmiStart;
+CASE uiStepByStepSingleReverseAxis OF//V4.A.A.1.7.0
+	0:
+		IF	VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_FillerSubModuleHmiStart AND
+			VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_FillerSubModuleHmiStart + CST_LastFillerModuleAxis	THEN
 
-					uiMultiAxisStepByStep	:=	100;//Filler Module
-				ELSIF VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_InletSubModuleHmiStart AND
-					VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_InletSubModuleHmiStart + CST_LastInletModuleAxis THEN
-	
-					VAR_Machine.stInletModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_InletSubModuleHmiStart;
+			VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_FillerSubModuleHmiStart;
 
-					uiMultiAxisStepByStep	:=	200;//Inlet Module
-				ELSIF 	VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_OutletSubModuleHmiStart AND
-					VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_OutletSubModuleHmiStart + CST_LastOutletModuleAxis THEN
+			uiStepByStepSingleReverseAxis	:=	100;//Filler Module
+		ELSIF VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_InletSubModuleHmiStart AND
+			VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_InletSubModuleHmiStart + CST_LastInletModuleAxis THEN
 	
-					VAR_Machine.stOutletModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_OutletSubModuleHmiStart;					
-			
-					uiMultiAxisStepByStep	:=	300;//Outlet module
-				ELSIF VAR_Machine.iq_stParameter.i_uiAxisSelected = CST_MachinePhasingOffset THEN
-					uiMultiAxisStepByStep	:=	700;
-				END_IF
-		
-			100:
-				VAR_Machine.stFillerModule.iq_stCmd.i_xMultiAxis := TRUE;
-				uiMultiAxisStepByStep := 110;
-	
-			110:(* The phase compensation process has to be ended bofore going on next steps *)
-				IF VAR_Machine.stFillerModule.iq_stStatus.q_xMultiAxisActive THEN
-					IF NOT VAR_Machine.stFillerModule.iq_stStatus.q_xSynchroWithOffset THEN
-						VAR_Machine.stFillerModule.iq_stParameters.i_lrRephasingPosition	:= FC_RephasingPositionFiller(iq_astSubModuleAxis := VAR_Machine.stFillerModule.iq_astSubModuleAxis);
-						uiMultiAxisStepByStep := 120;
-					END_IF
-				END_IF
-	
-			120:(* Rephasing position of the master *)
-				VAR_Machine.stFillerModule.iq_stCmd.i_xMasterRephasingRequest	:= TRUE;
-				uiMultiAxisStepByStep := 125;//V4.A.A.1.6.12d
-	
-			125://V4.A.A.1.6.12d
-				IF VAR_Machine.stFillerModule.iq_stStatus.q_xMasterRephased THEN
-					VAR_Machine.stFillerModule.iq_stCmd.i_xMasterRephasingRequest	:= 	FALSE;
-					uiMultiAxisStepByStep := 130;
-				END_IF
-	
-			//receive command phase
-	
-			130:
-				IF MC_InputOutput.Network.Filler.Commands.DmcFillerPositioningCommand THEN
-					uiMultiAxisStepByStep := 140;
-				ELSIF
-					MC_InputOutput.Network.Filler.Commands.DmcReversePositioningCommand THEN
-					uiMultiAxisStepByStep := 200;
-				END_IF	
-				
-			140://set position	
-				VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	
-				:= LREAL_TO_REAL(FC_LongRealReminder((VAR_Machine.stFillerModule.iq_stParameters.i_rStopPosition	- VAR_Machine.stFillerModule.iq_astSubModuleAxis[VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected].iq_stStatus.q_stMainAxisStatus.q_lrPosition), 360.0, 0));
-		
-				IF VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset > 180.0 THEN
-					VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * (MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps) - 1);
-				ELSE	
-					VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps);
-				END_IF
-				uiMultiAxisStepByStep := 141;
-	
-			141: 
-				VAR_Machine.stFillerModule.iq_stCmd.i_xStart := TRUE;
-					uiMultiAxisStepByStep := 142;
-			
-			
-			142:		
-				IF VAR_Machine.stFillerModule.iq_astSubModuleAxis[0].iq_stStatus.q_stMainAxisStatus.q_xInPosition THEN
-					VAR_Machine.stFillerModule.iq_stCmd.i_xStart := FALSE;
-					uiMultiAxisStepByStep	:= 145;
-				END_IF
-	
-			145:
-				IF VAR_Machine.stFillerModule.iq_stStatus.q_xModuleStopped THEN
-					uiMultiAxisStepByStep	:=	150;
-				END_IF
-	
-			150:
-		
-				xMultiAxisPositionDone	:= TRUE;
+			VAR_Machine.stInletModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_InletSubModuleHmiStart;
 
-//				IF MC_InputOutput.Network.Filler.Commands.StartFillerModule THEN
-//					VAR_Machine.stFillerModule.iq_stCmd.i_xStart	:= TRUE;
-//					uiMultiAxisStepByStep	:=	140;
-//				END_IF
-//	
-//			200:
-//				VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	
-//					:= LREAL_TO_REAL(FC_LongRealReminder((VAR_Machine.stFillerModule.iq_stParameters.i_rStopPosition	- VAR_Machine.stFillerModule.iq_astSubModuleAxis[VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected].iq_stStatus.q_stMainAxisStatus.q_lrPosition), 360.0, 0));
-//		
-//					IF VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset > 180.0 THEN
-//						VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * (MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps) - 1);
-//					ELSE	
-//						VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps);
-//				END_IF
-//			uiMultiAxisStepByStep := 201;
-//	201://set reverse move to master module filler
-//					
-//					uiMultiAxisStepByStep := 202;
-//	202: 
-//			VAR_Machine.stFillerModule.iq_stCmd.i_xStart := TRUE;
-//			uiMultiAxisStepByStep := 203;
-//			
-//			
-//		203:		
-//		IF NOT  VAR_Machine.stFillerModule.iq_astSubModuleAxis[0].iq_stStatus.q_stMainAxisStatus.q_xStopped THEN
-//				uiMultiAxisStepByStep	:= 204;
-//			END_IF
-//		204:
-//		
-//		IF VAR_Machine.stFillerModule.iq_astSubModuleAxis[0].iq_stStatus.q_stMainAxisStatus.q_xInPosition THEN
-//	
-//			uiMultiAxisStepByStep	:= 205;
-//		END_IF
-//
-//	
-//		205:
-//			IF VAR_Machine.stFillerModule.iq_stStatus.q_xModuleStopped THEN
-//				uiMultiAxisStepByStep	:=	150;
-//			END_IF
-//		
-//	
+			uiStepByStepSingleReverseAxis	:=	200;//Inlet Module
+		ELSIF 	VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_OutletSubModuleHmiStart AND
+			VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_OutletSubModuleHmiStart + CST_LastOutletModuleAxis THEN
+	
+			VAR_Machine.stOutletModule.iq_stParameters.i_uiAxisSelected := VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_OutletSubModuleHmiStart;					
+			
+			uiStepByStepSingleReverseAxis	:=	300;//Outlet module
+		ELSIF VAR_Machine.iq_stParameter.i_uiAxisSelected = CST_MachinePhasingOffset THEN
+			uiStepByStepSingleReverseAxis	:=	700;
+		END_IF
 		
+	100:
+			
+		VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	
+		:= LREAL_TO_REAL(FC_LongRealReminder((VAR_Machine.stFillerModule.iq_stParameters.i_rStopPosition	- VAR_Machine.stFillerModule.iq_astSubModuleAxis[VAR_Machine.stFillerModule.iq_stParameters.i_uiAxisSelected].iq_stStatus.q_stMainAxisStatus.q_lrPosition), 360.0, 0));
 		
-					VAR_Machine.stFillerModule.iq_stCmd.i_xJogPB					:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseShift				:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xStart					:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xAutoMultiMode			:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xJogMultiMode				:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xMasterRephasingRequest	:= FALSE;
-					VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseCompensation		:= FALSE;
+		IF VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset > 180.0 THEN
+			VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= -(VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * (MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps) - 1));
+		ELSE	
+			VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:= -(VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset + 360.0 * MAX(1, VAR_Machine.iq_stParameter.i_uiNumberOfSteps));
+		END_IF
+			
+		uiStepByStepSingleReverseAxis := 110;
+	
+	110://
+		VAR_Machine.stFillerModule.iq_stCmd.i_xPositioningMode			:= TRUE;
+		VAR_Machine.stFillerModule.iq_stCmd.i_xStepByStepSingleAxis		:= TRUE;
+		
+		IF VAR_Machine.stFillerModule.iq_stStatus.q_xPositioningActive 	AND
+			VAR_Machine.stFillerModule.iq_stStatus.q_xPositioningDone	THEN
+						
+			VAR_Machine.stFillerModule.iq_stCmd.i_xPositioningMode 			:=	FALSE;
+			VAR_Machine.stFillerModule.iq_stCmd.i_xStepByStepSingleAxis		:= FALSE;
+			VAR_Machine.stFillerModule.iq_stParameters.i_rPositioningOffset	:=	0.0;
+			uiStepByStepSingleReverseAxis	:=	120;			
+		END_IF
+	
+	120:
+		IF NOT VAR_Machine.stFillerModule.iq_stStatus.q_xPositioningActive 	AND
+			NOT VAR_Machine.stFillerModule.iq_stStatus.q_xPositioningDone	THEN
+			uiStepByStepSingleReverseAxis	:=	130;
+		END_IF
+		
+	130:
+		xStepByStepSingleAxisReverseDone	:= TRUE;	
+
+	
 END_CASE
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
 (* @SFCCOMMENT := '' *)
 ENTRY_ACTION
 (* @LANGUAGE := 'st' *)
-uiMultiAxisStepByStep	:= 0;
-xMultiAxisDone	:= FALSE;
-xReactionOnFillerModule			:= FALSE;//V1.7.2
+uiStepByStepSingleReverseAxis		:= 0;
+xStepByStepSingleAxisReverseDone	:= FALSE;//v999
+xReactionOnFillerModule				:= FALSE;
 END_ACTION
 EXIT_ACTION
 (* @LANGUAGE := 'st' *)
@@ -3083,20 +2959,20 @@ VAR_Machine.stInletModule.iq_stCmd.i_xAutoMode					:= FALSE;
 
 VAR_Machine.stFillerModule.iq_stCmd.i_xStepByStepSingleAxis		:= FALSE;
 END_ACTION
-TRANSITION FROM MultiAxis TO MultiAxisExit:=
-NOT xMultiAxisMode
+TRANSITION FROM StepByStepSingleAxisRev TO StepByStepSingleAxisRevExit:=
+NOT xStepByStepSingleAxisReverseMode
 END_TRANSITION
-(* @SFCNOJUMP := 'MultiAxisExit' *)
-STEP MultiAxisExit:
+(* @SFCNOJUMP := 'StepByStepSingleAxisRevExit' *)
+STEP StepByStepSingleAxisRevExit:
 (* @LANGUAGE := 'st' *)
-xExitStep				:= 	TRUE;
-xMultiAxisDone			:=	FALSE;
-xMultiAxisActive		:=	FALSE;
+xExitStep						:= 	TRUE;
+xStepByStepSingleAxisReverseDone		:=	FALSE;
+xStepByStepSingleAxisRevActive		:=	FALSE;
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
 (* @SFCCOMMENT := '' *)
-TRANSITION FROM MultiAxisExit TO ModeSelection:=
+TRANSITION FROM StepByStepSingleAxisRevExit TO ModeSelection:=
 xExitStep
 END_TRANSITION
 (* @SFCISJUMP := 'ModeSelection' *)
@@ -3107,13 +2983,13 @@ IF xReactionActive OR NOT xInputAuto THEN
 END_IF
 
 xAutoActive	:= TRUE;
-// tutto cambiato hole
+
 CASE uiAutoStep OF
 	0:
 		VAR_Machine.stFillerModule.iq_stCmd.i_xAutoMode	:=	TRUE;
 		VAR_Machine.stOutletModule.iq_stCmd.i_xAutoMode	:=	VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal;
 		VAR_Machine.stInletModule.iq_stCmd.i_xAutoMode	:=	VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal;
-		
+
 		uiAutoStep	:= 40;
 		
 	40:
@@ -3121,18 +2997,16 @@ CASE uiAutoStep OF
 			(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR NOT
 			VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)	AND
 			(VAR_Machine.stInletModule.iq_stStatus.q_xAutoActive	OR NOT
-			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)  THEN
+			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)	THEN
 		
 			IF 	NOT VAR_Machine.stFillerModule.iq_stStatus.q_xSynchroWithOffset		AND
 				NOT VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset		AND
-				NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset 		AND
-				NOT VAR_Machine.stDoserModule.iq_stStatus.q_xSynchroWithOffset 		THEN
+				NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		THEN
 		
 				VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition	:=	
 				FC_RephasingMachine(iq_astInletSubModuleAxis	:=	VAR_Machine.stInletModule.iq_astSubModuleAxis,
 									iq_astFillerSubModuleAxis	:=	VAR_Machine.stFillerModule.iq_astSubModuleAxis,
 									iq_astOutletSubModuleAxis	:=	VAR_Machine.stOutletModule.iq_astSubModuleAxis);
-								
 				
 				VAR_Machine.stFillerModule.iq_stParameters.i_lrRephasingPosition
 					:=	VAR_Machine.stMasterModule.iq_stParameters.i_lrRephasingPosition;
@@ -3177,7 +3051,7 @@ CASE uiAutoStep OF
 			((VAR_Machine.stInletModule.iq_stStatus.q_xRealAxesSynchronized		AND
 				VAR_Machine.stInletModule.iq_stStatus.q_xMasterRephased			AND
 				VAR_Machine.stInletModule.iq_stStatus.q_xAutoActive)			OR NOT
-			VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)				THEN
+				VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)			THEN
 			
 			VAR_Machine.stMasterModule.iq_stCmd.i_xStart	:= TRUE;
 			xEncEmulationEnable	:= TRUE;
@@ -3219,16 +3093,6 @@ CASE uiAutoStep OF
 					:=	LREAL_TO_REAL(FC_TeensOfmmToDegrees(VAR_Machine.iq_stParameter.i_iAxisPhaseShiftDistance, CFG_MC.Mechanical.MachineStep, TRUE, FALSE));
 				
 				uiAutoStep	:= 400;
-			ELSIF 	VAR_Machine.iq_stParameter.i_uiAxisSelected >= CST_DoserSubModuleHmiStart AND
-				VAR_Machine.iq_stParameter.i_uiAxisSelected <= CST_DoserSubModuleHmiStart + CST_LastDoserModuleAxis		THEN
-			
-				VAR_Machine.stDoserModule.iq_stParameters.i_uiAxisSelected	
-				:=	VAR_Machine.iq_stParameter.i_uiAxisSelected - CST_DoserSubModuleHmiStart;
-		
-				VAR_Machine.stDoserModule.iq_stParameters.i_rPhaseShiftDistance
-				:=	LREAL_TO_REAL(FC_TeensOfmmToDegrees(VAR_Machine.iq_stParameter.i_iAxisPhaseShiftDistance, CFG_MC.Mechanical.MachineStep, TRUE, FALSE));
-				
-				uiAutoStep	:= 500;	
 			END_IF
 		END_IF
 
@@ -3248,7 +3112,7 @@ CASE uiAutoStep OF
 				(VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset	AND
 				VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)			OR
 				(VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		AND
-				VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)			 THEN
+				VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)			THEN
 			uiAutoStep	:= 800;
 		END_IF
 	
@@ -3285,18 +3149,6 @@ CASE uiAutoStep OF
 			uiAutoStep	:= 140;
 		END_IF
 	
-	500:
-		VAR_Machine.stDoserModule.iq_stCmd.i_xPhaseShift	:= TRUE;
-		uiAutoStep	:= 410;
-	
-	510:
-		IF VAR_Machine.stDoserModule.iq_stStatus.q_xPhaseShiftDone AND NOT VAR_Machine.iq_stCmd.i_xAxisPhaseShift THEN
-			VAR_Machine.stDoserModule.iq_stCmd.i_xPhaseShift	:= FALSE;
-			xEncEmulationEnable	:= TRUE;
-			uiAutoStep	:= 140;
-		END_IF
-	
-	
 	800:
 		VAR_Machine.stMasterModule.iq_stCmd.i_xPhaseCompensation	:= VAR_Machine.stMasterModule.iq_stStatus.q_xSynchroWithOffset;
 		VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseCompensation	:= VAR_Machine.stFillerModule.iq_stStatus.q_xSynchroWithOffset;
@@ -3311,7 +3163,7 @@ CASE uiAutoStep OF
 			(NOT VAR_Machine.stInletModule.iq_stStatus.q_xSynchroWithOffset		OR
 			NOT VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)			AND
 		   (NOT VAR_Machine.stOutletModule.iq_stStatus.q_xSynchroWithOffset		OR
-			NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)  THEN
+			NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)			THEN
 			
 			VAR_Machine.stMasterModule.iq_stCmd.i_xPhaseCompensation	:= FALSE;
 			VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseCompensation	:= FALSE;
@@ -3341,9 +3193,7 @@ IF	NOT VAR_Machine.stMasterModule.iq_stStatus.q_xAutoActive	AND
 	(NOT VAR_Machine.stInletModule.iq_stStatus.q_xAutoActive	OR NOT 					
 	VAR_Machine.stInletModule.iq_stStatus.q_xModuleReal)		AND
 	(NOT VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR NOT 					
-	VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)	AND	
-	(NOT VAR_Machine.stDoserModule.iq_stStatus.q_xAutoActive	OR NOT 					
-	VAR_Machine.stDoserModule.iq_stStatus.q_xModuleReal)		THEN
+	VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal)		THEN
 
 	xExitStep	:= TRUE;
 END_IF
@@ -3356,22 +3206,16 @@ ENTRY_ACTION
 VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseShift	:= FALSE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xPhaseShift	:= FALSE;
 VAR_Machine.stInletModule.iq_stCmd.i_xPhaseShift	:= FALSE;
-VAR_Machine.stDoserModule.iq_stCmd.i_xPhaseShift	:= FALSE;
-
 
 VAR_Machine.stMasterModule.iq_stCmd.i_xStart	:= FALSE;
 VAR_Machine.stFillerModule.iq_stCmd.i_xStart	:= FALSE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xStart	:= FALSE;
 VAR_Machine.stInletModule.iq_stCmd.i_xStart		:= FALSE;
-VAR_Machine.stDoserModule.iq_stCmd.i_xStart		:= FALSE;
-
 
 VAR_Machine.stMasterModule.iq_stCmd.i_xAutoMode	:= FALSE;
 VAR_Machine.stFillerModule.iq_stCmd.i_xAutoMode	:= FALSE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xAutoMode	:= FALSE;
 VAR_Machine.stInletModule.iq_stCmd.i_xAutoMode	:= FALSE;
-VAR_Machine.stDoserModule.iq_stCmd.i_xAutoMode	:= FALSE;
-
 
 VAR_Machine.stMasterModule.iq_stCmd.i_xMasterRephasingRequest	:= FALSE;
 
@@ -3379,7 +3223,6 @@ VAR_Machine.stMasterModule.iq_stCmd.i_xPhaseCompensation	:= FALSE;
 VAR_Machine.stFillerModule.iq_stCmd.i_xPhaseCompensation	:= FALSE;
 VAR_Machine.stOutletModule.iq_stCmd.i_xPhaseCompensation	:= FALSE;
 VAR_Machine.stInletModule.iq_stCmd.i_xPhaseCompensation		:= FALSE;
-VAR_Machine.stDoserModule.iq_stCmd.i_xPhaseCompensation		:= FALSE;
 
 xEncEmulationEnable	:= FALSE;
 END_ACTION
@@ -3493,6 +3336,7 @@ MC_InputOutput.Network.Machine.Exceptions.KochModuleNotReady	:= fbKochModuleNotR
 IF tofReactionActive.Q  THEN
 	xReactionReadyToBePerformed	:=	FALSE;
 END_IF
+
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
@@ -3515,7 +3359,6 @@ VAR_Machine.iq_stStatus.q_xInMotionTimerDone		:= tofInMotionTimerDone.Q;
 MC_InputOutput.Safety.Filler.Status.ModulePowered	:= VAR_Machine.stFillerModule.iq_stStatus.q_xModulePowered;
 MC_InputOutput.Safety.Inlet.Status.ModulePowered	:= VAR_Machine.stInletModule.iq_stStatus.q_xModulePowered;
 MC_InputOutput.Safety.Outlet.Status.ModulePowered	:= VAR_Machine.stOutletModule.iq_stStatus.q_xModulePowered;
-MC_InputOutput.Safety.Doser.Status.ModulePowered	:= VAR_Machine.stDoserModule.iq_stStatus.q_xModulePowered;
 
 VAR_Machine.iq_stStatus.q_xCombiSynchronized		:= xCombiSynchronized;
 VAR_Machine.iq_stStatus.q_xCombiSynchroStopDone		:= xCombiSynchroStopDone;
@@ -3527,26 +3370,23 @@ VAR_Machine.iq_stStatus.q_xAutoActive				:= xAutoActive	AND
 														VAR_Machine.stMasterModule.iq_stStatus.q_xAutoActive	AND
 														VAR_Machine.stFillerModule.iq_stStatus.q_xAutoActive	AND
 														(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR
-														NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal) AND 
-														(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR
 														NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal);
-
-VAR_Machine.iq_stStatus.q_xStepByStepActive			:= xStepByStepActive;
+VAR_Machine.iq_stStatus.q_xStepByStepActive				:= xStepByStepActive;
 VAR_Machine.iq_stStatus.q_xStepByStepSingleAxisActive	:= xStepByStepSingleAxisActive;//V4.A.A.1.7.0
-VAR_Machine.iq_stStatus.q_xStepByStepSingBackAxisActive	:= xMultiAxisActive;
-VAR_Machine.iq_stStatus.q_xBrakeReleaseActive		:= xBrakeReleaseActive;
-VAR_Machine.iq_stStatus.q_xMultiModalityActive		:= xMultiActive;
-VAR_Machine.iq_stStatus.q_xNoModalityactive			:= xNoOpActive;
-VAR_Machine.iq_stStatus.q_xPositioningActive		:= xPositioningActive;
-VAR_Machine.iq_stStatus.q_xVelocityActive			:= xVelocityActive;
-VAR_Machine.iq_stStatus.q_xSelHomingActive			:= xSelHomingActive;
-VAR_Machine.iq_stStatus.q_xThirdPartyDynSetupActive	:= xThirdPartySetupActive;
-VAR_Machine.iq_stStatus.q_xInductionSetupActive		:= xInductionSetupActive;
-VAR_Machine.iq_stStatus.q_xJogActive				:= xJogActive	AND
-														VAR_Machine.stMasterModule.iq_stStatus.q_xJogActive		AND
-														VAR_Machine.stFillerModule.iq_stStatus.q_xAutoActive	AND
-														(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR
-														NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal);
+VAR_Machine.iq_stStatus.q_xStepByStepSingAxisRevActive	:= xStepByStepSingleAxisRevActive;//v999
+VAR_Machine.iq_stStatus.q_xBrakeReleaseActive			:= xBrakeReleaseActive;
+VAR_Machine.iq_stStatus.q_xMultiModalityActive			:= xMultiActive;
+VAR_Machine.iq_stStatus.q_xNoModalityactive				:= xNoOpActive;
+VAR_Machine.iq_stStatus.q_xPositioningActive			:= xPositioningActive;
+VAR_Machine.iq_stStatus.q_xVelocityActive				:= xVelocityActive;
+VAR_Machine.iq_stStatus.q_xSelHomingActive				:= xSelHomingActive;
+VAR_Machine.iq_stStatus.q_xThirdPartyDynSetupActive		:= xThirdPartySetupActive;
+VAR_Machine.iq_stStatus.q_xInductionSetupActive			:= xInductionSetupActive;
+VAR_Machine.iq_stStatus.q_xJogActive					:= xJogActive	AND
+															VAR_Machine.stMasterModule.iq_stStatus.q_xJogActive		AND
+															VAR_Machine.stFillerModule.iq_stStatus.q_xAutoActive	AND
+															(VAR_Machine.stOutletModule.iq_stStatus.q_xAutoActive	OR
+															NOT VAR_Machine.stOutletModule.iq_stStatus.q_xModuleReal);
 
 IF VAR_Machine.iq_stStatus.q_xMultiModalityActive 			OR
 	NOT VAR_Machine.stFillerModule.iq_stStatus.q_xInitDone 	OR
@@ -3564,6 +3404,7 @@ ELSE
 														(xJogActive			AND	VAR_Machine.iq_stCmd.i_xJogPushButton) 	OR
 														(xStepByStepActive	AND NOT xStepByStepDone)					OR
 														(xStepByStepSingleAxisActive AND NOT xStepByStepSingleAxisDone)  OR
+														(xStepByStepSingleAxisRevActive AND NOT xStepByStepSingleAxisReverseDone) OR //v999
 														(xPositioningActive AND NOT xPositioningDone)					OR
 														(xVelocityActive);
 END_IF

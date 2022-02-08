@@ -11,7 +11,7 @@ TYPE
 		CleaningActive : BOOL;
 		CircuitFeeding : BOOL;
 		CircuitDrain : BOOL;
-		ContainerStop : BOOL; (*//1.63*)
+		ContainerStop : BOOL;
 		RcpManual : BOOL;
 		FoamingGunActive : BOOL;
 		CapBufferHighSpeedReq : BOOL;
@@ -23,20 +23,32 @@ TYPE
 		FixSpeedValue : REAL;
 		TransferGateCloseReq : BOOL;
 		WashingPrdEnable : BOOL;
+		WashingPrdNekRinse : BOOL;
 		WashingPrdAfterCop : BOOL;
+		DisableFillingBottle : BOOL; (*vrmaCOP*)
 		CvrEmptyingReq : BOOL;
-		DmcInsercionReq : BOOL; (*V4.A.A.1.7.0*)
-		DmcDisinsercionReq : BOOL; (*V4.A.A.1.7.0*)
-		MachineStart : BOOL; (*V4.A.A.1.7.0*)
-		MachineStop : BOOL; (*V4.A.A.1.7.0*)
-		DmcEnabled : BOOL; (*V4.A.A.1.7.0*)
+		DmcInsercionReq : BOOL;
+		DmcDisinsercionReq : BOOL;
+		MachineStart : BOOL;
+		MachineStop : BOOL;
+		DmcEnabled : BOOL;
 		SmfCleaningValveV : ARRAY[3..10]OF BOOL;
-		FlrToProductionHeight : BOOL;(*MASTER NUovo*)
-		FlrToMaxMechanicalHeight : BOOL;(*MASTER NUovo*)
-		Idle : BOOL; (*v1.4*)
-		ValveWashingCfg : BOOL; (*v1.6*)
-		WashingTray : BOOL; (*v1.6*)
-		SamplingCommand : BOOL; (*v1.6*)
-		SamplingInPosition : BOOL; (*v1.6*)
+		FlrToProductionHeight : BOOL; (*MASTER NUovo*)
+		FlrToMaxMechanicalHeight : BOOL; (*MASTER NUovo*)
+		Idle : BOOL;
+		ValveWashingCfg : BOOL;
+		WashingTray : BOOL;
+		SamplingCommand : BOOL;
+		SamplingInPosition : BOOL;
+		RcpAfterCipEndCfg : BOOL;
+		DoserPositioningReq : BOOL; (*v999hema*)
+		CopDuringChangeFormatActive : BOOL; (*vrmaCOP*)
+		CopValvePurge : BOOL; (*vrmaCOP*)
+		CopWipInExecution : BOOL; (*vrmaCOP*)
+		CopWashingBeforePurge : BOOL; (*vrmaCOP*)
+		CopLapsCounter : BOOL; (*vrmaCOP*)
+		CopConAirBlowOffCommand : BOOL; (*vrmaCOP*)
+		CopBottleBurstRamp1 : BOOL; (*vrmaCOP*)
+		CopPhaseType : USINT;
 	END_STRUCT;
 END_TYPE

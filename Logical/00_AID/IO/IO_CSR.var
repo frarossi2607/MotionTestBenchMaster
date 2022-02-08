@@ -8,6 +8,7 @@ VAR
 	IO_2806M1_Cmd : IO_Digital_OUT_Type;
 	IO_2808M1 : IO_Motor_FwBw_Type;
 	IO_2806M1_Brake : IO_Motor_Type;
+	IO_2809M2_Brake : IO_Motor_Type;
 	IO_2809M2 : IO_Motor_FwBw_Type;
 	IO_RnsLiftFC280 : IO_MotorFC280_Type; (*Rinser Lift*)
 	IO_VFD_RnsLiftFC280 : IO_PLK_DanfossFC280_Drive_Type; (*Rinser Lift VFD*)

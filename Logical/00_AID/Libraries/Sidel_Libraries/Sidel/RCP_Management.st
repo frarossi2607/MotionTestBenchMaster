@@ -114,4 +114,5 @@ FUNCTION_BLOCK RCP_Management
 	
 	TMR_tonRCP_WaitStart();
 	TMR_tonRCP_DownloadTimeOut();
+	TMR_tonRCP_WaitRestart();//v1.7.6
 END_FUNCTION_BLOCK

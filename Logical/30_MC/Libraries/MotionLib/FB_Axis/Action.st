@@ -1,40 +1,4 @@
 (**************** CAM FOR STATIC GEAR *******************)
-ACTION NegativeStaticCamInit://v999
-	
-	stCamParameters.Configuration.State[0].Event[0].Attribute        :=ncAT_ONCE;
-	stCamParameters.Configuration.State[0].Event[0].Type                :=ncS_START;
-	stCamParameters.Configuration.State[0].Event[0].NextState        :=1;
-       
-	stCamParameters.Configuration.State[1].CamProfileIndex                :=16#FFFF;
-	stCamParameters.Configuration.State[1].MasterFactor                        := 360 * c_uiAxisFactor;;
-	stCamParameters.Configuration.State[1].SlaveFactor                        := 360 * c_uiAxisFactor;;
-	stCamParameters.Configuration.State[1].CompMode                                :=ncONLYCOMP;
-	stCamParameters.Configuration.State[1].MasterCompDistance        :=360;
-	stCamParameters.Configuration.State[1].SlaveCompDistance        :=360;
-       
-	stCamParameters.Configuration.State[1].Event[0].Type                :=ncST_END;
-	stCamParameters.Configuration.State[1].Event[0].Attribute        :=ncST_END;
-	stCamParameters.Configuration.State[1].Event[0].NextState        :=2;
-       
-	stCamParameters.Configuration.State[1].Event[1].Type                :=ncST_END+ncNEGATIVE;
-	stCamParameters.Configuration.State[1].Event[1].Attribute        :=ncST_END;
-	stCamParameters.Configuration.State[1].Event[1].NextState        :=2;
-       
-	stCamParameters.Configuration.State[2].CamProfileIndex                :=16#FFFF;
-	stCamParameters.Configuration.State[2].MasterFactor                        := 360 * c_uiAxisFactor;;
-	stCamParameters.Configuration.State[2].SlaveFactor                        := 360 * c_uiAxisFactor;;
-       
-	stCamParameters.Configuration.State[2].Event[0].Type                :=ncST_END;
-	stCamParameters.Configuration.State[2].Event[0].Attribute        :=ncST_END;
-	stCamParameters.Configuration.State[2].Event[0].NextState        :=2;
-       
-	stCamParameters.Configuration.State[2].Event[1].Type                :=ncST_END+ncNEGATIVE;
-	stCamParameters.Configuration.State[2].Event[1].Attribute        :=ncST_END;
-	stCamParameters.Configuration.State[2].Event[1].NextState        :=2;
-
-	fbMpAxisCamSequencer.Enable := TRUE;
-END_ACTION
-
 ACTION StaticCamInit:
 	(* CamAutomat initialization for static gear *)
 	stCamParameters.Configuration.StartState		:= 0;
@@ -56,7 +20,7 @@ ACTION StaticCamInit:
 	stCamParameters.Configuration.State[3].SlaveFactor			:= LREAL_TO_DINT(720.0 - fbMpAxisBasic.Position) * c_uiAxisFactor;
 	stCamParameters.Configuration.State[3].CompMode				:= ncOFF;
 	
-	stCamParameters.Configuration.State[3].Event[0].Type 		:= ncST_END;//test
+	stCamParameters.Configuration.State[3].Event[0].Type 		:= ncST_END;
 	stCamParameters.Configuration.State[3].Event[0].Attribute 	:= ncST_END;
 	stCamParameters.Configuration.State[3].Event[0].NextState 	:= 4;
 
@@ -70,7 +34,7 @@ ACTION StaticCamInit:
 	stCamParameters.Configuration.State[4].Event[0].Attribute 	:= ncST_END;
 	stCamParameters.Configuration.State[4].Event[0].NextState	:= 8;
 	
-	stCamParameters.Configuration.State[4].Event[2].Type 		:= ncST_END;//test
+	stCamParameters.Configuration.State[4].Event[2].Type 		:= ncST_END;
 	stCamParameters.Configuration.State[4].Event[2].Attribute 	:= ncST_END;
 	stCamParameters.Configuration.State[4].Event[2].NextState 	:= 4;
 	
@@ -317,6 +281,8 @@ ACTION Act_AxisStatus:
 	fbReadParID();
 	fbMotorPhasing();
 	
+	(* Secondary axis *)
+	fbMpAxisBasicSecondary();
 	
 	fbTorqueControl();
 	fbWriteParID();
@@ -332,9 +298,9 @@ ACTION Act_AxisStatus:
 	q_xActive									:= fbMpAxisBasic.Active;
 	i_pstStatus.q_stMainAxisStatus.q_xActive	:= q_xActive;
 	
-	q_xError := fbMpAxisBasic.Error				OR fbMpAxisCamSequencer.Error	OR fbTorqueControl.Error OR
-												fbMpAxisCyclicSet.Error OR xMasterMovedWhilePhasing OR
-												i_pstStatus.q_stMainAxisStatus.q_rEncoderTemperature >= CST_MaxTemperatureEncoder;
+	q_xError := fbMpAxisBasic.Error				OR fbMpAxisCamSequencer.Error	OR
+				fbMpAxisBasicSecondary.Error	OR fbTorqueControl.Error		OR fbMpAxisCyclicSet.Error OR xMasterMovedWhilePhasing OR
+				i_pstStatus.q_stMainAxisStatus.q_rEncoderTemperature >= CST_MaxTemperatureEncoder;
 	
 	i_pstStatus.q_stMainAxisStatus.q_xError		:= q_xError;
 	i_pstStatus.q_stMainAxisStatus.q_xMasterMovedWhilePhasing := xMasterMovedWhilePhasing;
@@ -418,8 +384,40 @@ ACTION Act_AxisStatus:
 					fbReadParID.Execute 	:= FALSE;
 					tonReadTemperature.IN 	:= FALSE;
 					
-					eReadTempStep		:= MOTOR;
-				END_IF		
+					IF i_pSecondaryAxisADR <> 0 THEN
+						eReadTempStep		:= MOTOR_2;
+					ELSE
+						eReadTempStep		:= MOTOR;
+					END_IF
+				END_IF
+			
+			MOTOR_2:
+				IF NOT fbReadParID.Execute AND NOT fbReadParID.Done THEN
+					fbReadParID.Axis		:= i_pSecondaryAxisADR;
+					fbReadParID.ParID		:= ACP10PAR_TEMP_MOTOR;
+					fbReadParID.DataType	:= ncPAR_TYP_REAL;
+					fbReadParID.DataAddress := ADR(rTemp);
+					fbReadParID.Execute 	:= TRUE;
+				ELSIF fbReadParID.Done AND (fbReadParID.ParID = ACP10PAR_TEMP_MOTOR) AND (fbReadParID.Axis = i_pSecondaryAxisADR) THEN
+					i_pstStatus.q_stSecondaryAxisStatus.q_rMotorTemperature	:= rTemp;
+					fbReadParID.Execute 	:= FALSE;
+					tonReadTemperature.IN 	:= FALSE;
+					eReadTempStep			:= ENCODER_2;
+				END_IF
+			
+			ENCODER_2:
+				IF NOT fbReadParID.Execute AND NOT fbReadParID.Done THEN
+					fbReadParID.Axis		:= i_pSecondaryAxisADR;
+					fbReadParID.ParID		:= ACP10PAR_ENCOD_TEMP;
+					fbReadParID.DataType	:= ncPAR_TYP_REAL;
+					fbReadParID.DataAddress := ADR(rTemp);
+					fbReadParID.Execute 	:= TRUE;
+				ELSIF fbReadParID.Done AND (fbReadParID.ParID = ACP10PAR_ENCOD_TEMP) AND (fbReadParID.Axis = i_pSecondaryAxisADR) THEN
+					i_pstStatus.q_stSecondaryAxisStatus.q_rEncoderTemperature := rTemp;
+					fbReadParID.Execute 	:= FALSE;
+					tonReadTemperature.IN 	:= FALSE;
+					eReadTempStep			:= MOTOR;
+				END_IF
 		END_CASE
 	END_IF
 	
@@ -488,12 +486,6 @@ ACTION Act_AxisStatus:
 			SET_TORQUE_LIMIT_2:			strcpy(ADR(q_strMainStep), ADR('Set torque limit_2'));
 			SET_TORQUE_LIMIT_3:			strcpy(ADR(q_strMainStep), ADR('Set torque limit_3'));
 			SET_TORQUE_LIMIT_4:			strcpy(ADR(q_strMainStep), ADR('Set torque limit_4'));
-			
-			SET_ACC_LIMIT_1:			strcpy(ADR(q_strMainStep), ADR('Set Acceleration positive limit'));
-			SET_ACC_LIMIT_2:			strcpy(ADR(q_strMainStep), ADR('Set Acceleration positive limit'));
-			SET_ACC_LIMIT_3:			strcpy(ADR(q_strMainStep), ADR('Set Acceleration negative limit'));
-			SET_ACC_LIMIT_4:			strcpy(ADR(q_strMainStep), ADR('Set Acceleration negative limit'));
-			SET_ASTOP_LIMIT:			strcpy(ADR(q_strMainStep), ADR('Set Acceleration Stop limit'));
 			
 			WAIT_FOR_POWER:				strcpy(ADR(q_strMainStep), ADR('Wait for power'));
 			
@@ -584,6 +576,74 @@ ACTION Act_AxisStatus:
 		END_CASE
 		eMainAxisStepOld	:= eMainAxisStep;
 	END_IF
+	
+	IF i_pSecondaryAxisADR <> 0 THEN
+		IF fbMpAxisBasicSecondary.Info.CyclicRead.Torque.Valid THEN
+			q_lrSecondaryAxisTorque						:= fbMpAxisBasicSecondary.Info.CyclicRead.Torque.Value;
+			i_pstStatus.q_stMainAxisStatus.q_lrTorque	:= q_lrSecondaryAxisTorque;
+		END_IF
+		
+		i_pstStatus.q_stSecondaryAxisStatus.q_xPoweredOn		:= fbMpAxisBasicSecondary.PowerOn;
+		i_pstStatus.q_stSecondaryAxisStatus.q_stInfo			:= fbMpAxisBasicSecondary.Info;
+		
+		IF eSecondaryAxisStep <> eSecondaryAxisStepOld THEN
+			CASE eSecondaryAxisStep OF
+				S_DISABLE:	strcpy(ADR(q_strSecondaryStep), ADR('Disable'));
+				
+				S_WAIT_SAFETY_READY:		strcpy(ADR(q_strSecondaryStep), ADR('Wait Safety Ready'));
+				
+				S_INIT:						strcpy(ADR(q_strSecondaryStep), ADR('Init'));
+				S_INIT_1:					strcpy(ADR(q_strSecondaryStep), ADR('Init_1'));
+				S_INIT_2:					strcpy(ADR(q_strSecondaryStep), ADR('Init_2'));
+				S_INIT_3:					strcpy(ADR(q_strSecondaryStep), ADR('Init_3'));
+				S_INIT_4:					strcpy(ADR(q_strSecondaryStep), ADR('Init_4'));
+				S_INIT_5:					strcpy(ADR(q_strSecondaryStep), ADR('Init_5'));
+				S_INIT_6: 					strcpy(ADR(q_strSecondaryStep), ADR('Init_6'));
+				
+				S_INIT_TORQUE_CTRL:			strcpy(ADR(q_strSecondaryStep), ADR('Init Torque Control '));
+				
+				S_INIT_MP_AXIS_BASIC:		strcpy(ADR(q_strSecondaryStep), ADR('Axis basic init'));
+				
+				S_WAIT_FOR_POWER: 			strcpy(ADR(q_strSecondaryStep), ADR('Wait for power'));
+				
+				S_POWERING:					strcpy(ADR(q_strSecondaryStep), ADR('Powering'));
+				
+				S_RAMPING_UP:				strcpy(ADR(q_strSecondaryStep), ADR('Ramping up'));
+				
+				S_POSITIVE_PRELOAD:			strcpy(ADR(q_strSecondaryStep), ADR('Positive preload'));
+				S_POSITIVE_PRELOAD_1:		strcpy(ADR(q_strSecondaryStep), ADR('Positive preload_1'));
+				S_POSITIVE_PRELOAD_2:		strcpy(ADR(q_strSecondaryStep), ADR('Positive preload_2'));
+				
+				S_READY:					strcpy(ADR(q_strSecondaryStep), ADR('Ready'));
+				
+				S_CMD_STOP_HANDLING:		strcpy(ADR(q_strSecondaryStep), ADR('CmdStop Handling'));
+				
+				S_NEGATIVE_PRELOAD:			strcpy(ADR(q_strSecondaryStep), ADR('Negative preload'));
+				
+				S_WAIT_FOR_TORQUE_RAMP:		strcpy(ADR(q_strSecondaryStep), ADR('Wait for torque ramp'));
+				S_WAIT_FOR_TORQUE_RAMP_1:	strcpy(ADR(q_strSecondaryStep), ADR('Wait for torque ramp_1'));
+				
+				S_RAMPING_DOWN:				strcpy(ADR(q_strSecondaryStep), ADR('Ramping down'));
+				S_RAMPING_DOWN_1:			strcpy(ADR(q_strSecondaryStep), ADR('Ramping down_1'));
+				
+				S_WAIT_FOR_STOPPING:
+					
+				S_POWER_OFF:				strcpy(ADR(q_strSecondaryStep), ADR('Power off'));
+				
+				S_MAIN_AXIS_ERROR:			strcpy(ADR(q_strSecondaryStep), ADR('Master On Error'));
+				
+				S_AXIS_ERROR: 				strcpy(ADR(q_strSecondaryStep), ADR('Error'));
+				
+				S_CONNECTION_LOST:			strcpy(ADR(q_strSecondaryStep), ADR('Connection Or ParId Error'));
+					
+				ELSE	
+					strcpy(ADR(q_strSecondaryStep), ADR('Unknown Step'));
+			END_CASE
+			eSecondaryAxisStepOld	:= eSecondaryAxisStep;
+		END_IF
+	ELSE
+		q_lrSecondaryAxisTorque	:= 0;
+	END_IF
 END_ACTION
 
 ACTION Act_SetOverride:
@@ -625,7 +685,7 @@ ACTION Act_SetOverride:
 		xRampDown				:= FALSE;
 		usiDebug				:= 4;
 	ELSIF i_pstStatus.q_stMainAxisStatus.q_ePLCopenStatus = mpAXIS_CONTINUOUS_MOTION OR
-		(i_pstStatus.q_stMainAxisStatus.q_ePLCopenStatus = mpAXIS_SYNCHRONIZED_MOTION AND fbMpAxisBasic.MoveVelocity) THEN
+			(i_pstStatus.q_stMainAxisStatus.q_ePLCopenStatus = mpAXIS_SYNCHRONIZED_MOTION AND fbMpAxisBasic.MoveVelocity) THEN
 		IF fbMpAxisBasic.InVelocity THEN
 			fbSetOverride.AccFactor := 0;
 			rAcc					:= 0;

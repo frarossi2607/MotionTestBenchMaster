@@ -65,10 +65,3 @@ VAR
 	fbMpComLinkToParent_OutOutlet04 : MpComLinkToParent;
 	fbMpComLinkToParent_AlarmXOutlet : MpComLinkToParent;
 END_VAR
-(*Link To Paret Inlet Module*)
-VAR
-	fbMpComLinkToParent_Doser : MpComLinkToParent;
-	fbMpComLinkToParent_DoserMas : MpComLinkToParent;
-	fbMpComLinkToParent_DoserMain : MpComLinkToParent;
-	fbMpComLinkToParent_AlarmXDoser : MpComLinkToParent;
-END_VAR

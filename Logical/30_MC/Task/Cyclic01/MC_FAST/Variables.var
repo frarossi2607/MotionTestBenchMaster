@@ -22,7 +22,7 @@ VAR
 	fbCam08 : FB_CamGenerator_v2;
 	fbCam09 : FB_CamGenerator_v2;
 	fbCam10 : FB_CamGenerator_v2;
-	fbCam11 : FB_CamGenerator_v2;
+	fbCam11 : FB_CamGenerator_v2; (*v999 test*)
 END_VAR
 (*Auxiliary*)
 VAR

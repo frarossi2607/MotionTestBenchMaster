@@ -167,8 +167,23 @@ TYPE
 		FVGetData : USINT; (*Actual FV at Step Get Data*)
 		FVExitFillingCam : USINT; (*Actual FV at Step Exit Filling Cam*)
 		TankPressureSetra : INT; (*Tank Pressure (Setra Sensor) //V4.A.A.1.6.11*)
-		SpareOutByte62 : USINT; (*spare signal //V4.A.A.1.6.11*)
-		SpareOutByte63 : USINT; (*spare signal //V4.A.A.1.6.11*)
+		Dba_Sector1ReadyToUp : BOOL; (*spare signal //V4.A.A.1.6.11*)
+		Dba_Sector1FaultDown : BOOL;
+		Dba_Sector1FaultRotationToCip : BOOL;
+		Dba_Sector1FaultRotationToProd : BOOL;
+		Dba_ConditionOk : BOOL;
+		Dba_Sector2ReadyToUp : BOOL;
+		Dba_Sector2FaultDown : BOOL;
+		Dba_Sector2FaultRotationToCip : BOOL;
+		Dba_Sector2FaultRotationToProd : BOOL;
+		Dba_Sector1ManDownDone : BOOL;
+		Dba_Sector1ManRotToCipDone : BOOL;
+		Dba_Sector1ManRotToProdDone : BOOL;
+		Dba_Sector1ManFault : BOOL;
+		Dba_Sector2ManDownDone : BOOL;
+		Dba_Sector2ManRotToCipDone : BOOL;
+		Dba_Sector2ManRotToProdDone : BOOL;
+		Dba_Sector2ManFault : BOOL;
 	END_STRUCT;
 	FlrFmc_Type : 	STRUCT 
 		FillerPhaseDone : BOOL; (*Filler Phase Done (0 = Not Done; 1 = Done)*)
@@ -287,15 +302,36 @@ TYPE
 		FBT_MaxFlowrateInRcp : INT; (*Maximum flowrate following pressure in format recipe [ml/s] V4.A.A.1.7.1*)
 		SpareByte76 : USINT;
 		SpareByte77 : USINT;
-		SpareByte78 : USINT;
-		SpareByte79 : USINT;
-		SpareByte80 : USINT;
-		SpareByte81 : USINT;
-		SpareByte82 : USINT;
+		StartFillingByte : USINT; (*Start Filling To Valve In Position Start Fill (78.0: Start filling Pos 78.7: 7 step before Start Filling Pos) v1.7.4*)
+		PreClosingBottleByte : USINT; (*Start Filling To Valve In Position Pre Closing (78.0: Pre Closing Pos 78.7: 7 step before Pre Closing Pos) v1.7.4*)
+		BottlePresenceByte : USINT; (*Bottle Presence One Step Before Position Tangent (78.0: Bottle Presence One Step Before Position Tangent 78.7: Bottle Presence 8 Step Before Position Tangent) v1.7.4*)
+		FastStopIncoming : BOOL; (*Fast Stop Incoming v1.7.4*)
+		SpareByte81bit1 : BOOL; (*spare signal*)
+		SpareByte81bit2 : BOOL; (*spare signal*)
+		SpareByte81bit3 : BOOL; (*spare signal*)
+		SpareByte81bit4 : BOOL; (*spare signal*)
+		SpareByte81bit5 : BOOL; (*spare signal*)
+		SpareByte81bit6 : BOOL; (*spare signal*)
+		SpareByte81bit7 : BOOL; (*spare signal*)
+		FastStopDeceleration : UINT; (*[ms] v1.7.4*)
 		SpareByte83 : USINT;
-		SpareByte84 : USINT;
-		SpareByte85 : USINT;
-		SpareByte86 : USINT;
+		Dba_Sector1DownToCip : BOOL;
+		Dba_Sector1DownToProd : BOOL;
+		Dba_Sector1OnlyRotToCip : BOOL;
+		Dba_Sector1OnlyRotToProd : BOOL;
+		Dba_Sector2DownToCip : BOOL;
+		Dba_Sector2DownToProd : BOOL;
+		Dba_Sector2OnlyRotToCip : BOOL;
+		Dba_Sector2OnlyRotToProd : BOOL;
+		Dba_Sector1TotNr : USINT;
+		Dba_Sector1ManEnableReq : BOOL;
+		Dba_Sector1ManDownReq : BOOL;
+		Dba_Sector1ManRotToCipReq : BOOL;
+		Dba_Sector1ManRotToProdReq : BOOL;
+		Dba_Sector2ManEnableReq : BOOL;
+		Dba_Sector2ManDownReq : BOOL;
+		Dba_Sector2ManRotToCipReq : BOOL;
+		Dba_Sector2ManRotToProdReq : BOOL;
 		SpareByte87 : USINT;
 		SpareByte88 : USINT;
 		SpareByte89 : USINT;

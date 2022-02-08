@@ -9,7 +9,7 @@ VAR
 END_VAR
 (* Input Variables *)
 VAR
-	xInputStepByStepBackSingleAxis : BOOL; (*//FR*)
+	xInputStepByStepSingleAxisRev : BOOL; (*v999*)
 	xInputStepByStepSingleAxis : BOOL; (*//FR*)
 	xInputStepByStep : BOOL;
 	xInputCombi : BOOL;
@@ -21,7 +21,6 @@ VAR
 	xInputInductionSetup : BOOL;
 	xInputBrakeRelease : BOOL;
 	xInputJog : BOOL;
-	xInputMultiAxis : BOOL;
 	xInputMulti : BOOL;
 	xCombiSynchronized : BOOL;
 	xCombiSynchroStopDone : BOOL;
@@ -32,8 +31,8 @@ END_VAR
 VAR
 	xAutoMode : BOOL;
 	xCombiMode : BOOL;
+	xStepByStepSingleAxisReverseMode : BOOL; (*V999*)
 	xStepByStepSingleAxisMode : BOOL; (*//FR*)
-	xMultiAxisMode : BOOL; (*//FR*)
 	xStepByStepMode : BOOL;
 	xVelocityMode : BOOL;
 	xPositioningMode : BOOL;
@@ -48,8 +47,7 @@ VAR
 END_VAR
 (*Modalities*)
 VAR
-	xMultiAxisDone : BOOL; (*//FR*)
-	xMultiAxisPositionDone : BOOL; (*//FR*)
+	xStepByStepSingleAxisReverseDone : BOOL; (*v999*)
 	xStepByStepSingleAxisDone : BOOL; (*//FR*)
 	xStepByStepDone : BOOL;
 	xNoOpActive : BOOL;
@@ -63,7 +61,7 @@ VAR
 	xInductionSetupDone : BOOL;
 	xInductionSetupActive : BOOL;
 	xSelHomingActive : BOOL;
-	xMultiAxisActive : BOOL; (*//FR*)
+	xStepByStepSingleAxisRevActive : BOOL; (*v999*)
 	xStepByStepSingleAxisActive : BOOL; (*//FR*)
 	xStepByStepActive : BOOL;
 	xBrakeReleaseActive : BOOL;
@@ -72,9 +70,8 @@ VAR
 END_VAR
 (*Steps*)
 VAR
-	uiMultiAxis : UINT; (*//FR*)
+	uiStepByStepSingleReverseAxis : UINT; (*v999*)
 	uiStepByStepSingleAxis : UINT; (*//FR*)
-	uiMultiAxisStepByStep : UINT;
 	uiStepByStep : UINT;
 	uiCombiStep : UINT;
 	uiAutoStep : UINT;

@@ -8,7 +8,6 @@ TYPE
 		stMasterModule : ST_MasterModuleInterface;
 		stFillerModule : ST_FillerModuleInterface;
 		stInletModule : ST_InletModuleInterface;
-		stDoserModule : ST_DoserModuleInterface;
 		stOutletModule : ST_OutletModuleInterface;
 	END_STRUCT;
 	ST_MachineCmd : 	STRUCT 
@@ -17,8 +16,7 @@ TYPE
 		i_xOkToDisengage : BOOL;
 		i_xJogPushButton : BOOL;
 		i_xReset : BOOL;
-		i_xMultiAxisStepByStep : BOOL; (*v999*)
-		i_xMultiAxis : BOOL; (*V4.A.A.1.7.0*)
+		i_xStepByStepSingleAxisReverse : BOOL; (*v999*)
 		i_xStepByStepSingleAxis : BOOL; (*V4.A.A.1.7.0*)
 		i_xStepByStep : BOOL;
 		i_xAxisPhaseShift : BOOL;
@@ -44,7 +42,7 @@ TYPE
 		q_xJogActive : BOOL;
 		q_xBrakeReleaseActive : BOOL;
 		q_xInMotionTimerDone : BOOL;
-		q_xStepByStepSingBackAxisActive : BOOL; (*V4.A.A.1.7.0*)
+		q_xStepByStepSingAxisRevActive : BOOL; (*v999*)
 		q_xStepByStepSingleAxisActive : BOOL; (*V4.A.A.1.7.0*)
 		q_xStepByStepActive : BOOL;
 		q_xAxisNoOp : BOOL;
@@ -55,7 +53,6 @@ TYPE
 		q_xCombiFixedSpeed : BOOL;
 		q_xCombiSynchroInProgress : BOOL;
 		q_xAutoCmdFeedback : BOOL;
-		q_xMultiAxisModalityActive : BOOL; (*v999*)
 		q_xMultiModalityActive : BOOL;
 		q_xMachineStartFbk : BOOL;
 		q_xMachineStopped : BOOL;
@@ -155,12 +152,6 @@ END_TYPE
 (*OTHER MODULES INTERFACE*)
 
 TYPE
-	ST_DoserModuleInterface : 	STRUCT 
-		iq_stCmd : ST_DoserModuleCmds; (*//V4.A.A.1.6.12e*)
-		iq_stStatus : ST_DoserModuleStatus; (*//V4.A.A.1.6.12e*)
-		iq_stParameters : ST_DoserModuleParameters; (*//V4.A.A.1.6.12e*)
-		iq_astSubModuleAxis : ARRAY[0..CST_LastDoserModuleAxis]OF ST_GeneralAxis;
-	END_STRUCT;
 	ST_FillerModuleInterface : 	STRUCT 
 		iq_stCmd : ST_FillerModuleCmds; (*//V4.A.A.1.6.12e*)
 		iq_stStatus : ST_FillerModuleStatus; (*//V4.A.A.1.6.12e*)
@@ -178,39 +169,6 @@ TYPE
 		iq_stStatus : ST_OutletModuleStatus; (*//V4.A.A.1.6.12e*)
 		iq_stParameters : ST_OutletModuleParameters; (*//V4.A.A.1.6.12e*)
 		iq_astSubModuleAxis : ARRAY[0..CST_LastOutletModuleAxis]OF ST_GeneralAxis;
-	END_STRUCT;
-	ST_DoserModuleCmds : 	STRUCT  (*V4.A.A.1.6.12e*)
-		i_xReset : BOOL;
-		i_xAlarmInitOk : BOOL := FALSE;
-		i_xAutoMode : BOOL;
-		i_xMachineInitDone : BOOL := FALSE;
-		i_xDoserAbsolutePositionSensor : BOOL; (*V4.A.A.1.6.12e*)
-		i_xVelocityMode : BOOL;
-		i_xPositioningMode : BOOL;
-		i_xSelectiveHomingMode : BOOL;
-		i_xJogMultiMode : BOOL;
-		i_xAutoMultiMode : BOOL;
-		i_xJogPB : BOOL;
-		i_xStart : BOOL;
-		i_xPhaseShift : BOOL;
-		i_xOnePitchShift : BOOL;
-		i_xStepByStep : BOOL;
-		i_xStepByStepSingleAxis : BOOL; (*V4.A.A.1.7.0*)
-		i_xDisableDoserCarouselActive : BOOL;
-		i_xBrakeRelease : BOOL;
-		i_xMasterRephasingRequest : BOOL;
-		i_xPhaseCompensation : BOOL;
-		i_xSlowMotionBackward : BOOL;
-		i_xSlowMotionForward : BOOL;
-		i_xThirdPartySetup : BOOL;
-		i_xInductionSetup : BOOL;
-		i_xInPhaseStop : BOOL;
-		i_xQuickStop : BOOL;
-		i_xEnable : BOOL;
-		i_xExternalQuickStop : BOOL;
-		i_xEmergencyStop : BOOL;
-		i_xShutdown : BOOL;
-		i_xVelocityAxisStop : BOOL;
 	END_STRUCT;
 	ST_FillerModuleCmds : 	STRUCT  (*V4.A.A.1.6.12e*)
 		i_xReset : BOOL;
@@ -230,11 +188,9 @@ TYPE
 		i_xAutoMultiMode : BOOL;
 		i_xJogPB : BOOL;
 		i_xStart : BOOL;
-		i_xModuleSyncroStop : BOOL;
 		i_xPhaseShift : BOOL;
 		i_xOnePitchShift : BOOL;
 		i_xStepByStep : BOOL;
-		i_xMultiAxis : BOOL; (*V4.A.A.1.7.0*)
 		i_xStepByStepSingleAxis : BOOL; (*V4.A.A.1.7.0*)
 		i_xBrakeRelease : BOOL;
 		i_xMasterRephasingRequest : BOOL;
@@ -250,46 +206,6 @@ TYPE
 		i_xEmergencyStop : BOOL;
 		i_xShutdown : BOOL;
 		i_xVelocityAxisStop : BOOL;
-	END_STRUCT;
-	ST_DoserModuleStatus : 	STRUCT  (*V4.A.A.1.6.12e*)
-		q_xDoserAbsolutePositionValid : BOOL; (*//V4.A.A.1.6.12e*)
-		q_xInitDone : BOOL;
-		q_xReactionActive : BOOL;
-		q_xMasterRephased : BOOL;
-		q_xModuleStopped : BOOL;
-		q_xModuleStartFbk : BOOL;
-		q_xModulePowered : BOOL;
-		q_xModuleSynchronized : BOOL;
-		q_xRealAxesSynchronized : BOOL;
-		q_xRealAxesReadyForACommand : BOOL;
-		q_xModuleReal : BOOL;
-		q_xAlarmXCoreEnabled : BOOL := FALSE;
-		q_xSynchroWithOffset : BOOL := FALSE;
-		q_xNoOpActive : BOOL;
-		q_xAutoActive : BOOL;
-		q_xVelocityActive : BOOL;
-		q_xPositioningActive : BOOL;
-		q_xSelHomingActive : BOOL;
-		q_xSelHomingDone : BOOL;
-		q_xThirdPartySetupActive : BOOL;
-		q_xThirdPartySetupDone : BOOL;
-		q_xInductionSetupActive : BOOL;
-		q_xInductionSetupDone : BOOL;
-		q_xBrakeReleaseActive : BOOL;
-		q_xSlowMotionActive : BOOL;
-		q_xJogMultiActive : BOOL;
-		q_xAutoMultiActive : BOOL;
-		q_xStepByStepActive : BOOL;
-		q_xPhaseShiftDone : BOOL;
-		q_xBrakeReleaseDone : BOOL;
-		q_xPositioningDone : BOOL;
-		q_xModuleHomed : BOOL;
-		q_rVelocity : REAL;
-		q_lrFillerAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
-		q_lrRinserAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
-		q_lrCapperAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
-		q_lrCrownerAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
-		q_lrDoserAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
 	END_STRUCT;
 	ST_FillerModuleStatus : 	STRUCT  (*V4.A.A.1.6.12e*)
 		q_xFillerAbsolutePositionValid : BOOL; (*//V4.A.A.1.6.12e*)
@@ -323,7 +239,6 @@ TYPE
 		q_xSlowMotionActive : BOOL;
 		q_xJogMultiActive : BOOL;
 		q_xAutoMultiActive : BOOL;
-		q_xMultiAxisActive : BOOL;
 		q_xStepByStepActive : BOOL;
 		q_xPhaseShiftDone : BOOL;
 		q_xBrakeReleaseDone : BOOL;
@@ -335,37 +250,6 @@ TYPE
 		q_lrCapperAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
 		q_lrCrownerAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
 		q_lrDoserAbsolutePosition : LREAL; (*//V4.A.A.1.6.12e*)
-	END_STRUCT;
-	ST_DoserModuleParameters : 	STRUCT  (*V4.A.A.1.6.12e*)
-		i_uiFillerAbsolutePositionOffset : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiRinserAbsolutePositionOffset : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiCapperAbsolutePositionOffset : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiCrownerAbsolutePosOffset : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiDoserPositionOffset : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiFillerStepsNumber : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiRinserStepsNumber : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiCapperStepsNumber : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiCrownerStepsNumber : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiDoserStepsNumber : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiAxisSelected : UINT; (*//V4.A.A.1.6.12e*)
-		i_uiNumberOfSteps : UINT; (*//V4.A.A.1.6.12e*)
-		i_rPhaseShiftDistance : REAL; (*//V4.A.A.1.6.12e*)
-		i_rPositioningOffset : REAL; (*//V4.A.A.1.6.12e*)
-		i_rManualVelocity : REAL; (*//V4.A.A.1.6.12e*)
-		i_rJogVelocity : REAL; (*//V4.A.A.1.6.12e*)
-		i_rEndlessVelocity : REAL; (*//V4.A.A.1.6.12e*)
-		i_rEndlessAcceleration : REAL := 800; (*//V4.A.A.1.6.12e*)
-		i_rEndlessDeceleration : REAL := 800; (*//V4.A.A.1.6.12e*)
-		i_rStopPosition : REAL := 180; (*//V4.A.A.1.6.12e*)
-		i_lrRephasingPosition : LREAL; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameterMachineCk : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter02 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter03 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter04 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter05 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter06 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter07 : UDINT := 0; (*//V4.A.A.1.6.12e*)
-		i_udiFbCamParameter08 : UDINT := 0; (*//V4.A.A.1.6.12e*)
 	END_STRUCT;
 	ST_FillerModuleParameters : 	STRUCT  (*V4.A.A.1.6.12e*)
 		i_uiFillerAbsolutePositionOffset : UINT; (*//V4.A.A.1.6.12e*)
@@ -680,6 +564,7 @@ TYPE
 	END_STRUCT;
 	ST_AxesStatus : 	STRUCT  (*Double axis status structure*)
 		q_stMainAxisStatus : ST_AxisStatus; (*Main axis status*)
+		q_stSecondaryAxisStatus : ST_AxisStatus; (*Secondary axis status*)
 	END_STRUCT;
 	ST_AxisParameter : 	STRUCT  (*Axis parameter struct*)
 		i_udiHomingPosition : UDINT; (*Pointer to homing position within the step (to link to previous/next axis position)*)
@@ -689,7 +574,6 @@ TYPE
 		i_prMasterVelocity : REFERENCE TO REAL; (*Pointer To Master Velocity*)
 		i_uiMasterParId : UINT := 0; (*Master ParID*)
 		i_lrAdditiveDistance : LREAL := 20; (*Distance for additive movements*)
-		i_stMotorDirection : MpAxisMoveDirectionEnum := mpAXIS_DIR_POSITIVE; (*Jog deceleration*)
 		i_rJogDeceleration : REAL := 1200; (*Jog deceleration*)
 		i_rEmergencyDeceleration : REAL := 2500; (*Quick Stop/Emergency deceleration*)
 		i_rShutdownDeceleration : REAL := 3000; (*Shutdown deceleration*)
@@ -713,7 +597,6 @@ TYPE
 		i_rRunningThreshold : REAL := CST_RunningThreshold; (*Min speed for running*)
 		i_rVelocityOffsetFactor : REAL := 1; (*% of master speed*)
 		i_rMaxBackwardMovement : REAL := CST_MaxBackwardMovement; (*Max backward movement [deg]*)
-		i_xNegativeStaticCam : BOOL := FALSE; (*True for machine master axis v999*)
 		i_xMachineMaster : BOOL := FALSE; (*True for machine master axis*)
 		i_stMotorPhasingConfig : MC_SETUP_MOTOR_PHA_PAR_REF; (*Third party motor phasing configuration*)
 		i_stInductionMotorConfig : MC_SETUP_IND_MOTOR_PAR_REF; (*Third party induction motor configuration*)
@@ -786,11 +669,6 @@ TYPE
 		SET_TORQUE_LIMIT_2 := 175,
 		SET_TORQUE_LIMIT_3 := 180, (*1.7.2*)
 		SET_TORQUE_LIMIT_4 := 181, (*1.7.2*)
-		SET_ACC_LIMIT_1 := 182, (*1.7.2*)
-		SET_ACC_LIMIT_2 := 183, (*1.7.2*)
-		SET_ACC_LIMIT_3 := 184, (*1.7.2*)
-		SET_ACC_LIMIT_4 := 185, (*1.7.2*)
-		SET_ASTOP_LIMIT := 186, (*1.7.2*)
 		OPEN_POSITION_LOOP := 190,
 		BRAKE_RELEASE := 195,
 		BRAKE_RELEASE_1 := 196,
@@ -862,6 +740,43 @@ TYPE
 		MOTOR_PHASING_11 := 8110,
 		AXIS_ERROR := 9000,
 		WAIT_FOR_CONNECTION := 9500
+		);
+	E_SecondaryAxisStepEnum : 
+		( (*Secondary axis step enumerator*)
+		S_DISABLE := 0, (*Secondary axis disabled*)
+		S_WAIT_SAFETY_READY := 5,
+		S_INIT := 10,
+		S_INIT_1 := 11,
+		S_INIT_2 := 12,
+		S_INIT_3 := 13,
+		S_INIT_4 := 14,
+		S_INIT_5 := 15,
+		S_INIT_6 := 16,
+		S_INIT_TORQUE_CTRL := 30,
+		S_INIT_MP_AXIS_BASIC := 40,
+		S_SET_TORQUE_LIMIT := 160,
+		S_SET_TORQUE_LIMIT_1 := 170,
+		S_SET_TORQUE_LIMIT_2 := 175,
+		S_SET_TORQUE_LIMIT_4 := 180,
+		S_SET_TORQUE_LIMIT_3 := 185,
+		S_WAIT_FOR_POWER := 80,
+		S_POWERING := 85,
+		S_RAMPING_UP := 90,
+		S_POSITIVE_PRELOAD := 95,
+		S_POSITIVE_PRELOAD_1 := 98,
+		S_POSITIVE_PRELOAD_2 := 99,
+		S_READY := 100,
+		S_CMD_STOP_HANDLING := 200,
+		S_NEGATIVE_PRELOAD := 210,
+		S_WAIT_FOR_TORQUE_RAMP := 220,
+		S_WAIT_FOR_TORQUE_RAMP_1 := 225,
+		S_RAMPING_DOWN := 300,
+		S_RAMPING_DOWN_1 := 310,
+		S_WAIT_FOR_STOPPING := 320,
+		S_POWER_OFF := 330,
+		S_MAIN_AXIS_ERROR := 8500,
+		S_AXIS_ERROR := 9000,
+		S_CONNECTION_LOST := 9500
 		);
 	E_ReadTempStepEnum : 
 		( (*Read encoder/motor temp step enum*)

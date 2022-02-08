@@ -29,3 +29,6 @@ VAR
 	HMI_COP_ITC : HMI_COP_ITC_Type;
 	HMI_COP_OptPlangerPresent : BOOL; (*vrma*)
 END_VAR
+VAR RETAIN
+	HMI_RCP_COP_SelectedRecipeName : STRING[70]; (*v999hema*)
+END_VAR

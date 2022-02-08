@@ -41,4 +41,7 @@ VAR
 	IO_Euchner_CodeB : IO_Digital_IN_Type; (*V1.3*)
 	IO_Euchner_CodeC : IO_Digital_IN_Type; (*V1.3*)
 	IO_Euchner_CodeD : IO_Digital_IN_Type; (*V1.3*)
+	IO_PB_FlrSlowRun1 : PB_Type; (*V1.3*)
+	IO_PB_FlrSlowRun2 : PB_Type; (*V1.3*)
+	IO_PB_FlrSlowRun3 : PB_Type; (*V1.3*)
 END_VAR

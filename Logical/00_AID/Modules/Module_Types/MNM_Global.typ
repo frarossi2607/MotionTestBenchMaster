@@ -9,7 +9,7 @@ TYPE
 		StartLightBlinkRequest : BOOL;
 		StartLightFixRequest : BOOL;
 		CopSpeedReqReached : BOOL;
-		RnsSpeedReqReached : BOOL; (*V4.A.A.1.7.0*)
+		RnsSpeedReqReached : BOOL;
 		CapSpeedReqReached : BOOL;
 		DmcSpeedReqReached : BOOL;
 		SftSpeedReqReached : BOOL;
@@ -28,12 +28,19 @@ TYPE
 		LackInlet1 : BOOL;
 		LackInlet2 : BOOL;
 		COPInletContBlockSpeedReached : BOOL;
-		ContainerStop : BOOL; (*//1.63*)
+		ContainerStop : BOOL;
 		DesyncroRequest : BOOL;
 		CapperPositioningDone : BOOL;
-		SingleAxisInPosition : BOOL; (*V4.A.A.1.7.0*)
-		RinserAxisDisabled : BOOL; (*V4.A.A.1.7.0*)
+		SingleAxisInPosition : BOOL;
+		RinserAxisDisabled : BOOL;
+		DoserAxisDisabled : BOOL;
+		FillerAxisDisabled : BOOL;
 		FillingValvePositioningDone : BOOL;
-		StartRequest : BOOL; (*V4.A.A.1.7.0*)
+		ReversePositioningDone : BOOL;
+		DmcPositioningDone : BOOL;
+		PhaseDone : BOOL;
+		ConfigReqLoaded : BOOL;
+		StartRequest : BOOL;
+		InletSpeed : REAL;
 	END_STRUCT;
 END_TYPE

@@ -20,3 +20,8 @@ VAR
 	VAR_CAP_EquatoruqueCalModeActual : CAP_EquCalMode_Type; (*//V4.A.A.1.6.12*)
 	VAR_CAP_HeadData : ARRAY[0..48] OF CAP_Head_Type; (*//V4.A.A.1.6.12*)
 END_VAR
+VAR RETAIN
+	VAR_CAP_Hopper_Running : BOOL; (*//v1.7.4 Tengo memoria di quale tramoggia sta lavorando 0=TramoggiaA  1=TramoggiaB*)
+	VAR_HopperA_Empty : BOOL; (*//v1.7.4*)
+	VAR_HopperB_Empty : BOOL; (*//v1.7.4*)
+END_VAR

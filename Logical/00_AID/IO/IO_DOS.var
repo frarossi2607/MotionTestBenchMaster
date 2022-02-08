@@ -1,3 +1,20 @@
 VAR
+	IO_209PUF_1 : USINT;
+	IO_209PUF_2 : USINT;
+	IO_209PUF_3 : USINT;
+	IO_MMF : ARRAY[MIN_CFG_VFD_MMx..MAX_CFG_VFD_MMx] OF IO_MotorFC280_Type; (*//v999hema*)
+	IO_VFD_MMF : ARRAY[MIN_CFG_VFD_MMx..MAX_CFG_VFD_MMx] OF IO_PLK_DanfossFC280_Drive_Type;
+	IO_211CPF : IO_Valve_Type; (*Pulp Doser Cleaning Arm *)
+	IO_PDO_YV65 : IO_Valve_Type; (*Pulp Doser Diaphram Pump PPJ203*)
+	IO_210DSX : IO_Digital_IN_Type; (*Pulp Doser Arm in Cleaning Position*)
+	IO_211DSX : IO_Digital_IN_Type; (*Pulp Doser Arm in Production Position*)
+	IO_215DSF : IO_Digital_IN_Type; (*Pulp Doser HDP Up Limit Switch*)
+	IO_216DSF : IO_Digital_IN_Type; (*Pulp Doser LDP Up Limit Switch*)
+	IO_212DSF : IO_Digital_IN_Type; (*Pulp Doser Maximun Volume sensor *)
+	IO_213DSF : IO_Digital_IN_Type; (*Pulp Doser Minimum Volume sensor *)
+	IO_217DSF : IO_Digital_IN_Type; (*Pulp Doser LDP Down Limit Switch*)
 	IO_DOS_OverloadOk : IO_Digital_IN_Type;
+	IO_210PTF : IO_Digital_IN_Type;
+	IO_205MEF : IO_Analog_IN_Type; (*Doser Pulp Volume HDP *)
+	IO_206MEF : IO_Analog_IN_Type; (*Doser Pulp Volume LDP *)
 END_VAR

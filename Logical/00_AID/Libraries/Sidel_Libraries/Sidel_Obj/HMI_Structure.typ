@@ -359,7 +359,7 @@ TYPE
 	END_STRUCT;
 END_TYPE
 
-(* *)
+(*SS2P*)
 
 TYPE
 	HMI_SS2P_Type : 	STRUCT  (*Selector 2 position (Auto-Man; ON-OFF;) 0=Auto/OFF - 1=Man/ON*)
@@ -368,5 +368,21 @@ TYPE
 		Blink : BOOL; (*State: Blink LampOn*)
 		Visibility : BOOL; (*Configuration: Present*)
 		ON : BOOL; (*Command: Selector Button ON*)
+	END_STRUCT;
+END_TYPE
+
+(*DOSING*)
+
+TYPE
+	HMI_DosingObj_Type : 	STRUCT 
+		Total_Water : REAL;
+		Total_Chemical : REAL;
+		Actual_Concentration : REAL;
+		Actual_SetPoint : REAL; (*v1.7.4*)
+		Manual_SetPoint : REAL; (*v1.7.4*)
+		Titration_Value_Act : REAL; (*v1.7.5*)
+		Titration_Value_Old : REAL; (*v1.7.5*)
+		Titration_Time_Preset : UINT; (*v1.7.5*)
+		Titration_Time_Actual : UINT; (*v1.7.5*)
 	END_STRUCT;
 END_TYPE

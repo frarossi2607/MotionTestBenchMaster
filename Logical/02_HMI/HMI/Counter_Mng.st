@@ -6,6 +6,7 @@ ACTION HMI_CounterInit:
 	HMI_CounterCfgPartial.MachineCounters.HmiData[FlaworDoserLaps].Description			:= '@CounterDescription_005';
 	HMI_CounterCfgPartial.MachineCounters.HmiData[PulpDoserLaps].Description			:= '@CounterDescription_006';
 	HMI_CounterCfgPartial.MachineCounters.HmiData[PowerOn].Description					:= '@CounterDescription_007';
+	HMI_CounterCfgPartial.MachineCounters.HmiData[RotatingTime].Description				:= '@CounterDescription_048'; //V1.7.4
 	
 	HMI_CounterCfgPartial.ContainersCounters.HmiData[FillingFault].Description			:= '@CounterDescription_008';
 	HMI_CounterCfgPartial.ContainersCounters.HmiData[FillingBurst].Description			:= '@CounterDescription_009';
@@ -21,8 +22,8 @@ ACTION HMI_CounterInit:
 	HMI_CounterCfgPartial.ContainersCounters.HmiData[ContainersEntered].Description		:= '@CounterDescription_019';
 	HMI_CounterCfgPartial.ContainersCounters.HmiData[ContainersProduced].Description	:= '@CounterDescription_020';
 	HMI_CounterCfgPartial.ContainersCounters.HmiData[EjectionBySIS].Description			:= '@CounterDescription_045'; //V4.A.A.1.6.8
-	HMI_CounterCfgPartial.ContainersCounters.HmiData[SIS_EjectionToBlower].Description			 := '@CounterDescription_046'; //V4.A.A.1.6.8
-	HMI_CounterCfgPartial.ContainersCounters.HmiData[SIS_ContainersProducedToBlower].Description := '@CounterDescription_047'; //V4.A.A.1.6.8
+	HMI_CounterCfgPartial.ContainersCounters.HmiData[BottleProduceToCvo].Description;//			 := '@CounterDescription_046'; //V4.A.A.1.6.8
+	HMI_CounterCfgPartial.ContainersCounters.HmiData[Spare].Description;// := '@CounterDescription_047'; //V4.A.A.1.6.8
 	
 	HMI_CounterCfgPartial.ProcessCounters.HmiData[FillerProduction].Description			:= '@CounterDescription_021';
 	HMI_CounterCfgPartial.ProcessCounters.HmiData[ClosingUnit1Production].Description	:= '@CounterDescription_022';
@@ -97,11 +98,11 @@ ACTION HMI_CounterMng:
 	HMI_TotalBottleProduced	:= HMI_CounterDataTotal.ContainersCounters.CounterData[ContainersProduced].CounterValue;
 	
 	//DATA TO EXCHANGE IN HMI WITH BLOWER //V4.A.A.1.7.0
-	HMI_CounterHome.SS2P.Visibility 	:= CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF;
-	HMI_CounterHome.SS2P.Enable			:= CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF;
+	HMI_CounterHome.SS2P.Visibility 	:= FALSE;//not used in Glass Machine
+	HMI_CounterHome.SS2P.Enable			:= FALSE;//not used in Glass Machine
 	HMI_CounterHome.SS2P.LampON 		:= HMI_CounterHome.SS2P.ON;
-	HMI_CounterHome.CounterValue[0] 	:= MAX(0,HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_ContainersProducedToBlower].CounterValue -
-													HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_EjectionToBlower].CounterValue);
-	HMI_CounterHome.CounterValue[1]		:= HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_EjectionToBlower].CounterValue;
+//	HMI_CounterHome.CounterValue[0] 	:= MAX(0,HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_ContainersProducedToBlower].CounterValue -
+//												HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_EjectionToBlower].CounterValue);
+//	HMI_CounterHome.CounterValue[1]		:= HMI_CounterDataPartial.ContainersCounters.CounterData[SIS_EjectionToBlower].CounterValue;
 	
 END_ACTION

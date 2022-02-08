@@ -1,5 +1,5 @@
 PROGRAM _CYCLIC
-(* @LANGUAGE := 'sfc' *)
+<?AutomationStudio FileVersion="4.9"?>
 INITIAL_STEP Init:
 END_STEP
 (* @SFCMAXTIME := '' *)
@@ -31,16 +31,6 @@ IF CFG_MC.Generic.SyncroPar.ExternalEncoder THEN	//V4.A.A.1.6.10(COMBI with enco
 	fbMachineMasterFast.i_xExternalEncoder			:= TRUE;	//V4.A.A.1.6.10
 	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.6.10
 	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_ExtEncNumberOfExtCycles;	//V4.A.A.1.6.10
-ELSIF CFG_Par.Machine.Combi.BAF THEN (*ACTIS*)
-	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.6.10
-	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//v4.A.A.1.7.0
-	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.6.10
-	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_BAFNumberOfExtCycles;	//V4.A.A.1.6.10
-ELSIF CFG_Par.Machine.Combi.BF AND NOT CFG_MC.Generic.SyncroPar.ExternalEncoder THEN//V4.A.A.1.7.0(*Combi without encoder*)
-	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.7.0
-	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//V4.A.A.1.7.0
-	fbMachineMasterFast.i_uiFilteringCoefficient	:= CST_ExtEncFilteringCoefficient;	//V4.A.A.1.7.0
-	fbMachineMasterFast.i_uiNumberOfEplCycles		:= CST_BFNumberOfExtCycles;	//V4.A.A.1.7.0
 ELSE	//V4.A.A.1.6.10          (*SSC*)
 	fbMachineMasterFast.i_xExternalEncoder			:= FALSE;	//V4.A.A.1.6.10
 	fbMachineMasterFast.i_xExternalPositionFormat	:= CFG_MC.Generic.SyncroPar.ExternalPositionFormat;//v4.A.A.1.7.0
@@ -289,11 +279,8 @@ fbCam09.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
 fbCam10.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
 fbCam10.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
 
-fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
-fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
-
-(* TODO: Insert Program *)
-
+fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos); //v999 test
+fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v); //v999 test
 
 VAR_CamInitialized	:= TRUE;
 END_ACTION
@@ -355,9 +342,9 @@ IF MC_InputOutput.Network.Machine.Status.MultiModalityActive AND NOT xMultiModAc
 		fbCam10.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
 	END_IF
 	
-	fbCam11.i_pdiAxisPosition			:= ADR(diFillerModuloPos);
-	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v);
-
+	fbCam11.i_pdiAxisPosition			:= ADR(diFillerModuloPos); //v999 test
+	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxFillerMain.monitor.v); //v999 test
+	
 	xMultiModActive := TRUE; //V4.A.A.1.6.12i
 	xAutoModActive 	:= FALSE;//V4.A.A.1.6.12i
 	
@@ -394,10 +381,10 @@ ELSIF NOT MC_InputOutput.Network.Machine.Status.MultiModalityActive AND NOT xAut
 	
 	fbCam10.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
 	fbCam10.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
-
-	fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos);
-	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v);
-
+	
+	fbCam11.i_pdiAxisPosition			:= ADR(diMachineModuloPos); //v999 test
+	fbCam11.i_prAxisVelocity			:= ADR(VAR_AxMachineMaster.monitor.v); //v999 test
+	
 	xMultiModActive := FALSE;//V4.A.A.1.6.12i
 	xAutoModActive 	:= TRUE;//V4.A.A.1.6.12i
 END_IF
@@ -518,9 +505,8 @@ i_rAdvanceTime		:= MC_InputOutput.Network.Machine.Parameters.Cam10AdvTime,
 i_usiNumberOfPulse	:= MC_InputOutput.Network.Machine.Parameters.Cam10Pulse,
 );
 
-
 fbCam11(
-i_xEnable			:= TRUE,// da inserire se ho il doser present
+i_xEnable			:= CFG_Par.Doser.Present,  //v999 test
 i_pxPointerOutput	:= ADR(MC_InputOutput.Network.Machine.Status.Clock11),
 i_pxPointerStepAdv	:= ADR(MC_InputOutput.Network.Machine.Status.Clock11AdvStep),
 i_rOnPosition		:= MC_InputOutput.Network.Machine.Parameters.Cam11OnValue,

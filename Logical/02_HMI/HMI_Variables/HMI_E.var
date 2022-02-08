@@ -23,6 +23,7 @@ VAR
 	HMI_204PTE : HMI_Analog_IN_Type;
 	HMI_205PTE : HMI_Analog_IN_Type;
 	HMI_206PTE : HMI_Analog_IN_Type;
+	HMI_207PTE : HMI_Analog_IN_Type; (*V4.A.A.1.7.6*)
 END_VAR
 (*PIDs*)
 VAR

@@ -407,6 +407,8 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 		i_xParityPhasing : BOOL;
 		i_pAxisMpLink : UDINT; (*Axis MpLink address*)
 		i_pAxisADR : UDINT; (*Axis address*)
+		i_pSecondaryAxisMpLink : UDINT := 0; (*Torque controlled axis MpLink address*)
+		i_pSecondaryAxisADR : UDINT := 0; (*Torque controlled axis address*)
 		i_strParTabName : STRING[8] := ''; (*Parameter table object name*)
 		i_pstCmd : REFERENCE TO ST_AxisCmd; (*Pointer to axis command structure*)
 		i_pstParameter : REFERENCE TO ST_AxisParameter; (*Pointer to axis parameter structure*)
@@ -417,13 +419,16 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 		q_xActive : BOOL; (*The axis function block is active*)
 		q_xError : BOOL; (*The axis function block is in error state*)
 		q_lrMainAxisTorque : LREAL; (*Actual main axis torque*)
+		q_lrSecondaryAxisTorque : LREAL; (*Actual secondary axis torque*)
 		q_udiCycleTime : UDINT := 0; (*Axis cycle time (micro sec)*)
 		q_strMainStep : STRING[40]; (*Main axis step string*)
+		q_strSecondaryStep : STRING[40]; (*Secondary axis step string*)
 	END_VAR
 	VAR
 		fbReadSlowlyCyclicParID : MC_BR_InitCyclicRead;
 		fbReadCyclicParID : MC_BR_InitCyclicRead;
 		fbReadParID : MC_BR_ReadParID;
+		fbMpAxisBasicSecondary : MpAxisBasic;
 		fbMpAxisCyclicSet : MpAxisCyclicSet;
 		fbMpAxisBasic : MpAxisBasic;
 		fbMpAxisBasicConfig : MpAxisBasicConfig;
@@ -441,10 +446,12 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 		fbMotorPhasing : MC_BR_SetupMotorPhasing;
 		stBasicParameter : MpAxisBasicParType;
 		stBasicParameterOld : MpAxisBasicParType;
+		stSecondaryBasicParameter : MpAxisBasicParType;
 		stBasicConfiguration : MpAxisBasicConfigType;
 		stCyclicSetParameters : MpAxisCyclicSetParType;
 		stCamParameters : MpAxisCamSequencerParType;
 		stAxis : REFERENCE TO ACP10AXIS_typ;
+		stSecondaryAxis : REFERENCE TO ACP10AXIS_typ;
 		tonAxisStopped : TON;
 		tonInVelocity : TON;
 		tonStep : TON;
@@ -491,6 +498,7 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 		rI_0 : REAL; (*Stall motor current*)
 		rI_Max_ACP : REAL; (*Maximum ACP current*)
 		rM_Max_ACP : REAL; (*Maximum torque available with ACOPOS-Motor combination*)
+		rTorqueLimitSecondary : REAL; (*Maximum Torque limit secondary axis*)
 		rTorqueLimit : REAL; (*Maximum Torque limit primary axis*)
 		rOldTargetSpeed : REAL;
 		rAxisPeriod : REAL := 360.0; (*Pointer to master speed (degrees per seconds)*)
@@ -515,6 +523,8 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 		xWaitForVelocity : BOOL;
 		eMainAxisStep : E_MainAxisStepEnum;
 		eMainAxisStepOld : E_MainAxisStepEnum;
+		eSecondaryAxisStep : E_SecondaryAxisStepEnum;
+		eSecondaryAxisStepOld : E_SecondaryAxisStepEnum;
 		eReadTempStep : E_ReadTempStepEnum;
 		xJerkControl : BOOL := TRUE;
 		diMasterSynchPosition : DINT;
@@ -529,6 +539,7 @@ FUNCTION_BLOCK FB_GeneralAxis (*General axis*)
 	VAR
 		strDataObjIdent : STRING[20];
 		strDataObjPhasing : STRING[20];
+		Vtest : BOOL;
 		zzEdge00000 : BOOL;
 		zzEdge00001 : BOOL;
 	END_VAR

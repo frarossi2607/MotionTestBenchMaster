@@ -52,6 +52,10 @@ TYPE
 		CapTreatmentStart : BOOL; (*V4.A.A.1.7.0*)
 		NoBottleNoSprayPistonFault : BOOL; (*vrma*)
 		NoBottleNoSprayActive : BOOL; (*vrma*)
+		FirstHalfDmcInsered : BOOL;
+		SecondHalfCounterDone : BOOL;
+		SecondHalfDmcNotInserted : BOOL;
+		SecondHalfDmcNotRemoved : BOOL;
 		FillingValveAtMachineInlet : INT;
 		CappingHeadAtMachineInlet : INT;
 		CapHeadNumberInTangency : INT; (*V4.A.A.1.6.12*)
@@ -61,17 +65,31 @@ TYPE
 		FoamerRequest : BOOL;
 		CrownsReleaseProductionReady : BOOL;
 		CrownsAirRequest : BOOL;
+		FillingValve1 : BOOL; (*FCI:TEST v1.7.4a*)
+		CapperHead1 : BOOL; (*FCI:TEST v1.7.4a*)
+		CrownerHead1 : BOOL; (*FCI:TEST v1.7.4a*)
+		DoserHead1 : BOOL; (*v999hema*)
+		AuxBlowerMold1 : BOOL; (*FCI:TEST v1.7.4a*)
+		AuxLabelerPlate1 : BOOL; (*FCI:TEST v1.7.4a*)
 		ContainersInFiller : UINT; (*Number of containers in the machine*)
+		ContainersInConveyorReject : UINT; (*Number of container to be reject after COP vrmaCOP *)
 		ContainersInMachine : UINT; (*Number of containers in the machine*)
 		ContainersToFillFillerOnly : UINT;
 		ContainersToFill : UINT; (*Number of containers to be filled (From Container Block To Inlet Tangency)*)
 		ContainersToCap : UINT; (*Number of containers to be filled (From Container Block To Inlet Tangency) V4.A.A.1.7.0*)
 		BottleCoolingFillerSteps : UINT;
 		RinserFillerSteps : UINT; (*V4.A.A.1.6.12*)
+		DoserFillerSteps : UINT; (*v999hema*)
 		NumberDmcInserted : UINT;
 		FillingValvePosValue : UINT; (*Number of filling valve to position in the ispection point*)
+		CopPurgeStep : UINT; (*vrmaCOP*)
 		ContBlockSpeedValue : REAL;
 		COPInletContBlockSpeedValue : REAL;
+		FMC_PreClosingContainerReqByte : USINT; (*v1.7.4*)
+		FMC_ContainerPresenceReqByte : USINT; (*v1.7.4*)
+		FMC_StartFillingReqByte : USINT; (*v1.7.4*)
+		DmcClockSensorBroken : BOOL;
+		ChannelEmptyingDone : BOOL; (*vrmaCOP*)
 	END_STRUCT;
 	SFT_Alarm_Type : 	STRUCT 
 		BottMissingForFillerFault : BOOL;
@@ -88,6 +106,7 @@ TYPE
 		ShiftInfo : UINT;
 		FillingNozzle : USINT;
 		CrownerHead : USINT;
+		DoserHead : USINT; (*v999hema*)
 		CappingHead : USINT;
 		RinsingNozzle : USINT; (*V4.A.A.1.7.0*)
 	END_STRUCT;

@@ -30,12 +30,35 @@ ACTION FillerInput:
 	VAR_Machine.stFillerModule.iq_stParameters.i_uiDoserPositionOffset			:= MC_InputOutput.Network.Filler.Parameters.DoserAbsolutePositionOffset; (*//V4.A.A.1.6.12e*)
 	VAR_Machine.stFillerModule.iq_stParameters.i_uiDoserStepsNumber				:= MC_InputOutput.Network.Filler.Parameters.DoserStepsNumber; (*//V4.A.A.1.6.12e*)
 	
-	(*Disable axis Rinser command*)
+	
+	
+		(*Disable axis Rinser command*)
 	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Rinser].iq_stCmd.i_xDisableAxis	:= MC_InputOutput.Network.Filler.Commands.DisableRinserAxis;//V4.A.A.1.7.0
 	(*Disable axis Doser command*)
-	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Doser].iq_stCmd.i_xDisableAxis		:= MC_InputOutput.Network.Filler.Commands.DisableDoserAxis;//V4.A.A.1.7.0
+	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Doser].iq_stCmd.i_xDisableAxis		:= MC_InputOutput.Network.Filler.Commands.DisableDoserAxis;//v999 test
 	(*Disable axis Filler command*)
-	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Filler].iq_stCmd.i_xDisableAxis		:= MC_InputOutput.Network.Filler.Commands.DisableFillerAxis;//V4.A.A.1.7.0
+	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Filler].iq_stCmd.i_xDisableAxis		:= MC_InputOutput.Network.Filler.Commands.DisableFillerAxis;//v999 test
+
+	
+	
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet10] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet09] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet08] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet07] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet06] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet05] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet04] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet03] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet02] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Inlet01] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_MainAxis] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet01] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet02] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet03] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet04] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet05] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+//	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stCmd.i_xDisableAxis := MC_InputOutput.Network.Filler.Commands.MotorDisableIndex[CST_Outlet06] AND VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+	
 	
 	VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam.i_rTorqueErrorThreshold	:= MC_InputOutput.Network.Filler.Parameters.TorqueError.Main;
 	FOR uiAxisIndex := 1 TO 10 DO
@@ -70,7 +93,7 @@ ACTION FillerOutput:
 	MC_InputOutput.Network.Filler.Status.AutoCmdFeedback				:= VAR_Machine.stFillerModule.iq_stStatus.q_xAutoMultiActive AND VAR_Machine.stFillerModule.iq_stCmd.i_xStart;
 	MC_InputOutput.Network.Filler.Status.JogCmdFeedback					:= VAR_Machine.stFillerModule.iq_stStatus.q_xJogMultiActive AND VAR_Machine.stFillerModule.iq_stCmd.i_xJogPB;
 
-	MC_InputOutput.Network.Filler.Status.CarouselReal					:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
+	MC_InputOutput.Network.Filler.Status.CarouselReal				:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
 	MC_InputOutput.Network.Filler.Status.In01Real					:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
 	MC_InputOutput.Network.Filler.Status.In02Real					:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
 	MC_InputOutput.Network.Filler.Status.In03Real					:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus.q_stMainAxisStatus.q_xAxisReal;
@@ -93,13 +116,33 @@ ACTION FillerOutput:
 	MC_InputOutput.Network.Filler.Status.CapperAbsolutePositionValid			:= VAR_Machine.stFillerModule.iq_stStatus.q_xCapperAbsolutePositionValid; (*//V4.A.A.1.6.12e*)
 	MC_InputOutput.Network.Filler.Status.CrownerAbsolutePositionValid			:= VAR_Machine.stFillerModule.iq_stStatus.q_xCrownerAbsolutePositionValid; (*//V4.A.A.1.6.12e*)
 	MC_InputOutput.Network.Filler.Status.DoserAbsolutePositionValid				:= VAR_Machine.stFillerModule.iq_stStatus.q_xDoserAbsolutePositionValid; (*//V4.A.A.1.6.12e*)
+
+	(* Disable Motor Filler Module Status ----------------------------*)
 	
-	(* Disabel Axis FeedBack *) //V4.A.A.1.7.0 Motion
-	
-	MC_InputOutput.Network.Filler.Status.RinserAxisDisabled						:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Rinser].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
-	
+		(* Disabel Axis FeedBack *) //V4.A.A.1.7.0 Motion
 	MC_InputOutput.Network.Filler.Status.DoserAxisDisabled						:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Doser].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
-	MC_InputOutput.Network.Filler.Status.FillerAxisDisabled						:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Filler].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+	MC_InputOutput.Network.Filler.Status.RinserAxisDisabled						:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CFG_MC.Mechanical.ReferenceId.Rinser].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+
+	
+	
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet10]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet10].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet09]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet09].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet08]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet08].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet07]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet07].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet06]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet06].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet05]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet05].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet04]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet03]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet02]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Inlet01]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_MainAxis]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet01]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet02]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet03]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet04]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet05]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet05].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+//	MC_InputOutput.Network.Filler.Status.AxisDisabledFeedBack[CST_Outlet06]		:= VAR_Machine.stFillerModule.iq_astSubModuleAxis[CST_Outlet06].iq_stStatus.q_stMainAxisStatus.q_xAxisDisabled;
+	
 	
 	(* Button Enable *)
 	MC_InputOutput.Network.Filler.Status.EnableAutoModality				:= NOT VAR_Machine.stFillerModule.iq_stStatus.q_xReactionActive;

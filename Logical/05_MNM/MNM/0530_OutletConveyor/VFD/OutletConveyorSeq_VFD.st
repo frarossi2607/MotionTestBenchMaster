@@ -1,6 +1,8 @@
 ACTION OutletConveyorSeq_Run_VFD:	
-	//v1.61 New Management
-	VAR_MNM_OutCvrAlarm			:= ALR[4633].Active OR ALR[4638].Active OR ALR[7039].Active OR ALR[7041].Active OR ALR[7042].Active;
+	//VAR_MNM_OutCvrAlarm			:= 	AID.DataOut.ALR.Bit.ALR_MS_NormalStop OR AID.DataOut.ALR.Bit.ALR_MS_QuickStop OR AID.DataOut.ALR.Bit.ALR_MS_NormalWithJog OR 
+	//								AID.DataOut.ALR.Bit.ALR_MS_QuickWithJog OR AID.DataOut.ALR.Bit.ALR_CSR_StopAfterEmptying;	
+	
+	VAR_MNM_OutCvrAlarm		:= ALR[4633].Active OR ALR[4638].Active OR ALR[7039].Active OR ALR[7041].Active OR ALR[7042].Active;
 	_OutCvr.IN_AutoCnd			:= FALSE;
 	_OutCvr.IN_AutoSpeed		:= 0.0;
 	
@@ -14,7 +16,7 @@ ACTION OutletConveyorSeq_Run_VFD:
 	x1	:= 0.0,
 	y1	:= 0.0,
 	x2	:= MC_InputOutput.Network.Machine.Status.MachineMaxSpeed * 1.1,
-	y2	:= _OutCvr.IN_FrequencyMax + (_OutCvr.IN_FrequencyMax * HMI_PAR_1._162 / 100.0) * 1.1,
+	y2	:= _OutCvrFC280.IN_FrequencyMax + (_OutCvrFC280.IN_FrequencyMax * HMI_PAR_1._162 / 100.0) * 1.1,
 	);
 	
 	//Speed Limit Threshold
@@ -101,8 +103,8 @@ ACTION OutletConveyorSeq_Run_VFD:
 			END_IF
 		
 		MNM_OutCvrCleaning:
-			_OutCvr.IN_AutoCnd		:= TRUE;
-			_OutCvr.IN_AutoSpeed	:= 20.0;
+			_OutCvr.IN_AutoCnd		:= MC_InputOutput.Network.Machine.Status.MachineRunning;
+			_OutCvr.IN_AutoSpeed	:= 10.0;
 			
 			IF NOT VAR_MNM_ConveyorClean THEN
 				VAR_MNM_OutletConveyorSeq_VFD	:= MNM_OutCvrIdle;

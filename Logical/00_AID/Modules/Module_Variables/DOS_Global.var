@@ -1,3 +1,12 @@
+VAR RETAIN
+	VAR_DOS_SeqPermanent : SEQ_Permanent_Type; (*v999hema*)
+	VAR_DOS_CamPermanent : SEQ_Permanent_Type;
+	VAR_DOS_MotPermanent : SEQ_Permanent_Type;
+END_VAR
 VAR
 	DOS : DOS_Type;
+END_VAR
+VAR RETAIN
+	Delta_205MEF : REAL;
+	Delta_206MEF : REAL;
 END_VAR

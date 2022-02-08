@@ -20,8 +20,12 @@ TYPE
 		CapPositioningReq : BOOL; (*V4.A.A.1.7.0*)
 		MachineStop : BOOL; (*V4.A.A.1.7.0*)
 		SkfTargetPosition : REAL;
+		StartCopAfterChangeOver : BOOL; (*v999 cop test*)
+		CopDuringChangeFormatReq : BOOL; (*v999 cop test*)
 		CapperPositionUncoupled : BOOL; (*MASTER NUovo*)
 		FlrToMaxMechanicalHeightDone : BOOL; (*MASTER NUovo*)
+		FlrCipPositionHeightDone : BOOL;
+		FlrAndCamHeightControlOk : BOOL; (*v999*)
 		FlrPrdPositionHeightDone : BOOL; (*MASTER NUovo*)
 	END_STRUCT;
 END_TYPE
@@ -60,6 +64,8 @@ TYPE
 		CSR_SizeChangeHeightDone := 220,
 		CSR_SizeChangeProdHeightRequ := 222,
 		CSR_SizeChangeProdHeightDone := 240,
+		CSR_SizeChangeCipHeightRequ := 260,
+		CSR_SizeChangeCipHeightDone := 262,
 		CSR_ManualWaitSafetyEnable := 605,
 		CSR_ManualMode := 606,
 		CSR_ManualModeTank := 610,

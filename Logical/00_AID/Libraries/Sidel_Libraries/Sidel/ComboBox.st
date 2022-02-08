@@ -1,6 +1,6 @@
 FUNCTION ComboBoxString
 	OUT_ComboString := '';
-	FOR VAR_ElementsIndex := 0 TO 16 DO
+	FOR VAR_ElementsIndex := 0 TO 19 DO
 		IF IN_ElementsStructure[VAR_ElementsIndex].Present THEN
 			itoa(USINT_TO_DINT(VAR_ElementsIndex), ADR(VAR_StrIndex));
 			VAR_StrComma 		:= ',';

@@ -43,7 +43,7 @@ PROGRAM _INIT
 		fbMpComLinkToParent_Pwr02 		(ParentLink := fbMpComLinkToParent_Spare.LinkOut,	MpLink := ADR(gMasterPwr02Link));
 	END_IF
 	
-  	(**********************************)
+	(**********************************)
 	(* Init of Link on Filler Module  *)
 	(**********************************)
 	fbMpComLinkToParent_AlarmXFiller(ParentLink := fbMpComLinkToParent_Filler.LinkOut,	MpLink := ADR(gFillerAlarmXCoreLink));
@@ -284,8 +284,6 @@ PROGRAM _INIT
 	ELSE
 		fbMpComLinkToParent_OutOutlet04 (ParentLink := fbMpComLinkToParent_Spare.LinkOut,	MpLink := ADR(gOutOutlet04Link));
 	END_IF
-	
-	
 END_PROGRAM	
 	
 PROGRAM _CYCLIC

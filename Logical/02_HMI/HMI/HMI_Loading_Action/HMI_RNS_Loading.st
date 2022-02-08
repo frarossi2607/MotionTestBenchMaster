@@ -2,7 +2,7 @@ ACTION HMI_RNS_Loading:
 	HMI_RNS_PB;
 	HMI_RNS_SS2P;
 	HMI_RNS_SS3P;
-	HMI_RNS_State;
+//	HMI_RNS_State;
 	
 	HMI_202DSB;
 	
@@ -17,7 +17,7 @@ ACTION HMI_RNS_Loading:
 	HMI_296CPB_I;//V4.A.A.1.7.0
 	HMI_297CPB_I;//V4.A.A.1.7.0
 	
-//	HMI_RNS_NozzleData;//V4.A.A.1.7.0
+	HMI_RNS_NozzleData;//V4.A.A.1.7.0
 	HMI_RNS_ManualSelection;//V4.A.A.1.7.0
 	HMI_RNS_TypeCFG;//V4.A.A.1.7.0
 	HMI_RNS_MultiChoiceMng;//V4.A.A.1.7.0

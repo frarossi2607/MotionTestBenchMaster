@@ -2,10 +2,28 @@ VAR
 	HMI_204PSF : HMI_DI_Type;
 	HMI_204EVF : HMI_Valve_Type;
 	HMI_201PTF : HMI_Analog_IN_Type;
+	HMI_205PTF : HMI_Analog_IN_Type;
+	HMI_206PTF : HMI_Analog_IN_Type;
 	HMI_204PTF : HMI_Analog_IN_Type;
+	HMI_201QTB : HMI_Analog_IN_Type; (*Basement Air Control - CO2 Sensor //v1.7.4*)
+	HMI_201QTB_Warning : HMI_DI_Type; (*Basement Air Control - CO2 Sensor Warning//v1.7.4*)
+	HMI_201QTB_Alarm : HMI_DI_Type; (*Basement Air Control - CO2 Sensor //v1.7.4*)
+	HMI_201QTE : HMI_Analog_IN_Type; (*Filler Air Control - CO2 Sensor //v1.7.4*)
+	HMI_201QTE_Warning : HMI_DI_Type; (*Filler Air Control - CO2 Sensor Warning//v1.7.4*)
+	HMI_201QTE_Alarm : HMI_DI_Type; (*Filler Air Control - Ozozne Sensor Alarm//v1.7.4*)
+	HMI_202QTB : HMI_Analog_IN_Type; (*Basement Air Control - CO2 Sensor //v1.7.4*)
+	HMI_202QTB_Warning : HMI_DI_Type; (*Basement Air Control - Ozozne Sensor Warning//v1.7.4*)
+	HMI_202QTB_Alarm : HMI_DI_Type; (*Basement Air Control - Ozozne Sensor Alarm//v1.7.4*)
+	HMI_202QTE : HMI_Analog_IN_Type; (*Filler Air Control - Ozozne Sensor Alarm//v1.7.4*)
+	HMI_202QTE_Warning : HMI_DI_Type; (*Filler Air Control - Ozozne Sensor Warning//v1.7.4*)
+	HMI_202QTE_Alarm : HMI_DI_Type; (*Filler Air Control - Ozozne Sensor Alarm//v1.7.4*)
 	HMI_217DSR : HMI_DI_Type; (*V4.A.A.1.6.12h*)
 	HMI_296CPB_I : HMI_DI_Type; (*V4.A.A.1.7.0 Rinser Bypass control*)
 	HMI_297CPB_I : HMI_DI_Type; (*V4.A.A.1.7.0 Rinser Bypass control*)
+	HMI_224DSB : HMI_DI_Type; (*Doser Bypass control*)
+	HMI_225DSB : HMI_DI_Type; (*Doser Bypass control*)
+	HMI_226DSB : HMI_DI_Type; (*Doser Bypass control*)
+	HMI_227DSB : HMI_DI_Type; (*Doser Bypass control*)
 	HMI_Beacon : HMI_Beacon_Type;
 	HMI_BeaconHome : ARRAY[0..1] OF HMI_BeaconHome_Type; (*Reserved Home Page HMI V4.A.A.1.6.8*)
 	HMI_GNS_LadderRestPosition : BOOL;

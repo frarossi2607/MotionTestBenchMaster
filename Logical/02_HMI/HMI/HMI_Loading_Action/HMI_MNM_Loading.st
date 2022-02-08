@@ -37,4 +37,7 @@ ACTION HMI_MNM_Loading:
 	
 	//V4.A.A.1.7.0
 	HMI_MNM_CamName;
+	
+	HMI_MNM_NumOfDmcInTangentSector1;
+	HMI_MNM_NumOfDmcInTangentSector2;
 END_ACTION

@@ -10,7 +10,10 @@ ACTION HMI_OPS_Loading:
 	HMI_OPS_EmergencyLabeller;
 	HMI_OPS_EmergencyConveyor;
 	HMI_OPS_EmergencyNitrodoser;
+	HMI_OPS_EmergencyCapsFeeder;
+	HMI_OPS_EmergencyCrownFeeder;
 	HMI_OPS_Jog;
+	HMI_OPS_JogFwExt;//vrma106
 	HMI_OPS_ModeSelectorAdjustment;
 	HMI_OPS_ModeSelectorJog; //V4.A.A.1.6.13
 	HMI_OPS_ModeSelectorAuto; //V4.A.A.1.6.13

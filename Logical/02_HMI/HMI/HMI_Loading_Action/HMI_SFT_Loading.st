@@ -5,8 +5,6 @@ ACTION HMI_SFT_Loading:
 	
 	//VALVES
 	HMI_207CPB; //V4.A.A.1.6.11
-	HMI_214CPB;
-	HMI_205EVB;
 	
 	//COUNTERS
 	HMI_StepAcquisition;
@@ -23,17 +21,20 @@ ACTION HMI_SFT_Loading:
 	HMI_204DSF;
 	HMI_207DSF;
 	HMI_208DSF;
-	
+	HMI_204DSB; //v999hema
+	HMI_205DSB; //v999hema
 	HMI_201CPB;
-	
+	//Auto DMC
+	HMI_ProductionSensorCheck1;
+	HMI_ProductionSensorCheck2;
+	HMI_ProductionSensorCheck3;
+
 	//Bottle Burst
 	HMI_SFT_BurstData;
 	
-	// Sampling Mold //V1.61
-	HMI_SFT_SamplingMold;
-	//Pyrometer //V1.61
-	HMI_TTBottomBottleDetection;//V1.61
-	
 	HMI_298DSB;//V4.A.A.1.7.0
 	HMI_299DSB;//V4.A.A.1.7.0
+	
+	HMI_SFT_NumberOfDummyInError;
+	HMI_SFT_NumberOfDmcInPosCheck;
 END_ACTION

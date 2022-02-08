@@ -16,17 +16,30 @@ VAR CONSTANT
 	SS2P_CAP_BufferSafety : USINT := 4;
 	SS2P_CAP_CapsReleaseSafety : USINT := 5;
 	SS2P_CAP_ChannelSafety : USINT := 6;
+	SS2P_CAP_InfeedBufferEmptying : USINT := 8;
 	SS2P_CAP_CompleteEmptying : USINT := 9;
-	SS2P_CAP_ChannelEmptying : USINT := 8;
+	SS2P_CAP_GreasingCycle : USINT := 10;
+	SS2P_CAP_SizeChangeCmd : USINT := 11;
+	SS2P_CAP_EquaRotationCmd : USINT := 12; (*v1.7.4a*)
+	SS2P_CAP_StartCalibrationCmd : USINT := 13;
+	SS2P_CAP_ZeroEncoderCmd : USINT := 14;
+	SS2P_CAP_DataStoreCmd : USINT := 15;
+	SS2P_CAP_HRMRotationCmd : USINT := 16; (*v1.7.4a*)
+	SS2P_SikoChangeGuideAutoMan : USINT := 17; (*V4.A.A.1.6.12*)
+	SS2P_CAP_BufferAdjustManual : USINT := 18; (*V4.A.A.1.6.11*)
+	SS2P_CAP_BufferAdjustToTarget : USINT := 19; (*V1.7.4*)
+	SS2P_CAP_GreasingCycle_Pump2 : USINT := 20; (*v1.7.5*)
 END_VAR
 (*CRW*)
 VAR CONSTANT
+	SS2P_CRW_CrownsReleaseSafety : USINT := 5;
 	SS2P_CRW_ChannelSafety : USINT := 6;
 	SS2P_CRW_ChannelEmptying : USINT := 8;
 END_VAR
 (*CO*)
 VAR CONSTANT
 	SS2P_APCO_ON : USINT := 0;
+	SS2P_APCO_PrcChRcp : USINT := 1; (*V4.A.A.1.6.12*)
 END_VAR
 (*COP*)
 VAR CONSTANT
@@ -36,12 +49,28 @@ VAR CONSTANT
 	SS2P_COP_Priming : USINT := 4;
 	SS2P_COP_ExtCleaning : USINT := 7;
 	SS2P_COP_Satellites : USINT := 9;
+	SS2P_COP_DmcManual : USINT := 10; (*V4.A.A.1.7.0*)
+	SS2P_COP_WashInProduction : USINT := 11; (*vrmaWIP*)
 END_VAR
 (*CSR*)
 VAR CONSTANT
 	SS2P_CSR_ManualTank : USINT := 1;
 	SS2P_CSR_ManualCamma : USINT := 2;
+	SS2P_CSR_ManualRns : USINT := 3;
+	SS2P_CSR_ManualCrw : USINT := 4;
 	SS2P_CSR_SectorUnlock : USINT := 5;
+	SS2P_CSR_ManualCap : USINT := 6; (*master Nuovo*)
+	SS2P_CSR_ConveyorEnable : USINT := 7; (*V4.A.A.1.6.12*)
+	SS2P_CSR_ConveyorGuideEnable : USINT := 8; (*V4.A.A.1.6.12*)
+	SS2P_CSR_ConveyorGuideSelection : USINT := 9; (*V4.A.A.1.6.12*)
+	SS2P_CSR_ConveyorSelection : USINT := 10; (*V4.A.A.1.6.12*)
+END_VAR
+(*RNS*)
+VAR
+	SS2P_RNS_InsControl : {REDUND_UNREPLICABLE} USINT := 5; (*V4.A.A.1.7.0*)
+	SS2P_RNS_ContControl : {REDUND_UNREPLICABLE} USINT := 6; (*V4.A.A.1.7.0*)
+	SS2P_RNS_Bypass : {REDUND_UNREPLICABLE} USINT := 7; (*V4.A.A.1.7.0*)
+	SS2P_RNS_EnableCip : {REDUND_UNREPLICABLE} USINT := 8; (*V4.A.A.1.7.0*)
 END_VAR
 (*HMI*)
 VAR CONSTANT
@@ -56,6 +85,13 @@ END_VAR
 (*MAU Dummy Containers*)
 VAR CONSTANT
 	SS2P_DumCon_ManualTest : USINT := 0;
+	SS2P_DumCon_DiscargeAir : USINT := 1;
+	SS2P_DumCon_ManualMode : USINT := 2;
+END_VAR
+(*MAU Container Chloride Water Washing*)
+VAR CONSTANT
+	SS2P_HMI_ChlDioxineEnable : USINT := 1;
+	SS2P_HMI_MaxCounter : USINT := 2;
 END_VAR
 (*MAU White room*)
 VAR CONSTANT
@@ -66,15 +102,22 @@ VAR CONSTANT
 	SS2P_OPT_VbcEnable : USINT := 0;
 	SS2P_OPT_FciEnable : USINT := 1;
 	SS2P_OPT_CoderEnable : USINT := 2;
+	SS2P_OPT_StopForBurstInspection : USINT := 3;
 	SS2P_OPT_IntelliChangeOverEnable : USINT := 9;
 	SS2P_OPT_CvoSlowDown : USINT := 10;
 	SS2P_OPT_FerrumGasEnable : USINT := 15;
+	SS2P_OPT_DoubleInletDoubleBlock : USINT := 16;
 END_VAR
 (*SFT*)
 VAR CONSTANT
 	SS2P_SFT_StepCounter : USINT := 5;
+	SS2P_SFT_BlowerCountingEn : USINT := 6; (*v1.4*)
+	SS2P_SFT_BottleEjectorManualTest : USINT := 7; (*v1.63*)
+	SS2P_SFT_BlowerSamplingEnable : USINT := 8; (*v1.63*)
+	SS2P_SFT_PreformManualLoading : USINT := 9; (*v1.6*)
 	SS2P_SFT_SamplingMode : USINT := 10;
 	SS2P_SFT_SamplingNoFill : USINT := 11;
+	SS2P_SFT_BlowerSamplingEnable : USINT := 8; (*V4.A.A.1.6.12*)
 	SS2P_SFT_SamplingNoCap : USINT := 12;
 	SS2P_SFT_InletContBlock1_ManTest : USINT := 15;
 	SS2P_SFT_InletContBlock2_ManTest : USINT := 16;
@@ -87,4 +130,42 @@ VAR CONSTANT
 	SS2P_SMR_TestOp1 : USINT := 10;
 	SS2P_SMR_RoofOpening : USINT := 11;
 	SS2P_SMR_GasManualMode : USINT := 12;
+END_VAR
+(*TNK*)
+VAR CONSTANT
+	SS2P_TNK_ModeCIP : USINT := 0;
+	SS2P_TNK_ModeDrain : USINT := 1;
+	SS2P_TNK_ModeRinse : USINT := 2;
+	SS2P_TNK_ModeProdFast : USINT := 3; (*Production Start Up (Heating With Product)*)
+	SS2P_TNK_ModeProdStill : USINT := 4;
+	SS2P_TNK_ModeProdFlooding : USINT := 5;
+	SS2P_TNK_ModeProdFlushing : USINT := 6;
+	SS2P_TNK_ModeProdHeatingDB : USINT := 7; (*Heating With Dummy Bottles*)
+	SS2P_TNK_ModeProdHeatingWater : USINT := 8; (*Heating With Water*)
+	SS2P_TNK_ModeRinseQuick : USINT := 9;
+	SS2P_TNK_ModeRinseFast : USINT := 10;
+	SS2P_TNK_PrimingTray : USINT := 11; (*Priming Tray In/Out*)
+	SS2P_TNK_TanksDrain : USINT := 12; (*Product and Recircolation Tanks Drain*)
+	SS2P_TNK_RingTankDrain : USINT := 13; (*Ring Tank Drain*)
+	SS2P_TNK_PushBack : USINT := 14; (*PushBack In/Out*)
+END_VAR
+(*OPS Automatic Inlet Gate*)
+VAR CONSTANT
+	SS2P_OPS_InletGateManTest : USINT := 0; (*V4.A.A.1.6.12h*)
+	SS2P_OPS_InletGateCommand : USINT := 1; (*V4.A.A.1.6.12h*)
+END_VAR
+(*v999hema*)
+VAR CONSTANT
+	SS2P_DOS_ModeCip : USINT := 0;
+	SS2P_DOS_ModeDrain : USINT := 1;
+	SS2P_DOS_ModeRinse : USINT := 2;
+	SS2P_DOS_ModeProdFast : USINT := 3;
+	SS2P_DOS_ModeQuickRinse : USINT := 4;
+	SS2P_DOS_ModeFastRinse : USINT := 5;
+	SS2P_DOS_SelLiftMan : USINT := 6;
+	SS2P_DOS_ManualMMF205 : USINT := 7;
+	SS2P_DOS_ManualMMF206 : USINT := 8;
+	SS2P_DOS_ProbeAdjustment : USINT := 9;
+	SS2P_DOS_CamDosByPass : USINT := 10;
+	SS2P_DOS_CamDosInclusion : USINT := 11;
 END_VAR

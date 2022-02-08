@@ -7,12 +7,17 @@ TYPE
 	GNS_DataOut_Type : 	STRUCT 
 		AuxiliaryOn : BOOL;
 		FillerAirCarousel : BOOL;
-		ContainerStop : BOOL; (*//1.63*)
-		RnsCtrlDevInserted : BOOL; (*V4.A.A.1.7.0*)
-		RnsByPassed : BOOL; (*V4.A.A.1.7.0*)
-		RnsByPassConfigured : BOOL; (*V4.A.A.1.7.0*)
-		RnsByPassAlarm : BOOL; (*V4.A.A.1.7.0*)
-		RnsCtrlPistonAlarm : BOOL; (*V4.A.A.1.7.0*)
+		ContainerStop : BOOL;
+		RnsCtrlDevInserted : BOOL;
+		RnsByPassed : BOOL; (*Not used in Glass Machine*)
+		RnsByPassConfigured : BOOL; (*Not used in Glass Machine*)
+		RnsByPassAlarm : BOOL; (*Not used in Glass Machine*)
+		RnsCtrlPistonAlarm : BOOL;
+		DosIncluded : BOOL; (*v999hema*)
+		DosByPassed : BOOL; (*v999hema*)
+		DosByPassConfigured : BOOL; (*v999hema*)
+		DosByPassAlarm : BOOL; (*v999hema*)
+		DmcCircuitPressureOk : BOOL; (*V4.A.A.1.7.0*)
 		TestBeacon : GNS_TestBeacon_Type;
 	END_STRUCT;
 	GNS_TestBeacon_Type : 	STRUCT 

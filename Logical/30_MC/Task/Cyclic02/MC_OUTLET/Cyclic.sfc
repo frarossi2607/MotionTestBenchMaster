@@ -28,6 +28,8 @@ IF VAR_AxOutletMain.nc_obj_inf.node_nr <> 0 THEN
 	fbOutletMaster.i_xThirdPartyMotor					:= FALSE;			
 	fbOutletMaster.i_pAxisADR 							:= ADR(VAR_AxOutletModuleMaster);
 	fbOutletMaster.i_pAxisMpLink						:= ADR(gOutletModuleMasterLink);
+	fbOutletMaster.i_pSecondaryAxisADR					:= 0;
+	fbOutletMaster.i_pSecondaryAxisMpLink				:= 0;
 	fbOutletMaster.i_pstCmd								:= ADR(stOutletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd);
 	fbOutletMaster.i_pstParameter						:= ADR(stOutletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam);
 	fbOutletMaster.i_pstStatus							:= ADR(stOutletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus);
@@ -61,6 +63,8 @@ IF VAR_AxOutletMain.nc_obj_inf.node_nr <> 0 THEN
 	fbMain.i_strParTabName				:= 'OuMain';
 	fbMain.i_pAxisADR 					:= ADR(VAR_AxOutletMain);
 	fbMain.i_pAxisMpLink				:= ADR(gOutletMainLink);
+	fbMain.i_pSecondaryAxisADR			:= 0;
+	fbMain.i_pSecondaryAxisMpLink		:= 0;
 	fbMain.i_pstCmd						:= ADR(stOutletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd);
 	fbMain.i_pstParameter				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam);
 	fbMain.i_pstStatus					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus);
@@ -104,6 +108,8 @@ IF VAR_AxOutletIn01.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet01.i_strParTabName			:= 'OuIn01';
 	fbInlet01.i_pAxisADR 				:= ADR(VAR_AxOutletIn01);
 	fbInlet01.i_pAxisMpLink				:= ADR(gOutInlet01Link);
+	fbInlet01.i_pSecondaryAxisADR		:= 0;
+	fbInlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet01.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stCmd);
 	fbInlet01.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam);
 	fbInlet01.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus);
@@ -149,6 +155,8 @@ IF VAR_AxOutletIn02.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet02.i_strParTabName			:= 'OuIn02';
 	fbInlet02.i_pAxisADR 				:= ADR(VAR_AxOutletIn02);
 	fbInlet02.i_pAxisMpLink				:= ADR(gOutInlet02Link);
+	fbInlet02.i_pSecondaryAxisADR		:= 0;
+	fbInlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet02.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stCmd);
 	fbInlet02.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam);
 	fbInlet02.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus);
@@ -194,6 +202,8 @@ IF VAR_AxOutletIn03.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet03.i_strParTabName			:= 'OuIn03';
 	fbInlet03.i_pAxisADR 				:= ADR(VAR_AxOutletIn03);
 	fbInlet03.i_pAxisMpLink				:= ADR(gOutInlet03Link);
+	fbInlet03.i_pSecondaryAxisADR		:= 0;
+	fbInlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet03.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stCmd);
 	fbInlet03.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam);
 	fbInlet03.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus);
@@ -239,6 +249,8 @@ IF VAR_AxOutletIn04.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet04.i_strParTabName			:= 'OuIn04';
 	fbInlet04.i_pAxisADR 				:= ADR(VAR_AxOutletIn04);
 	fbInlet04.i_pAxisMpLink				:= ADR(gOutInlet04Link);
+	fbInlet04.i_pSecondaryAxisADR		:= 0;
+	fbInlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet04.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stCmd);
 	fbInlet04.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam);
 	fbInlet04.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus);
@@ -285,6 +297,8 @@ IF VAR_AxOutletOut01.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet01.i_strParTabName			:= 'OuOu01';
 	fbOutlet01.i_pAxisADR 				:= ADR(VAR_AxOutletOut01);;
 	fbOutlet01.i_pAxisMpLink			:= ADR(gOutOutlet01Link);
+	fbOutlet01.i_pSecondaryAxisADR		:= 0;
+	fbOutlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet01.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stCmd);
 	fbOutlet01.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam);
 	fbOutlet01.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus);
@@ -332,6 +346,8 @@ IF VAR_AxOutletOut02.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet02.i_strParTabName			:= 'OuOu02';
 	fbOutlet02.i_pAxisADR 				:= ADR(VAR_AxOutletOut02);
 	fbOutlet02.i_pAxisMpLink			:= ADR(gOutOutlet02Link);
+	fbOutlet02.i_pSecondaryAxisADR		:= 0;
+	fbOutlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet02.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stCmd);
 	fbOutlet02.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam);
 	fbOutlet02.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus);
@@ -377,6 +393,8 @@ IF VAR_AxOutletOut03.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet03.i_strParTabName			:= 'OuOu03';
 	fbOutlet03.i_pAxisADR 				:= ADR(VAR_AxOutletOut03);
 	fbOutlet03.i_pAxisMpLink			:= ADR(gOutOutlet03Link);
+	fbOutlet03.i_pSecondaryAxisADR		:= 0;
+	fbOutlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet03.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stCmd);
 	fbOutlet03.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam);
 	fbOutlet03.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus);
@@ -422,6 +440,8 @@ IF VAR_AxOutletOut04.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet04.i_strParTabName			:= 'OuOu04';
 	fbOutlet04.i_pAxisADR 				:= ADR(VAR_AxOutletOut04);
 	fbOutlet04.i_pAxisMpLink			:= ADR(gOutOutlet04Link);
+	fbOutlet04.i_pSecondaryAxisADR		:= 0;
+	fbOutlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet04.i_pstCmd					:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stCmd);
 	fbOutlet04.i_pstParameter			:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam);
 	fbOutlet04.i_pstStatus				:= ADR(stOutletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus);

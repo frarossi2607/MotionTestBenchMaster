@@ -4,13 +4,14 @@ VAR
 END_VAR
 (*DRIVERS*)
 VAR
-	IO_VFD_PPB : ARRAY[MIN_CFG_VFD_PPx..MAX_CFG_VFD_PPx] OF IO_PLK_Danfoss_Drive_Type;
+	IO_VFD_PPB : ARRAY[MIN_CFG_VFD_PPx..MAX_CFG_VFD_PPx] OF IO_PLK_DanfossFC280_Drive_Type;
 END_VAR
 (*VALVES*)
 VAR
 	IO_AVB : ARRAY[MIN_CFG_AVx..MAX_CFG_AVx] OF IO_Valve_Type;
 	IO_HVB : ARRAY[MIN_CFG_HVx..MAX_CFG_HVx] OF IO_Valve_Type; (*V4.A.A.1.6.12*)
-	IO_206CPB : IO_Valve_Type; (*Moovable Rinser Spray Control  V4.A.A.1.7.0*)
+	IO_EVB : ARRAY[MIN_CFG_EVx..MAX_CFG_EVx] OF IO_Valve_Type; (*v1.7.4*)
+	IO_206CPB : IO_Valve_Type; (*Moovable Spray Control  V4.A.A.1.7.0*)
 	IO_296CPB : IO_Valve_Type; (*Moovable Cam ByPass Outlet Starwheel V4.A.A.1.7.0*)
 	IO_297CPB : IO_Valve_Type; (*Moovable Cam ByPass Inlet Starwheel V4.A.A.1.7.0*)
 	IO_298CPB : IO_Valve_Type; (*Moovable ByPass Starwheel Outlet Cam V4.A.A.1.7.0*)
@@ -22,17 +23,18 @@ VAR
 	IO_LSB : ARRAY[MIN_CFG_LSx..MAX_CFG_LSx] OF IO_Digital_IN_Type;
 	IO_HSB : ARRAY[MIN_CFG_HSx..MAX_CFG_HSx] OF IO_Digital_IN_Type; (*V4.A.A.1.6.12*)
 	IO_PSB : ARRAY[MIN_CFG_PSx..MAX_CFG_PSx] OF IO_Digital_IN_Type; (*V4.A.A.1.7.0*)
+	IO_QSB : ARRAY[MIN_CFG_QSx..MAX_CFG_QSx] OF IO_Digital_IN_Type; (*v1.7.4*)
 	IO_298DSB : IO_Digital_IN_Type; (*V4.A.A.1.7.0*)
 	IO_299DSB : IO_Digital_IN_Type; (*V4.A.A.1.7.0*)
 END_VAR
 (*INSTRUMENTS*)
 VAR
-	IO_LTB : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF IO_Analog_IN_Type; (*VRMA*)
-	IO_FTB : ARRAY[MIN_CFG_TTx..MAX_CFG_TTx] OF IO_Analog_IN_Type;
+	IO_FTB : ARRAY[MIN_CFG_FTx..MAX_CFG_FTx] OF IO_Analog_IN_Type; (*v1.7.4*)
 	IO_TTB : ARRAY[MIN_CFG_TTx..MAX_CFG_TTx] OF IO_Analog_IN_Type;
 	IO_CTB : ARRAY[MIN_CFG_CTx..MAX_CFG_CTx] OF IO_Analog_IN_Type;
-	IO_PTB : ARRAY[MIN_CFG_CTx..MAX_CFG_CTx] OF IO_Analog_IN_Type;
-	IO_QTB : ARRAY[MIN_CFG_QTx..MAX_CFG_QTx] OF IO_Analog_IN_Type;
+	IO_PTB : ARRAY[MIN_CFG_PTx..MAX_CFG_PTx] OF IO_Analog_IN_Type; (*v1.7.4*)
+	IO_LTB : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF IO_Analog_IN_Type; (*v1.7.4*)
+	IO_QTB : ARRAY[MIN_CFG_QTx..MAX_CFG_QTx] OF IO_Analog_IN_Type; (*v1.7.4*)
 END_VAR
 (*MODULATING VALVES*)
 VAR

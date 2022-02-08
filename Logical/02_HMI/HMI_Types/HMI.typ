@@ -36,6 +36,14 @@ TYPE
 		Preset : REAL; (*Preset Value*)
 		Actual : REAL; (*Actual value*)
 	END_STRUCT;
+	Data_Type : 	STRUCT  (*v1.7.4a*)
+		Visibility : BOOL;
+		StringLineNameVisibility : BOOL; (*0=Fix text displayed-1= String displayed*)
+		DataValueVisibility : BOOL; (*0=String displayed-1= Numeric value displayed*)
+		LineName : STRING[100]; (*Line Name*)
+		DataText : STRING[100]; (*Data Text in Case of String*)
+		DataValue : REAL; (*Data Value in Case of Numeric*)
+	END_STRUCT;
 	HMI_CounterHome_Type : 	STRUCT  (*V4.A.A.1.6.8*)
 		SS2P : SS2P_Type;
 		CounterValue : ARRAY[0..1]OF UDINT;

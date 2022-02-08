@@ -1,7 +1,7 @@
 (*HMI_PAT_1 Initialization Action for Filler PLC*)
 (*Author = ????*)
 (*DB Version : 0.00*)
-(*File Version : 2.88*)
+(*File Version : 3,17*)
 
 ACTION HMI_PAT_1_Init :
         HMI_PAT_1._010 := 0;

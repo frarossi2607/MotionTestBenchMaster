@@ -6,13 +6,6 @@ TYPE
 		AI_Raw : INT;
 		Valve : IO_Valve_Type;
 	END_STRUCT;
-	IO_ValveMac_Type : 	STRUCT 
-		DI_PowerSupplyPhyChannelOk : BOOL;
-		DI_Opened : BOOL; (*DI Valve Open - Feedback*)
-		DI_Closed : BOOL; (*DI Valve Close - Feedback*)
-		DO_Opened : BOOL; (*DO Valve Open*)
-		DO_Closed : BOOL; (*DO Valve Close*)
-	END_STRUCT;
 	IO_Valve_Type : 	STRUCT 
 		DI_Opened : BOOL; (*DI Valve Open - Feedback*)
 		DI_Closed : BOOL; (*DI Valve Close - Feedback*)
@@ -51,15 +44,6 @@ TYPE
 		DI_OverloadOK : BOOL := TRUE; (*Not present in case of UL*)
 		DO_MotorON : BOOL; (*Start*)
 		DO_ShuntTrip : BOOL; (*Thermal Protection Forced Trip*)
-	END_STRUCT;
-	IO_UVtronic_Type : 	STRUCT  (*Henovia UV control*)
-		DI_SafetyEnable : BOOL; (*Safety Enable from IOMapping*)
-		DI_Ready : BOOL;
-		DI_Alarm : BOOL;
-		DI_GeneralFault : BOOL;
-		DI_ContactorFBK : BOOL; (*Contactor Feed-Back *)
-		DI_OverloadOK : BOOL := TRUE; (*Not present in case of UL*)
-		DO_MotorON : BOOL; (*Start*)
 	END_STRUCT;
 	IO_PLK_DanfossFC280_Drive_Type : 	STRUCT  (*Powerlink Danfoss VLT Interface*)
 		Input : IO_PLK_DanfossFC280_IN;
@@ -128,6 +112,7 @@ TYPE
 		DI_PressurizerON : BOOL; (*Pressurizzer ON*)
 		DI_PrefilterAlarm : BOOL; (*Pressurizzer prefilter clogged*)
 		DI_AbsoluteFilterAlarm : BOOL; (*Pressurizzer absolute filter clogged*)
+		DI_OverloadOK : BOOL := TRUE; (*//v1.7.4*)
 	END_STRUCT;
 	IO_MotionFan_Type : 	STRUCT 
 		DI_ManSwitchON : BOOL := TRUE;

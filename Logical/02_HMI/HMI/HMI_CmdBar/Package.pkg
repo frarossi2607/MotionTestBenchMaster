@@ -2,8 +2,6 @@
 <?AutomationStudio Version=4.2.12.129 SP?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="Package">PET</Object>
-    <Object Type="Package">CAN</Object>
     <Object Type="Package">GLASS</Object>
   </Objects>
 </Package>

@@ -28,6 +28,8 @@ IF VAR_AxInletMain.nc_obj_inf.node_nr <> 0 THEN
 	fbInletMaster.i_xThirdPartyMotor				:= FALSE;			
 	fbInletMaster.i_pAxisADR 						:= ADR(VAR_AxInletModuleMaster);
 	fbInletMaster.i_pAxisMpLink						:= ADR(gInletModuleMasterLink);
+	fbInletMaster.i_pSecondaryAxisADR				:= 0;
+	fbInletMaster.i_pSecondaryAxisMpLink			:= 0;
 	fbInletMaster.i_pstCmd							:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stCmd);
 	fbInletMaster.i_pstParameter					:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stParam);
 	fbInletMaster.i_pstStatus						:= ADR(stInletModule.iq_astSubModuleAxis[CST_ModuleMasterAxis].iq_stStatus);
@@ -61,6 +63,8 @@ IF VAR_AxInletMain.nc_obj_inf.node_nr <> 0 THEN
 	fbMain.i_strParTabName				:= 'InMain';
 	fbMain.i_pAxisADR 					:= ADR(VAR_AxInletMain);
 	fbMain.i_pAxisMpLink				:= ADR(gInletMainLink);
+	fbMain.i_pSecondaryAxisADR			:= 0;
+	fbMain.i_pSecondaryAxisMpLink		:= 0;
 	fbMain.i_pstCmd						:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stCmd);
 	fbMain.i_pstParameter				:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stParam);
 	fbMain.i_pstStatus					:= ADR(stInletModule.iq_astSubModuleAxis[CST_MainAxis].iq_stStatus);
@@ -104,6 +108,8 @@ IF VAR_AxInletIn01.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet01.i_strParTabName			:= 'InIn01';
 	fbInlet01.i_pAxisADR 				:= ADR(VAR_AxInletIn01);
 	fbInlet01.i_pAxisMpLink				:= ADR(gInInlet01Link);
+	fbInlet01.i_pSecondaryAxisADR		:= 0;
+	fbInlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet01.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stCmd);
 	fbInlet01.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stParam);
 	fbInlet01.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet01].iq_stStatus);
@@ -149,6 +155,8 @@ IF VAR_AxInletIn02.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet02.i_strParTabName			:= 'InIn02';
 	fbInlet02.i_pAxisADR 				:= ADR(VAR_AxInletIn02);
 	fbInlet02.i_pAxisMpLink				:= ADR(gInInlet02Link);
+	fbInlet02.i_pSecondaryAxisADR		:= 0;
+	fbInlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet02.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stCmd);
 	fbInlet02.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stParam);
 	fbInlet02.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet02].iq_stStatus);
@@ -194,6 +202,8 @@ IF VAR_AxInletIn03.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet03.i_strParTabName			:= 'InIn03';
 	fbInlet03.i_pAxisADR 				:= ADR(VAR_AxInletIn03);
 	fbInlet03.i_pAxisMpLink				:= ADR(gInInlet03Link);
+	fbInlet03.i_pSecondaryAxisADR		:= 0;
+	fbInlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet03.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stCmd);
 	fbInlet03.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stParam);
 	fbInlet03.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet03].iq_stStatus);
@@ -239,6 +249,8 @@ IF VAR_AxInletIn04.nc_obj_inf.node_nr <> 0 THEN
 	fbInlet04.i_strParTabName			:= 'InIn04';
 	fbInlet04.i_pAxisADR 				:= ADR(VAR_AxInletIn04);
 	fbInlet04.i_pAxisMpLink				:= ADR(gInInlet04Link);
+	fbInlet04.i_pSecondaryAxisADR		:= 0;
+	fbInlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbInlet04.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stCmd);
 	fbInlet04.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stParam);
 	fbInlet04.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Inlet04].iq_stStatus);
@@ -284,6 +296,8 @@ IF VAR_AxInletOut01.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet01.i_strParTabName			:= 'InOu01';
 	fbOutlet01.i_pAxisADR 				:= ADR(VAR_AxInletOut01);
 	fbOutlet01.i_pAxisMpLink			:= ADR(gInOutlet01Link);
+	fbOutlet01.i_pSecondaryAxisADR		:= 0;
+	fbOutlet01.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet01.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stCmd);
 	fbOutlet01.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stParam);
 	fbOutlet01.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet01].iq_stStatus);
@@ -331,6 +345,8 @@ IF VAR_AxInletOut02.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet02.i_strParTabName			:= 'InOu02';
 	fbOutlet02.i_pAxisADR 				:= ADR(VAR_AxInletOut02);
 	fbOutlet02.i_pAxisMpLink			:= ADR(gInOutlet02Link);
+	fbOutlet02.i_pSecondaryAxisADR		:= 0;
+	fbOutlet02.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet02.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stCmd);
 	fbOutlet02.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stParam);
 	fbOutlet02.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet02].iq_stStatus);
@@ -376,6 +392,8 @@ IF VAR_AxInletOut03.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet03.i_strParTabName			:= 'InOu03';
 	fbOutlet03.i_pAxisADR 				:= ADR(VAR_AxInletOut03);
 	fbOutlet03.i_pAxisMpLink			:= ADR(gInOutlet03Link);
+	fbOutlet03.i_pSecondaryAxisADR		:= 0;
+	fbOutlet03.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet03.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stCmd);
 	fbOutlet03.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stParam);
 	fbOutlet03.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet03].iq_stStatus);
@@ -421,6 +439,8 @@ IF VAR_AxInletOut04.nc_obj_inf.node_nr <> 0 THEN
 	fbOutlet04.i_strParTabName			:= 'InOu04';
 	fbOutlet04.i_pAxisADR 				:= ADR(VAR_AxInletOut04);
 	fbOutlet04.i_pAxisMpLink			:= ADR(gInOutlet04Link);
+	fbOutlet04.i_pSecondaryAxisADR		:= 0;
+	fbOutlet04.i_pSecondaryAxisMpLink	:= 0;
 	fbOutlet04.i_pstCmd					:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stCmd);
 	fbOutlet04.i_pstParameter			:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stParam);
 	fbOutlet04.i_pstStatus				:= ADR(stInletModule.iq_astSubModuleAxis[CST_Outlet04].iq_stStatus);

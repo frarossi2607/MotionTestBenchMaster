@@ -30,7 +30,7 @@ TYPE
 		LabellerTrasferGateOpened : BOOL;
 		BlowerTrasferGateOpened : BOOL;
 		ActisTrasferGateOpened : BOOL; (*V4.A.A.1.6.12*)
-		AutomaticInletGate : BOOL; (*V4.A.A.1.6.12h*)
+		AutomaticInletGate : BOOL; (*Not Used in Glass Machine*)
 		InletGateOpened : BOOL; (*V4.A.A.1.6.12h*)
 		InletGateClosed : BOOL;
 		OutletGateClosed : BOOL;
@@ -39,8 +39,8 @@ TYPE
 		ContainerStop : BOOL; (*//1.63*)
 		ConfigSaveReq : BOOL;
 		FlrLiftingEnabled : BOOL;
-		FillerLiftPw : BOOL;(*maste nuovo*)
-		FillerLiftPwFault : BOOL;(*master nuovo*)
+		FillerLiftPw : BOOL; (*maste nuovo*)
+		FillerLiftPwFault : BOOL; (*master nuovo*)
 		DoorsOpenExceptGloves : BOOL; (*V4.A.A.1.7.0*)
 	END_STRUCT;
 END_TYPE

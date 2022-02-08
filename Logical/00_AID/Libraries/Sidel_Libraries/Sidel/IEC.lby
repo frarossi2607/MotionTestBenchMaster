@@ -28,7 +28,8 @@
     <File>Sequencer.st</File>
     <File>TankLevel.st</File>
     <File>TP_Reset.st</File>
-    <File>FB_Flip.st</File>
+    <File>FB_VFD_DataRead.st</File>
+     <File>FB_Flip.st</File>
     <File>Constant.var</File>
   </Files>
   <Dependencies>

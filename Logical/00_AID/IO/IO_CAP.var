@@ -3,6 +3,7 @@ VAR
 	IO_206MMR : IO_Motor_Type; (*Head rotation motor*)
 	IO_206MMRBrake : IO_Motor_Type; (*Head rotation motor brake*)
 	IO_207MMR : IO_Motor_Type; (*Hopper motor chute 1*)
+	IO_211MMR : IO_Motor_Type; (*Buffer rotation motor2 v1.7.4*)
 	IO_212MMR : IO_Motor_Type; (*Buffer rotation motor*)
 	IO_213MMR : IO_Motor_Type; (*Head rotation motor fun*)
 	IO_214MMR : IO_Motor_Type; (*Hopper motor chute 2*)
@@ -30,8 +31,10 @@ VAR
 	IO_VFD_206MMR : IO_PLK_Danfoss_Drive_Type; (*Head rotation motor*)
 	IO_VFD_207MMR : IO_PLK_Danfoss_Drive_Type; (*Hopper motor chute 1*)
 	IO_VFD_230MMR : IO_PLK_Danfoss_Drive_Type; (*Dust remover motor*)
-	IO_VFD_212MMR : IO_PLK_Danfoss_Drive_Type; (*Buffer rotation motor*)
+	IO_VFD_231MMR : IO_PLK_Danfoss_Drive_Type; (*Dust remover motor2 v1.7.4*)
+	IO_VFD_211MMR : IO_PLK_Danfoss_Drive_Type; (*Buffer rotation motor2 v1.7.4*)
 	IO_VFD_213MMR : IO_PLK_Danfoss_Drive_Type; (*Head rotation motor fun*)
+	IO_VFD_212MMR : IO_PLK_Danfoss_Drive_Type; (*Buffer rotation motor*)
 	IO_VFD_214MMR : IO_PLK_Danfoss_Drive_Type; (*Hopper motor chute 2*)
 	IO_VFD_215MMR : IO_PLK_Danfoss_Drive_Type; (*Hopper motor chute 3*)
 END_VAR
@@ -50,7 +53,7 @@ VAR
 	IO_217CPC : IO_Valve_Type; (*EV 4 size change guide*)
 	IO_218CPC : IO_Valve_Type; (*EV sport size change guide*)
 	IO_219CPC : IO_Valve_Type; (*EV open channel discharge door*)
-	IO_220CPC : IO_Valve_Type; (*EV buffer caps release*)
+	IO_220CPC : IO_Valve_Type; (*FREE v1.7.6*)
 	IO_221CPC : IO_Valve_Type; (*EV chute 3 caps release*)
 	IO_222CPC : IO_Valve_Type; (*EV caps block chute 3*)
 	IO_223CPC : IO_Valve_Type; (*EV buffer vibrator*)
@@ -63,6 +66,10 @@ VAR
 	IO_232CPC : IO_Valve_Type; (*EV opening door UV Lamp B  V. 1.1*)
 	IO_233CPC : IO_Valve_Type; (*EV opening door UV Lamp B  //V4.A.A.1.6.12*)
 	IO_234CPC : IO_Valve_Type; (*EV Caps Ejection Cap Feeder   V4.A.A.1.7.1*)
+	IO_235CPC : IO_Valve_Type; (*EV Caps Block Outlet Chuter2 //v1.7.4*)
+	IO_236CPC : IO_Valve_Type; (*v1.7.4*)
+	IO_237CPC : IO_Valve_Type; (*v1.7.4*)
+	IO_238CPC : IO_Valve_Type; (*v1.7.4*)
 	IO_201EVC : IO_Valve_Type; (*Air blowing for cap release 1 V 1.6*)
 	IO_203EVC : IO_Valve_Type; (*Air blowing for cap release 2 V 1.6*)
 	IO_207EVC : IO_Valve_Type; (*Air blowing for cap release 3 V 1.6*)
@@ -74,7 +81,10 @@ VAR
 	IO_214EVC : IO_Valve_Type; (*Air blowing caps ionizer chute 2*)
 	IO_215EVC : IO_Valve_Type; (*Air blowing caps ionizer chute 3*)
 	IO_216EVC : IO_Valve_Type; (*Air blowing for chute emptying by PeP*)
-	IO_203EVF : IO_Valve_Type; (*Air blowing caps (Drying)*)
+	IO_227EVC : IO_Valve_Type; (*v1.7.4*)
+	IO_228EVC : IO_Valve_Type; (*v1.7.4*)
+	IO_229EVC : IO_Valve_Type; (*v1.7.4*)
+	IO_203EVF : IO_Valve_Type; (*Air blowing caps (Drying)*) (*IO_AVC : ARRAY[MIN_CFG_AVC..MAX_CFG_AVC] OF IO_Valve_Type; Caps Treatment Valves v4.A.A.1.7.0*)
 END_VAR
 (*SENSOR*)
 VAR
@@ -133,6 +143,10 @@ VAR
 	IO_262DSC : IO_Digital_IN_Type; (*Sensore zero encoder //V4.A.A.1.6.11*)
 	IO_263DSC : IO_Digital_IN_Type; (*Sensore limite massimo posizione pannello //V4.A.A.1.6.11*)
 	IO_264DSC : IO_Digital_IN_Type; (*Caps/Crown release check on bottle   //V4.A.A.1.6.12h*)
+	IO_266DSC : IO_Digital_IN_Type; (*Flow Cap Control //v1.7.4*)
+	IO_267DSC : IO_Digital_IN_Type; (*v1.7.5*)
+	IO_268DSC : IO_Digital_IN_Type; (*v1.7.5*)
+	IO_270DSC : IO_Digital_IN_Type; (*Caps Belt Sensor  //v1.7.4*)
 	IO_ST3B : IO_Analog_IN_Type; (*Sensore temperatura motore//V4.A.A.1.6.12*)
 	IO_ST3A : IO_Analog_IN_Type; (*Sensore temperatura motore//V4.A.A.1.6.12*)
 END_VAR
@@ -153,4 +167,5 @@ END_VAR
 VAR
 	IO_CAP_24Vdc_OK : IO_Digital_OUT_Type; (*v1.5*)
 	IO_BottlePresence : IO_Digital_OUT_Type; (*v1.5*)
+	IO_CapsRequest : IO_Digital_OUT_Type; (*v1.7.4 Richiesta capsule all'elevatore*)
 END_VAR

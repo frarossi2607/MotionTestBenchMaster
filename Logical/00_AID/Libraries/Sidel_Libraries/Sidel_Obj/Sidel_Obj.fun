@@ -291,6 +291,59 @@ FUNCTION_BLOCK Digital_Obj
 	END_VAR
 END_FUNCTION_BLOCK
 
+FUNCTION_BLOCK Dosing_Obj (*//v1.7.4*)
+	VAR_INPUT
+		IN_Enable : BOOL; (*Enable*)
+		IN_StartDosing : BOOL; (*Start dosing command*)
+		IN_ChemicalPAA : BOOL; (*Type of chemical Acid PAA*)
+		IN_ChemicalChlorine : BOOL; (*Type of chemical Chlorine*)
+		IN_ChemicalOther : BOOL; (*Type of chemical Other*)
+		IN_ChemicalDensity : REAL; (*Chemical density [kg/l]*)
+		IN_FlowmeterPos : BOOL; (*Flowmeter position 0: Before dosing station 1: After dosing station*)
+		IN_FlowmeterPulse : BOOL; (*Flowmeter pulse input*)
+		IN_FlowmeterVolumePerPulse : REAL; (*Flowmeter volume per pulse [l]*)
+		IN_VolumePerStroke : REAL; (*Chemical Solution volume dosed every pulse of the device [cm3]*)
+		IN_ChemicalConcentration : REAL; (*Chemical Concentration [0..1000000 ppm]*)
+		IN_ConcentrationSetPointRcp : REAL; (*Chemical Concentration Recipe Set-point [0..1000000 ppm] v1.7.4*)
+		IN_DosingFBKCfg : BOOL; (*v1.7.4*)
+		IN_DosingFBK : BOOL; (*Feedback from dosing device*)
+		IN_TitrationCmd : BOOL; (*Titration comfirmation Command v1.7.5*)
+		IN_ForceON : BOOL; (*Forced ON Command*)
+		IN_ManualSetPointCondition : BOOL; (*Condition for manual SP v1.7.4*)
+		IN_Clock : BOOL; (*Clock*)
+	END_VAR
+	VAR_OUTPUT
+		OUT_DosingCMD : BOOL; (*Command to dosing device*)
+	END_VAR
+	VAR_IN_OUT
+		HMI_DosingValues : HMI_DosingObj_Type; (*Chemical Concentration PV [0..1000000 ppm]*)
+	END_VAR
+	VAR
+		VAR_OutCMD : BOOL;
+		VAR_DosingCondition : BOOL;
+		VAR_ChemicalDensity : REAL; (*Pure Chemical density [kg/l]*)
+		VAR_SolutionDensity : REAL; (*Solution density [kg/l]*)
+		VAR_DosingError : REAL; (*[l]*)
+		VAR_RcipeConcentration : REAL; (*[%]*)
+		VAR_WaterMassPerStroke : REAL; (*[kg]*)
+		VAR_SolutionMassPerStroke : REAL; (*[kg]*)
+		VAR_ChemicalMassPerStroke : REAL; (*[kg]*)
+		VAR_WaterVolumePerStroke : REAL; (*[l]*)
+		VAR_ChemicalVolumePerStroke : REAL; (*[l]*)
+		VAR_TotalWater : REAL; (*[l]*)
+		VAR_TotalChemical : REAL; (*[l]*)
+		VAR_ActualConcentration : REAL; (*[0..1000000 ppm] v1.7.5*)
+		VAR_ConcetrationSP : REAL; (*[0..1000000 ppm] v1.7.5*)
+		VAR_TitrationDelta : REAL; (*[0..1000000 ppm] v1.7.5*)
+		zzEdge00000 : BOOL;
+		zzEdge00001 : BOOL;
+		zzEdge00002 : BOOL;
+		zzEdge00003 : BOOL;
+		VAR_StrokeDone : BOOL; (*v1.7.4*)
+		zzEdge00004 : BOOL;
+	END_VAR
+END_FUNCTION_BLOCK
+
 FUNCTION_BLOCK Motor_Std_Fw_Bw
 	VAR_INPUT
 		IN_ConfigPresent : BOOL;
@@ -370,46 +423,6 @@ FUNCTION_BLOCK Motor_Std
 	END_VAR
 END_FUNCTION_BLOCK
 
-FUNCTION_BLOCK UVtronic_Std
-	VAR_INPUT
-		IN_ConfigPresent : BOOL;
-		IN_Simulation : BOOL;
-		IN_Enable : BOOL; (*Safety OK ( True if not used)*)
-		IN_AutoCnd : BOOL; (*Automation Logic Input*)
-		IN_Reset : BOOL; (*Fault Reset*)
-		IN_HMIAutoForce : BOOL;
-		IN_ManEn : BOOL;
-		IN_MaskEn : BOOL;
-		IN_FBKDelay : TIME := T#500ms; (*Time: Running Control Delay*)
-		IN_ConfigType : BOOL; (*Configuration: Type TRUE = Phoenix FALSE = Contactor*)
-	END_VAR
-	VAR_OUTPUT
-		OUT_Running : BOOL; (*Motor On*)
-		OUT_NotReady : BOOL;
-		OUT_GeneralFault : BOOL;
-		OUT_ContactorFBKFault : BOOL;
-		OUT_OverloadFault : BOOL;
-		OUT_Alarm : BOOL; (*Output for Alarm*)
-	END_VAR
-	VAR_IN_OUT
-		IO : IO_UVtronic_Type;
-		HMI : HMI_Motor_Type;
-	END_VAR
-	VAR
-		TMR_TOF : TON;
-		TMR_TON : TON;
-		VAR_ContactorFBK : BOOL;
-		VAR_NotReady : BOOL;
-		VAR_GeneralFault : BOOL;
-		VAR_Overload : BOOL;
-		VAR_Mask : BOOL;
-		VAR_Auto : BOOL;
-		VAR_Fault : BOOL; (*Alarm Output for Fault or Warning*)
-		VAR_FirstCycle : BOOL;
-		zzEdge00000 : BOOL;
-	END_VAR
-END_FUNCTION_BLOCK
-
 FUNCTION_BLOCK Motor_FC280_Vfd
 	VAR_INPUT
 		IN_Simulation : BOOL;
@@ -475,10 +488,6 @@ FUNCTION_BLOCK Motor_FC280_Vfd
 		VAR_Start : BOOL; (*Motor start*)
 		zzEdge00000 : BOOL;
 		zzEdge1 : BOOL;
-		zzEdge2 : BOOL;
-		zzEdge3 : BOOL;
-		zzEdge4 : BOOL;
-		zzEdge5 : BOOL;
 	END_VAR
 END_FUNCTION_BLOCK
 
@@ -578,7 +587,7 @@ FUNCTION_BLOCK Valve_Dig_Mac (*Valve Control: Digital*)
 		OUT_FlipDone : BOOL;
 	END_VAR
 	VAR_IN_OUT
-		IO : IO_ValveMac_Type;
+		IO : IO_Valve_Type;
 		HMI : HMI_Valve_Type;
 	END_VAR
 	VAR
@@ -760,8 +769,9 @@ FUNCTION_BLOCK Fan_Obj
 		VAR_GalvaniOn : BOOL;
 		VAR_GalvaniFlowSet : BOOL;
 		VAR_AbsoluteFilter : BOOL;
+		VAR_Overload : BOOL; (*//v1.7.4*)
 		VAR_PreFilter : BOOL;
-		VAR_PressurizedOnAlarm : BOOL;
+		VAR_RunFeedback : BOOL; (*//v1.7.4*)
 		VAR_ResetHMI : BOOL;
 		VAR_i : USINT;
 	END_VAR

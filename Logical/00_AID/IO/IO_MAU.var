@@ -20,12 +20,8 @@ END_VAR
 (*LIFT CONTAINERS*)
 VAR
 	IO_203PSF : IO_Digital_IN_Type;
+	IO_205RVF : IO_Analog_IN_OUT_Type;
 	IO_203RVF : IO_Analog_IN_OUT_Type;
 	IO_206DSF : IO_Digital_IN_Type; (*Filling valve 1 sensor*)
 	IO_FSF : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF IO_Digital_IN_Type;
-END_VAR
-(*TRAY DSEVICES*)
-VAR
-	IO_209DSF : IO_Digital_IN_Type; (*Tray Piston Inserted v1.4*)
-	IO_227CPB : IO_Valve_Type; (*Tray Piston v1.4*)
 END_VAR

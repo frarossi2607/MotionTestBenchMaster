@@ -27,6 +27,7 @@ TYPE
 		ByPassed : BOOL;
 		AxisDisableRequest : BOOL;
 		ContainerStop : BOOL;
+		CipDrainEnd : BOOL;
 		InsrtcionDeviceRequest : BOOL;
 		InsrtcionControlActive : BOOL;
 		ContinousControlActive : BOOL;
@@ -35,6 +36,8 @@ TYPE
 		MachineStart : BOOL;
 		MachineStop : BOOL;
 		NoBottleNoSprayInsercion : BOOL; (*vrma test*)
+		BottlesNotRinse : BOOL;
+		CipDisableAxisReq : BOOL; (*//RnsDisable*)
 		WaterFlow : REAL;
 		Temperature : REAL;
 		FixSpeedValue : REAL;

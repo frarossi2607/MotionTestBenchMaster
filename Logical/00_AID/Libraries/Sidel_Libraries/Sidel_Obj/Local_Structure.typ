@@ -91,6 +91,7 @@ TYPE
 	PressurizerAlarm_Type : 	STRUCT 
 		AbsoluteFilterAlarm : BOOL;
 		PrefilterAlarm : BOOL;
+		OverloadAlarm : BOOL; (*//v1.7.4*)
 		PressurizedOnAlarm : BOOL;
 	END_STRUCT;
 	ShiftPosition_Type : 	STRUCT 
@@ -102,6 +103,7 @@ TYPE
 		ContainerEjected : BOOL;
 		ClosingReleased : BOOL;
 		ContainerClosed : BOOL;
+		ContainerPreClosed : BOOL;
 	END_STRUCT;
 	ShiftPositionInfo : 
 		(
@@ -115,8 +117,8 @@ TYPE
 		ContainerClosed := 7,
 		EjectContainer := 8,
 		ContainerPreClosed := 9, (*Master nuovo valore precedente 8*)
-		DummyBottleInserted := 10,
-		DummyContainerDisinserted := 11,
+		ShiftPositionSpareBit10 := 10,
+		ShiftPositionSpareBit11 := 11,
 		ShiftPositionSpareBit12 := 12,
 		ShiftPositionSpareBit13 := 13,
 		ShiftPositionSpareBit14 := 14,

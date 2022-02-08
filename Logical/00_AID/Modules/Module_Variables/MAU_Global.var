@@ -5,4 +5,5 @@ VAR
 	MAU_Ups : MAU_Ups_Type;
 	MAU_Aux : MAU_Aux_Type; (*//1.7.2*)
 	MAU_Tray : MAU_Tray_Type;
+	MAU_Scheduler : MAU_Scheduler_Type; (*V1.7.4*)
 END_VAR

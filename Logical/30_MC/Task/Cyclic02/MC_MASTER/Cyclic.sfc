@@ -1,5 +1,5 @@
 PROGRAM _CYCLIC
-(* @LANGUAGE := 'sfc' *)
+<?AutomationStudio FileVersion="4.9"?>
 INITIAL_STEP InitCPU:
 END_STEP
 (* @SFCMAXTIME := '' *)
@@ -86,6 +86,8 @@ fbPowerSupply01.i_xEnable						:=	TRUE;
 fbPowerSupply01.i_xToken						:=	TRUE;
 fbPowerSupply01.i_pAxisADR 						:=	ADR(VAR_AxPowerSupply01);
 fbPowerSupply01.i_pAxisMpLink					:=	ADR(gMasterPwr01Link);
+fbPowerSupply01.i_pSecondaryAxisADR				:=	0;
+fbPowerSupply01.i_pSecondaryAxisMpLink			:=	0;
 fbPowerSupply01.i_pstCmd						:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply01].iq_stCmd);
 fbPowerSupply01.i_pstParameter					:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply01].iq_stParam);
 fbPowerSupply01.i_pstStatus						:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply01].iq_stStatus);
@@ -99,6 +101,8 @@ fbPowerSupply02.i_xEnable						:=	TRUE;
 fbPowerSupply02.i_xToken						:=	TRUE;
 fbPowerSupply02.i_pAxisADR 						:=	ADR(VAR_AxPowerSupply02);
 fbPowerSupply02.i_pAxisMpLink					:=	ADR(gMasterPwr02Link);
+fbPowerSupply02.i_pSecondaryAxisADR				:=	0;
+fbPowerSupply02.i_pSecondaryAxisMpLink			:=	0;
 fbPowerSupply02.i_pstCmd						:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply02].iq_stCmd);
 fbPowerSupply02.i_pstParameter					:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply02].iq_stParam);
 fbPowerSupply02.i_pstStatus						:=	ADR(stMasterModule.iq_astSubModuleAxis[CST_MasterPowerSupply02].iq_stStatus);
@@ -114,6 +118,8 @@ fbMachineMasterSlow.i_xVelocityControl 			:= FALSE;	//v1.66
 fbMachineMasterSlow.i_xThirdPartyMotor			:= FALSE;	//v1.66
 fbMachineMasterSlow.i_pAxisMpLink				:= ADR(gMasterLink);	//v1.66
 fbMachineMasterSlow.i_pAxisADR					:= ADR(VAR_AxMachineMaster);	//v1.66
+fbMachineMasterSlow.i_pSecondaryAxisMpLink		:= 0;	//v1.66
+fbMachineMasterSlow.i_pSecondaryAxisADR			:= 0;	//v1.66
 
 fbMachineMasterSlow.i_pstCmd					:= ADR(stMasterModule.iq_astSubModuleAxis[CST_MachineMasterAxis].iq_stCmd);	//v1.66
 fbMachineMasterSlow.i_pstParameter				:= ADR(stMasterModule.iq_astSubModuleAxis[CST_MachineMasterAxis].iq_stParam);	//v1.66
@@ -549,6 +555,7 @@ CASE uiPositioningStep OF
 	170:	//v1.2
 		stMasterModule.iq_stStatus.q_xPositioningDone	:=	TRUE;	//v1.2
 END_CASE
+
 
 
 

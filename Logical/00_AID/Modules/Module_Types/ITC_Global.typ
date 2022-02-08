@@ -1189,12 +1189,12 @@ TYPE
 		AVE235Cmd : BOOL; (*Device Command: AVE235 Open Command*)
 		AVE251Cmd : BOOL; (*Device Command: AVE251 Open Command*)
 		AVE238Cmd : BOOL; (*Device Command: AVE238 Open Command*)
-		BOOL30 : BOOL; (*Device Command:*)
-		BOOL31 : BOOL; (*Device Command:*)
+		AVE229Cmd : BOOL; (*Device Command: AVE229 Open Command V4.A.A.1.7.4*)
+		AVE232Cmd : BOOL; (*Device Command: AVE232 Open Command V4.A.A.1.7.4*)
 		AVG260Op : BOOL; (*Device State: Filler Valve AVG260 Opened*)
 		AVG260Cl : BOOL; (*Device State: Filler Valve AVG260 Closed*)
 		BOOL34 : BOOL; (*Device Command:*)
-		BOOL35 : BOOL; (*Device Command:*)
+		AVE298Cmd : BOOL; (*Device Command:*)
 		BOOL36 : BOOL; (*Device Command:*)
 		BOOL37 : BOOL; (*Device Command:*)
 		BOOL38 : BOOL; (*Device Command:*)
@@ -1221,12 +1221,12 @@ TYPE
 		FilCopEnd : BOOL; (*Memory: Filler on CIP COP Auto Cycle not Configured or Ended*)
 		DmcInserted : BOOL; (*Memory: Filler on CIP Dummy Containers Inserted*)
 		DmcExtracted : BOOL; (*Memory: Filler on CIP Dummy Containers Extracted*)
-		DmcManualCfg : BOOL; (*Memory: Manual Dummy Containers Configured V1.7.2*)
+		DmcManualCfg : BOOL; (*Memory: Manual Dummy Containers  Configured //V4.A.A.1.7.4*)
 		FixSpeed : BOOL; (*Fix Speed in Execution *)
 		BOOL64 : BOOL; (*Memory:*)
 		FoamerRunning : BOOL; (*Memory: Foamer Jet Running*)
 		BOOL66 : BOOL; (*Memory:*)
-		BOOL67 : BOOL; (*Memory:*)
+		FilCopPurge : BOOL; (*Memory:*)
 		FilCopRunning : BOOL; (*Memory: COP cycle running*)
 		ValveWashingRunning : BOOL; (*Memory: Valve Washing Running*)
 		ContainersPrimingOk : BOOL; (*Memory: Priming in containers ok*)
@@ -1234,9 +1234,9 @@ TYPE
 		SynchroDone : BOOL; (*Memory: Machine Syncronized*)
 		BOOL73 : BOOL; (*Memory:*)
 		BOOL74 : BOOL; (*Memory:*)
-		BOOL75 : BOOL; (*Memory:*)
+		EndProductionReq : BOOL; (*Memory:*)
 		BOOL76 : BOOL; (*Memory:*)
-		BOOL77 : BOOL; (*Memory:*)
+		SamplingCamPosReached : BOOL; (*Memory: Filler Cam Position Reached for Sampling (v999SamplingRME) //V4.A.A.1.7.4*)
 		BOOL78 : BOOL; (*Memory:*)
 		BOOL79 : BOOL; (*Memory:*)
 		FMC_SequPriming : BOOL; (*Memory: FMC Priming Sequence Running (Start-Up)*)
@@ -1260,7 +1260,7 @@ TYPE
 		FMC_VortexCalibration : BOOL; (*Memory: FMC Vortex Calibration Active*)
 		FMC_FillingTest : BOOL; (*Memory: FMC Filling Test Selected*)
 		BOOL100 : BOOL; (*Memory:*)
-		BOOL101 : BOOL; (*Memory:*)
+		CipDrainEnd : BOOL; (*Memory: Cip Drain End*)
 		BOOL102 : BOOL; (*Memory:*)
 		BOOL103 : BOOL; (*Memory:*)
 		BOOL104 : BOOL;
@@ -1290,10 +1290,10 @@ TYPE
 		BOOL128 : BOOL;
 		BOOL129 : BOOL;
 		BOOL130 : BOOL;
-		BOOL131 : BOOL;
+		RinseStartDisable : BOOL; (*v999hema*)
 		TrayInPosition : BOOL; (*Procedure of Priming in Tray In Position v1.4*)
-		BOOL133 : BOOL;
-		CipStartEnable : BOOL; (*Enable to start Cip*)
+		ProdStartDisable : BOOL; (*v999hema*)
+		CipStartDisable : BOOL; (*Enable to start Cip v999hema*)
 		CipStopRequest : BOOL; (*Request of Cip cycle stop*)
 		SMR_CipRunning : BOOL; (*Seamer Function Mode -CIP Running*)
 		SMR_CopRunning : BOOL; (*Seamer Funcion-Foaming Running*)
@@ -1304,7 +1304,7 @@ TYPE
 		BOOL142 : BOOL;
 		BOOL143 : BOOL;
 		BOOL144 : BOOL;
-		BOOL145 : BOOL;
+		FoamingUnitCfg : BOOL; (*Foaming Unit with Automatic Recipe Configured V4.A.A.1.7.4*)
 		ValveWashingCfg : BOOL; (*Valve for Valve Washing Configured v1.6*)
 		TrayWashing : BOOL; (*Tray Washing Valve Opened v1.6*)
 		BOOL148 : BOOL;
@@ -1346,7 +1346,7 @@ TYPE
 		INT20 : INT;
 		INT21 : INT;
 		INT22 : INT;
-		INT23 : INT;
+		INT23 : INT; (*Number of bottles necessary to end Production*)
 		INT24 : INT;
 		INT25 : INT;
 		INT26 : INT;
@@ -1359,7 +1359,7 @@ TYPE
 		FillerSpeed : REAL; (*Filler Speed Actual Value Read Containers/hour Format 0 -:- Max Speed*)
 		FillerProductFlowrate : REAL; (*FMC Actual Product Flowrate (l/min)*)
 		PAR_SizeSpeed : REAL; (*PAR: Max size Speed (c/h)*)
-		REAL4 : REAL;
+		NecessaryBottleEndProd : REAL; (*Number of bottles for End Production*)
 		REAL5 : REAL;
 		REAL6 : REAL;
 		REAL7 : REAL;
@@ -1377,7 +1377,7 @@ TYPE
 		GeneralAirOut : BOOL; (*Instrument State: Filler Outlet General Air ON (Valve "203EVG")*)
 		GeneralAirIn : BOOL; (*Instrument State: Filler General Air ON (Pressure Switch "201PSG")*)
 		WaterPressureOk : BOOL; (*Instrument State: Filler Water Inlet (Pressure Switch "PSE201")*)
-		BOOL10 : BOOL; (*Instrument State:*)
+		HotWaterPressureOk : BOOL; (*Instrument State: Filler Hot Water Inlet (Pressure Switch "PSE202")  V4.A.A.1.7.4*)
 		BOOL11 : BOOL; (*Instrument State:*)
 		BOOL12 : BOOL; (*Instrument State:*)
 		BOOL13 : BOOL; (*Instrument State:*)
@@ -1389,8 +1389,8 @@ TYPE
 		BOOL19 : BOOL; (*Instrument State:*)
 		BOOL20 : BOOL; (*Instrument State:*)
 		BOOL21 : BOOL; (*Instrument State:*)
-		BOOL22 : BOOL; (*Instrument State:*)
-		BOOL23 : BOOL; (*Instrument State:*)
+		AVE298Op : BOOL; (*Instrument State:*)
+		AVE298Cl : BOOL; (*Instrument State:*)
 		AVF266Op : BOOL; (*Device State: Filler Valve AVF266 Opened*)
 		AVF266Cl : BOOL; (*Device State: Filler Valve AVF266 Closed*)
 		AVS219Op : BOOL; (*Device State: Filler Valve AVS219 Opened*)
@@ -1403,8 +1403,8 @@ TYPE
 		AVE235Cl : BOOL; (*Device State: Filler Valve AVE235 Closed*)
 		AVE238Op : BOOL; (*Device State: Filler Valve AVE238 Opened*)
 		AVE238Cl : BOOL; (*Device State: Filler Valve AVE238 Closed*)
-		BOOL36 : BOOL; (*Device State:*)
-		BOOL37 : BOOL; (*Device State:*)
+		AVE232Op : BOOL; (*Device State: Filler Valve AVE232 Opened V4.A.A.1.7.4*)
+		AVE232Cl : BOOL; (*Device State: Filler Valve AVE232 Closed V4.A.A.1.7.4*)
 		BOOL38 : BOOL; (*Device State:*)
 		BOOL39 : BOOL; (*Device State:*)
 		TankAlarm : BOOL; (*Memory: Buffer tank on Alarm, Filler Machine Stop*)
@@ -1444,9 +1444,9 @@ TYPE
 		DummyContainersIns : BOOL; (*Sequencer Configuration: Dummy Containers INSERTION*)
 		DummyContainersExt : BOOL; (*Sequencer Configuration: Dummy Containers EXTRACTION*)
 		Calibration : BOOL; (*Sequencer Configuration: Mode Calibration (RMO) (V4.A.A.1.6.12h)*)
-		BOOL77 : BOOL; (*Sequencer Configuration:*)
-		BOOL78 : BOOL; (*Sequencer Configuration:*)
-		BOOL79 : BOOL; (*Sequencer Configuration:*)
+		SamplingCamPosReq : BOOL; (*Sequencer Configuration: Filler Cam Position for Sampling Request (v999SamplingRME) //V4.A.A.1.7.4*)
+		SamplingFMCCIPModeReq : BOOL; (*Sequencer Configuration: FMC CIP Mode Request for Sampling (v999SamplingRME) //V4.A.A.1.7.4*)
+		SamplingCamPosExit : BOOL; (*Sequencer Configuration: Filler Cam back to Production Position Request ( v999SamplingRME) //V4.A.A.1.7.4*)
 		FMC_SequPriming : BOOL; (*Sequencer Configuration: FMC Priming Sequence Request (Start-Up)*)
 		FMC_SequFlushing : BOOL; (*Sequencer Configuration: FMC Flushing Sequence Request (Start-Up)*)
 		FMC_SequPurge : BOOL; (*Sequencer Configuration: FMC Purge Sequence Request (Production)*)
@@ -1454,7 +1454,7 @@ TYPE
 		FMC_SequRinse2 : BOOL; (*Sequencer Configuration: FMC Rinse 2 Sequence Request (Rinse Opening)*)
 		FMC_SequDrain : BOOL; (*Sequencer Configuration: FMC Drain Sequence Request (Valves Drain)*)
 		BOOL86 : BOOL; (*Sequencer Configuration: FMC Sequence*)
-		BOOL87 : BOOL; (*Sequencer Configuration: FMC Sequence*)
+		FMC_Recirculation_Request : BOOL; (*Master Card Sequence - Recirculation Request //V4.A.A.1.7.4*)
 		FMC_Valve1 : BOOL; (*Sequencer Configuration: FMC Valve1*)
 		FMC_Valve2 : BOOL; (*Sequencer Configuration: FMC Valve2*)
 		FMC_Valve3 : BOOL; (*Sequencer Configuration: FMC Valve3*)
@@ -1490,8 +1490,9 @@ TYPE
 		HMI_ProcessStartEnable : BOOL; (*HMI: Filler Process Start Enable*)
 		HMI_ProcessStartLampOn : BOOL; (*HMI: Filler Process Start Lamp ON*)
 		HMI_ProcessStartBlink : BOOL; (*HMI: Filler Process Start Blink*)
-		BOOL123 : BOOL;
-		BOOL124 : BOOL;
+		CipRinserStart : BOOL; (*Start Rinser in Cip Mode*)
+		CipRinserStop : BOOL; (*Disable Rinser to start CIP*)
+		APCORunning : BOOL; (*APCO Running*)
 		BOOL125 : BOOL;
 		BOOL126 : BOOL;
 		BOOL127 : BOOL;
@@ -1557,8 +1558,8 @@ TYPE
 		INT23 : INT;
 		INT24 : INT;
 		FTE201 : INT; (*Water Inlet Flow Meter v1.4*)
-		INT26 : INT;
-		INT27 : INT;
+		TTE201 : INT; (*Water Inlet Temperature*)
+		SPPrimingVolume : INT; (*Filling Set Point for Priming Volume [ml] v1.7.4a*)
 		FBT_RcpMaxFlowrate : INT; (*Maximum flowrate following pressure in format recipe (RMO) V4.A.A.1.7.1*)
 		FBT_SpInCalibration : INT; (*Pressure SP for calibration step in calibration procedure (RMO) //V4.A.A.1.6.11*)
 		TotalizersPulses : INT; (*Instrument Pulses for HMI Totalizer*)
@@ -1654,10 +1655,12 @@ TYPE
 		StarvationAtInfeed : BOOL; (*Cap starvation at capper infeed*)
 		Sel_SideA : BOOL;
 		Sel_SideB : BOOL;
+		EndProduction : BOOL; (*Rma106*)
 		StartRequest : BOOL; (*For Zalkin*)
 		StopRequest : BOOL; (*For Zalkin*)
 		EmptyingRequest : BOOL; (*For ZALKIN*)
 		EmptyingDone : BOOL; (*For ZALKIN*)
+		ActualSpeed : INT; (*For GEBO Optifeed*)
 		Requested_format : INT; (*For Zalkin*)
 	END_STRUCT;
 	CfdFlr_Type : 	STRUCT 
@@ -1875,11 +1878,12 @@ Signal = 1: no containers in filler/combi.*)
 
 Signal = 1: the signal remains at 1 during 20 containers in exit machine.*)
 		FciSampling : BOOL; (*Signal recived from FCI: FCI Sampling*)
+		EarlierContainersStopOpened : BOOL; (*signal = 1: the infeed bottles stop will be open, in order to anticipate infeed conveyor running
+Signal =0: the infeed bottles stop is closed , machine don't load bottles*)
 		MachineSpeed : INT; (*The readed value from the filler main frequency inverter or tachometer is multiplied by a coefficient to give container/min.
 
 This value should be accurate and refresh at least every 100ms*)
 		OutletConveyorSpeed : INT; (*[dm/min] This signal is used to synchronize the discharge conveyors (reject table and next conveyors following the first discharge conveyor).
-
 This value should be accurate and refresh at least every 100ms*)
 	END_STRUCT;
 	CviFlr_Type : 	STRUCT 
@@ -1948,15 +1952,21 @@ TYPE
 Signal = 1: run or ready to run.*)
 		ContainersStopOpened : BOOL; (*Signal = 0: the infeed containers stop is closed, machine don't load containers.
 Signal = 1: the infeed containers stop is opened, machine load containers.*)
+		EarlierContainersStopOpened : BOOL; (*Signal = 0: the infeed containers stop is closed, machine don't load containers.
+Signal = 1: the infeed containers stop will be opened, to anticipate infeed conveyor*)
 		MachineEmpty : BOOL; (*Signal = 0: conatiners in filler/combi.
 Signal = 1: no containers in filler/combi.*)
 		Last20Containers : BOOL; (*Signal = 0: the signal remains at 0 during 20 containers in exit machine.
 Signal = 1: the signal remains at 1 during 20 containers in exit machine.*)
 		FciSampling : BOOL; (*Signal recived from FCI: FCI Sampling*)
+		EndProduction : BOOL; (*Sequencer Configuration: End Production step	*)
 		MachineSpeed : INT; (*The readed value from the filler main frequency inverter or tachometer is multiplied by a coefficient to give container/min.
 This value should be accurate and refresh at least every 100ms*)
 		OutletConveyorSpeed : INT; (*[dm/min] This signal is used to synchronize the discharge conveyors (reject table and next conveyors following the first discharge conveyor).
 This value should be accurate and refresh at least every 100ms*)
+		BottleFormat : INT; (*Bottle Format*)
+		BottleProduced : DINT; (*Counter: Bottles quantity produced*)
+		BottleToProduceEndProd : DINT; (*Bottles remain to End Production*)
 	END_STRUCT;
 	CvoFlr_Type : 	STRUCT 
 		Alive : BOOL;
@@ -1977,6 +1987,9 @@ Put the information on the operator display of the filler (to know if you have t
 		FCITooManyReject : BOOL; (*Signal = 0: the discharge container inspector is ready or container inspector not existing or cabled directly on the machine.
 Signal = 1: the discharge container inspector reject too many containers.
 Put the information on the operator display of the filler (to know if you have to stop the filler, check the signal 10.1 and 10.2)*)
+		FCIDisabled : BOOL; (*Signal = 0: FBI machine Enable
+Signal = 1: FBI machine Disable
+*)
 		InfeedConveyorRunning : BOOL; (*Signal = 0: there is a trouble on the infeed conveyors (conveyors switch off or electrical fault). The filler has to stop as fast as possible.
 Manual restart of the machine only (by the operator).
 Signal = 1: infeed conveyors running or ready.*)
@@ -1995,7 +2008,23 @@ Signal = 1: infeed conveyor is too much full. The machine run at the maximum spe
 		FaultInpectorSectionRight : BOOL;
 		FaultRinserInfeedSectionRight : BOOL;
 		FaultFillerInfeedSectionRight : BOOL;
+		WarmUpCycleReq : BOOL; (*FMA FILLER- signal = 1: The filler can perform the warm up cycle even there is no bottles presence at infeed
+
+signal = 0:  The fille perform the warm up cycle if the signals open bottles stop from infeed and discharge = 1.  *)
+		Req_Empty : BOOL; (*signal = 1:  infeed conveyor is empty. Request to empty conveyor Signal = 0:  normal accumulation : the filler runs at line speed*)
+		Rst_qt : BOOL; (*signal = 1:  Filler reset to "0" the bottle counter*)
+		StartWaterFromPastorizer : BOOL; (*This signal is used when downstream machine (i.e. Labeler) is coupled with the filler without accumulation. The filler stops/starts with bottles inside*)
+		StopWithAutoRestart : BOOL; (*This signal is used when downstream machine (i.e. Labeler) is coupled with the filler without accumulation. The filler stops/starts with bottles inside*)
+		CoderRunning : BOOL; (*signal = 1: the discharge bottle coder is running
+
+signal = 0:  the discharge bottle coder is not on production mode*)
+		CoderDisable : BOOL; (*signal = 1: the discharge bottle coder is Disabled
+*)
+		CoderFault : BOOL; (*signal = 1: the discharge bottle coder is on fault
+
+signal = 0:  the discharge bottle coder is ready (or bottle coder not existing)*)
 		LineSpeedReference : INT; (*It informs the filler of the line speed. This value is fixed by format. The machine could follow thi speed instead of filler operator settin on (HMI)*)
+		BottleFormat : INT;
 	END_STRUCT;
 END_TYPE
 
@@ -2543,7 +2572,7 @@ TYPE
 		STS_ProdSpeedBPH : UINT; (*96*)
 		STS_HeadSpeedRPM : UINT; (*98*)
 		STS_5 : UINT; (*100*)
-		STS_ActualCurrent : UDINT; (*102*)
+		STS_ActualCurrent : DINT; (*102 v1.7.4*)
 		Spare_0 : UINT; (*104*)
 		Spare_1 : UINT; (*108*)
 		Spare_2 : UINT; (*110*)
@@ -2780,7 +2809,7 @@ END_TYPE
 (*CODER V4.A.A.1.7.0*)
 
 TYPE
-	FlrCdr_Type : 	STRUCT  (*//RMC275*)
+	FlrCdr_Type : 	STRUCT  (*V4.A.A.1.7.1*)
 		ProductionRunning : BOOL;
 		BOOL1 : BOOL;
 		BOOL2 : BOOL;
@@ -2792,7 +2821,7 @@ TYPE
 		BOOL8 : BOOL;
 		BOOL9 : BOOL;
 	END_STRUCT;
-	CdrFlr_Type : 	STRUCT  (*//RMC275*)
+	CdrFlr_Type : 	STRUCT  (*V4.A.A.1.7.1*)
 		Alive : BOOL;
 		Ready : BOOL; (*Ready*)
 		BOOL2 : BOOL;
@@ -2803,5 +2832,73 @@ TYPE
 		BOOL7 : BOOL;
 		BOOL8 : BOOL;
 		BOOL9 : BOOL;
+	END_STRUCT;
+END_TYPE
+
+(*PST TREATMENT v999hema*)
+
+TYPE
+	FlrPst_Type : 	STRUCT 
+		AliveBit : BOOL; (*Life bit signal*)
+		CipSolutionRequest : BOOL;
+		CipAlarm : BOOL;
+		CipSolutionReturn : BOOL;
+		CipRecoveryCompleted : BOOL;
+		CipConditionOK : BOOL;
+		CipFlipEnded : BOOL;
+		CipRunning : BOOL;
+		CipDrainCompleted : BOOL;
+		CipLevelReached : BOOL;
+		RinseRequest : BOOL;
+		RinseEnded : BOOL;
+		CopRunning : BOOL;
+		RinseAfterProdRequest : BOOL;
+		RinseAfterProdEnd : BOOL;
+		CopHotWaterReq : BOOL;
+		CopEnded : BOOL;
+		ProductionRunning : BOOL;
+		ProductRequest : BOOL;
+		ProductionEnded : BOOL;
+		ReadyForHeating : BOOL;
+		DoserInTemperature : BOOL;
+		AVJ201Open : BOOL;
+		DoserEmpty : BOOL;
+		DoserFull : BOOL;
+		ProductRecoveryEnd : BOOL;
+		DoserTankLevel : INT;
+		DoserTankLevelSP : INT;
+		SlurryDoserVolume : INT;
+	END_STRUCT;
+	PstFlr_Type : 	STRUCT 
+		AliveBit : BOOL; (*Life bit signal*)
+		CipRecipeCompleted : BOOL;
+		CipAlarm : BOOL;
+		CipProductSending : BOOL;
+		CipRecoveryRequest : BOOL;
+		CipConditionOK : BOOL;
+		CipFlipAllowed : BOOL;
+		CipRunning : BOOL;
+		CipDrainRequest : BOOL;
+		CipRecipeAborted : BOOL;
+		CipReturnEnabled : BOOL;
+		RinseMode : BOOL;
+		RinseSending : BOOL;
+		RinseAfterProd : BOOL;
+		CopHotWaterSending : BOOL;
+		WorkingRinseFromCip : BOOL;
+		WorkingHotSanitation : BOOL;
+		WorkingCaustic : BOOL;
+		WorkingAcid : BOOL;
+		WorkingDisinfectant : BOOL;
+		ProductionMode : BOOL;
+		ProductAvailable : BOOL;
+		MinTankLevel : BOOL;
+		DrainRequest : BOOL;
+		EndProductionReq : BOOL;
+		ProductRecoveryRequest : BOOL;
+		ProductCompleted : BOOL;
+		HeatingWithWater : BOOL;
+		ProductAvailableLiters : INT;
+		ProductTemperatureSP : INT;
 	END_STRUCT;
 END_TYPE

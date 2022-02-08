@@ -1,5 +1,5 @@
 ACTION OutletConveyorMotors_VFD: 
-//	_OutCvr(
+//	_OutCvr(//Management with FC302
 //	IN_Enable		:= OPS.DataOut.EnableDrive,
 //	IN_AutoCnd		:= _OutCvr.IN_AutoCnd,
 //	IN_FrequencyMin	:= 0.0,
@@ -17,7 +17,8 @@ ACTION OutletConveyorMotors_VFD:
 //	IO_Motor		:= IO_OutCvr
 //	);
 	
-	_OutCvrFC280.IN_AutoCnd := _OutCvr.IN_AutoCnd;
+	_OutCvrFC280.IN_AutoCnd 	:= _OutCvr.IN_AutoCnd;
+	_OutCvrFC280.IN_AutoSpeed	:= _OutCvr.IN_AutoSpeed;	//Montanarini: appoggio velocità
 	
 	_OutCvrFC280(
 	IN_Enable		:= OPS.DataOut.EnableDrive,

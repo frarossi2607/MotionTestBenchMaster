@@ -16,4 +16,5 @@ ACTION HMI_COP_Loading:
 	HMI_COP_FuDrainableCFG;
 	HMI_COP_ITC;
 	HMI_COP_OptPlangerPresent;//VRMA
+	HMI_RCP_COP_SelectedRecipeName; //v999hema
 END_ACTION

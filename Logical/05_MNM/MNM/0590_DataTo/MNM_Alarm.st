@@ -1,63 +1,36 @@
 ACTION MNM_Alarm:
-	ALR[61].Visibility := FALSE;
-	IF NOT (CFG_Par.Machine.Combi.BF OR CFG_Par.Machine.Combi.BFL OR CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF) AND //V4.A.A.1.6.13
-		TNK.DataOut.ProdMode AND MC_InputOutput.Network.Machine.Status.MachineRunning AND EDGENEG(IO_PB_FlStop.ON) THEN
-		ALR[61].Active	:= TRUE;
-	ELSIF AID.DataOut.Reset THEN
-		ALR[61].Active	:= FALSE;
-	END_IF
 
 	ALR[7018].Active		:= (MC_InputOutput.Network.Machine.Status.ActualSpeed > 
 								(MC_InputOutput.Network.Machine.Status.MachineMaxSpeed + (MC_InputOutput.Network.Machine.Status.MachineMaxSpeed * 8.0 / 100.0))) AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive;
 
 	ALR[7019].Active		:= MC_InputOutput.Network.Machine.Status.ActualSpeed > (HMI_PAR_1._020 + (HMI_PAR_1._020 * 5.0 / 100.0));
 
-	IF CFG_Par.Machine.Combi.BF AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive AND CFG_MC.Generic.DisengageImmediately THEN
-		ALR[7021].Active	:= BlrFlr.StopRequest;//V1.3
-	ELSIF AID.DataOut.Reset THEN
-		ALR[7021].Active	:= FALSE;
-	END_IF
+	//v4 200.2.0 eliminata logica
 	
-	ALR[7154].Active	:= NOT MC_InputOutput.Network.Machine.Commands.MasterEncoderPositionValid AND (CFG_Par.Machine.Combi.BF OR CFG_Par.Machine.Combi.BFL OR CFG_Par.Machine.Combi.BLF OR CFG_Par.Machine.Combi.BAF); //V4.A.A.1.6.13
 	ALR[7155].Active	:= MC_InputOutput.Network.Machine.Exceptions.PowerSupplyLowMachineException; //V4.A.A.1.6.13
 	ALR[7156].Active    := NOT IO_MNM_PowerSupply1Overload.DI_Input; //V4.A.A.1.6.13
 	ALR[7157].Active	:= NOT IO_MNM_PowerSupply2Overload.DI_Input; //V4.A.A.1.6.13
 	
 	//V4.A.A.1.6.13
 	ALR[7170].Active	:= (HMI_PAM_1._403 = 0) AND (HMI_201CPC.ConfigPresent OR HMI_202CPC.ConfigPresent);
-	ALR[7171].Active	:= (HMI_PAM_1._407 = 0) AND CFG_Par.ClosingUnit.Capper.Present;// OR CFG_Par.ClosingUnit.Crowner.Present); //v1.4 //v1.62 //COOLAUDO
-	ALR[7172].Active	:= (HMI_PAM_1._411 = 0) AND HMI_214CPB.ConfigPresent;
+	ALR[7171].Active	:= (HMI_PAM_1._407 = 0) AND CFG_Par.ClosingUnit.Capper.Present;
 	ALR[7173].Active	:= (HMI_PAM_1._415 = 0) AND (HMI_PAO_2._176 <> 0);
 	ALR[7174].Active 	:= (HMI_PAM_1._419 = 0) AND HMI_201CPB.ConfigPresent;
-	ALR[7175].Active	:= (HMI_PAM_1._423 = 0) AND CFG_Par.ClosingUnit.Crowner.Present; //NOT USED AT THE MOMENT //COOLAUDO
+	ALR[7175].Active	:= (HMI_PAM_1._423 = 0) AND CFG_Par.ClosingUnit.Crowner.Present;
 	ALR[7176].Active	:= (HMI_PAM_1._427 = 0) AND FALSE; //NOT USED AT THE MOMENT
+	ALR[7177].Active	:= (HMI_PAM_1._431 = 0) AND (CFG_Par.FCI.Filltec OR CFG_Par.FCI.FTSystem OR CFG_Par.FCI.Heuft OR CFG_Par.FCI.Pressco OR CFG_Par.FCI.SIS OR CFG_Par.FCI.Stratec); //v999hema
+	ALR[7178].Active	:= (HMI_PAM_1._435 = 0) AND CFG_Par.FCI.Heuft OR CFG_Par.FCI.Stratec; 
+	ALR[7179].Active	:= (HMI_PAM_1._439 = 0) AND CFG_Par.Doser.Present;
 	
 	ALR[7180].Active	:= NOT MC_InputOutput.Network.Filler.Status.FillerAbsolutePositionValid
-							OR (NOT MC_InputOutput.Network.Filler.Status.RinserAbsolutePositionValid AND CFG_Par.Rinser.Present);    //V4.A.A.1.7.0
-//							OR (NOT MC_InputOutput.Network.Filler.Status.CapperAbsolutePositionValid AND CFG_Par.Lifting.Movements.Capper.UncouplingRequest) to be defined //V4.A.A.1.7.0
-//							OR (NOT MC_InputOutput.Network.Filler.Status.CrownerAbsolutePositionValid AND CFG_Par.Lifting.Movements.Crowner.UncouplingRequest);//V4.A.A.1.7.0
+							OR (NOT MC_InputOutput.Network.Filler.Status.RinserAbsolutePositionValid AND CFG_Par.Rinser.Present);
+	//							OR (NOT MC_InputOutput.Network.Filler.Status.CapperAbsolutePositionValid AND CFG_Par.Lifting.Movements.Capper.UncouplingRequest) to be defined //V4.A.A.1.7.0
+	//							OR (NOT MC_InputOutput.Network.Filler.Status.CrownerAbsolutePositionValid AND CFG_Par.Lifting.Movements.Crowner.UncouplingRequest);//V4.A.A.1.7.0
 
 	
-	IF CFG_Par.Machine.Combi.BLF AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive  AND CFG_MC.Generic.DisengageImmediately THEN
-		ALR[7025].Active	:= NOT LbrFlr.StopRequest;
-	ELSIF AID.DataOut.Reset THEN
-		ALR[7025].Active	:= FALSE;
-	END_IF
-	
+	//v4 200.2.0 eliminata logica
 	ALR[7159].Active := MC_InputOutput.Network.Machine.Exceptions.FaultCamGeneration;//V.1.7.2
-
-	
-	IF CFG_Par.Machine.Combi.BAF AND MC_InputOutput.Network.Machine.Status.AutoCombiModalityActive  AND CFG_MC.Generic.DisengageImmediately THEN//V4.A.A.1.7.0
-		ALR[7161].Active	:= ActFlr.StopRequest;
-	ELSIF AID.DataOut.Reset THEN
-		ALR[7161].Active	:= FALSE;
-	END_IF
-	
-	IF CFG_Par.Machine.Combi.BAF THEN//V4.A.A.1.7.0 DA GUARDARE
-		ALR[7163].Active	:= FALSE;//NOT ActFlr.EncoderHomed;
-	ELSIF AID.DataOut.Reset THEN
-		ALR[7163].Active	:= FALSE;
-	END_IF
+	// v4 200.2.0 eliminate logiche combi
 END_ACTION
 
 ACTION MNM_MotionAlarm:

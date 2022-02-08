@@ -11,6 +11,7 @@
     <File Description="Analog input control">Analog_In_Multicompare.st</File>
     <File Description="Analog input control Direct or Inverse">Analog_In_Direct_Inverse.st</File>
     <File>Digital_Obj.st</File>
+    <File Description="Dosing control">Dosing_Obj.st</File>
     <File Description="Standard motor control Forward and Backward">Motor_Std_Fw_Bw.st</File>
     <File Description="Standard motor control">Motor_Std.st</File>
     <File>Motor_FC280_Vfd.st</File>
@@ -21,7 +22,6 @@
     <File Description="Digital valve control - MAC">Valve_Dig_Mac.st</File>
     <File Description="Modulating valve control">Valve_Mod.st</File>
     <File>Shift_Obj.st</File>
-    <File>UVtronic_Std.st</File>
     <File Description="Global variables">Constant.var</File>
   </Files>
 </Library>

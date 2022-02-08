@@ -176,6 +176,7 @@ TYPE
 		ReleaseInEmptying : BOOL;
 		BufferLifted : BOOL;
 		ReleaseInManual : BOOL;
+		BufferEmpty : BOOL; (*//vrmaCOP*)
 		BufferLowered : BOOL;
 		BufferHighSpeedReached : BOOL;
 		SlowSpeedForEmptyReq : BOOL;
@@ -194,6 +195,7 @@ TYPE
 		BufferSizeChange_MaxPosition : BOOL; (*//V4.A.A.1.6.11*)
 		BufferSizeChange_MinPosition : BOOL; (*//V4.A.A.1.6.11*)
 		IonisationBoxDoor : BOOL; (*V4.A.A.1.6.12h*)
+		Hopper_TreatmentReq : BOOL; (*v1.7.5*)
 		CapDis_MachineRestatBlocked : BOOL; (*V4.A.A.1.7.0*)
 		CapDis_MachineAutorestart : BOOL; (*V4.A.A.1.7.0*)
 		CapDis_CapsRequest : BOOL; (*V4.A.A.1.7.0*)

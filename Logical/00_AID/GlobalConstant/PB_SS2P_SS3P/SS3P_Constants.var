@@ -14,10 +14,17 @@ VAR CONSTANT
 	SS3P_COP_Shower : USINT := 0;
 	SS3P_COP_NeckRinse : USINT := 1;
 	SS3P_COP_ValveWash : USINT := 2;
+	SS3P_COP_ColumnLubrification : USINT := 3;
+	SS3P_COP_ValveWash2 : USINT := 4;
+	SS3P_COP_HotWater : USINT := 5; (*//V4.A.A.1.7.4*)
 END_VAR
 (*CRW*)
 VAR CONSTANT
 	SS3P_CRW_CrownsRelease : USINT := 0;
 	SS3P_CRW_Washing : USINT := 1;
 	SS3P_CRW_ExtractorCleaning : USINT := 2;
+END_VAR
+(*v999hema*)
+VAR CONSTANT
+	SS3P_DOS_FillingValveOpen : USINT := 0;
 END_VAR

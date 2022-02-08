@@ -3,13 +3,13 @@ TYPE
 	CFG_Motion_Type : 	STRUCT 
 		Generic : CFG_Generic_Type;
 		Mechanical : CFG_Mechanical_Type;
+		MotorDisableConfig : ARRAY[0..9]OF CFG_MotorDisableConfig_Type;
 		Movements : CFG_Movements_Type;
 		MaximumGearBoxTorque : CFG_Torque_Type;
 		Axes : CFG_Axes_Type;
 	END_STRUCT;
 	CFG_Generic_Type : 	STRUCT 
 		KochModulePresent : BOOL;
-		DisengageModuleFiller : BOOL; (*In combi mode if TRUE disengage immediately the machine, without waiting SynchroDisengage command*)
 		DisengageImmediately : BOOL; (*In combi mode if TRUE disengage immediately the machine, without waiting SynchroDisengage command*)
 		AxesMultiplexingOn : BOOL;
 		MotionIntegrated : BOOL;
@@ -43,6 +43,9 @@ TYPE
 		ShutDownDec : REAL;
 		MachineMaxSpeed : REAL;
 	END_STRUCT;
+	CFG_MotorDisableConfig_Type : 	STRUCT 
+		MotorIndexNumberDisable : ARRAY[CST_FirstFillerModuleAxis..CST_LastFillerModuleAxis]OF BOOL;
+	END_STRUCT;
 	CFG_Torque_Type : 	STRUCT 
 		Inlet : CFG_InletTorque_Type;
 		Filler : CFG_FillerTorque_Type;
@@ -66,16 +69,12 @@ TYPE
 	CFG_Axes_Type : 	STRUCT 
 		Inlet : CFG_InletAxes_Type;
 		Filler : CFG_FillerAxes_Type;
-		Doser : CFG_DoserAxes_Type;
 		Outlet : CFG_OutletAxes_Type;
 	END_STRUCT;
 	CFG_InletAxes_Type : 	STRUCT 
 		Main : CFG_Axis_Type;
 		In : ARRAY[1..4]OF CFG_Axis_Type;
 		Out : ARRAY[1..4]OF CFG_Axis_Type;
-	END_STRUCT;
-	CFG_DoserAxes_Type : 	STRUCT 
-		Main : CFG_Axis_Type;
 	END_STRUCT;
 	CFG_FillerAxes_Type : 	STRUCT 
 		Main : CFG_Axis_Type;

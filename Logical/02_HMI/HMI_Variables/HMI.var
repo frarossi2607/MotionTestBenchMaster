@@ -7,6 +7,7 @@ VAR
 	HMI_MachineSafetyVersion : STRING[15]; (*V4.A.A.1.6.13*)
 	HMI_ScreenTouched : BOOL;
 	HMI_ApcoPresent : BOOL;
+	HMI_214DSF : HMI_DI_Type; (*Head 1 Pulp Doser sensor  //v999hema*)
 	HMI_IcoPresent : BOOL;
 	HMI_CounterHome : HMI_CounterHome_Type; (*V4.A.A.1.6.8*)
 END_VAR

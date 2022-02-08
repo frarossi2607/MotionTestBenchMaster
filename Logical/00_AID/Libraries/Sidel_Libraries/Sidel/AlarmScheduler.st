@@ -125,6 +125,13 @@ FUNCTION_BLOCK AlarmScheduler
 					NOT Alarm.DependentActive THEN
 					FirstAlertAlarmActive := AlarmCFG;
 				END_IF
+				//V4.A.A.1.7.5a
+				IF FirstCsAlarmActive.OMAC_Index = 0	AND Alarm.Active			AND
+					(Alarm.ActionEn							AND NOT Alarm.ByPass)		AND
+					(AlarmCFG.Action >= 64)			AND (AlarmCFG.Action <= 65) AND (AlarmCFG.Category <> 3)	AND
+					NOT Alarm.DependentActive THEN
+					FirstCsAlarmActive := AlarmCFG;
+				END_IF
 				//V4.A.A.1.7.0
 				IF FirstExtCriticalAlarmActive.OMAC_Index = 0	AND Alarm.Active			AND
 					(Alarm.ActionEn							AND NOT Alarm.ByPass)		AND
@@ -139,12 +146,12 @@ FUNCTION_BLOCK AlarmScheduler
 					NOT Alarm.DependentActive THEN
 					FirstExtAlertAlarmActive := AlarmCFG;
 				END_IF
-				//V4.A.A.1.7.0
+				//V4.A.A.1.7.5a
 				IF FirstCsAlarmActive.OMAC_Index = 0	AND Alarm.Active			AND
 					(Alarm.ActionEn							AND NOT Alarm.ByPass)		AND
-					(AlarmCFG.Action >= 64)			AND (AlarmCFG.Action <= 65)	AND
+					(AlarmCFG.Action >= 64)			AND (AlarmCFG.Action <= 65)	AND (AlarmCFG.Category = 3)	AND
 					NOT Alarm.DependentActive THEN
-					FirstCsAlarmActive := AlarmCFG;
+					FirstCsExtAlarmActive := AlarmCFG;
 				END_IF
 				//END EXTRACTION
 
@@ -167,9 +174,13 @@ FUNCTION_BLOCK FirstAlarmCombiner
 		
 	IF SkidFirstAlarm <> 0 AND FirstAlarmActive.OMAC_Index = 0 THEN
 		FirstAlarmActive.OMAC_Index := SkidFirstAlarm;
+		AlarmCFG ACCESS AdrAlarmCFG + (SIZEOF(AlarmCFG) * SkidFirstAlarm);
+		FirstAlarmActive.OMAC_Code	:= AlarmCFG.OMAC_Code; //V1.7.4
 	END_IF
 	
 	IF SkidFirstExternalAlarm <> 0 AND FirstExternalAlarmActive.OMAC_Index = 0 THEN
 		FirstExternalAlarmActive.OMAC_Index := SkidFirstExternalAlarm;
+		AlarmCFG ACCESS AdrAlarmCFG + (SIZEOF(AlarmCFG) * SkidFirstExternalAlarm);
+		FirstExternalAlarmActive.OMAC_Code 	:= AlarmCFG.OMAC_Code;//V1.7.4
 	END_IF
 END_FUNCTION_BLOCK

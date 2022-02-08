@@ -138,7 +138,7 @@ TYPE
 		ProdSpeedRPM : UINT;
 		HeadSpeedRPM : UINT;
 		DiagCode : UINT;
-		ActualCurrent : UDINT;
+		ActualCurrent : DINT; (*v1.7.4*)
 		ProdSpeedBPH : REAL;
 	END_STRUCT;
 END_TYPE
