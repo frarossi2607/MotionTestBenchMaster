@@ -1,0 +1,171 @@
+PROGRAM _CYCLIC
+<?AutomationStudio FileVersion="4.9"?>
+INITIAL_STEP Step1:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM Step1 TO InitCpu:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'InitCpu' *)
+STEP InitCpu:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION PRESENT FROM InitCpu TO RNS_Cfg:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND CFG_Par.Rinser.Present 
+END_TRANSITION
+(* @SFCNOJUMP := 'RNS_Cfg' *)
+TRANSITION NOT PRESENT FROM InitCpu TO RNS_Off:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND NOT CFG_Par.Rinser.Present
+END_TRANSITION
+(* @SFCISJUMP := 'RNS_Off' *)
+STEP RNS_Cfg:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+RNS_Hardware_CFG;
+
+HMI_CFG_PAC_1._201	:= TRUE;
+HMI_CFG_PAC_1._202	:= TRUE;
+
+HMI_CFG_PAM_1._014 	:= CFG_Par.Rinser.PressureNozzleControlInsertion;
+HMI_CFG_PAM_1._015 	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+HMI_CFG_PAM_1._081 	:= CFG_Par.Rinser.PressureNozzleControlInsertion;
+HMI_CFG_PAM_1._083 	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+HMI_CFG_PAM_1._085 	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+HMI_CFG_PAM_1._087 	:= CFG_Par.Rinser.PressureNozzleControlInsertion;
+HMI_CFG_PAM_1._089 	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+HMI_CFG_PAM_1._090 	:= CFG_Par.Rinser.PressureNozzleControlInsertion;
+HMI_CFG_PAM_1._091 	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+//RVB202 SP
+HMI_CFG_PAM_1._092 	:= PTB[220].IN_ConfigPresent;
+//Recovery pump speed
+HMI_CFG_PAM_1._116 := PPB[209].IN_ConfigPresent;
+HMI_CFG_PAM_1._117 := PPB[209].IN_ConfigPresent;
+HMI_CFG_PAM_1._118 := PPB[209].IN_ConfigPresent;
+
+HMI_CFG_PAR_1._167	:= TRUE;
+HMI_CFG_PAR_1._168	:= TRUE;
+HMI_CFG_PAR_1._169	:= TRUE;
+HMI_CFG_PAR_1._170	:= TRUE;
+HMI_CFG_PAR_1._171	:= CFG_Par.Rinser.PressureNozzleControlInsertion OR CFG_Par.Rinser.PressureNozzleControlContinous;
+
+//HMI Buttons//V4.A.A.1.7.0
+HMI_RNS_SS2P[SS2P_SelAutoMan].Visibility		:= TRUE;
+HMI_RNS_SS2P[SS2P_SelProduction].Visibility		:= TRUE;
+HMI_RNS_SS2P[SS2P_SelDrain].Visibility			:= TRUE;
+HMI_RNS_SS2P[SS2P_SelCIP].Visibility			:= FALSE; //CFG_Par.Rinser.CipPresent;
+HMI_RNS_SS2P[SS2P_RNS_InsControl].Visibility	:= CFG_Par.Rinser.PressureNozzleControlInsertion;
+HMI_RNS_SS2P[SS2P_RNS_ContControl].Visibility	:= CFG_Par.Rinser.PressureNozzleControlContinous;
+HMI_RNS_PB[PB_CmdStart].Visibility				:= TRUE;
+HMI_RNS_PB[PB_CmdStop].Visibility				:= TRUE;
+
+(*RNS Nozzles Data Scroll //V4.A.A.1.7.0*)
+VAR_RNS_MinPageData := 0;
+VAR_RNS_MaxPageData := (HMI_PAC_1._200 / 15) -1;
+
+HMI_RNS_PB[PB_RNS_PageDown].Visibility 	:= TRUE;
+HMI_RNS_PB[PB_RNS_PageUp].Visibility 	:= TRUE;
+
+VAR_RNS_NozzleInLastPage := (HMI_PAC_1._200 MOD 15);
+
+IF VAR_RNS_NozzleInLastPage > 0 THEN
+	VAR_RNS_MaxPageData := VAR_RNS_MaxPageData + 1;
+END_IF
+END_ACTION
+TRANSITION FROM RNS_Cfg TO (RNSVar,Instruments,ModeSelection,MainSequencer,Valves,Pumps,DataTo):=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'RNSVar' *)
+(* @SFCNOJUMP := 'Instruments' *)
+(* @SFCNOJUMP := 'ModeSelection' *)
+(* @SFCNOJUMP := 'MainSequencer' *)
+(* @SFCNOJUMP := 'Valves' *)
+(* @SFCNOJUMP := 'Pumps' *)
+(* @SFCNOJUMP := 'DataTo' *)
+STEP RNSVar:
+(* @LANGUAGE := 'st' *)
+VAR_RNS_Blink1HzEp 		:= EDGEPOS(AID.DataOut.Blink1Hz);
+VAR_RNS_PBResetEp		:= EDGEPOS(AID.DataOut.Reset);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Instruments:
+(* @LANGUAGE := 'st' *)
+RNS_InstrFlow;
+RNS_InstrPress;
+RNS_InstrSaf;
+RNS_InstrLevel; //v1.4
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP ModeSelection:
+(* @LANGUAGE := 'st' *)
+RNS_ModeSelection;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP MainSequencer:
+(* @LANGUAGE := 'st' *)
+RNS_StepManager;
+RNS_StepMove;
+RNS_StepConfig;
+RNS_StepStatus;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Valves:
+(* @LANGUAGE := 'st' *)
+RNS_ValvesLogic;
+RNS_ValvesFB;
+RNS_ModulatingValvesPID;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Pumps:
+(* @LANGUAGE := 'st' *)
+RNS_PumpsLogic;
+RNS_PumpsPID;
+RNS_PumpsFB;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP DataTo:
+(* @LANGUAGE := 'st' *)
+RNS_Alarm;
+RNS_HMI;
+RNS_DataOut;//V4.A.A.1.7.0
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM (RNSVar,Instruments,ModeSelection,MainSequencer,Valves,Pumps,DataTo) TO RNS_Off:=
+FALSE
+END_TRANSITION
+(* @SFCNOJUMP := 'RNS_Off' *)
+STEP RNS_Off:
+(* @LANGUAGE := 'st' *)
+ST_tmp_suspend(0);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM RNS_Off TO Step1:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'Step1' *)
+END_PROGRAM

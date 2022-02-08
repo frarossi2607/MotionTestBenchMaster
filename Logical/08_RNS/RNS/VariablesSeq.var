@@ -1,0 +1,89 @@
+(*SEQUENCER*)
+VAR
+	FB_RNS_SEQ : Sequencer_v2;
+	VAR_RNS_SEQ_Step : SEQ_Type;
+	VAR_RNS_SEQ : SEQ_Module_Type;
+	VAR_RNS_SeqProdStopAlarm : BOOL;
+	VAR_RNS_SeqProdStopRequest : BOOL;
+	VAR_RNS_SeqProdAbortRequest : BOOL;
+	VAR_RNS_SeqCipStopAlarm : BOOL;
+	VAR_RNS_SeqCipStopRequest : BOOL;
+	VAR_RNS_SeqCipAbortRequest : BOOL;
+	VAR_RNS_SeqDrainStopAlarm : BOOL;
+	VAR_RNS_SeqDrainStopRequest : BOOL;
+	VAR_RNS_SeqDrainAbortRequest : BOOL;
+	VAR_RNS_SeqControlStopAlarm : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_SeqControlStopRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_SeqControlAbortRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_SeqBypassStopAlarm : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_SeqBypassAbortRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_index : UINT;
+	VAR_RNS_SeqActualStep : UINT;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_SeqCyclesCounter : UDINT;
+END_VAR
+(*MODE VARIABLES*)
+VAR
+	VAR_RNS_ModeWait : BOOL;
+	VAR_RNS_ModeProduction : BOOL;
+	VAR_RNS_ModeCip : BOOL;
+	VAR_RNS_ModeRinse : BOOL;
+	VAR_RNS_ModeDrain : BOOL;
+	VAR_RNS_ModeCop : BOOL;
+	VAR_RNS_ModeControl : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_ModeBypass : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_MemProdDrain : BOOL;
+	VAR_RNS_MemProdControl : BOOL;
+	VAR_RNS_MemRinserByPassed : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_MemRinserInserted : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ModeFiltersSterilization : BOOL;
+	VAR_RNS_ModeDeEnergization : BOOL;
+	VAR_RNS_ModeWaitOperator : BOOL;
+END_VAR
+(*STEP VARIABLES*)
+(*Production*)
+VAR
+	VAR_RNS_StepProdStartUp : BOOL;
+	VAR_RNS_StepProdStartUpLampCtrl : BOOL;
+	VAR_RNS_StepProdStartUpLampFault : BOOL;
+	VAR_RNS_StepProdProducing : BOOL;
+	VAR_RNS_StepProdSprayRequest : BOOL;
+	VAR_RNS_StepProdLampOnDischarge : BOOL;
+	VAR_RNS_StepProdStopped : BOOL;
+	VAR_RNS_StepProdAborted : BOOL;
+END_VAR
+(*Cip*)
+VAR
+	VAR_RNS_StepCipFilling : BOOL;
+	VAR_RNS_StepCipCleaning : BOOL;
+	VAR_RNS_StepCipDraining : BOOL;
+	VAR_RNS_StepCipRecovery : BOOL;
+	VAR_RNS_StepCipPipeFlooding : BOOL;
+	VAR_RNS_StepCipPipeDischarge : BOOL;
+	VAR_RNS_StepCipFlooding : BOOL;
+	VAR_RNS_StepCipFlooded : BOOL;
+	VAR_RNS_StepCipStopped : BOOL;
+	VAR_RNS_StepCipAborted : BOOL;
+	VAR_RNS_StepCipEnded : BOOL;
+END_VAR
+(*Drain*)
+VAR
+	VAR_RNS_StepDrainStopped : BOOL;
+	VAR_RNS_StepDrainAborted : BOOL;
+END_VAR
+(*Control*)
+VAR
+	VAR_RNS_StepControl : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_StepControlDone : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_StepCtrlCipDone : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_StepControlStopped : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_StepControlAborted : BOOL;(*v4.A.A.A.1.6.15*)
+END_VAR
+(*By Pass*)
+VAR
+	VAR_RNS_StepByPassed : BOOL;(*v4.A.A.A.1.6.15*)
+	VAR_RNS_StepBypassAborted : BOOL;(*v4.A.A.A.1.6.15*)
+END_VAR
+(*Motion*)
+VAR
+	VAR_RNS_StepMotorization : BOOL; (*//RnsDisable*)
+END_VAR

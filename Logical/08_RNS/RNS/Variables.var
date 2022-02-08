@@ -1,0 +1,97 @@
+VAR
+	TOF_StatusMachineRunning : TOF;
+END_VAR
+(*SELECTIONS*)
+VAR
+	VAR_RNS_FMDProduction : BOOL;
+	VAR_RNS_FMDDrain : BOOL;
+	VAR_RNS_FMDCip : BOOL;
+	VAR_RNS_FMDCop : BOOL;
+	VAR_RNS_FMDControl : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_FMDByPass : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_MemPBStart : BOOL;
+	VAR_RNS_MemPBStop : BOOL;
+	VAR_RNS_MemPBAbort : BOOL;
+	VAR_RNS_MemPBSkipForward : BOOL;
+	VAR_RNS_MemSSPause : BOOL;
+END_VAR
+(*AUXILIARY VARIABLES*)
+VAR
+	VAR_RNS_Blink1HzEp : BOOL;
+	VAR_RNS_PBResetEp : BOOL;
+	VAR_RNS_PBSelectionEnable : BOOL;
+	VAR_RNS_TankLevelMedium : BOOL; (*v1.4*)
+	VAR_RNS_TankLevelTooLow : BOOL;
+	VAR_RNS_TankLevelLow : BOOL;
+	VAR_RNS_TankLevelHigh : BOOL;
+	VAR_RNS_InletOpen : BOOL;
+	VAR_RNS_InletProductIncoming : BOOL;
+	VAR_RNS_InletOpenCip : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_OutletOpen : BOOL;
+	VAR_RNS_ProductInletSafety : BOOL;
+	VAR_RNS_ProductInletSafetyDelay : BOOL;
+	VAR_RNS_ForIndex : UINT;
+	VAR_RNS_MinPageData : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_MaxPageData : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ActPageData : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_NozzleInLastPage : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_IndexVis : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_IndexAlarm : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ContinousAirAlarm : UINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ContinousWaterAlarm : UINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_InsercionAirAlarm : UINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_InsercionWaterAlarm : UINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_IndexReset : INT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_TotalContainerEntered : UDINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ControlRemainder_Cont : UDINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ControlRemainder : UDINT; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_AirTreatment : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_WaterTreatment : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_CleaningActive : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ControlModeRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ControlInsercionRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_ControlContinousRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_BypassRequest : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_BypassCommand : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_MemDisableAxisReq : BOOL; (*//RnsDisable*)
+END_VAR
+(*ALARM VARIABLES*)
+VAR
+	VAR_RNS_AirFlowTooHigh : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_AirFlowTooLow : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_AirFlowLowWarning : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_WaterFlowTooHigh : BOOL;
+	VAR_RNS_WaterFlowTooLow : BOOL;
+	VAR_RNS_WaterFlowLowWarning : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_WaterFlowMissing : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_BottlesNotRinse : BOOL;
+	VAR_RNS_AVB_ValveFault : BOOL;
+END_VAR
+(*AUXILIARY TIMERS*)
+VAR
+	TMR_TON_TankLowLevelLost : TON;
+	TMR_TON_InletSafetyDelay : TON;
+	TMR_TON_AirFlowLowLimitDelay : TON; (*v4.A.A.A.1.6.15*)
+	TMR_TON_WtrFlowLowLimitDelay : TON; (*v4.A.A.A.1.6.15*)
+	TMR_TON_WtrFlowSwitchDelay : TON; (*v4.A.A.A.1.6.15*)
+	TMR_TON_FlipWait : TON;
+	TMR_TOF_FlipWork : TOF;
+END_VAR
+(*PID*)
+VAR CONSTANT
+	PID_MODE_CIP : USINT := 0;
+	PID_MODE_PRD : USINT := 1;
+END_VAR
+VAR
+	FB_PID_RVB202 : ARRAY[0..3] OF PID_Cont; (*v4.A.A.A.1.6.15*)
+	FB_PID_PPB220 : ARRAY[0..3] OF PID_Cont;
+END_VAR
+(*SAFETY STATUS*)
+VAR
+	VAR_RNS_ValveEnable : BOOL;
+	VAR_RNS_ValveEnableCip : BOOL; (*v4.A.A.A.1.6.15*)
+	VAR_RNS_PumpEnable : BOOL;
+	VAR_RNS_MotorEnable : BOOL;
+	VAR_SetReset : SR; (*v1.4*)
+	VAR_RNS_RVB202Auto : BOOL; (*v4.A.A.A.1.6.15*)
+END_VAR
