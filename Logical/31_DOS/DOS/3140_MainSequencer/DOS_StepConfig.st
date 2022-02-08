@@ -1,0 +1,9882 @@
+(********************************************************************)
+(* COPYRIGHT Sidel S.p.A.                                           *)
+(********************************************************************)
+(* Program: DOS                                                     *)
+(* File: DOS_StepConfig.st                                          *)
+(* Created in 30/giu/2021 from Excel DF File - Version 3            *)
+(* Author: Sidel                                                    *)
+(********************************************************************)
+(* Implementation of program DOS                                    *)
+(********************************************************************)
+
+ACTION DOS_StepConfig:
+               CASE VAR_DOS_SeqActualStep OF
+                       0: (* Wait *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 0 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 0 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 0 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 0 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 0 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 0 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 0 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 0 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 0 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 0 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 0 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 0 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 0 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 0 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 0 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 0 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := TRUE;                                                  (* STEP: 0 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 0 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 0 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 0 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 0 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 0 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 0 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 0 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 0 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 0 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 0 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 0 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 0 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 0 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 0 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 0 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 0 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 0 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 0 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 0 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 0 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 0 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 0 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 0 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 0 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 0 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 0 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 0 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       1: (* START-UP PRODUCTION - Cam Position Control *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 1 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 1 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 1 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 1 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 1 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 1 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 1 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 1 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 1 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 1 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 1 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 1 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 1 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 1 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 1 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 1 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 1 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 1 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 1 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 1 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 1 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 1 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := TRUE;                                             (* STEP: 1 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 1 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 1 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 1 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 1 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 1 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 1 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 1 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 1 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 1 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 1 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 1 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 1 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 1 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 1 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 1 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 1 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 1 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 1 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 1 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 1 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 1 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 1 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       2: (* START-UP PRODUCTION - Cam Positioning to Recipe Value *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 2 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 2 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 2 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 2 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 2 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 2 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 2 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 2 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 2 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 2 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 2 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 2 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 2 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 2 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 2 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 2 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 2 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 2 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 2 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 2 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 2 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 2 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := TRUE;                                             (* STEP: 2 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 2 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 2 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 2 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 2 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 2 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 2 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 2 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 2 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 2 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 2 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 2 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 2 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 2 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 2 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 2 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 2 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 2 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 2 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 2 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 2 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 2 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 2 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       3..4: (* Spare Steps *)
+
+                       5: (* Start Up Production - Pulp Doser -Wait For Hot Water Sending From Pasto *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 5 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 5 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 5 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 5 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 5 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 5 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 5 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 5 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 5 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 5 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 5 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 5 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 5 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 50;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 5 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 5 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 5 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 5 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 5 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 5 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 5 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 5 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 5 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 5 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 5 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 5 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 5 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 5 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 5 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 5 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 5 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 5 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 5 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 5 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 5 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 5 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 5 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 5 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := TRUE;                                           (* STEP: 5 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 5 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 5 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 5 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 5 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 5 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 5 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       6: (* Start Up Production - Pulp Doser -Tank Filling For Heating *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 6 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 6 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 6 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 6 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 6 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 6 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 6 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 6 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 6 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 6 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 6 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 6 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 6 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 6 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 6 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 6 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 6 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 6 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 6 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 6 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 6 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 6 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 6 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 6 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 6 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 6 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 6 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 6 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 6 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 6 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 6 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 6 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 6 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 6 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 6 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 6 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 6 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := TRUE;                                           (* STEP: 6 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 6 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 6 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 6 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 6 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 6 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 6 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       7: (* Start Up Production - Pulp Doser -Heating From Spray Ball *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 7 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 7 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 7 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 7 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 7 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 7 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 7 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := TRUE;                                              (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 7 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 7 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 7 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 7 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 7 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 7 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 7 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 45;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 7 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 7 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 7 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 7 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 7 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 7 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 7 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 7 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 7 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 7 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 7 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 7 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 7 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 7 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 7 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 7 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 7 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 7 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 7 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 7 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 7 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 7 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 7 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := TRUE;                                           (* STEP: 7 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 7 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 7 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 7 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 7 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 7 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 7 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       8: (* Start Up Production - Pulp Doser -Heating *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 8 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 8 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := TRUE;                                       (* STEP: 8 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 1;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 8 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 8 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 8 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 8 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 8 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 8 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 8 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 8 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 8 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 8 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 8 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 45;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 8 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 8 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 8 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 8 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 8 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 8 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 8 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 8 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 8 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 8 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 8 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 8 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 8 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 8 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 8 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 8 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 8 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 8 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 8 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 8 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 8 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 8 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 8 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := TRUE;                                           (* STEP: 8 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 8 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 8 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 8 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 8 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 8 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 8 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       9: (* Start Up Production -Water recirculation For Heating *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 9 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 9 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 20;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 9 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 9 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 9 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 9 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 9 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 9 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 9 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 9 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 9 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 9 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 9 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 55;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 3;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 9 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 40;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 9 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 9 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 9 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 9 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 9 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 9 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 9 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 9 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 9 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 9 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 9 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 9 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 9 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 9 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 9 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 9 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 9 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 9 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 9 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 9 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 9 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 9 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 9 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := TRUE;                                           (* STEP: 9 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 9 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 9 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 9 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 9 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 9 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 9 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       10..14: (* Spare Steps *)
+
+                       15: (* START-UP PRODUCTION -Machine Pipes Drainages *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 15 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 15 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 15 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 15 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 15 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 15 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 15 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 15 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 15 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 15 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 15 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 15 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                              (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 15 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 5;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 1;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 15 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 15 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 15 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 15 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 15 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 15 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 15 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 15 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 15 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 15 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 15 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 15 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 15 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 15 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 15 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 15 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 15 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 15 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 15 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 15 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 15 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 15 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 15 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 15 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 15 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 15 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := TRUE;                                        (* STEP: 15 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 15 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 15 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 15 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 15 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 15 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       16: (* Spare Steps *)
+
+                       17: (* START-UP PRODUCTION -Machine Draining End *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 17 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 17 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 17 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 17 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 17 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 17 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 17 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 17 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 17 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 17 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 17 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 17 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                              (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 17 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 17 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 17 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 17 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 17 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 17 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 17 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 17 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 17 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 17 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 17 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 17 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 17 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 17 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 17 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 17 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 17 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 17 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 17 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 17 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 17 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 17 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 17 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 17 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 17 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 17 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 17 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 17 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 17 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 17 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 17 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 17 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       18..19: (* Spare Steps *)
+
+                       20: (* START-UP PRODUCTION -Wait "Product Available" From PASTO *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 20 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 20 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 20 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 20 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 20 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 20 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 20 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 20 Atmospheric drain valve *)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 20 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                              (* STEP: 20 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 20 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 20 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 20 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 20 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 20 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 20 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 20 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 20 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 20 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 20 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 20 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 20 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 20 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 20 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 20 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 20 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 20 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 20 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 20 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 20 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 20 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 20 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 20 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 20 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 20 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 20 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 20 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 20 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 20 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 20 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 20 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 20 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 20 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 20 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       21: (* Spare Steps *)
+
+                       22: (* START-UP PRODUCTION - Load Product at level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 22 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 22 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 22 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 22 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 10;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 22 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 22 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 22 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 22 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 22 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 22 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 22 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 22 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 22 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 22 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 22 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 22 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 22 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 22 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 22 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 22 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 22 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 22 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 22 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 22 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 22 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 22 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 22 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 22 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 22 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 22 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 22 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 22 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 22 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 22 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 22 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 22 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 22 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 22 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 22 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 22 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 22 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 22 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 22 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 22 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       23: (* START-UP PRODUCTION -Filling Valve Priming, Filling Valves Opening *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 23 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 23 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 23 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 23 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 10;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 23 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 23 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 23 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 23 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 23 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 23 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 23 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 23 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 23 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 3;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 23 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := TRUE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 23 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 23 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 23 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 23 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 23 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 23 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 23 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 23 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 23 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 23 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 23 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 23 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 23 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 23 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 23 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 23 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 23 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 23 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 23 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 23 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 23 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 23 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 23 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 23 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 23 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 23 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 23 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 23 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 23 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 23 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 23 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       24: (* START-UP PRODUCTION -Filling Valve Priming, Drain Tray Washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 24 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 24 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 24 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 24 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 24 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := TRUE;                                              (* STEP: 24 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 24 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 24 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 24 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 24 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 24 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 24 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 24 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 24 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 24 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 24 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 24 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 24 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 24 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 24 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 24 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 24 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 24 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 24 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 24 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 24 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 24 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 24 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 24 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 24 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 24 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 24 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 24 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 24 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 24 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 24 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 24 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 24 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 24 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 24 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 24 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 24 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 24 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 24 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 24 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       25..29: (* Spare Steps *)
+
+                       30: (* START-UP PRODUCTION -Wait For Product Tank at Set-Point Level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 30 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 30 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 30 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 30 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 20;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 30 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 30 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 30 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 30 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 30 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 30 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 30 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 30 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 30 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 30 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 30 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 30 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 30 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 30 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 30 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 30 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 30 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 30 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 30 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 30 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 30 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 30 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 30 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 30 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 30 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 30 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 30 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 30 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 30 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 30 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 30 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 30 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 30 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 30 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 30 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 30 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 30 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 30 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 30 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 30 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 30 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       31..34: (* Spare Steps *)
+
+                       35: (* PRODUCTION -Machine on Production *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 35 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 35 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 35 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 35 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 35 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 35 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 35 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 35 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 35 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 35 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 35 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 35 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 35 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 35 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 35 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 35 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 35 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 35 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 35 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 35 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 35 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 35 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 35 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 35 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 35 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 35 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 35 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 35 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 35 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 35 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 35 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 35 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 35 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 35 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 35 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 35 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 35 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 35 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 35 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 35 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 35 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := TRUE;                                        (* STEP: 35 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 35 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 35 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 35 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       36: (* Spare Steps *)
+
+                       37: (* PRODUCTION -Minimum Tank Level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 37 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 37 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 37 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 37 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 37 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 37 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 37 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 37 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 37 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 37 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 37 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 37 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 37 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 37 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 37 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 37 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 37 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                 (* STEP: 37 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 37 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 37 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 37 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 37 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 37 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 37 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 37 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 37 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 37 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 37 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 37 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 37 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 37 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 37 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 37 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 37 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 37 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 37 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 37 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 37 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 37 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 37 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := TRUE;                                        (* STEP: 37 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 37 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 37 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 37 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       38: (* PRODUCTION -Safety Tank Level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 38 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 38 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 38 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 38 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 38 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 38 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 38 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 38 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 38 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 38 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 38 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 38 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 38 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._608;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 38 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 38 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 38 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 38 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 38 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 38 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 38 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 38 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 38 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 38 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 38 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 38 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 38 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 38 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 38 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 38 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 38 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 38 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 38 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 38 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 38 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 38 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 38 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 38 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 38 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 38 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE;                                            (* STEP: 38 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 38 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 38 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 38 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 38 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       39: (* Spare Steps *)
+
+                       40: (* PRODUCTION - Recirculation *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 40 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 40 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := TRUE;                                       (* STEP: 40 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 2;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 40 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 40 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 40 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 40 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 40 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 40 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 40 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 40 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 40 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 40 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 3;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0.5;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0.5;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 40 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := TRUE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := TRUE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 40 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 40 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 40 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 40 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 40 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 40 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 40 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 40 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 40 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 40 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 40 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 40 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 40 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 40 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 40 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 40 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 40 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 40 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 40 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 40 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 40 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 40 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 40 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 40 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 40 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 40 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 40 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 40 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 40 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 40 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       41: (* PRODUCTION - Recirculation End *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := TRUE;                                       (* STEP: 41 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := HMI_PAM_1._110  ;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 41 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 41 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 41 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 41 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 41 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 41 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 41 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 41 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 41 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 41 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 41 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 41 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 5;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 41 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := TRUE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := TRUE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 41 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 41 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 41 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 41 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 41 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 41 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 41 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 41 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 41 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 41 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 41 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 41 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 41 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 41 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 41 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 41 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 41 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 41 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 41 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 41 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 41 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 41 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 41 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 41 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 41 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 41 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 41 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 41 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := TRUE;                                        (* STEP: 41 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 41 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       42..45: (* Spare Steps *)
+
+                       46: (* PRODUCTION -End Production Request from PASTO *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 46 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 46 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 46 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 46 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 10;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 46 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 46 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 46 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 46 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 46 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 46 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 46 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 46 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 46 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP :=60.0; //HMI_PAM_3._608 
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;  
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                      (* STEP: 46 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._604;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := TRUE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 46 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 46 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 46 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 46 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 46 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 46 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 46 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 46 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 46 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 46 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 46 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 46 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 46 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 46 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 46 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 46 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 46 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 46 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 46 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 46 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 46 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 46 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 46 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 46 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 46 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 46 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := TRUE; //FALSE;                                   (* STEP: 46 To PASTO -> Product Request*) 
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := TRUE;                                        (* STEP: 46 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 46 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 46 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 46 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       47..48: (* Spare Steps *)
+
+                       49: (* END PRODUCTION -Wait Filler Empty *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 49 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 49 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 49 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 49 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 10;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 49 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 49 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 49 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 49 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 49 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 49 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 49 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 49 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 49 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 5;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 49 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 49 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 49 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 49 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 49 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 49 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 49 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 49 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 49 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 49 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 49 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 49 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 49 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 49 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 49 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 49 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 49 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 49 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 49 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 49 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 49 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 49 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 49 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 49 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 49 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 49 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 49 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 49 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := TRUE;                                        (* STEP: 49 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 49 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 49 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 49 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       50..51: (* Spare Steps *)
+
+                       52: (* END PRODUCTION -Machine Drainage *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 52 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 52 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 52 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 52 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 52 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 52 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 52 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 52 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 52 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 52 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 52 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 52 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 52 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 52 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 52 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 52 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 52 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 52 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 52 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 52 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 52 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 52 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 52 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 52 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 52 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 52 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 52 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 52 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 52 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 52 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 52 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 52 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 52 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 52 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 52 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 52 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 52 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 52 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 52 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 52 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 52 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := TRUE;                                    (* STEP: 52 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 52 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 52 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       53..54: (* Spare Steps *)
+
+                       55: (* PRODUCTION - Stopped *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 55 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 55 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 55 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 55 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 55 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 55 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 55 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 55 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 55 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 55 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 55 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 55 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 55 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 55 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := HMI_PAM_3._603;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._600;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 55 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 55 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 55 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 55 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 55 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 55 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 55 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 55 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 55 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 55 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 55 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 55 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 55 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 55 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 55 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 55 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 55 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 55 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 55 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 55 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 55 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 55 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 55 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 55 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 55 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 55 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 55 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 55 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 55 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 55 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       56..58: (* Spare Steps *)
+
+                       59: (* CIP -Wait Filler Dummy Bottles Insertion *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 59 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 59 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 59 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 59 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 59 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 59 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 59 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 59 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 59 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 59 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 59 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 59 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 59 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 59 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 59 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 59 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 59 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 59 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 59 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 59 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 59 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := TRUE;                                                   (* STEP: 59 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 59 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 59 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 59 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 59 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 59 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 59 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 59 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 59 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 59 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 59 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 59 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 59 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 59 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 59 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 59 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 59 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 59 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 59 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 59 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 59 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 59 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 59 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 59 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       60: (* CIP -Wait Max Height Pulp Doser Tank *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 60 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 60 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 60 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 60 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 60 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 60 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 60 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 60 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 60 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 60 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 60 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 60 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 60 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 60 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 60 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 60 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 60 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 60 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 60 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 60 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 60 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := TRUE;                                             (* STEP: 60 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 60 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 60 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 60 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 60 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 60 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 60 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 60 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 60 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 60 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 60 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 60 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 60 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 60 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 60 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 60 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 60 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 60 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 60 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 60 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 60 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 60 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 60 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       61: (* CIP - Tank Empty *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 61 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 61 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 61 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 61 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 61 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 61 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 61 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 61 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                             (* STEP: 61 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 61 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 61 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 61 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 61 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 61 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 61 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 61 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 61 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 61 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 61 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 61 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 61 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 61 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 61 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 61 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 61 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 61 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 61 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 61 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 61 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 61 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 61 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 61 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 61 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 61 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 61 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 61 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 61 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 61 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 61 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 61 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 61 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 61 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 61 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 61 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       62..64: (* Spare Steps *)
+
+                       65: (* CIP. -Filling Valve Closing and Waiting Conical Valve Extraction on Position *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 65 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 65 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 65 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 65 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 65 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 65 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 65 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 65 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 65 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 65 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 65 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 65 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 65 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 65 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 65 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 65 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 65 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 65 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 65 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 65 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 65 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 65 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 65 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := TRUE;                                                    (* STEP: 65 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 65 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 65 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 65 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 65 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 65 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 65 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 65 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 65 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 65 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 65 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 65 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 65 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 65 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 65 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 65 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 65 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 65 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 65 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 65 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 65 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       66: (* CIP - Conical valve extraction  *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 66 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 66 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 20;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 66 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 66 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 20;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 66 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 66 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 66 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 66 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 66 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 66 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 66 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 66 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 66 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 66 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 66 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 66 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 66 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 66 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 66 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 66 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 66 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 66 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 66 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 66 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 66 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 66 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 66 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 66 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 66 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 66 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 66 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 66 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 66 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 66 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 66 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 66 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 66 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 66 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 66 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 66 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 66 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 66 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 66 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 66 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       67: (* CIP - Conical valve extraction 1st group clean *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 67 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 67 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 20;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 67 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 67 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 20;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 67 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 67 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 67 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 67 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 67 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 67 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 67 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 67 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 67 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 67 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 67 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 67 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 67 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 67 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 67 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 67 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 67 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 67 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 67 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 67 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 67 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 67 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 67 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 67 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 67 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 67 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 67 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 67 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 67 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 67 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 67 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 67 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 67 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 67 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 67 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 67 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 67 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 67 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 67 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 67 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       68: (* CIP - Conical valve extraction 2st group clean *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 68 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 68 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 68 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 68 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 68 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 68 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 68 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 68 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 68 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 68 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 68 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 68 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 68 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 68 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 68 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 68 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 68 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 68 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 68 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 68 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 68 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 68 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 68 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 68 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 68 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 68 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 68 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 68 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 68 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 68 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 68 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 68 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 68 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 68 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 68 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 68 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 68 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 68 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 68 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 68 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 68 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 68 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 68 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 68 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       69: (* CIP - Conical valve extraction 3st group clean *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 69 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 69 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 69 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 69 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 69 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 69 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 69 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 69 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 69 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 69 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 69 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 69 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 69 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 69 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 69 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 69 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 69 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 69 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 69 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 69 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 69 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 69 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 69 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 69 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 69 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 69 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 69 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 69 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 69 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 69 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 69 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 69 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 69 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 69 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 69 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 69 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 69 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 69 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 69 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 69 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 69 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 69 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 69 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 69 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       70: (* CIP - Conical valve exctraction drain *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 70 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 70 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 70 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 70 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 70 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 70 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 70 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 70 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 70 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 70 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 70 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 70 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 70 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 70 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 70 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 70 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 70 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 70 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 70 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 70 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 70 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 70 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 70 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 70 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 70 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 70 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 70 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 70 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 70 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 70 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 70 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 70 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 70 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 70 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 70 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 70 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 70 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 70 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 70 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 70 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 70 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 70 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 70 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 70 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       71: (* CIP - Conical valve insertion *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 71 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 71 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 71 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 71 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 71 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 71 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 71 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 71 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 71 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 71 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 71 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 71 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 71 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 71 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 71 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 71 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 71 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 71 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 71 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 71 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 71 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 71 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 71 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 71 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 71 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 71 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 71 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 71 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 71 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 71 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 71 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 71 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 71 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 71 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 71 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 71 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 71 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 71 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 71 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 71 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 71 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 71 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 71 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 71 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       72: (* Spare Steps *)
+
+                       73: (* CIP - Wait for product tank at CIP level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 73 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 73 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 73 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 73 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 73 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 73 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 73 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 73 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 73 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 73 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 73 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 73 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                              (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 73 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 73 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._633;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 73 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 73 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 73 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 73 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 73 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 73 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 73 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 73 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 73 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 73 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 73 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 73 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 73 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 73 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 73 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 73 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 73 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 73 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 73 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 73 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 73 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 73 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 73 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 73 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 73 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 73 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 73 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 73 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 73 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 73 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       74: (* Spare Steps *)
+
+                       75: (* CIP - Piston washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 75 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 75 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 75 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 75 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 75 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 75 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 75 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := TRUE;                                              (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 75 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 75 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 75 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 75 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 75 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 75 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 75 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._633;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 75 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 75 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 75 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 75 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 75 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 75 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 75 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 75 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 75 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 75 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 75 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 75 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 75 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 75 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 75 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 75 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 75 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 75 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 75 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 75 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := TRUE;                                              (* STEP: 75 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 75 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 75 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 75 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 75 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 75 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 75 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 75 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 75 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 75 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       76: (* Spare Steps *)
+
+                       77: (* CIP - Filling valve washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 77 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 77 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 77 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 77 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 77 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 77 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 77 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := TRUE;                                              (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 77 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 77 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 77 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 77 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 77 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 77 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 77 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._633;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 77 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 77 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 77 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 77 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 77 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 77 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 77 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 77 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 77 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 77 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 77 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 77 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 77 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 77 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 77 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 77 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 77 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 77 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 77 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 77 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 77 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 77 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 77 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 77 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 77 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 77 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 77 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 77 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 77 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 77 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       78: (* Spare Steps *)
+
+                       79: (* CIP - Duct washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 79 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 79 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 79 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 79 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 79 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := TRUE;                                              (* STEP: 79 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 79 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 79 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 79 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 79 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 79 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 79 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                              (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 79 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 79 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := HMI_PAM_3._633;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 79 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 79 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 79 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 79 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 79 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 79 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 79 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 79 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 79 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 79 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 79 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 79 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 79 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 79 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 79 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 79 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 79 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 79 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 79 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 79 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 79 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 79 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 79 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 79 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 79 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 79 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 79 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 79 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 79 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 79 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       80: (* Spare Steps *)
+
+                       81: (* CIP - End cleaning cycle - cleaning continuing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 81 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 81 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 81 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 81 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 81 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 81 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 81 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 81 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 81 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 81 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 81 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 81 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+								VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 81 Hema Tank Level*)
+								VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+								VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+								VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+								VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+								VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+								VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+								VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 81 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 81 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 81 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 81 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 81 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 81 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 81 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 81 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 81 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 81 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 81 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 81 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 81 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                            (* STEP: 81 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 81 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 81 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 81 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 81 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 81 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 81 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 81 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 81 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 81 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := TRUE;                                                 (* STEP: 81 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 81 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 81 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 81 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 81 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 81 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 81 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 81 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       82: (* CIP - End cleaning cycle - sanitizer recovery running *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 82 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 82 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630  ;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := TRUE;                                       (* STEP: 82 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 1;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 82 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 82 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 82 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 82 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 82 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 82 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 82 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := TRUE;                                              (* STEP: 82 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 82 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                             (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                             (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                              (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 82 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 3;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 82 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 82 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 82 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 82 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 82 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 82 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 82 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 82 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 82 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 82 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 82 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                  (* STEP: 82 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 82 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                           (* STEP: 82 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 82 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 82 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 82 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 82 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 82 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 82 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 82 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 82 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 82 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 82 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 82 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 82 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 82 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 82 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 82 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 82 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 82 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       83: (* CIP - End cleaning cycle - sanitizer recovery completed *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 83 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := TRUE;                                       (* STEP: 83 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := HMI_PAM_3._630;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 83 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 83 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 83 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 83 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 83 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 83 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 83 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 83 Tank Hema Drain Valve*)
+							   VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 83 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 83 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+							   VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                             (* STEP: 82 *)
+							   VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+							   VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                             (* STEP: 82 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := TRUE;                                              (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 83 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 83 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 83 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 83 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 83 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 83 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 83 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 83 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 83 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 83 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 83 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 83 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 83 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 83 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := TRUE;                                           (* STEP: 83 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 83 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 83 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := TRUE;                                                (* STEP: 83 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 83 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 83 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := TRUE;                                            (* STEP: 83 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 83 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 83 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 83 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 83 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 83 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 83 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 83 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 83 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 83 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 83 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 83 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       84..85: (* Spare Steps *)
+
+                       86: (* CIP. -End Cleaning Cycle -Drain Ruuning *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 86 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 86 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 86 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 86 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 86 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 86 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 86 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 86 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 86 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 86 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 86 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 86 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                              (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 86 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 86 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 86 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 86 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 86 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 86 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 86 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 86 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 86 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 86 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 86 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := TRUE;                                                    (* STEP: 86 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 86 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 86 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 86 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 86 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 86 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 86 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := TRUE;                                               (* STEP: 86 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 86 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 86 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 86 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 86 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 86 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := TRUE;                                                 (* STEP: 86 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 86 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 86 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 86 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 86 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 86 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 86 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 86 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       87: (* CIP - End Cleaning cycle - Drain Completed *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 87 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 87 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 87 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 87 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 87 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 87 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 87 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 87 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 87 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 87 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 87 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 87 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 87 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 87 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 87 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 87 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 87 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 87 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 87 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 87 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 87 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 87 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 87 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 87 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 87 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 87 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 87 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 87 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 87 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 87 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 87 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 87 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 87 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := TRUE;                                                 (* STEP: 87 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 87 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 87 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := TRUE;                                                 (* STEP: 87 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 87 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 87 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 87 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 87 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 87 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 87 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 87 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       88: (* CIP - End CIP - Final COP cycle runnuing check *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 88 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 88 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 88 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 88 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 88 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 88 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 88 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 88 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 88 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 88 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 88 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 88 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 88 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 88 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 88 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 88 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 88 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 88 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 88 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 88 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 88 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 88 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := TRUE;                                                      (* STEP: 88 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 88 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 88 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := TRUE;                                             (* STEP: 88 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 88 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 88 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 88 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 88 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 88 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 88 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 88 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 88 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 88 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 88 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 88 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 88 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 88 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 88 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 88 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 88 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 88 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 88 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       89: (* COP - HEMA Positioning to Max Height *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 89 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 89 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 89 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 89 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 89 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 89 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 89 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 89 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 89 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 89 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 89 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 89 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 89 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 89 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 89 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 89 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 89 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 89 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 89 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 89 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 89 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := TRUE;                                             (* STEP: 89 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := TRUE;                                                      (* STEP: 89 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 89 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 89 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 89 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 89 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 89 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 89 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 89 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 89 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 89 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 89 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 89 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 89 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 89 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 89 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 89 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 89 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 89 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 89 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 89 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 89 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 89 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       90: (* COP in Execution *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 90 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 90 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 90 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 90 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 90 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 90 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 90 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 90 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 90 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 90 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 90 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 90 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 90 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 90 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 90 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 90 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 90 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 90 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 90 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 90 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 90 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 90 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := TRUE;                                                      (* STEP: 90 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 90 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 90 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 90 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 90 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 90 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 90 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 90 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 90 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 90 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 90 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 90 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 90 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 90 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 90 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 90 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 90 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 90 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 90 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 90 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 90 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 90 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+//change
+                       91: (* Drain Recovery Skid *)
+
+								VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 91 Doser Recovery Pump*)
+								VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+								VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+								VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+					
+								VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 91 Doser Recovery Pump*)
+								VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+								VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+								VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+					
+								VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 91 Diaphragm Pump for Recovery pulp*)
+								VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+								VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+								VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+					
+								VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 91 Shaker Motor*)
+								VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+								VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+								VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+					
+								VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+								VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+								VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+					
+								VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 91 Inlet Valve*)
+								VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 91 Washing Duct Valve*)
+								VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 91 Sprayball Valve*)
+								VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 91 Atmospheric drain valve*)
+								VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 91 Recirculation Valve*)
+								VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 91 Tank Hema Drain Valve*)
+								VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 91 Recirculation Valve*)
+								VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 91 Inlet Loop Valve*)
+								VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+								VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                             (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+					
+								VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 91 Hema Tank Level*)
+								VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+								VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+								VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+								VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+								VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+								VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+								VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+					
+								VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 91 Hema Tank Temperature*)
+								VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+								VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+								VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+								VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+								VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+								VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+								VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+					
+								VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+								VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+					
+								VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+								VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+					
+								VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+								VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+					
+								VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+								VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+					
+								VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+								VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+					
+								VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 91 PB Abort Sequence Enable*)
+								VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 91 PB Stop Sequence Enable*)
+								VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 91 PB Start Sequence Enable*)
+								VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 91 *)
+								VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                   (* STEP: 91 *)
+								VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                   (* STEP: 91 *)
+								VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 91 Dummy Bottle Install*)
+								VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 91 Request of Cam Positioning at height SP of Sequncer*)
+								VAR_DOS_SEQ.Mem.COP_Cycle := TRUE;                                                      (* STEP: 91 COP Cycle Check Requested*)
+								VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 91 *)
+								VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 91 *)
+								VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 91 Request Of Cop After Cip*)
+					
+								VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 91 To CIP -> Request of Solution Sending*)
+								VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 91 To CIP -> Critical Alarm Present*)
+								VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 91 To CIP -> Rinse Finished*)
+								VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 91 To CIP -> Change Finished*)
+								VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 91 To CIP -> Drain Cycle Running*)
+								VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 91 To CIP -> Rinse Cycle Running*)
+								VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 91 To CIP -> Cleaning Cycle Running*)
+								VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 91 To CIP -> Drain Finished*)
+								VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 91 To CIP -> Flooding Finished*)
+								VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 91 *)
+								VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 91 *)
+					
+								VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 91 To PASTO -> Filler Ready for Production (Heating)*)
+								VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 91 To PASTO -> Filler Temperature OK (After Heating)*)
+								VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 91 To PASTO -> Product Request*)
+								VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 91 To PASTO -> Product Consumend -Filling Valve Opening*)
+								VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 91 To PASTO -> End Production Done*)
+								VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 91 To PASTO -> Product Recovery End*)
+								VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 91 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       92: (* CIP -Wait Dummy Bottles Disinsertion *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 92 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 92 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 92 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 92 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 92 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 92 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 92 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 92 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 92 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 92 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 92 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 92 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 92 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 92 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 92 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 92 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 92 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 92 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 92 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 92 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 92 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 92 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 92 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 92 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 92 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 92 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 92 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 92 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 92 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 92 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 92 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 92 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 92 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 92 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 92 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 92 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 92 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 92 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 92 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 92 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 92 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 92 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 92 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 92 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 92 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       93..94: (* Spare Steps *)
+
+                       95: (* CIP - Stopped *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 95 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 95 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 95 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 95 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 95 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 95 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 95 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 95 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 95 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 95 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 95 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 95 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 95 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 95 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 95 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 95 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 95 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 95 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 95 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 95 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 95 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 95 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 95 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 95 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 95 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 95 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 95 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 95 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 95 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 95 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 95 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 95 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 95 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 95 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 95 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 95 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 95 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 95 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 95 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 95 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 95 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 95 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 95 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 95 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       96: (* C.I.P. -Press "STOP" to End the Cycle or Press "START" for a New Sequence *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 96 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 96 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 96 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 96 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 96 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 96 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 96 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 96 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 96 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 96 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 96 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 96 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 96 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 96 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 96 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 96 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 96 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := TRUE;                                                  (* STEP: 96 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 96 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 96 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 96 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 96 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 96 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 96 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 96 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 96 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 96 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 96 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 96 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 96 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 96 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 96 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 96 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 96 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 96 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 96 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 96 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 96 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 96 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 96 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 96 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 96 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 96 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 96 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 96 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       97..99: (* Spare Steps *)
+
+                       100: (* RINSE -Tank Emptying *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 100 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 100 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 100 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 100 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 100 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 100 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 100 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 100 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 100 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 100 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 100 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 100 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 100 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 5;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 1;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 100 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 100 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 100 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 100 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 100 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 100 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 100 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 100 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 100 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 100 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 100 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 100 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 100 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 100 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 100 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 100 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 100 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 100 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 100 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 100 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 100 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 100 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 100 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 100 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 100 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 100 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 100 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 100 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 100 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 100 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 100 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       101: (* RINSE -Rinse Product Pipes *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 101 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 101 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 101 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 101 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := TRUE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 10;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 101 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 101 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 101 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 101 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 101 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 101 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 101 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 101 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 101 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 101 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 101 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 101 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 101 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 101 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 101 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 101 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 101 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 101 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 101 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 101 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 101 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 101 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 101 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 101 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 101 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 101 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 101 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 101 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 101 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 101 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 101 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 101 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 101 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 101 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 101 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 101 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 101 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 101 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 101 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 101 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       102: (* RINSE -Tank Emptying *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 102 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 102 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 102 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 102 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 102 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 102 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 102 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 102 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 102 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 102 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 102 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 102 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 102 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 102 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 102 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 102 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 102 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 102 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 102 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 102 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 102 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 102 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 102 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 102 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 102 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 102 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 102 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 102 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 102 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 102 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 102 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 102 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 102 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 102 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 102 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 102 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 102 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 102 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 102 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 102 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 102 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 102 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 102 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 102 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       103: (* RINSE -Cleaning - Filling tank at Set Point level *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 103 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 103 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 103 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 103 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 103 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 103 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 103 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := TRUE;                                              (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 103 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 103 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 103 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 103 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 103 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 103 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 103 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 103 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 103 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 103 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 103 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 103 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 103 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 103 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 103 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 103 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 103 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 103 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 103 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 103 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 103 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 103 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 103 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 103 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 103 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 103 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 103 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 103 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 103 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 103 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 103 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 103 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 103 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 103 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 103 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 103 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 103 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       104: (* RINSE -Cleaning -Piston washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 104 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 104 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 104 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 104 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 104 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 104 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 104 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 104 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := TRUE;                                              (* STEP: 104 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 104 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 104 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 104 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 104 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 104 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 104 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 104 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 104 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 104 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 104 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 104 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 104 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 104 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 104 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 104 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                   (* STEP: 104 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 104 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 104 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 104 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 104 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 104 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 104 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 104 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 104 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 104 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := TRUE;                                              (* STEP: 104 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 104 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 104 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 104 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 104 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 104 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 104 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 104 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 104 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 104 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       105: (* RINSE -Cleaning -Duct washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 105 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 105 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 105 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 105 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 105 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := TRUE;                                              (* STEP: 105 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := TRUE;                                              (* STEP: 105 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 105 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 105 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 105 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 105 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 105 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := TRUE;                                              (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 105 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 105 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 105 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 105 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 105 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 105 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 105 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 105 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 105 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 105 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 105 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 105 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 105 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 105 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 105 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 105 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 105 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 105 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 105 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 105 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 105 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 105 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 105 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 105 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 105 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 105 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 105 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 105 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 105 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 105 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 105 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 105 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       106: (* RINSE -Cleaning -Filling Valve washing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 106 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 106 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 106 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := TRUE;                                       (* STEP: 106 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 15;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := TRUE;                                              (* STEP: 106 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 106 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 106 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 106 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 106 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 106 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := TRUE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 106 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 106 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := TRUE;                                              (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := TRUE;                                              (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := TRUE;                                              (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 106 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := HMI_PAM_3._607;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := TRUE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := HMI_PAM_3._606;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := HMI_PAM_3._626;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 2;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := TRUE;                                      (* STEP: 106 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := HMI_PAM_3._620;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 106 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 106 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 106 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 106 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 106 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 106 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 106 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 106 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 106 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := TRUE;                                                    (* STEP: 106 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 106 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 106 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 106 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 106 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 106 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 106 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 106 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 106 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 106 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 106 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 106 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 106 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 106 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 106 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 106 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 106 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 106 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 106 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 106 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := TRUE;                                     (* STEP: 106 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       107: (* Spare Steps *)
+
+                       108: (* RINSE - Final drain *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 108 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 108 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 108 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 108 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 108 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 108 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 108 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 108 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 108 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 108 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 108 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 108 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 108 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 108 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 108 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 108 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 108 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 108 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 108 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 108 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 108 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 108 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 108 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 108 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 108 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 108 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 108 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 108 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 108 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 108 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 108 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 108 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 108 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 108 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 108 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 108 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 108 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 108 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 108 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 108 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 108 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 108 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 108 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 108 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       109: (* RINSE -cleaning - Filling Valve Closing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 109 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 109 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 109 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 109 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 109 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 109 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 109 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 109 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 109 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 109 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 109 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 109 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 109 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 109 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 109 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 109 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 109 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 109 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 109 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 109 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 109 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 109 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 109 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := TRUE;                                                    (* STEP: 109 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 109 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 109 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 109 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 109 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := TRUE;                                                 (* STEP: 109 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 109 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 109 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := TRUE;                                               (* STEP: 109 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 109 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 109 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 109 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 109 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 109 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 109 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 109 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 109 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 109 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 109 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 109 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 109 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       110..114: (* Spare Steps *)
+
+                       115: (* RINSE - Stopped *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 115 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 115 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 115 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 115 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 115 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 115 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 115 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 115 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 115 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 115 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 115 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 115 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 115 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 115 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 115 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 115 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 115 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 115 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 115 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 115 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 115 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 115 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 115 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 115 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 115 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 115 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 115 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 115 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 115 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 115 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 115 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 115 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 115 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 115 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 115 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 115 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 115 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 115 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 115 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 115 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 115 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 115 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 115 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 115 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       116..129: (* Spare Steps *)
+
+                       130: (* DRAIN - Final Drain *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 130 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 130 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 130 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 130 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 130 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 130 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 130 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 130 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 130 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 130 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 130 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := TRUE;                                              (* STEP: 130 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 130 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 130 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 130 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 130 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 130 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 130 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 130 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 130 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 130 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 130 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 130 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 130 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := TRUE;                                                   (* STEP: 130 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 130 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 130 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 130 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 130 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 130 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 130 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 130 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 130 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 130 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 130 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 130 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 130 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 130 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 130 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 130 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 130 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 130 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 130 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 130 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       131: (* DRAIN - Filling valve closing *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 131 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 131 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 131 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 131 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 131 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 131 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 131 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := TRUE;                                              (* STEP: 131 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 131 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := TRUE;                                              (* STEP: 131 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 131 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 131 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := TRUE;                                              (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 131 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 131 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 131 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 131 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 131 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 131 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := TRUE;                                                   (* STEP: 131 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 131 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 131 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 131 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 131 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := TRUE;                                                    (* STEP: 131 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 131 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 131 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 131 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 131 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 131 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 131 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 131 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 131 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 131 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 131 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 131 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 131 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 131 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 131 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 131 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 131 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 131 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 131 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 131 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 131 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       132..134: (* Spare Steps *)
+
+                       135: (* Drain - Stopped *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 135 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 135 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 135 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 135 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 135 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 135 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 135 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 135 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 135 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 135 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 135 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 135 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 135 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 135 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                  (* STEP: 135 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                  (* STEP: 135 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 135 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                 (* STEP: 135 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 135 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := TRUE;                                                    (* STEP: 135 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 135 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 135 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 135 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 135 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 135 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 135 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 135 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 135 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 135 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 135 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 135 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 135 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 135 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 135 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 135 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 135 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 135 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 135 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 135 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 135 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 135 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 135 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 135 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 135 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       136..149: (* Spare Steps *)
+
+                       150: (* BYPASS - Check Request *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 150 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 150 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 150 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 150 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 150 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 150 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 150 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 150 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 150 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 150 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 150 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 150 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 150 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 150 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 150 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 150 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 150 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 150 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 150 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 150 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 150 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 150 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 150 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 150 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 150 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 150 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 150 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 150 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 150 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 150 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 150 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 150 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 150 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 150 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 150 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 150 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 150 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 150 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 150 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 150 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 150 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 150 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 150 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 150 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 150 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       151: (* BYPASS - Waiting for machine Stop *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 151 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 151 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 151 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 151 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 151 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 151 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 151 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 151 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 151 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 151 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 151 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 151 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 151 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 151 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 151 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 151 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 151 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 151 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 151 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 151 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 151 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 151 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 151 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 151 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 151 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 151 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 151 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 151 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 151 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 151 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 151 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 151 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 151 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 151 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 151 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 151 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 151 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 151 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 151 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 151 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 151 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 151 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 151 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 151 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 151 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       152: (* BYPASS - Doser Bypassed *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 152 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 152 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 152 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 152 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 152 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 152 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 152 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 152 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 152 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 152 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 152 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 152 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 152 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 152 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 152 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 152 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 152 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 152 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 152 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 152 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 152 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 152 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 152 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 152 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 152 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 152 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 152 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 152 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 152 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 152 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 152 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 152 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 152 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 152 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 152 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 152 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 152 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 152 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 152 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 152 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 152 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 152 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 152 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 152 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 152 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       153: (* BYPASS - Doser Included *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 153 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 153 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 153 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 153 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 153 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 153 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 153 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 153 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 153 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 153 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 153 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 153 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 153 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 153 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 153 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 153 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 153 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 153 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 153 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 153 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 153 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 153 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 153 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 153 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 153 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 153 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 153 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 153 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 153 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 153 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 153 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 153 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 153 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 153 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 153 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 153 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 153 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 153 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 153 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 153 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 153 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 153 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 153 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 153 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 153 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       154: (* BYPASS - Error *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 154 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 154 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 154 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 154 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 154 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 154 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 154 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 154 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 154 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 154 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 154 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 154 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 154 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 154 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 154 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 154 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 154 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 154 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 154 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 154 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 154 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 154 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 154 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 154 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 154 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 154 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 154 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 154 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 154 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 154 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 154 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 154 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 154 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 154 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 154 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 154 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 154 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 154 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 154 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 154 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 154 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 154 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 154 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 154 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 154 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       155: (* BYPASS - Operation Completed *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 155 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 155 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 155 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 155 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 155 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 155 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 155 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 155 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 155 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 155 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 155 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 155 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 155 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 155 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 155 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 155 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 155 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 155 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 155 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 155 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 155 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 155 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 155 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 155 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 155 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 155 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 155 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 155 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 155 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 155 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 155 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 155 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 155 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 155 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 155 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 155 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 155 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 155 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 155 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 155 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 155 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 155 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 155 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 155 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 155 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       156..159: (* Spare Steps *)
+
+                       160: (* MOTORIZATION - Doser Axis Check *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 160 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 160 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 160 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 160 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 160 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 160 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 160 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 160 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 160 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 160 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 160 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 160 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 160 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 160 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 160 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 160 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 160 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 160 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 160 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 160 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 160 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 160 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 160 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 160 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 160 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 160 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 160 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 160 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 160 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 160 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 160 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 160 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 160 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 160 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 160 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 160 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 160 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 160 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 160 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 160 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 160 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 160 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 160 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 160 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 160 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       161: (* MOTORIZATION - Waiting for Machine Stop for Enabling/Disabling Axis *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 161 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 161 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 161 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 161 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 161 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 161 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 161 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 161 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 161 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 161 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 161 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 161 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 161 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 161 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 161 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 161 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 161 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 161 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 161 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 161 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 161 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 161 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 161 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 161 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 161 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 161 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 161 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 161 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 161 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 161 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 161 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 161 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 161 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 161 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 161 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 161 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 161 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 161 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 161 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 161 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 161 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 161 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 161 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 161 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 161 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       162: (* MOTORIZATION - Doser Axis Enabling in Progress *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 162 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 162 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 162 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 162 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 162 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 162 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 162 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 162 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 162 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 162 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 162 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 162 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 162 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 162 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 162 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 162 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 162 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 162 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 162 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 162 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 162 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 162 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 162 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 162 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 162 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 162 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 162 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 162 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 162 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 162 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 162 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 162 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 162 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 162 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 162 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 162 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 162 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 162 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 162 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 162 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 162 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 162 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 162 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 162 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 162 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       163: (* MOTORIZATION - Doser Axis Disabling in Progress *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 163 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 163 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 163 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 163 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 163 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 163 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 163 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 163 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 163 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 163 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 163 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 163 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 163 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 163 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 163 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 163 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 163 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 163 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 163 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 163 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 163 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 163 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 163 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 163 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 163 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 163 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 163 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 163 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 163 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 163 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 163 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 163 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 163 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 163 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 163 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 163 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 163 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 163 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 163 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 163 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 163 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 163 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 163 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 163 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 163 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       164: (* MOTORIZATION - Operation Completed *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 164 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 164 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 164 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 164 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 164 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 164 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 164 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 164 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 164 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 164 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 164 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 164 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 164 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 164 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 164 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 164 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 164 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 164 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 164 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 164 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 164 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 164 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 164 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 164 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 164 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 164 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 164 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 164 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 164 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 164 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 164 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 164 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 164 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 164 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 164 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 164 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 164 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 164 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 164 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 164 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 164 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 164 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 164 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 164 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 164 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       165: (* MOTORIZATION - Error *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 165 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 165 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 165 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 165 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 165 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 165 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 165 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 165 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 165 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 165 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 165 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 165 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 165 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 165 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 165 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := TRUE;                                                 (* STEP: 165 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := TRUE;                                                   (* STEP: 165 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 165 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := TRUE;                                                (* STEP: 165 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 165 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 165 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 165 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 165 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 165 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 165 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 165 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 165 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 165 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 165 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 165 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 165 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 165 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 165 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 165 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 165 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 165 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 165 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 165 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 165 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 165 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 165 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 165 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 165 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 165 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 165 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       166..169: (* Spare Steps *)
+
+                       170: (* PRODUCTION - Doser Excluded *)
+
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Enable := FALSE;                                      (* STEP: 170 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Enable := FALSE;                                      (* STEP: 170 Doser Recovery Pump*)
+                               VAR_DOS_SEQ.Device.PPJ202_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ202_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Enable := FALSE;                                      (* STEP: 170 Diaphragm Pump for Recovery pulp*)
+                               VAR_DOS_SEQ.Device.PPJ203_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.PPJ203_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Enable := FALSE;                                      (* STEP: 170 Shaker Motor*)
+                               VAR_DOS_SEQ.Device.MMJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.MMJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Enable := FALSE;                                      (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.RVJ201_PID.PID_Mode := FALSE;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.Auto_SP_Value := 0;
+                               VAR_DOS_SEQ.Device.RVJ201_PID.FIX_Value := 0;
+
+                               VAR_DOS_SEQ.Device.AVJ201.AutoCnd := FALSE;                                             (* STEP: 170 Inlet Valve*)
+                               VAR_DOS_SEQ.Device.AVJ201.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ210.AutoCnd := FALSE;                                             (* STEP: 170 Washing Duct Valve*)
+                               VAR_DOS_SEQ.Device.AVJ210.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ211.AutoCnd := FALSE;                                             (* STEP: 170 Sprayball Valve*)
+                               VAR_DOS_SEQ.Device.AVJ211.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ212.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ212.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ215.AutoCnd := FALSE;                                             (* STEP: 170 Atmospheric drain valve*)
+                               VAR_DOS_SEQ.Device.AVJ215.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ216.AutoCnd := FALSE;                                             (* STEP: 170 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ216.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ217.AutoCnd := FALSE;                                             (* STEP: 170 Tank Hema Drain Valve*)
+                               VAR_DOS_SEQ.Device.AVJ217.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ218.AutoCnd := FALSE;                                             (* STEP: 170 Recirculation Valve*)
+                               VAR_DOS_SEQ.Device.AVJ218.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ221.AutoCnd := FALSE;                                             (* STEP: 170 Inlet Loop Valve*)
+                               VAR_DOS_SEQ.Device.AVJ221.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ230.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ230.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ231.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ231.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ232.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ232.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ233.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ233.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ234.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ234.EnableCnd := FALSE;
+                               VAR_DOS_SEQ.Device.AVJ235.AutoCnd := FALSE;                                             (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.AVJ235.EnableCnd := FALSE;
+
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 170 Hema Tank Level*)
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.LTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.LTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitEn := FALSE;                                     (* STEP: 170 Hema Tank Temperature*)
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_HighLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitEn := FALSE;
+                               VAR_DOS_SEQ.Device.TTJ203.ALR_LowLimitSP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.SP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.CMP := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MinDev := 0;
+                               VAR_DOS_SEQ.Device.TTJ203.MaxDev := 0;
+
+                               VAR_DOS_SEQ.Device.LSJ200.ALR := FALSE;                                                 (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ200.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ201.ALR := FALSE;                                                 (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.LSJ202.ALR := FALSE;                                                 (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.LSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ201.ALR := FALSE;                                                 (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ201.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Device.FSJ202.ALR := FALSE;                                                 (* STEP: 170 *)
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_OFF := FALSE;
+                               VAR_DOS_SEQ.Device.FSJ202.WAIT_ON := FALSE;
+
+                               VAR_DOS_SEQ.Mem.PBAbortEnable := FALSE;                                                 (* STEP: 170 PB Abort Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStopEnable := FALSE;                                                   (* STEP: 170 PB Stop Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.PBStartEnable := FALSE;                                                 (* STEP: 170 PB Start Sequence Enable*)
+                               VAR_DOS_SEQ.Mem.ContainersStop := FALSE;                                                (* STEP: 170 *)
+                               VAR_DOS_SEQ.Mem.MachineStart := FALSE;                                                  (* STEP: 170 *)
+                               VAR_DOS_SEQ.Mem.MachineStop := FALSE;                                                   (* STEP: 170 *)
+                               VAR_DOS_SEQ.Mem.DummyBottles := FALSE;                                                  (* STEP: 170 Dummy Bottle Install*)
+                               VAR_DOS_SEQ.Mem.PositioningRequest := FALSE;                                            (* STEP: 170 Request of Cam Positioning at height SP of Sequncer*)
+                               VAR_DOS_SEQ.Mem.COP_Cycle := FALSE;                                                     (* STEP: 170 COP Cycle Check Requested*)
+                               VAR_DOS_SEQ.Mem.LapsCounter := FALSE;                                                   (* STEP: 170 *)
+                               VAR_DOS_SEQ.Mem.ValveOpening := FALSE;                                                  (* STEP: 170 *)
+                               VAR_DOS_SEQ.Mem.CopAfterCipRequest := FALSE;                                            (* STEP: 170 Request Of Cop After Cip*)
+
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRequest := FALSE;                                           (* STEP: 170 To CIP -> Request of Solution Sending*)
+                               VAR_DOS_SEQ.ITC.CIP_Alarm := FALSE;                                                     (* STEP: 170 To CIP -> Critical Alarm Present*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseEnded := FALSE;                                                (* STEP: 170 To CIP -> Rinse Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_ChangeEnded := FALSE;                                               (* STEP: 170 To CIP -> Change Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainRunning := FALSE;                                              (* STEP: 170 To CIP -> Drain Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_RinseRunning := FALSE;                                              (* STEP: 170 To CIP -> Rinse Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_CleaningRunning := FALSE;                                           (* STEP: 170 To CIP -> Cleaning Cycle Running*)
+                               VAR_DOS_SEQ.ITC.CIP_DrainEnded := FALSE;                                                (* STEP: 170 To CIP -> Drain Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FloodingEnded := FALSE;                                             (* STEP: 170 To CIP -> Flooding Finished*)
+                               VAR_DOS_SEQ.ITC.CIP_FlipEnable := FALSE;                                                (* STEP: 170 *)
+                               VAR_DOS_SEQ.ITC.CIP_CycleEnded := FALSE;                                                (* STEP: 170 *)
+
+                               VAR_DOS_SEQ.ITC.PROD_ReadyForHeating := FALSE;                                          (* STEP: 170 To PASTO -> Filler Ready for Production (Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserInTemperature := FALSE;                                       (* STEP: 170 To PASTO -> Filler Temperature OK (After Heating)*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRequest := FALSE;                                           (* STEP: 170 To PASTO -> Product Request*)
+                               VAR_DOS_SEQ.ITC.PROD_DoserOnFillingMode := FALSE;                                       (* STEP: 170 To PASTO -> Product Consumend -Filling Valve Opening*)
+                               VAR_DOS_SEQ.ITC.PROD_EndProductionCompleted := FALSE;                                   (* STEP: 170 To PASTO -> End Production Done*)
+                               VAR_DOS_SEQ.ITC.PROD_ProductRecoveryEnd := FALSE;                                       (* STEP: 170 To PASTO -> Product Recovery End*)
+                               VAR_DOS_SEQ.ITC.PROD_WaterRequestAfterProd := FALSE;                                    (* STEP: 170 To PASTO -> Water Request For Filler Rinse Afetr Production*)
+
+                       171..200: (* Spare Steps *)
+
+              
+               END_CASE
+END_ACTION

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.2.12.129 SP?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File">DOS_InstrTemp.st</Object>
+    <Object Type="File">DOS_InstrLevel.st</Object>
+    <Object Type="File">DOS_InstrPosition.st</Object>
+    <Object Type="File">DOS_InstrPress.st</Object>
+    <Object Type="File">DOS_InstrVolume.st</Object>
+    <Object Type="File">DOS_InstrFlow.st</Object>
+  </Objects>
+</Package>

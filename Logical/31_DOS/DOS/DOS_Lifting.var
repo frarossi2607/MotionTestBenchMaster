@@ -1,0 +1,24 @@
+VAR
+	VAR_DOS_Lift_State : VAR_DOS_LiftCommands_Type;
+	VAR_DOS_MMF205 : VAR_DOS_MMF205_Type;
+	VAR_DOS_MMF206 : VAR_DOS_MMF206_Type;
+	FbLCRLimScal_ml_mm : LCRLimScal;
+	FbLCRLimScal_mm_ml : LCRLimScal;
+	VAR_DOS_PistonVolume_ml : REAL;
+	VAR_DOS_PistonVolume_mm : REAL;
+	ml : USINT := 1;
+	mm : USINT := 0;
+END_VAR
+(*Check lifting - ALARM*)
+VAR
+	TON_DosRunFbk : ARRAY[0..1] OF TON;
+	VAR_MMF205PositionSave : REAL;
+	VAR_MMF206PositionSave : REAL;
+	VAR_MMF205Down : BOOL;
+	VAR_MMF206Down : BOOL;
+	TON_DosPositionCheck : ARRAY[0..1] OF TON;
+	VAR_OldMMF205Position : REAL;
+	VAR_OldMMF206Position : REAL;
+	VAR_MMF205DirectionReverse : BOOL;
+	VAR_MMF206DirectionReverse : BOOL;
+END_VAR

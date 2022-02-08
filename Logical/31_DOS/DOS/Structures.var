@@ -1,0 +1,4 @@
+(*//Lift position Selection ComboBox*)
+VAR
+	VAR_LiftPositionType : DOS_Lift_Phase_Type;
+END_VAR

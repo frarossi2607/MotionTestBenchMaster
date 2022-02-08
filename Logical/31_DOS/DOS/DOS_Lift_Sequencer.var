@@ -1,0 +1,6 @@
+VAR
+	VAR_DOS_LiftStepMem : VAR_DOS_LiftMoveStep_Type;
+	VAR_DOS_LiftMMF206SeqMem : VAR_DOS_LiftSeqMem_Type;
+	VAR_DOS_LiftMMF205SeqMem : VAR_DOS_LiftSeqMem_Type;
+	VAR_DOS_LiftMoveStep : VAR_DOS_LiftMoveStep_Type;
+END_VAR

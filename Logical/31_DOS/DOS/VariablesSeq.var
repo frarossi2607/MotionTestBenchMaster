@@ -1,0 +1,123 @@
+(*SEQUENCER*)
+VAR
+	FB_DOS_SEQ : Sequencer_v2;
+	VAR_DOS_SEQ_Step : SEQ_Type;
+	VAR_DOS_Lift_SEQ_Step : SEQ_Type;
+	VAR_DOS_Lift_SEQ : SEQ_Module_Type;
+	VAR_DOS_SEQ : SEQ_Module_Type;
+	VAR_DOS_SeqProdStopAlarm : BOOL;
+	VAR_DOS_SeqProdStopRequest : BOOL;
+	VAR_DOS_SeqProdAbortRequest : BOOL;
+	VAR_DOS_SeqCipStopAlarm : BOOL;
+	VAR_DOS_SeqRinseStopAlarm : BOOL;
+	VAR_DOS_SeqRinseStopRequest : BOOL;
+	VAR_DOS_SeqCipStopRequest : BOOL;
+	VAR_DOS_SeqRinseAbortRequest : BOOL;
+	VAR_DOS_SeqCipAbortRequest : BOOL;
+	VAR_DOS_SeqDrainStopAlarm : BOOL;
+	VAR_DOS_SeqDrainStopRequest : BOOL;
+	VAR_DOS_SeqDrainAbortRequest : BOOL;
+	VAR_DOS_SeqBypassStopAlarm : BOOL;
+	VAR_DOS_SeqBypassAbortRequest : BOOL;
+	VAR_DOS_SeqPositionRequest : BOOL;
+	VAR_DOS_SeqPositionReached : BOOL;
+	VAR_index : UINT;
+	VAR_DOS_SeqActualStep : UINT;
+	VAR_DOS_SeqCyclesCounter : UDINT;
+END_VAR
+(*MODE VARIABLES*)
+VAR
+	VAR_DOS_ModeWait : BOOL;
+	VAR_DOS_ModeProduction : BOOL;
+	VAR_DOS_ModeProductionExcluded : BOOL;
+	VAR_DOS_ModeCip : BOOL;
+	VAR_DOS_ModeRinse : BOOL;
+	VAR_DOS_ModeDrain : BOOL;
+	VAR_DOS_ModeCop : BOOL;
+	VAR_DOS_ModePositionRequest : BOOL;
+	VAR_DOS_ModePositioning : BOOL;
+	VAR_DOS_ModeBypass : BOOL;
+	VAR_DOS_MemProdDrain : BOOL;
+	VAR_DOS_MemWaitPumpSet : BOOL;
+	VAR_DOS_ModeWaitOperator : BOOL;
+	VAR_DOS_MemDoserByPassed : BOOL;
+	VAR_DOS_MemDoserIncluded : BOOL;
+	VAR_DOS_MemDoserAxisOff : BOOL;
+	VAR_DOS_MemDoserAxisOn : BOOL;
+	VAR_DOS_MemFillerAxisOffReq : BOOL;
+	VAR_DOS_PhasingWithDos : BOOL;
+	VAR_DOS_PhasingWithoutDos : BOOL;
+END_VAR
+(*STEP VARIABLES*)
+(*Production*)
+VAR
+	VAR_DOS_StepProdHeating : BOOL;
+	VAR_DOS_StepProdProducing : BOOL;
+	VAR_DOS_StepProdLowLevel : BOOL;
+	VAR_DOS_StepProdRecovery : BOOL;
+	VAR_DOS_StepProdStopped : BOOL;
+	VAR_DOS_StepProdAborted : BOOL;
+END_VAR
+(*Cip*)
+VAR
+	VAR_DOS_StepCipCleaning : BOOL;
+	VAR_DOS_StepCipDraining : BOOL;
+	VAR_DOS_StepCipRecovery : BOOL;
+	VAR_DOS_StepCipStopped : BOOL;
+	VAR_DOS_StepCipAborted : BOOL;
+	VAR_DOS_StepCipFillerStartEnable : BOOL;
+	VAR_DOS_StepCipEnded : BOOL;
+END_VAR
+(*Rinse*)
+VAR
+	VAR_DOS_StepRinseReq : BOOL;
+	VAR_DOS_StepRinseInExecution : BOOL;
+	VAR_DOS_StepRinseStopped : BOOL;
+	VAR_DOS_StepRinseAborted : BOOL;
+END_VAR
+(*Drain*)
+VAR
+	VAR_DOS_StepDrainStopped : BOOL;
+	VAR_DOS_StepDrainAborted : BOOL;
+END_VAR
+(*Cop*)
+VAR
+	VAR_DOS_StepCopRunning : BOOL;
+END_VAR
+(*FLIP SEQUENCE*)
+VAR CONSTANT
+	VAR_DOS_FlipSeqMax : USINT := 10;
+END_VAR
+VAR
+	VAR_DOS_FlipIndex : USINT;
+	VAR_DOS_FlipSequenceRepetition : USINT;
+	VAR_DOS_Flip_CycleTime : REAL;
+	VAR_DOS_FlipSeqStart : BOOL;
+	VAR_DOS_FlipSeqEnable : BOOL;
+	VAR_DOS_FlipSeqReset : BOOL;
+	VAR_DOS_FlipSeqEnd : BOOL;
+	VAR_DOS_FlipSeqValve : ARRAY[0..VAR_DOS_FlipSeqMax] OF DOS_ValveFlip_Type;
+END_VAR
+(*PRODUCTION END*)
+VAR
+	VAR_DOS_ProdEndRequest : {REDUND_UNREPLICABLE} BOOL;
+	VAR_DOS_StepProdEndProduction : {REDUND_UNREPLICABLE} BOOL;
+	VAR_DOS_EndProdStopContainer : {REDUND_UNREPLICABLE} BOOL;
+	VAR_DOS_RejectExpulsionRequest : {REDUND_UNREPLICABLE} BOOL;
+	VAR_DOS_ProdEndRejectContainers : {REDUND_UNREPLICABLE} REAL;
+	VAR_DOS_ProdEndAvailableLiters : {REDUND_UNREPLICABLE} REAL;
+	VAR_DOS_ProdEndNecessaryLiters : {REDUND_UNREPLICABLE} REAL;
+	VAR_DOS_ProdEndNecessaryBottle : {REDUND_UNREPLICABLE} REAL; (*v999hema*)
+END_VAR
+(*By Pass*)
+VAR
+	VAR_DOS_StepCamPositioning : BOOL;
+	VAR_DOS_StepCamPosInProgress : BOOL;
+	VAR_DOS_StepCamPosRequest : BOOL;
+	VAR_DOS_StepBypassAborted : BOOL;
+END_VAR
+(*Motion*)
+VAR
+	VAR_DOS_StepMotorization : BOOL;
+	VAR_DOS_Flip_RTInfo : RTInfo;
+END_VAR

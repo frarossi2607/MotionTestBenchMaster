@@ -1,0 +1,84 @@
+(*SELECTIONS*)
+VAR
+	VAR_DOS_FMDProduction : BOOL;
+	VAR_DOS_FMDProductionFillerOnly : BOOL;
+	VAR_DOS_FMDDrain : BOOL;
+	VAR_DOS_FMDCip : BOOL;
+	VAR_DOS_FMDRinse : BOOL;
+	VAR_DOS_FMDCop : BOOL;
+	VAR_DOS_FMDByPass : BOOL;
+	VAR_DOS_FMDPositionRequest : BOOL;
+	VAR_DOS_FMDPositioning : BOOL;
+	VAR_DOS_MemPBStart : BOOL;
+	VAR_DOS_MemPBStop : BOOL;
+	VAR_DOS_MemPBAbort : BOOL;
+	VAR_DOS_MemPBSkipForward : BOOL;
+	VAR_DOS_MemSSPause : BOOL;
+END_VAR
+(*AUXILIARY VARIABLES*)
+VAR
+	VAR_DOS_Blink1HzEp : BOOL;
+	VAR_DOS_PBResetEp : BOOL;
+	VAR_DOS_HotProductControl : BOOL;
+	VAR_DOS_InletOpen : BOOL;
+	VAR_DOS_LoopOpen : BOOL;
+	VAR_DOS_ReturnOpen : BOOL;
+	VAR_DOS_RVJ201Auto : BOOL;
+	VAR_DOS_SelectionLost : BOOL;
+	VAR_DOS_BypassRequest : BOOL;
+	VAR_DOS_TankEmpted : BOOL;
+	VAR_DOS_LiftSelectionEnable : BOOL;
+	VAR_DOS_SS2PSelectionEnable : BOOL;
+	VAR_DOS_CleanArmProdPos : BOOL;
+	VAR_DOS_CleanArmCopPos : BOOL;
+	VAR_DOS_CleanArmCopPosFault : BOOL;
+	VAR_DOS_SeqBackupAllowed : BOOL;
+	VAR_DOS_RinseCycle : REAL;
+	VAR_DOS_MotorReady : UINT;
+	VAR_DOS_SeqFor : UINT;
+	VAR_DOS_ForIndex : UINT;
+	VAR_DOS_LevelPercentage : REAL;
+	VAR_DOS_LevelVolume : REAL;
+	VAR_DOS_LevelHeight : REAL;
+END_VAR
+(*ALARM VARIABLES*)
+VAR
+	VAR_DOS_WaterTemperatureTooHigh : BOOL;
+	VAR_DOS_WaterTemperatureTooLow : BOOL;
+	VAR_DOS_TankTooLow : BOOL;
+	VAR_DOS_TankSafetyLimit : BOOL;
+	VAR_DOS_TankTooFull : BOOL;
+	VAR_DOS_AVJ_ValveFault : BOOL;
+	VAR_DOS_MotorFault : BOOL;
+	VAR_DOS_NoBotNoFillPressureLow : BOOL;
+	VAR_DOS_NoBotNoFillPressureFault : BOOL;
+END_VAR
+(*AUXILIARY TIMERS*)
+VAR
+	TMR_TON_TemperatureTooLow : TON;
+	TMR_TON_InletSafetyDelay : TON;
+	TMR_TOF_FlipWork : ARRAY[0..2] OF TOF;
+	TMR_TON_FlipWait : ARRAY[0..2] OF TON;
+END_VAR
+(*SAFETY STATUS*)
+VAR
+	VAR_DOS_ValveEnable : BOOL;
+	VAR_DOS_PumpEnable : BOOL;
+	VAR_DOS_AlarmActive : BOOL;
+	VAR_DOS_MotorEnable : BOOL;
+END_VAR
+(*PID*)
+VAR CONSTANT
+	PID_MODE_CIP : USINT := 0;
+	PID_MODE_PRD : USINT := 1;
+END_VAR
+VAR
+	FB_PID_PPJ202 : ARRAY[0..3] OF PID_Cont;
+	FB_PID_RVJ201 : ARRAY[0..3] OF PID_Cont;
+END_VAR
+(*Manual Lifting*)
+VAR
+	VAR_DOS_MoveInProductionPosition : USINT;
+	VAR_DOS_MoveInCOPPosition : USINT;
+	VAR_DOS_MoveInCIPPosition : USINT;
+END_VAR

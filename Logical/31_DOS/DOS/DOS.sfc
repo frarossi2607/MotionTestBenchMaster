@@ -1,0 +1,230 @@
+PROGRAM _CYCLIC
+<?AutomationStudio FileVersion="4.9"?>
+INITIAL_STEP DOSInit:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM DOSInit TO InitCpu:=
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'InitCpu' *)
+STEP InitCpu:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+
+END_ACTION
+TRANSITION PRESENT FROM InitCpu TO DOS_Cfg:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND CFG_Par.Doser.Present //RMH017
+END_TRANSITION
+(* @SFCNOJUMP := 'DOS_Cfg' *)
+TRANSITION NOT PRESENT FROM InitCpu TO DOS_Off:=
+(* @LANGUAGE := 'st' *)
+CFG.DataOut.ConfigLoaded AND FALSE //V4.A.A.1.6.11 : WAITING FOR CFG
+END_TRANSITION
+(* @SFCISJUMP := 'DOS_Off' *)
+STEP DOS_Cfg:
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+EXIT_ACTION
+(* @LANGUAGE := 'st' *)
+DOS_Hardware_CFG;
+
+//Gestione HMI RMH017
+HMI_CFG_PAR_1._005 := FALSE; //FLAVOR DOSER
+HMI_CFG_PAR_1._215 := TRUE;
+HMI_CFG_PAR_1._216 := TRUE; //PULP DOSER
+HMI_CFG_PAR_1._217 := MMJ[201].IN_ConfigPresent;
+HMI_CFG_PAR_1._218 := MMJ[201].IN_ConfigPresent;
+
+HMI_CFG_PAM_A1._400 := PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_A1._401 := PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_A1._402 := PPJ203.IN_ConfigPresent;
+
+HMI_CFG_PAM_3._600 	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._603	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._604	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._606 	:= LTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._607 	:= LTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._608 	:= LTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._610	:= LTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._611	:= PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_3._612	:= PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_3._613	:= AVJ[217].IN_ConfigPresent;
+HMI_CFG_PAM_3._614	:= AVJ[217].IN_ConfigPresent;
+HMI_CFG_PAM_3._615	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_3._616	:= VAR_DOS_HotProductControl;
+HMI_CFG_PAM_3._620	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._621	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._622	:= TRUE;
+HMI_CFG_PAM_3._623	:= TRUE;
+HMI_CFG_PAM_3._624	:= TRUE;
+HMI_CFG_PAM_3._626	:= LTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._630	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_3._631	:= TRUE;
+HMI_CFG_PAM_3._632	:= TRUE;
+HMI_CFG_PAM_3._633	:= TTJ[203].IN_ConfigPresent;
+HMI_CFG_PAM_3._634	:= PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_3._635	:= PPJ203.IN_ConfigPresent;
+HMI_CFG_PAM_3._636	:= AVJ[217].IN_ConfigPresent;
+HMI_CFG_PAM_3._637	:= AVJ[217].IN_ConfigPresent;
+HMI_CFG_PAM_3._640	:= FALSE;
+HMI_CFG_PAM_3._641	:= TRUE;
+HMI_CFG_PAM_3._642	:= TRUE;
+HMI_CFG_PAM_3._643	:= TRUE;
+HMI_CFG_PAM_3._644	:= FALSE;
+HMI_CFG_PAM_3._645	:= TRUE;
+
+HMI_CFG_PAM_D1._611	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_D1._612	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_D1._613	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_D1._616	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_D1._617	:= PPJ[202].IN_ConfigPresent;
+HMI_CFG_PAM_D1._618	:= PPJ[202].IN_ConfigPresent;
+
+
+HMI_CFG_PAC_1._015 := TRUE;
+HMI_CFG_PAC_1._018 := TRUE;
+HMI_CFG_PAC_1._025 := TRUE;
+HMI_CFG_PAC_1._500 := TRUE;
+HMI_CFG_PAC_1._501 := TRUE;
+//HMI_CFG_PAC_1._502 := TRUE;
+//HMI_CFG_PAC_1._503 := TRUE;
+HMI_CFG_PAC_1._505 := TRUE;
+HMI_CFG_PAC_1._510 := TRUE;
+END_ACTION
+TRANSITION PULP FROM DOS_Cfg TO (DOSVar,Instruments,ModeSelection,MainSequencer,Valves,Pumps,Motor,Lifting,DataTo):=
+(* @LANGUAGE := 'st' *)
+TRUE
+END_TRANSITION
+(* @SFCNOJUMP := 'DOSVar' *)
+(* @SFCNOJUMP := 'Instruments' *)
+(* @SFCNOJUMP := 'ModeSelection' *)
+(* @SFCNOJUMP := 'MainSequencer' *)
+(* @SFCNOJUMP := 'Valves' *)
+(* @SFCNOJUMP := 'Pumps' *)
+(* @SFCNOJUMP := 'Motor' *)
+(* @SFCNOJUMP := 'Lifting' *)
+(* @SFCNOJUMP := 'DataTo' *)
+TRANSITION FLAVOR FROM DOS_Cfg TO DataToF:=
+(* @LANGUAGE := 'st' *)
+FALSE
+END_TRANSITION
+(* @SFCNOJUMP := 'DataToF' *)
+STEP DataToF:
+(* @LANGUAGE := 'st' *)
+DOS_DataOutFlavor; //RMH017
+DOS_AlarmFlavor;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM DataToF TO DOSInit:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'DOSInit' *)
+STEP DOSVar:
+(* @LANGUAGE := 'st' *)
+VAR_DOS_Blink1HzEp 		:= EDGEPOS(AID.DataOut.Blink1Hz);
+VAR_DOS_PBResetEp		:= EDGEPOS(AID.DataOut.Reset);
+VAR_DOS_HotProductControl := NOT CFG_Par.Machine.Type.SRMA;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Instruments:
+(* @LANGUAGE := 'st' *)
+DOS_InstrTemp;
+DOS_InstrLevel;
+DOS_InstrVolume;
+DOS_InstrPosition;
+DOS_InstrPress;
+DOS_InstrFlow;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP ModeSelection:
+(* @LANGUAGE := 'st' *)
+DOS_ModeSelection;
+DOS_ManualLifting;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP MainSequencer:
+(* @LANGUAGE := 'st' *)
+DOS_StepManager;
+DOS_StepMove;
+DOS_StepConfig;
+DOS_StepStatus;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Valves:
+(* @LANGUAGE := 'st' *)
+DOS_ValvesLogic;
+DOS_ValvesFlip;
+DOS_ValvesFB;
+DOS_ModulatingPID;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Pumps:
+(* @LANGUAGE := 'st' *)
+DOS_PumpsLogic;
+DOS_PumpsPID;
+DOS_PumpsFB;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Motor:
+(* @LANGUAGE := 'st' *)
+DOS_MotorsLogic;
+DOS_MotorsFB;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP Lifting:
+(* @LANGUAGE := 'st' *)
+LiftMoveMngt_Doser;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+STEP DataTo:
+(* @LANGUAGE := 'st' *)
+DOS_DataOut;
+DOS_HMI;
+DOS_Alarm;
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM (DOSVar,Instruments,ModeSelection,MainSequencer,Valves,Pumps,Motor,Lifting,DataTo) TO DOS_Off:=
+FALSE
+END_TRANSITION
+(* @SFCNOJUMP := 'DOS_Off' *)
+STEP DOS_Off:
+(* @LANGUAGE := 'st' *)
+ST_tmp_suspend(0);
+END_STEP
+(* @SFCMAXTIME := '' *)
+(* @SFCMINTIME := '' *)
+(* @SFCCOMMENT := '' *)
+TRANSITION FROM DOS_Off TO DOSInit:=
+FALSE
+END_TRANSITION
+(* @SFCISJUMP := 'DOSInit' *)
+END_PROGRAM

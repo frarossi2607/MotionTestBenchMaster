@@ -1,0 +1,38 @@
+(*MOTORS*)
+VAR
+	MMF : ARRAY[MIN_CFG_AVx..MAX_CFG_AVx] OF Motor_FC280_Vfd;
+	MMJ : ARRAY[MIN_CFG_AVx..MAX_CFG_AVx] OF Motor_FC280_Vfd;
+	PPJ : ARRAY[MIN_CFG_AVx..MAX_CFG_AVx] OF Motor_FC280_Vfd;
+	PPJ203 : Valve_Mod;
+	PPJ203_AuxScale : LCRScal;
+END_VAR
+(*VALVES*)
+VAR
+	AVJ : ARRAY[MIN_CFG_AVx..MAX_CFG_AVx] OF Valve_Dig;
+	PDO_YV65 : Valve_Dig;
+	_211CPF : Valve_Dig;
+	RVJ : ARRAY[MIN_CFG_RVx..MAX_CFG_RVx] OF Valve_Mod;
+END_VAR
+(*ANALOG*)
+VAR
+	TTJ : ARRAY[MIN_CFG_TTx..MAX_CFG_TTx] OF Analog_In;
+	LTJ : ARRAY[MIN_CFG_LTx..MAX_CFG_LTx] OF Analog_In;
+	_210PTF : Digital_Obj;
+	_205MEF : Analog_In_Direct_Inverse;
+	_206MEF : Analog_In_Direct_Inverse;
+END_VAR
+(*DIGITAL*)
+VAR
+	LSJ200L : Digital_Obj;
+	LSJ200M : Digital_Obj;
+	LSJ200H : Digital_Obj;
+	LSJ : ARRAY[MIN_CFG_LSx..MAX_CFG_LSx] OF Digital_Obj;
+	FSJ : ARRAY[MIN_CFG_FSx..MAX_CFG_FSx] OF Digital_Obj;
+	_210DSX : Digital_Obj; (*Cop arm in cleaning position*)
+	_211DSX : Digital_Obj; (*Cop arm in production pos*)
+	_215DSF : Digital_Obj;
+	_216DSF : Digital_Obj;
+	_212DSF : Digital_Obj;
+	_213DSF : Digital_Obj;
+	_217DSF : Digital_Obj;
+END_VAR
