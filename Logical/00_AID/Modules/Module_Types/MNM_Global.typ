@@ -33,8 +33,6 @@ TYPE
 		CapperPositioningDone : BOOL;
 		SingleAxisInPosition : BOOL;
 		RinserAxisDisabled : BOOL;
-		DoserAxisDisabled : BOOL;
-		FillerAxisDisabled : BOOL;
 		FillingValvePositioningDone : BOOL;
 		ReversePositioningDone : BOOL;
 		DmcPositioningDone : BOOL;

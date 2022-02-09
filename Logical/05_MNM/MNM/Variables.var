@@ -1,5 +1,6 @@
 (*MAIN MOTORIZATION Variables*)
 VAR
+	VAR_MNM_DefaultAxisConfig : BOOL;
 	VAR_MNM_MachineSpeedRequest : REAL;
 	VAR_MNM_AdjustmentStep : MNM_AdjustmentStep; (*V4.A.A.1.7.0*)
 	VAR_MNM_AutoStep : MNM_AutoStep;
@@ -94,6 +95,7 @@ END_VAR
 (*Master MNM Version*)
 VAR
 	VAR_MNM_version : INT := 100; (*v4.a.a.1.7.0 only for internal use*)
+	VAR_MNM_TestQuickStop : BOOL;
 END_VAR
 (*VAR TEST FOR DBA*)
 VAR

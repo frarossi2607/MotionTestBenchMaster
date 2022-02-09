@@ -16,9 +16,9 @@ ACTION DOS_StepManager:
 		VAR_DOS_SeqProdAbortRequest	:= FALSE;
 	END_IF	
 	
-	//CIP
-	VAR_DOS_SeqCipStopAlarm := NOT OPS.DataOut.EmergencyOk OR NOT OPS.DataOut.DoorsOk OR VAR_DOS_AVJ_ValveFault OR PPJ[202].OUT_DriveFault OR LTJ[203].OUT_Alarm OR TTJ[203].OUT_Alarm OR VAR_DOS_NoBotNoFillPressureLow OR
-	PPJ[202].OUT_OverloadFault; // leo OR PstFlr.CipAlarm OR (NOT PstFlr.CipProductSending AND VAR_DOS_StepCipCleaning); //CAPIRE SE CI VOGLIONO ANCHE i PstFlr
+//	//CIP
+//	VAR_DOS_SeqCipStopAlarm := NOT OPS.DataOut.EmergencyOk OR NOT OPS.DataOut.DoorsOk OR VAR_DOS_AVJ_ValveFault OR PPJ[202].OUT_DriveFault OR LTJ[203].OUT_Alarm OR TTJ[203].OUT_Alarm OR VAR_DOS_NoBotNoFillPressureLow OR
+//	PPJ[202].OUT_OverloadFault; // leo OR PstFlr.CipAlarm OR (NOT PstFlr.CipProductSending AND VAR_DOS_StepCipCleaning); //CAPIRE SE CI VOGLIONO ANCHE i PstFlr
 		
 	IF  VAR_DOS_SeqCipStopAlarm OR VAR_DOS_MemPBStop THEN
 		VAR_DOS_SeqCipStopRequest	:= VAR_DOS_ModeCip;

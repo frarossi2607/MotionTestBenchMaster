@@ -44,9 +44,10 @@ TYPE
 		DoserExcluded : BOOL;
 		DoserIncluded : BOOL;
 		ByPassed : BOOL;
+		AllAxisEnableRequest : BOOL;
 		AxisEnableRequest : BOOL;
 		AxisDisableRequest : BOOL;
-		FillerAxisDisableRequest : BOOL;
+		RunOnlyHemaAxisRequest : BOOL;
 		StepCounterRequest : BOOL;
 		FixSpeedRequest : BOOL;
 		PositionReached : BOOL;

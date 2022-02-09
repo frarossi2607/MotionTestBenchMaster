@@ -9,7 +9,7 @@ ACTION DOS_StepMove:
 		//VAR_DOS_SeqPermanent.SeqMode1.5	:= VAR_DOS_FMDPositioning;
 	END_IF
 	
-	IF VAR_DOS_ModeWait AND EDGEPOS(VAR_DOS_FMDProductionFillerOnly) THEN
+	IF VAR_DOS_ModeWait AND VAR_DOS_FMDProductionFillerOnly THEN
 		VAR_DOS_SeqPermanent.SeqMode1.8 := TRUE;
 	END_IF
 	
@@ -21,10 +21,13 @@ ACTION DOS_StepMove:
 		VAR_DOS_SeqPermanent.SeqMode2.0 := TRUE;
 	END_IF
 	
-	IF VAR_DOS_SeqPermanent.SeqActualStep = 0 AND NOT MNM.DataOut.MachineRunning THEN
-		VAR_DOS_SeqPermanent.SeqMode2.4 := TRUE;
-		VAR_DOS_SeqPermanent.SeqMode2.5 := FALSE;
-		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	IF EDGEPOS(VAR_DOS_SeqPermanent.SeqActualStep = 0) THEN
+//		VAR_DOS_SeqPermanent.SeqMode2.4 := TRUE;
+//		VAR_DOS_SeqPermanent.SeqMode2.5 := FALSE;
+//		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+		DOS.DataOut.AllAxisEnableRequest := TRUE;
+	ELSIF VAR_MNM_AxisConfigLoadedNumber = 0 AND DOS.DataOut.AllAxisEnableRequest THEN
+		DOS.DataOut.AllAxisEnableRequest := FALSE;
 	END_IF	
 	
 	VAR_DOS_SeqPermanent.SeqMode1.7 := VAR_DOS_FMDPositionRequest;
@@ -33,7 +36,7 @@ ACTION DOS_StepMove:
 		HMI_DOS_SS2P[SS2P_DOS_CamDosByPass].ON		:= FALSE; 
 		HMI_DOS_SS2P[SS2P_DOS_CamDosInclusion].ON 	:= FALSE; 
 	END_IF
-	
+	 
 	//STEP 00 ********************************************************************************************************************
 	(* Wait *)
 	VAR_DOS_SEQ_Step.Step[0].Config.Laps_Counter_Enable	:= FALSE;
@@ -73,6 +76,10 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[1].Config.TON_TimePr		:= 5;
 	VAR_DOS_SEQ_Step.Step[1].Config.HMI_ID			:= 1;
 	
+	IF VAR_DOS_SEQ_Step.StepActual = 1 THEN
+		VAR_DOS_PhasingWithDos                 := FALSE;
+	END_IF
+
 	VAR_DOS_SEQ_Step.Step[1].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT VAR_DOS_SeqPositionReached;
 	VAR_DOS_SEQ_Step.Step[1].Jump[0].Number			:= 2;
 	VAR_DOS_SEQ_Step.Step[1].Jump[1].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPositionReached AND VAR_DOS_HotProductControl; //se RMH ?? altrimenti salto step Heating ?? FILIPPO
@@ -429,8 +436,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[60].Jump[0].Number		:= 61;
 	VAR_DOS_SEQ_Step.Step[60].Jump[1].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPositionReached AND VAR_DOS_SeqPermanent.SeqMode1.2; //RINSE
 	VAR_DOS_SEQ_Step.Step[60].Jump[1].Number		:= 100;
-	VAR_DOS_SEQ_Step.Step[60].Jump[2].Condition		:= TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone;
-	VAR_DOS_SEQ_Step.Step[60].Jump[2].Number		:= 160;
+	VAR_DOS_SEQ_Step.Step[60].Jump[2].Condition		:= TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone AND VAR_DOS_SeqPositionReached;
+	VAR_DOS_SEQ_Step.Step[60].Jump[2].Number		:= 61;
 	VAR_DOS_SEQ_Step.Step[60].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest OR VAR_DOS_SeqRinseStopRequest;
 	VAR_DOS_SEQ_Step.Step[60].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[60].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest OR VAR_DOS_SeqRinseAbortRequest;
@@ -1093,11 +1100,35 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[155].Config.HMI_ID				:= 73;
 	
 	VAR_DOS_SEQ_Step.Step[155].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8; //PRODUCTION ONLY FILLER
-	VAR_DOS_SEQ_Step.Step[155].Jump[0].Number					:= 170;
+	VAR_DOS_SEQ_Step.Step[155].Jump[0].Number					:= 159;
 	VAR_DOS_SEQ_Step.Step[155].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0; //PRODUCTION
-	VAR_DOS_SEQ_Step.Step[155].Jump[1].Number					:= 1;
+	VAR_DOS_SEQ_Step.Step[155].Jump[1].Number					:= 158;
 	VAR_DOS_SEQ_Step.Step[155].Jump[2].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END; //MANUAL CAM POSITIONING
 	VAR_DOS_SEQ_Step.Step[155].Jump[2].Number					:= 0;
+	
+	//STEP 158 ********************************************************************************************************************
+	(* MOTORIZATION - Doser Axis Check *)
+	VAR_DOS_SEQ_Step.Step[158].Config.TON_TimeSTART               := MNM.DataOut.PhaseDone;
+	VAR_DOS_SEQ_Step.Step[158].Config.TON_TimePr                           := 1;
+	VAR_DOS_SEQ_Step.Step[158].Config.HMI_ID                                               := 66;
+            
+	IF VAR_DOS_SEQ_Step.StepActual = 158 THEN
+		VAR_DOS_PhasingWithDos        := TRUE;
+	END_IF
+	VAR_DOS_SEQ_Step.Step[158].Jump[0].Condition                                         := VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0;
+	VAR_DOS_SEQ_Step.Step[158].Jump[0].Number                                                        := 1;
+            
+	//STEP 159 ********************************************************************************************************************
+	(* MOTORIZATION - Doser Axis Check *)
+	VAR_DOS_SEQ_Step.Step[159].Config.TON_TimeSTART                                := MNM.DataOut.PhaseDone;
+	VAR_DOS_SEQ_Step.Step[159].Config.TON_TimePr                           := 1;
+	VAR_DOS_SEQ_Step.Step[159].Config.HMI_ID                                               := 66;
+            
+	IF VAR_DOS_SEQ_Step.StepActual = 159 THEN
+		VAR_DOS_PhasingWithoutDos := TRUE;
+	END_IF
+	VAR_DOS_SEQ_Step.Step[159].Jump[0].Condition                                         := VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8;
+	VAR_DOS_SEQ_Step.Step[159].Jump[0].Number                                                        := 170;
 
 	//STEP 160 ********************************************************************************************************************
 	(* MOTORIZATION - Doser Axis Check *)
@@ -1107,20 +1138,20 @@ ACTION DOS_StepMove:
 	
 	VAR_DOS_SEQ_Step.Step[160].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.1 AND NOT TNK.DataOut.CipMode; //CIP
 	VAR_DOS_SEQ_Step.Step[160].Jump[0].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.2 AND MNM.DataOut.DoserAxisDisabled; //RINSE
+	VAR_DOS_SEQ_Step.Step[160].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.2 AND NOT MNM.DataOut.ConfigReqLoaded; //RINSE
 	VAR_DOS_SEQ_Step.Step[160].Jump[1].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[2].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.3 AND MNM.DataOut.DoserAxisDisabled; //DRAIN
+	VAR_DOS_SEQ_Step.Step[160].Jump[2].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.3 AND NOT MNM.DataOut.ConfigReqLoaded; //DRAIN
 	VAR_DOS_SEQ_Step.Step[160].Jump[2].Number					:= 161;
 	VAR_DOS_SEQ_Step.Step[160].Jump[3].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.4; //MANUAL COP
 	VAR_DOS_SEQ_Step.Step[160].Jump[3].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[4].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0 AND MNM.DataOut.DoserAxisDisabled; //PRODUCTION
+	VAR_DOS_SEQ_Step.Step[160].Jump[4].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0 AND NOT MNM.DataOut.ConfigReqLoaded; //PRODUCTION
 	VAR_DOS_SEQ_Step.Step[160].Jump[4].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[5].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8 AND NOT MNM.DataOut.DoserAxisDisabled; //PRODUCTION ONLY FILLER
+	VAR_DOS_SEQ_Step.Step[160].Jump[5].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8 AND NOT MNM.DataOut.ConfigReqLoaded; //PRODUCTION ONLY FILLER
 	VAR_DOS_SEQ_Step.Step[160].Jump[5].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[6].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone AND NOT MNM.DataOut.DoserAxisDisabled; //CIP WITH FILLER
+	VAR_DOS_SEQ_Step.Step[160].Jump[6].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone AND NOT MNM.DataOut.ConfigReqLoaded; //CIP WITH FILLER
 	VAR_DOS_SEQ_Step.Step[160].Jump[6].Number					:= 161;
-	VAR_DOS_SEQ_Step.Step[160].Jump[7].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT TNK.DataOut.CipMode;
-	VAR_DOS_SEQ_Step.Step[160].Jump[7].Number					:= 164;
+//	VAR_DOS_SEQ_Step.Step[160].Jump[7].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT TNK.DataOut.CipMode;
+//	VAR_DOS_SEQ_Step.Step[160].Jump[7].Number					:= 164;
 
 	//STEP 161 ********************************************************************************************************************
 	(* MOTORIZATION - Waiting for Machine Stop for Enabling/Disabling Axis *)
@@ -1158,9 +1189,9 @@ ACTION DOS_StepMove:
 		VAR_DOS_SeqPermanent.SeqMode2.5 := FALSE;
 	END_IF
 	
-	VAR_DOS_SEQ_Step.Step[162].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemFillerAxisOffReq AND MNM.DataOut.FillerAxisDisabled AND NOT MNM.DataOut.DoserAxisDisabled;
+	VAR_DOS_SEQ_Step.Step[162].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemFillerAxisOffReq AND MNM.DataOut.ConfigReqLoaded;
 	VAR_DOS_SEQ_Step.Step[162].Jump[0].Number					:= 164;	
-	VAR_DOS_SEQ_Step.Step[162].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemDoserAxisOn AND NOT MNM.DataOut.DoserAxisDisabled;
+	VAR_DOS_SEQ_Step.Step[162].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemDoserAxisOn AND MNM.DataOut.ConfigReqLoaded;
 	VAR_DOS_SEQ_Step.Step[162].Jump[1].Number					:= 164;
 	
 	//STEP 163 ********************************************************************************************************************
@@ -1174,7 +1205,7 @@ ACTION DOS_StepMove:
 		VAR_DOS_SeqPermanent.SeqMode2.5 := TRUE;
 	END_IF
 	
-	VAR_DOS_SEQ_Step.Step[163].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemDoserAxisOff AND MNM.DataOut.DoserAxisDisabled;
+	VAR_DOS_SEQ_Step.Step[163].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_MemDoserAxisOff AND MNM.DataOut.ConfigReqLoaded;
 	VAR_DOS_SEQ_Step.Step[163].Jump[0].Number					:= 164;
 	
 	//STEP 164 ********************************************************************************************************************
@@ -1183,9 +1214,15 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[164].Config.TON_TimePr			:= 1;
 	VAR_DOS_SEQ_Step.Step[164].Config.HMI_ID				:= 71;
 	
+	IF VAR_DOS_SEQ_Step.StepActual = 164 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.4 := FALSE;
+		VAR_DOS_SeqPermanent.SeqMode2.5 := FALSE;
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
+	
 	VAR_DOS_SEQ_Step.Step[164].Jump[0].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0; //PRODUCTION
 	VAR_DOS_SEQ_Step.Step[164].Jump[0].Number				:= 150;
-	VAR_DOS_SEQ_Step.Step[164].Jump[1].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.1;// AND MNM.DataOut.FillerAxisDisabled; //CIP PROVVISORIO
+	VAR_DOS_SEQ_Step.Step[164].Jump[1].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.1 AND NOT TNK.DataOut.CipMode;// AND MNM.DataOut.FillerAxisDisabled; //CIP PROVVISORIO
 	VAR_DOS_SEQ_Step.Step[164].Jump[1].Number				:= 73;
 	VAR_DOS_SEQ_Step.Step[164].Jump[2].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.2; //RINSE
 	VAR_DOS_SEQ_Step.Step[164].Jump[2].Number				:= 101; 
@@ -1196,7 +1233,7 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[164].Jump[5].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8; //DOSER EXCLUDED
 	VAR_DOS_SEQ_Step.Step[164].Jump[5].Number				:= 150;
 	VAR_DOS_SEQ_Step.Step[164].Jump[6].Condition			:= VAR_DOS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipMode; //CIP WITH FILLER
-	VAR_DOS_SEQ_Step.Step[164].Jump[6].Number				:= 60;
+	VAR_DOS_SEQ_Step.Step[164].Jump[6].Number				:= 73;
 
 	//STEP 165 ********************************************************************************************************************
 	(* MOTORIZATION - Error *)
@@ -1212,8 +1249,13 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[170].Config.TON_TimeSTART			:= TRUE;
 	VAR_DOS_SEQ_Step.Step[170].Config.TON_TimePr			:= 1;
 	VAR_DOS_SEQ_Step.Step[170].Config.HMI_ID				:= 72;
+
+	IF VAR_DOS_SEQ_Step.StepActual = 170 THEN
+		VAR_DOS_PhasingWithoutDos := FALSE;
+	END_IF
+
 	
-	VAR_DOS_SEQ_Step.Step[170].Jump[0].Condition				:= TNK.DataOut.Wait;
+	VAR_DOS_SEQ_Step.Step[170].Jump[0].Condition				:= TNK.DataOut.Wait OR COP.DataOut.RcpActive;
 	VAR_DOS_SEQ_Step.Step[170].Jump[0].Number					:= 0;
 	
 	//STEP 201 ********************************************************************************************************************

@@ -1,4 +1,6 @@
 VAR RETAIN
+	VAR_MNM_AxisConfigLoadedNumber : USINT;
+	VAR_MNM_AxisDisableStep : USINT;
 	VAR_MNM_CocleaPhasingByPassDone : BOOL;
 	VAR_MNM_RinserPhasingByPassDone : BOOL;
 	VAR_MNM_RinserPhasingHemaDone : BOOL;

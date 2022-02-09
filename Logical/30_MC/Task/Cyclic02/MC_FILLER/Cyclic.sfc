@@ -1,5 +1,5 @@
 PROGRAM _CYCLIC
-<?AutomationStudio FileVersion="4.9"?>
+(* @LANGUAGE := 'sfc' *)
 INITIAL_STEP InitCPU:
 END_STEP
 (* @SFCMAXTIME := '' *)
@@ -2727,6 +2727,7 @@ IF stFillerModule.iq_stStatus.q_xModuleStopped THEN
 	FOR uiAxisIndex	:= uiFirstFillerModuleAxis	TO uiLastFillerModuleAxis BY 1 DO
 		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xGear 				:= FALSE;
 		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseCompensation	:= FALSE;
+		stFillerModule.iq_astSubModuleAxis[uiAxisIndex].iq_stCmd.i_xPhaseShift			:= FALSE;//
 	END_FOR
 	
 	IF NOT stFillerModule.iq_stStatus.q_xRealAxesSynchronized THEN
