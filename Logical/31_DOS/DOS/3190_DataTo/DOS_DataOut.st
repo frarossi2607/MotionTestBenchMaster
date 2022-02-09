@@ -58,11 +58,11 @@ ACTION DOS_DataOut:
 	DOS.DataOut.ByPassed				:= GNS.DataOut.DosByPassed;
 	
 	IF OPS.DataOut.FlrModeSelectorAdjustment AND NOT MNM.DataOut.MachineRunning THEN //machine running non so se serve
-		DOS.DataOut.AxisDisableRequest		:= FALSE;	
+//		DOS.DataOut.AxisDisableRequest		:= FALSE;	//prova
 		DOS.DataOut.FillerAxisDisableRequest := FALSE;
 	ELSE
-		DOS.DataOut.AxisDisableRequest		:= VAR_DOS_MemDoserAxisOff;				 
-		DOS.DataOut.AxisEnableRequest		:= VAR_DOS_MemDoserAxisOn;
+//		DOS.DataOut.AxisDisableRequest		:= VAR_DOS_MemDoserAxisOff;	//prova		 
+//		DOS.DataOut.AxisEnableRequest		:= VAR_DOS_MemDoserAxisOn;//prova
 		DOS.DataOut.FillerAxisDisableRequest := VAR_DOS_MemFillerAxisOffReq;
 	END_IF
 	
