@@ -151,6 +151,22 @@ VAR_MNM_FpMachineStartPb := EDGEPOS(HMI_CmdBar_PB[PB_FillerStartStop].Command);
 //V4 200.2.0
 VAR_MNM_MachineStart	:= IO_PB_FlStart.ON AND IO_PB_FlStart.Enable;
 VAR_MNM_MachineStop		:= IO_PB_FlStop.ON;
+
+
+//check phasing config when cpu starting
+IF NOT VAR_MNM_CpuStart THEN
+	IF VAR_MNM_AllAxisPhased THEN
+		VAR_MNM_CpuStart := TRUE;
+	ELSIF DOS.DataOut.PhasingWithDos AND NOT VAR_MNM_AllAxisPhased THEN
+		VAR_MNM_CocleaPhasingPerValue	:= 0.0;
+		VAR_MNM_RinserPhasingPerValue	:= 0.0;
+		VAR_MNM_CpuStart	:= TRUE;
+	ELSIF DOS.DataOut.PhasingWithoutDos AND NOT VAR_MNM_AllAxisPhased THEN
+		VAR_MNM_CocleaPhasingPerValue	:= 74.0;
+		VAR_MNM_RinserPhasingPerValue	:= 74.0;
+		VAR_MNM_CpuStart	:= TRUE;
+	END_IF
+END_IF
 END_STEP
 (* @SFCMAXTIME := '' *)
 (* @SFCMINTIME := '' *)
@@ -936,55 +952,72 @@ CASE VAR_MNM_AutoStep OF
 		END_IF	
 	
 		IF (DOS.DataOut.PhasingWithDos OR DOS.DataOut.PhasingWithoutDos) AND MC_InputOutput.Network.Machine.Status.MachineRunning THEN // Phasing req
-			VAR_MNM_AutoStep := MNM_AutoMachineRinPashingConfig; //first motor phased coclea
+			VAR_MNM_AutoStep := MNM_AutoMachineCocPhasingConfig; //first motor phased coclea
 		END_IF	
 
-			
-		IF EDGEPOS(HMI_MNM_PB[PB_MNM_AxisInMotionAdjustment].ON) THEN
-			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= VAR_MNM_PAMValueTest;
-			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
-			ALR[686].Active	:= TRUE;
-		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone THEN
-			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
-			HMI_MNM_AxisInMotionAdjustment	:= 0.0;
-			ALR[686].Active	:= FALSE;
-		ELSIF NOT MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq THEN
-			ALR[686].Active	:= FALSE;
-		END_IF
+	//colea
 	
-	MNM_AutoMachineColceaPashing:
+	MNM_AutoMachineCocPhasingConfig:
 		
 		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
 		MNM.DataOut.StartLightFixRequest	:= TRUE;	
 		
-		HMI_MNM_AxisSelected		:= 113;//colea motor index for MC
-		
+		HMI_MNM_AxisSelected		:= 114;//rinser motor index for MC
 		
 		IF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithDos AND VAR_MNM_CocleaPhasingPerValue = 0.0 THEN
-			VAR_MNM_CocleaPhasingHemaDone := FALSE;
 			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= VAR_MNM_PAMValueTest;
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
-			ALR[686].Active	:= TRUE;//cambiare numero allarme
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasing;
+			ALR[686].Active	:= TRUE;//da cambiare numero
 		ELSIF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithDos AND VAR_MNM_CocleaPhasingPerValue = 74.0 THEN
-			ALR[686].Active	:= TRUE; 	
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
-		ELSIF	MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithoutDos AND VAR_MNM_CocleaPhasingPerValue = 74.0 THEN
-			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= (LREAL_TO_REAL(CFG_MC.Mechanical.MachineStep) - VAR_MNM_PAMValueTest);
+			ALR[686].Active	:= TRUE;
+			VAR_MNM_CocleaPhasingDone	:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasingDone;
+		ELSIF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithoutDos AND VAR_MNM_CocleaPhasingPerValue = 74.0 THEN
+			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= (LREAL_TO_REAL( CFG_MC.Mechanical.MachineStep) - VAR_MNM_PAMValueTest);
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasing;
 			ALR[686].Active	:= TRUE;
 		ELSIF	MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithoutDos AND VAR_MNM_CocleaPhasingPerValue = 0.0 THEN
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
-			ALR[686].Active	:= TRUE;				
-		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithDos THEN
+			ALR[686].Active	:= TRUE;
+			VAR_MNM_CocleaPhasingDone	:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasingDone;
+		END_IF
+	//coclea 
+	MNM_AutoMachineCocleaPhasing:
+
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+
+		ALR[686].Active	:= TRUE;
+		VAR_MNM_AllAxisPhased	:= FALSE;
+		
+		IF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithDos THEN
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
-			VAR_MNM_CocleaPhasingHemaDone := TRUE;
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
-		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithoutDos THEN
+			VAR_MNM_CocleaPhasingPerValue := 74.0;
+			VAR_MNM_CocleaPhasingDone	:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasingDone;
+		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithoutDos  THEN
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
-			VAR_MNM_CocleaPhasingPerValue := 0.0; 
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
+			VAR_MNM_CocleaPhasingPerValue := 0.0;
+			VAR_MNM_CocleaPhasingDone	:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineCocleaPhasingDone;
 		END_IF
 	
+	//coclea
+	MNM_AutoMachineCocleaPhasingDone:
+		MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
+		MC_InputOutput.Network.Machine.Commands.MachineStart 			:= TRUE;
+
+		IF VAR_MNM_CocleaPhasingPerValue = 74.0 AND VAR_MNM_CocleaPhasingDone THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineRinPhasingConfig;
+			VAR_MNM_CocleaPhasingDone	:= FALSE;
+			ALR[686].Active			:= FALSE;
+		ELSIF VAR_MNM_CocleaPhasingPerValue = 0.0 AND VAR_MNM_CocleaPhasingDone THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineRinPhasingConfig;
+			VAR_MNM_CocleaPhasingDone	:= FALSE;
+			ALR[686].Active	:= FALSE;
+		END_IF
+//	
 //	MNM_AutoMachineStarWheel1Pashing: non serve per test
 //		
 //		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
@@ -1001,8 +1034,8 @@ CASE VAR_MNM_AutoStep OF
 //			ALR[686].Active	:= FALSE;
 //		END_IF
 	
-	
-	MNM_AutoMachineRinPashingConfig:
+	//rinser
+	MNM_AutoMachineRinPhasingConfig:
 		
 		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
 		MNM.DataOut.StartLightFixRequest	:= TRUE;	
@@ -1012,67 +1045,71 @@ CASE VAR_MNM_AutoStep OF
 		IF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithDos AND VAR_MNM_RinserPhasingPerValue = 0.0 THEN
 			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= VAR_MNM_PAMValueTest;
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasing;
 			ALR[686].Active	:= TRUE;
 		ELSIF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithDos AND VAR_MNM_RinserPhasingPerValue = 74.0 THEN
 			ALR[686].Active	:= TRUE;
 			MNM.DataOut.PhaseDone	:= TRUE;
-			IF NOT DOS.DataOut.PhasingWithDos THEN
-				VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
-				MNM.DataOut.PhaseDone	:= FALSE;
-			END_IF
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasingDone;
 		ELSIF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithoutDos AND VAR_MNM_RinserPhasingPerValue = 74.0 THEN
 			MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= (LREAL_TO_REAL( CFG_MC.Mechanical.MachineStep) - VAR_MNM_PAMValueTest);
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
-			VAR_MNM_AutoStep := MNM_AutoMachineRinserPashing;
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasing;
 			ALR[686].Active	:= TRUE;
 		ELSIF	MC_InputOutput.Network.Machine.Status.EnableInMotionTimer AND DOS.DataOut.PhasingWithoutDos AND VAR_MNM_RinserPhasingPerValue = 0.0 THEN
 			ALR[686].Active	:= TRUE;
 			MNM.DataOut.PhaseDone	:= TRUE;
-			IF NOT DOS.DataOut.PhasingWithoutDos THEN
-				VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
-				MNM.DataOut.PhaseDone	:= FALSE;
-			END_IF
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasingDone;
 		END_IF
-	
-	MNM_AutoMachineRinserPashing:
+	//rinser
+	MNM_AutoMachineRinserPhasing:
+		
 		ALR[686].Active	:= TRUE;
-				
+		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+		
 		IF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithDos THEN
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
 			VAR_MNM_RinserPhasingPerValue := 74.0;
-			MNM.DataOut.PhaseDone	:= TRUE;		
+			MNM.DataOut.PhaseDone	:= TRUE;
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasingDone;
 		ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone AND DOS.DataOut.PhasingWithoutDos  THEN
 			MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
 			VAR_MNM_RinserPhasingPerValue := 0.0;
 			MNM.DataOut.PhaseDone	:= TRUE;
-		END_IF
-		
-		IF NOT DOS.DataOut.PhasingWithDos AND VAR_MNM_RinserPhasingPerValue = 74.0 AND MNM.DataOut.PhaseDone THEN
-			VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
-			MNM.DataOut.PhaseDone	:= FALSE;
-			ALR[686].Active			:= FALSE;
-		ELSIF NOT DOS.DataOut.PhasingWithoutDos AND VAR_MNM_RinserPhasingPerValue = 0.0 AND MNM.DataOut.PhaseDone THEN
-			VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
-			MNM.DataOut.PhaseDone	:= FALSE;
-			ALR[686].Active	:= FALSE;
+			VAR_MNM_AutoStep := MNM_AutoMachineRinserPhasingDone;
 		END_IF
 	
-	MNM_AutoMachineStarWheel2Phasing:
-		
-				MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
-				MNM.DataOut.StartLightFixRequest	:= TRUE;
-		
-				IF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer THEN
-					MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= VAR_MNM_PAMValueTest;
-					MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
-					MC_InputOutput.Network.Machine.Parameters.AxisSelectedOnHmi		:= 
-					ALR[686].Active	:= TRUE;
-				ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone THEN
-					MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
-			HMI_MNM_AxisInMotionAdjustment	:= 0.0;
-			ALR[686].Active	:= FALSE;
+	//rinser
+	MNM_AutoMachineRinserPhasingDone:
+		MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
+
+		IF NOT DOS.DataOut.PhasingWithDos AND VAR_MNM_RinserPhasingPerValue = 74.0 AND MNM.DataOut.PhaseDone AND NOT MNM.DataOut.MachineRunning THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
+			VAR_MNM_AllAxisPhased	:= TRUE;
+			MNM.DataOut.PhaseDone	:= FALSE;
+			ALR[686].Active			:= FALSE;
+		ELSIF NOT DOS.DataOut.PhasingWithoutDos AND VAR_MNM_RinserPhasingPerValue = 0.0 AND MNM.DataOut.PhaseDone AND NOT MNM.DataOut.MachineRunning THEN
+			VAR_MNM_AutoStep := MNM_AutoMachineRunningEmpty;
+			VAR_MNM_AllAxisPhased	:= TRUE;
+			MNM.DataOut.PhaseDone	:= FALSE;
+			ALR[686].Active			:= FALSE;
 		END_IF
+	
+//	MNM_AutoMachineStarWheel2Phasing:
+//		
+//		MC_InputOutput.Network.Machine.Commands.MachineStart := TRUE;
+//		MNM.DataOut.StartLightFixRequest	:= TRUE;
+//		
+//				IF MC_InputOutput.Network.Machine.Status.EnableInMotionTimer THEN
+//					MC_InputOutput.Network.Machine.Parameters.InMotionTimerValue	:= VAR_MNM_PAMValueTest;
+//					MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= TRUE;
+//					MC_InputOutput.Network.Machine.Parameters.AxisSelectedOnHmi		:= 
+//					ALR[686].Active	:= TRUE;
+//				ELSIF MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq AND MC_InputOutput.Network.Machine.Status.InMotionTimerDone THEN
+//					MC_InputOutput.Network.Machine.Commands.InMotionTimerModReq		:= FALSE;
+//			HMI_MNM_AxisInMotionAdjustment	:= 0.0;
+//			ALR[686].Active	:= FALSE;
+//		END_IF
 	
 	
 	

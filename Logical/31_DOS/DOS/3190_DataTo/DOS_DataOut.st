@@ -57,7 +57,7 @@ ACTION DOS_DataOut:
 	DOS.DataOut.DoserIncluded			:= VAR_DOS_MemDoserIncluded;
 	DOS.DataOut.ByPassed				:= GNS.DataOut.DosByPassed;
 	DOS.DataOut.PhasingWithDos			:= VAR_DOS_PhasingWithDos;
-	DOS.DataOut.PhasingWithoutDos		:= VAR_DOS_PhasingWithoutDos;
+	DOS.DataOut.PhasingWithoutDos			:= VAR_DOS_PhasingWithoutDos;
 	
 	IF OPS.DataOut.FlrModeSelectorAdjustment AND NOT MNM.DataOut.MachineRunning THEN //machine running non so se serve
 		DOS.DataOut.AxisDisableRequest		:= FALSE;
@@ -65,7 +65,8 @@ ACTION DOS_DataOut:
 	ELSE
 		DOS.DataOut.AxisDisableRequest		:= VAR_DOS_MemDoserAxisOff;		 
 		DOS.DataOut.AxisEnableRequest		:= VAR_DOS_MemDoserAxisOn;
-		DOS.DataOut.RunOnlyHemaAxisRequest := VAR_DOS_MemFillerAxisOffReq;
+		DOS.DataOut.RunOnlyHemaAxisRequest  := VAR_DOS_MemFillerAxisOffReq AND NOT TNK.DataOut.StartCipRinser;
+		DOS.DataOut.RunRinserHemaAxisRequest := VAR_DOS_MemFillerAxisOffReq AND RNS.DataOut.RunWithHemaReq;
 	END_IF
 	
 	DOS.DataOut.StepCounterRequest		:= VAR_DOS_SEQ.Mem.LapsCounter;
