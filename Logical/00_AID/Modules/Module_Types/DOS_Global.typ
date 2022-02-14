@@ -48,6 +48,7 @@ TYPE
 		AxisEnableRequest : BOOL;
 		AxisDisableRequest : BOOL;
 		RunOnlyHemaAxisRequest : BOOL;
+		RunRinserHemaAxisRequest : BOOL;
 		StepCounterRequest : BOOL;
 		FixSpeedRequest : BOOL;
 		PositionReached : BOOL;

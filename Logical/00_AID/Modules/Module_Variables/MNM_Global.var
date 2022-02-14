@@ -17,4 +17,5 @@ VAR
 END_VAR
 VAR RETAIN
 	VAR_MNM_CocleaPhasingPerValue : REAL;
+	VAR_MNM_AllAxisPhased : BOOL;
 END_VAR

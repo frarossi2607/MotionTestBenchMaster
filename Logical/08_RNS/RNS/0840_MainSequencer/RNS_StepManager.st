@@ -19,7 +19,7 @@ ACTION RNS_StepManager:
 	END_IF
 	
 	//CIP
-	VAR_RNS_SeqCipStopAlarm := NOT OPS.DataOut.EmergencyOk OR NOT OPS.DataOut.DoorsOk OR VAR_RNS_AVB_ValveFault;
+//	VAR_RNS_SeqCipStopAlarm := NOT OPS.DataOut.EmergencyOk OR NOT OPS.DataOut.DoorsOk OR VAR_RNS_AVB_ValveFault;
 		
 	IF  VAR_RNS_SeqCipStopAlarm THEN
 		VAR_RNS_SeqCipStopRequest	:= VAR_RNS_ModeCip;

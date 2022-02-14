@@ -38,6 +38,8 @@ TYPE
 		NoBottleNoSprayInsercion : BOOL; (*vrma test*)
 		BottlesNotRinse : BOOL;
 		CipDisableAxisReq : BOOL; (*//RnsDisable*)
+		RunWithHemaReq : BOOL;
+		RunOnlyRinserAxisRequest : BOOL;
 		WaterFlow : REAL;
 		Temperature : REAL;
 		FixSpeedValue : REAL;

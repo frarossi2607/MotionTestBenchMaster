@@ -1,5 +1,6 @@
 (*MAIN MOTORIZATION Variables*)
 VAR
+	VAR_MNM_CpuStart : BOOL;
 	VAR_MNM_DefaultAxisConfig : BOOL;
 	VAR_MNM_MachineSpeedRequest : REAL;
 	VAR_MNM_AdjustmentStep : MNM_AdjustmentStep; (*V4.A.A.1.7.0*)
@@ -15,6 +16,7 @@ VAR
 	VAR_MNM_FpMachineStartPb : BOOL;
 	VAR_MNM_MachineStart : BOOL;
 	VAR_MNM_MachineStopRequest : BOOL; (*V4.A.A.1.6.6*)
+	VAR_MNM_CocleaPhasingDone : BOOL;
 	VAR_MNM_MachineStop : BOOL;
 END_VAR
 (*FAULT VARIABLES*)

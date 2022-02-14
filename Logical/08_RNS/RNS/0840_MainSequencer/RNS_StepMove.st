@@ -234,8 +234,8 @@ ACTION RNS_StepMove:
 	VAR_RNS_SEQ_Step.Step[40].Config.TON_TimePr			:= 3;
 	VAR_RNS_SEQ_Step.Step[40].Config.HMI_ID				:= 27;
 	
-	VAR_RNS_SEQ_Step.Step[40].Jump[0].Condition					:= VAR_RNS_SEQ_Step.TON_Time_END AND TNK.DataOut.StartCipRinser;
-	VAR_RNS_SEQ_Step.Step[40].Jump[0].Number					:= 41;
+	VAR_RNS_SEQ_Step.Step[40].Jump[0].Condition					:= VAR_RNS_SEQ_Step.TON_Time_END AND TNK.DataOut.StartCipRinser AND MAU_DumCon.DataOut.InstallDone;
+	VAR_RNS_SEQ_Step.Step[40].Jump[0].Number					:= 42;
 	VAR_RNS_SEQ_Step.Step[40].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_RNS_SeqCipStopRequest;
 	VAR_RNS_SEQ_Step.Step[40].Jump[MAX_JUMP_CFG-1].Number		:= 101;
 	VAR_RNS_SEQ_Step.Step[40].Jump[MAX_JUMP_CFG].Condition		:= VAR_RNS_SeqCipAbortRequest;
@@ -247,6 +247,10 @@ ACTION RNS_StepMove:
 	VAR_RNS_SEQ_Step.Step[41].Config.TON_TimePr			:= 1;
 	VAR_RNS_SEQ_Step.Step[41].Config.HMI_ID				:= 9;
 	
+	IF VAR_RNS_SEQ_Step.StepActual = 41 THEN												
+		VAR_RNS_SeqPermanent.SeqMode1.7 := FALSE;
+	END_IF
+	 
 	VAR_RNS_SEQ_Step.Step[41].Jump[0].Condition					:= VAR_RNS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipDrainMode;
 	VAR_RNS_SEQ_Step.Step[41].Jump[0].Number					:= 47;
 	VAR_RNS_SEQ_Step.Step[41].Jump[1].Condition					:= NOT TNK.DataOut.StartCipRinser;
@@ -255,6 +259,19 @@ ACTION RNS_StepMove:
 	VAR_RNS_SEQ_Step.Step[41].Jump[MAX_JUMP_CFG-1].Number		:= 101;
 	VAR_RNS_SEQ_Step.Step[41].Jump[MAX_JUMP_CFG].Condition		:= VAR_RNS_SeqCipAbortRequest;
 	VAR_RNS_SEQ_Step.Step[41].Jump[MAX_JUMP_CFG].Number			:= 101;
+	
+	//STEP 42 ********************************************************************************************************************
+	(* CIP - Wait Condition *)
+	VAR_RNS_SEQ_Step.Step[42].Config.TON_TimeSTART		:= TRUE; //[267].OUT_ClosedFiltered;//vrma
+	VAR_RNS_SEQ_Step.Step[42].Config.TON_TimePr			:= 1;
+	VAR_RNS_SEQ_Step.Step[42].Config.HMI_ID				:= 27;
+	
+	IF VAR_RNS_SEQ_Step.StepActual = 42 THEN												
+		VAR_RNS_SeqPermanent.SeqMode1.7 := TRUE;
+	END_IF
+	
+	VAR_RNS_SEQ_Step.Step[42].Jump[0].Condition					:= MNM.DataOut.ConfigReqLoaded;
+	VAR_RNS_SEQ_Step.Step[42].Jump[0].Number					:= 41;
 	
 	//STEP 42..46 ****************************************************************************************************************
 		

@@ -24,7 +24,10 @@ ACTION LiftMoveMngt_Doser:
 	y2 := VAR_DOS_PistonVolume_ml,	(*ml*)
 	);
 	
-	IF ((VAR_DOS_ModePositionRequest AND (VAR_DOS_ModeProduction OR VAR_DOS_FMDProductionFillerOnly)) OR (HMI_DOS_LiftPosition.Value = 1)) THEN
+	IF (VAR_DOS_ModePositionRequest AND (VAR_DOS_ModeWait AND NOT COP.DataOut.RcpActive)) THEN
+		VAR_DOS_MMF205.SpActual[mm]	:= 200.0; //DEFINE-> Hema Valves "free" - Cam horizontal
+		VAR_DOS_MMF206.SpActual[mm]	:= 200.0; 
+	ELSIF ((VAR_DOS_ModePositionRequest AND (VAR_DOS_ModeProduction OR VAR_DOS_FMDProductionFillerOnly)) OR (HMI_DOS_LiftPosition.Value = 1)) THEN
 		VAR_DOS_MMF205.SpActual[ml] := MIN(VAR_DOS_Lift_State.CmdProductionHeight.Sp,VAR_DOS_PistonVolume_ml);
 		FbLCRLimScal_ml_mm.x 		:= VAR_DOS_MMF205.SpActual[ml];
 		VAR_DOS_MMF205.SpActual[mm]	:= FbLCRLimScal_ml_mm.y;
@@ -76,6 +79,8 @@ ACTION LiftMoveMngt_Doser:
 				VAR_DOS_LiftMoveStep := DSR_Manual;
 			ELSIF HMI_DOS_SS2P[SS2P_DOS_ProbeAdjustment].ON THEN 
 				VAR_DOS_LiftMoveStep := DSR_ProbeZeroReq;
+			ELSIF (VAR_DOS_ModePositionRequest AND NOT VAR_DOS_SeqPositionReached AND VAR_DOS_ModeWait AND NOT COP.DataOut.RcpActive) THEN 
+				VAR_DOS_LiftMoveStep := DSR_PosMMF206ToMMF205;
 			ELSIF ((VAR_DOS_ModeCop AND COP.DataOut.DoserPositioningReq AND NOT VAR_DOS_SeqPositionReached) OR (EDGEPOS(HMI_DOS_PB[PB_CmdLiftMotorStart].ON) AND HMI_DOS_LiftPosition.Value = 2)) THEN 
 				VAR_DOS_LiftMoveStep := DSR_PosMMF206ToMMF205;
 			ELSIF (((VAR_DOS_ModeProduction OR VAR_DOS_FMDProductionFillerOnly) AND VAR_DOS_ModePositionRequest AND NOT VAR_DOS_SeqPositionReached) OR (EDGEPOS(HMI_DOS_PB[PB_CmdLiftMotorStart].ON) AND HMI_DOS_LiftPosition.Value = 1))THEN

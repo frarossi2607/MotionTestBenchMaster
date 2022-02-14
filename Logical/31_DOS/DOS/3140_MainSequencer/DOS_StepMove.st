@@ -9,7 +9,7 @@ ACTION DOS_StepMove:
 		//VAR_DOS_SeqPermanent.SeqMode1.5	:= VAR_DOS_FMDPositioning;
 	END_IF
 	
-	IF VAR_DOS_ModeWait AND VAR_DOS_FMDProductionFillerOnly THEN
+	IF VAR_DOS_ModeWait AND VAR_DOS_FMDProductionFillerOnly AND NOT COP.DataOut.RcpActive THEN  //SE COP IN PRODUZIONE --> sto in wait sino a che non finisce Cop->poi torno a 170 disabilitando motori
 		VAR_DOS_SeqPermanent.SeqMode1.8 := TRUE;
 	END_IF
 	
@@ -449,9 +449,9 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[61].Config.TON_TimePr		:= 10; 
 	VAR_DOS_SEQ_Step.Step[61].Config.HMI_ID			:= 23;
 
-	VAR_DOS_SEQ_Step.Step[61].Jump[0].Condition		:= TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone; 
+	VAR_DOS_SEQ_Step.Step[61].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT TNK.DataOut.CipMode;
 	VAR_DOS_SEQ_Step.Step[61].Jump[0].Number		:= 160;
-	VAR_DOS_SEQ_Step.Step[61].Jump[1].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END;
+	VAR_DOS_SEQ_Step.Step[61].Jump[1].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone;
 	VAR_DOS_SEQ_Step.Step[61].Jump[1].Number		:= 160;
 	VAR_DOS_SEQ_Step.Step[61].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[61].Jump[MAX_JUMP_CFG-1].Number		:= 201;
@@ -578,6 +578,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[73].Config.TON_TimePr		:= 10;
 	VAR_DOS_SEQ_Step.Step[73].Config.HMI_ID			:= 31;
 	
+	IF VAR_DOS_SEQ_Step.StepActual = 73 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 73 AND VAR_MNM_AxisConfigLoadedNumber = 4 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 73 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
+	
 	VAR_DOS_SEQ_Step.Step[73].Jump[0].Condition		:= LTJ[203].OUT_SpReached AND VAR_DOS_SEQ_Step.TON_Time_END AND PstFlr.CipReturnEnabled; //PstFlr.CipReturnEnabled PER RMA106
 	VAR_DOS_SEQ_Step.Step[73].Jump[0].Number		:= 75;
 	VAR_DOS_SEQ_Step.Step[73].Jump[1].Condition		:= PstFlr.CipRecipeCompleted;
@@ -586,6 +594,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[73].Jump[2].Number		:= 86;
 	VAR_DOS_SEQ_Step.Step[73].Jump[3].Condition		:= PstFlr.CipRecoveryRequest;
 	VAR_DOS_SEQ_Step.Step[73].Jump[3].Number		:= 82;
+	VAR_DOS_SEQ_Step.Step[73].Jump[4].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT MNM.DataOut.MachineRunning;
+	VAR_DOS_SEQ_Step.Step[73].Jump[4].Number		:= 95;
 	VAR_DOS_SEQ_Step.Step[73].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[73].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[73].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest;
@@ -596,6 +606,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[75].Config.TON_TimeSTART	:= TRUE;
 	VAR_DOS_SEQ_Step.Step[75].Config.TON_TimePr		:= REAL_TO_UINT(HMI_PAM_3._622); //Pulp Doser Cip Piston Valve Time
 	VAR_DOS_SEQ_Step.Step[75].Config.HMI_ID			:= 32;
+	
+	IF VAR_DOS_SEQ_Step.StepActual = 75 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 75 AND VAR_MNM_AxisConfigLoadedNumber = 4 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 75 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
 
 	VAR_DOS_SEQ_Step.Step[75].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END;
 	VAR_DOS_SEQ_Step.Step[75].Jump[0].Number		:= 77;
@@ -607,6 +625,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[75].Jump[3].Number		:= 86;
 	VAR_DOS_SEQ_Step.Step[75].Jump[4].Condition		:= PstFlr.CipRecipeCompleted;
 	VAR_DOS_SEQ_Step.Step[75].Jump[4].Number		:= 86;
+	VAR_DOS_SEQ_Step.Step[75].Jump[5].Condition		:= NOT MNM.DataOut.MachineRunning;
+	VAR_DOS_SEQ_Step.Step[75].Jump[5].Number		:= 95;
 	VAR_DOS_SEQ_Step.Step[75].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[75].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[75].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest;
@@ -618,6 +638,13 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[77].Config.TON_TimePr		:= REAL_TO_UINT(HMI_PAM_3._623); //Pulp Doser Cip Filling Valve Time
 	VAR_DOS_SEQ_Step.Step[77].Config.HMI_ID			:= 33;
 
+	IF VAR_DOS_SEQ_Step.StepActual = 77 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 77 AND NOT VAR_MNM_AxisConfigLoadedNumber = 3 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 77 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
 	VAR_DOS_SEQ_Step.Step[77].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END;
 	VAR_DOS_SEQ_Step.Step[77].Jump[0].Number		:= 79;
 	VAR_DOS_SEQ_Step.Step[77].Jump[1].Condition		:= PstFlr.CipRecoveryRequest;
@@ -628,6 +655,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[77].Jump[3].Number		:= 86;
 	VAR_DOS_SEQ_Step.Step[77].Jump[4].Condition		:= PstFlr.CipRecipeCompleted;
 	VAR_DOS_SEQ_Step.Step[77].Jump[4].Number		:= 86;
+	VAR_DOS_SEQ_Step.Step[77].Jump[5].Condition		:= NOT MNM.DataOut.MachineRunning;
+	VAR_DOS_SEQ_Step.Step[77].Jump[5].Number		:= 95;
 	VAR_DOS_SEQ_Step.Step[77].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[77].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[77].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest;
@@ -639,6 +668,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[79].Config.TON_TimePr		:= 240;
 	VAR_DOS_SEQ_Step.Step[79].Config.HMI_ID			:= 34;
 
+	IF VAR_DOS_SEQ_Step.StepActual = 79 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 79 AND NOT VAR_MNM_AxisConfigLoadedNumber = 3 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 79 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
+	
 	VAR_DOS_SEQ_Step.Step[79].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END;
 	VAR_DOS_SEQ_Step.Step[79].Jump[0].Number		:= 81;
 	VAR_DOS_SEQ_Step.Step[79].Jump[1].Condition		:= PstFlr.CipRecoveryRequest;
@@ -649,6 +686,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[79].Jump[3].Number		:= 86;
 	VAR_DOS_SEQ_Step.Step[79].Jump[4].Condition		:= PstFlr.CipRecipeCompleted;
 	VAR_DOS_SEQ_Step.Step[79].Jump[4].Number		:= 86;
+	VAR_DOS_SEQ_Step.Step[79].Jump[5].Condition		:= NOT MNM.DataOut.MachineRunning;
+	VAR_DOS_SEQ_Step.Step[79].Jump[5].Number		:= 95;
 	VAR_DOS_SEQ_Step.Step[79].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[79].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[79].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest;
@@ -660,6 +699,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[81].Config.TON_TimePr		:= 5;
 	VAR_DOS_SEQ_Step.Step[81].Config.HMI_ID			:= 35;
 
+	IF VAR_DOS_SEQ_Step.StepActual = 81 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 81 AND NOT VAR_MNM_AxisConfigLoadedNumber = 3 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 81 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
+	
 	VAR_DOS_SEQ_Step.Step[81].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND PstFlr.CipRunning AND PstFlr.CipProductSending AND MNM.DataOut.MachineRunning;
 	VAR_DOS_SEQ_Step.Step[81].Jump[0].Number		:= 73; //75
 	VAR_DOS_SEQ_Step.Step[81].Jump[1].Condition		:= PstFlr.CipRecoveryRequest;
@@ -670,6 +717,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[81].Jump[3].Number		:= 73;
 	VAR_DOS_SEQ_Step.Step[81].Jump[4].Condition		:= PstFlr.CipRecipeCompleted;
 	VAR_DOS_SEQ_Step.Step[81].Jump[4].Number		:= 86;
+	VAR_DOS_SEQ_Step.Step[81].Jump[5].Condition		:= NOT MNM.DataOut.MachineRunning;
+	VAR_DOS_SEQ_Step.Step[81].Jump[5].Number		:= 95;
 	VAR_DOS_SEQ_Step.Step[81].Jump[MAX_JUMP_CFG-1].Condition	:= VAR_DOS_SeqCipStopRequest;
 	VAR_DOS_SEQ_Step.Step[81].Jump[MAX_JUMP_CFG-1].Number		:= 201;
 	VAR_DOS_SEQ_Step.Step[81].Jump[MAX_JUMP_CFG].Condition		:= VAR_DOS_SeqCipAbortRequest;
@@ -681,6 +730,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[82].Config.TON_TimePr		:= 15;
 	VAR_DOS_SEQ_Step.Step[82].Config.HMI_ID			:= 36;
 
+	IF VAR_DOS_SEQ_Step.StepActual = 82 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 82 AND NOT VAR_MNM_AxisConfigLoadedNumber = 3 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 82 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
+	
 	VAR_DOS_SEQ_Step.Step[82].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND PstFlr.CipDrainRequest;
 	VAR_DOS_SEQ_Step.Step[82].Jump[0].Number		:= 86;
 	VAR_DOS_SEQ_Step.Step[82].Jump[1].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END;
@@ -695,6 +752,14 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[83].Config.TON_TimeSTART	:= TRUE;
 	VAR_DOS_SEQ_Step.Step[83].Config.TON_TimePr		:= 5;
 	VAR_DOS_SEQ_Step.Step[83].Config.HMI_ID			:= 37;
+	
+	IF VAR_DOS_SEQ_Step.StepActual = 83 AND VAR_MNM_AxisConfigLoadedNumber = 3 AND RNS.DataOut.RunWithHemaReq THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; //VAR_DOS_MemFillerAxisOffReq
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 83 AND NOT VAR_MNM_AxisConfigLoadedNumber = 3 AND NOT TNK.DataOut.StartCipRinser THEN 
+		VAR_DOS_SeqPermanent.SeqMode2.6 := TRUE; 
+	ELSIF VAR_DOS_SEQ_Step.StepActual = 83 AND VAR_MNM_AxisConfigLoadedNumber = 3 THEN
+		VAR_DOS_SeqPermanent.SeqMode2.6 := FALSE;
+	END_IF
 	
 	VAR_DOS_SEQ_Step.Step[83].Jump[0].Condition		:= VAR_DOS_SEQ_Step.TON_Time_END AND PstFlr.CipDrainRequest;
 	VAR_DOS_SEQ_Step.Step[83].Jump[0].Number		:= 86;
@@ -803,7 +868,9 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[95].Jump[0].Number					:= VAR_DOS_SeqPermanent.SeqBackupStep; 
 	VAR_DOS_SEQ_Step.Step[95].Jump[1].Condition					:= VAR_DOS_SeqCipAbortRequest;
 	VAR_DOS_SEQ_Step.Step[95].Jump[1].Number					:= 0;
-	
+	VAR_DOS_SEQ_Step.Step[95].Jump[2].Condition					:= MNM.DataOut.MachineRunning AND MNM.DataOut.ConfigReqLoaded;
+	VAR_DOS_SEQ_Step.Step[95].Jump[2].Number					:= VAR_DOS_SeqPermanent.SeqBackupStep; 
+
 	//STEP 96 ********************************************************************************************************************
 	(* C.I.P. -Press "STOP" to End the Cycle or Press "START" for a New Sequence*)
 	VAR_DOS_SEQ_Step.Step[96].Config.TON_TimeSTART			:= TRUE;
@@ -1100,12 +1167,12 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[155].Config.HMI_ID				:= 73;
 	
 	VAR_DOS_SEQ_Step.Step[155].Jump[0].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.8; //PRODUCTION ONLY FILLER
-	VAR_DOS_SEQ_Step.Step[155].Jump[0].Number					:= 159;
+	VAR_DOS_SEQ_Step.Step[155].Jump[0].Number					:= 159; //170;
 	VAR_DOS_SEQ_Step.Step[155].Jump[1].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND VAR_DOS_SeqPermanent.SeqMode1.0; //PRODUCTION
-	VAR_DOS_SEQ_Step.Step[155].Jump[1].Number					:= 158;
+	VAR_DOS_SEQ_Step.Step[155].Jump[1].Number					:= 158; //1;
 	VAR_DOS_SEQ_Step.Step[155].Jump[2].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END; //MANUAL CAM POSITIONING
 	VAR_DOS_SEQ_Step.Step[155].Jump[2].Number					:= 0;
-	
+
 	//STEP 158 ********************************************************************************************************************
 	(* MOTORIZATION - Doser Axis Check *)
 	VAR_DOS_SEQ_Step.Step[158].Config.TON_TimeSTART               := MNM.DataOut.PhaseDone;
@@ -1150,8 +1217,8 @@ ACTION DOS_StepMove:
 	VAR_DOS_SEQ_Step.Step[160].Jump[5].Number					:= 161;
 	VAR_DOS_SEQ_Step.Step[160].Jump[6].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND TNK.DataOut.CipMode AND MAU_DumCon.DataOut.InstallDone AND NOT MNM.DataOut.ConfigReqLoaded; //CIP WITH FILLER
 	VAR_DOS_SEQ_Step.Step[160].Jump[6].Number					:= 161;
-//	VAR_DOS_SEQ_Step.Step[160].Jump[7].Condition				:= VAR_DOS_SEQ_Step.TON_Time_END AND NOT TNK.DataOut.CipMode;
-//	VAR_DOS_SEQ_Step.Step[160].Jump[7].Number					:= 164;
+	
+
 
 	//STEP 161 ********************************************************************************************************************
 	(* MOTORIZATION - Waiting for Machine Stop for Enabling/Disabling Axis *)

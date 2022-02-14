@@ -22,6 +22,9 @@ ACTION RNS_DataOut:
 	RNS.DataOut.ContainerStop					:= VAR_RNS_SEQ.Mem.ContainersStop;
 	RNS.DataOut.CipDrainEnd						:= VAR_RNS_StepCipEnded;
 	
+	RNS.DataOut.RunOnlyRinserAxisRequest		:= VAR_RNS_SeqPermanent.SeqMode1.7 AND NOT DOS.DataOut.CipMode;
+	RNS.DataOut.RunWithHemaReq		            := VAR_RNS_SeqPermanent.SeqMode1.7 AND DOS.DataOut.CipMode;	
+
 	IF VAR_RNS_SEQ.Mem.InsercionDevice OR VAR_RNS_ModeCip THEN
 		RNS.DataOut.FixSpeedValue					:= HMI_PAM_1._014;
 	ELSE
